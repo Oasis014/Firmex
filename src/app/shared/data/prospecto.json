@@ -1,0 +1,33 @@
+[
+    {
+        "id": 0,
+        "prospecto": "Jorge Gonzalez Lopez",
+        "genero": "Hombre",
+        "edad": 52,
+        "address": {
+            "estado": "South Carolina",
+            "ciudad": "Glendale"
+        }
+    },
+    {
+        "id": 1,
+        "prospecto": "Martin Espejel Marquez",
+        "genero": "Hombre",
+        "edad": 70,
+        "address": {
+            "estado": "Arizona",
+            "ciudad": "Beaverdale"
+        }
+    },
+    {
+        "id": 2,
+        "prospecto": "Noemi Alfaro Lopez",
+        "genero": "Mujer",
+        "edad": 52,
+        "address": {
+            "estado": "New Mexico",
+            "ciudad": "Grazierville"
+        }
+    }
+]
+

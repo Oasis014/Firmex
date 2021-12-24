@@ -1,0 +1,28 @@
+
+<!-- Filter Datatable Options Starts -->
+<div class="row">
+  <div ngbDropdown class="col-sm-12 mb-4">
+    <!-- PRUEBA NUEVA -->
+    <div class="col-12 col-lg-6 col-xl-6">
+      <div class="input-group">
+        <div ngbDropdown class="input-group-prepend">
+          <button class="btn btn-light" type="button" id="dropdownBasic7" ngbDropdownToggle>Estado civil</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic6">
+            <a ngbDropdownItem (click)="Filt1()" href="javaScript:;">Genero</a>
+            <div class="dropdown-divider"></div>
+            <a ngbDropdownItem (click)="Filt2()" href="javaScript:;">Estado civil</a>
+            <div class="dropdown-divider"></div>
+            <a ngbDropdownItem (click)="Filt3()" href="javaScript:;">Tipo de tasa</a>
+          </div>
+        </div>
+        <input type="text" class="form-control" placeholder="Buscar por catalogos" (keyup)='updateFilter($event)'>
+      </div>
+    </div>
+    <div></div>
+    <!-- FIN DE PRUEBA -->
+    <ngx-datatable #table style = "cursor:pointer;" class="bootstrap selection-cell " [rows]="rows" [columnMode]="'force'" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [selected]="selected" [rowHeight]="'auto'" [limit]="10" [rows]='rows' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" ></ngx-datatable>
+  </div>
+</div>
+<!-- Filter Datatable Options Ends -->
+
+

@@ -1,0 +1,16 @@
+<app-btnlist></app-btnlist>
+<!-- Filter Datatable Options Begin -->
+<div class="row">
+	<br>
+	<div class="col-sm-12 mb-4">
+		<ngx-datatable #table class='bootstrap selection-cell' [selected]="selected" [rows]='rows' [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='cursor:pointer;' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" (dblclick) = "doubleClicked($event)">
+			<ngx-datatable-column name="Cliente" [frozenLeft]="true" [width]="20" prop="id"></ngx-datatable-column>
+			<ngx-datatable-column name="Linea de Credito" [width]="40" prop="credito"></ngx-datatable-column>
+			<ngx-datatable-column name="Monto de la Linea" [width]="10" prop="monto"></ngx-datatable-column>
+			<ngx-datatable-column name="Monto de la Linea Dispuesto" [width]="10" prop="dispuesto"></ngx-datatable-column>
+			<ngx-datatable-column name="Monto de la Linea Disponible" [width]="80" prop="disponible"></ngx-datatable-column>
+			<ngx-datatable-column name="Fecha de Alta" [width]="40" prop="fecha"></ngx-datatable-column>
+		</ngx-datatable>
+	</div>
+<!-- Filter Datatable Options Ends -->
+</div>

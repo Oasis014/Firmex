@@ -1,0 +1,42 @@
+<div class="card">
+  <!--<div class="card-header text-uppercase">Titulo</div>-->
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 col-lg-4 col-xl-4">
+        <div class="input-group">
+          <div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Ingrese datos a buscar">
+          <!-- <input _ngcontent-ydu-c225="" type="text" class="form-control" placeholder="Buscar registro" (keyup)='updateFilter($event)' style='width:30%;'>-->
+          <div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 col-xl-4">
+        <div class="input-group justify-content-center">
+            <div class="btn-group btn-group-toggle" ngbRadioGroup>
+              <label ngbButtonLabel class="btn-outline-white btn-light"><input ngbButton type="radio" value="LIVE" checked>
+                <i class="zmdi zmdi-shield-check mr-1"></i>Vigente
+              </label>
+              <label ngbButtonLabel class="btn-outline-white btn-light"><input ngbButton type="radio" value="INAUTH">       
+                <i class="fa fa-shield mr-1"></i>Por Autorizar
+              </label>
+              <label ngbButtonLabel class="btn-outline-white btn-light"><input ngbButton type="radio" value="HIST">
+                <i class="zmdi zmdi-shield-security mr-1"></i>Historico
+              </label>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-4 col-xl-4">
+        <div ngbDropdown class="btn-group m-1 float-sm-right" >
+          <button type="button" class="btn btn-light"><i class="fa fa-filter"></i><span> Filtrar</span></button>
+          <button type="button" class="btn btn-light"><i class="fa fa-file"></i><span> Nuevo</span></button>
+          <button type="button" class="btn btn-light"><i class="fa fa-print"></i><span> Imprimir</span></button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>  

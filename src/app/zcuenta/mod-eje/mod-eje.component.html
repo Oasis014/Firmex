@@ -1,0 +1,27 @@
+<app-btnedit></app-btnedit>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-body">
+				<nav ngbNav #nav="ngbNav" class="nav-tabs nav-tabs-primary nav-justified">
+
+					<ng-container ngbNavItem> <a ngbNavLink><i class="icon-user-plus"></i>Datos Generales</a>
+						<ng-template ngbNavContent>
+							<app-eje-alta></app-eje-alta>
+						</ng-template>
+					</ng-container>
+
+          <ng-container ngbNavItem> <a ngbNavLink><i class="icon-home"></i>Condiciones de Operación</a>
+            <ng-template ngbNavContent>
+              <app-eje-oper></app-eje-oper>
+            </ng-template>
+          </ng-container>
+
+
+				</nav>
+				<div [ngbNavOutlet]="nav" class="mt-2"></div>
+			</div>
+		</div>
+	</div>
+</div>

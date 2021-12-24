@@ -1,0 +1,19 @@
+[
+  {
+  "id": 0,
+  "nombre": "A",
+  "genero": "A",
+  "edad": "A",
+  "estado": "A",
+  "ciudad": "A"
+},
+  {
+    "id": 1,
+    "nombre": "B",
+    "genero": "B",
+    "edad": "B",
+    "estado": "B",
+    "ciudad": "B"
+  }
+]
+

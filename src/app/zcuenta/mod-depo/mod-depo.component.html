@@ -1,0 +1,113 @@
+<app-btnedit></app-btnedit>
+<h4 class="page-title"><i _ngcontent-pmu-c279="" aria-hidden="true" class="fa fa-money"></i>
+  Depositos y Retiros </h4>
+<div class="row">
+  <div class="col-12 col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="page-title">Datos Generales </h4>
+        <hr>
+        <br>
+        <form>
+          <div class="form-group row">
+            <div class="col-6 col-lg-6 col-xl-6">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Número Cliente</label>
+                <div class="col-sm-6 input-group">
+                  <input type="text" class="form-control" name="num_soc" id="num_soc" placeholder="# del Cliente">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-6 col-xl-6">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Nombre del Cliente </label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" name="num_linea_cred" id="num_linea_cred" placeholder="Nombre del Cliente"  value="Nombre del Cliente" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-6 col-xl-6">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Número Cuenta Debito </label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" name="num_cuenta" id="num_cuenta" placeholder="Número de Cuenta"  value="00039493930394" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-6 col-xl-6">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Saldo Inicial Cuenta Debito</label>
+                <div class="col-sm-6 input-group">
+                  <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                  <input type="text" class="form-control" name="tipo_cuenta" id="tipo_cuenta" placeholder=" 0.00 ">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <h6 class="page-title">Condiciones Operación</h6>
+          <hr>
+          <div class="card-body">
+            <div class="row">
+          <hr>
+              <div class="col-6 col-lg-6 col-xl-6">
+                <div class="form-group row">
+                  <label  class="col-sm-5 col-form-label">Número de Operación</label>
+                  <div class="col-sm-6 input-group">
+                    <span class="input-group-text"><i class="fa fa-pencil-square-o"></i></span>
+                    <input type="text" class="form-control" name="num_operacion" id="num_operacion" placeholder="000000">
+                    <div class="input-group-append">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-6 col-xl-6">
+                <div class="form-group row">
+                  <label  class="col-sm-5 col-form-label">Monto de Operación</label>
+                  <div class="col-sm-6 input-group">
+                    <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                    <input type="text" class="form-control" name="mto_operacion" id="mto_operacion" placeholder="  0.00 ">
+                    <div class="input-group-append">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-6 col-xl-6">
+                <div class="form-group row">
+                  <label class="col-sm-5 col-form-label">Tipo de Transacción </label>
+                  <div class="col-sm-6">
+                    <select class="form-control form-control-sm" name="tipo_tasa" id="tipo_tasa">
+                      <option selected>Seleccione el tipo de transacción ...</option>
+                      <option value="1">Retiro</option>
+                      <option value="2">Deposito</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-6 col-xl-6">
+                <div class="form-group row">
+                  <label  class="col-sm-5 col-form-label">Referencia</label>
+                  <div class="col-sm-6 input-group">
+                    <span class="input-group-text"><i class="fa fa-pencil-square-o"></i></span>
+                    <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia">
+                    <div class="input-group-append">
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <div class="col-6 col-lg-6 col-xl-6">
+            <div class="form-group row">
+              <label  class="col-sm-5 col-form-label">Saldo Final Cuenta Debito</label>
+              <div class="col-sm-6 input-group">
+                <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                <input type="text" class="form-control" name="tipo_cuenta" id="tipo_cuenta" placeholder="Saldo Final " value=" 0.00 " readonly>
+                <div class="input-group-append">
+                </div>
+              </div>
+            </div>
+          </div>

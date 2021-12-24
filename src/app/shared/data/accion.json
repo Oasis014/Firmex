@@ -1,0 +1,274 @@
+[
+    {
+        "id": 0,
+        "prospecto": "JORGE GONZALEZ LOPEZ",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212345"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "NAUDIMAR CHAVEZ HERNANDEZ",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212378"
+        },
+        "cantidad": 74,
+        "accion": {
+            "serie": "B",
+            "tipo": "Preferentes"
+        },
+        "valor":"$ 74,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "ALFREDO DEL MAZO MAZA",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212312"
+        },
+        "cantidad": 23,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 23,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "SERGIO RICARDO CHAVELAS MARURI",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212301"
+        },
+        "cantidad": 115,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 115,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "RICARDO ALONSO VALDES BORES",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212308"
+        },
+        "cantidad": 30,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 30,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "MARICELA REYES VILCHIS",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212333"
+        },
+        "cantidad": 200,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 200,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "RAYMUNDO BALBOA CRUZ",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212327"
+        },
+        "cantidad": 100,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 100,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "FLOR DEL CARMEN ESQUIVEL LIRA",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212399"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "ADOLFO QUINTANA ORTIZ",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212398"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "ENRIQUE ARTURO SOLIS BARCELO",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212360"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "ANGEL ARIAS RICO",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212325"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "ERIKO FLORES PEREZ",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212345"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "ENRIQUE TOSCANO PACHECO",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212345"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "JORGE ARTURO GONZALEZ ARRATIA SOLORZANO",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212345"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "MARIA CONCEPCION DOMINGUEZ JAIMES",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212345"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    },
+    {
+        "id": 0,
+        "prospecto": "EDUARDO BARRERA VILLAR",
+        "banco": {
+            "institucion": "BBVA Bancomer",
+            "cie": "12443",
+            "referencia": "223212345"
+        },
+        "cantidad": 52,
+        "accion": {
+            "serie": "A",
+            "tipo": "Ordinaria"
+        },
+        "valor":"$ 52,000",
+        "fecha":"",
+        "estatus":"Por confirmar"
+    }
+]

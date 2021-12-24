@@ -1,0 +1,557 @@
+
+<!-- End Breadcrumb-->
+<div class="row">
+  <div class="card">
+    <div class="card-body">
+      <nav ngbNav #nav="ngbNav" class="nav-tabs nav-tabs-primary  nav-justified">
+        <ng-container ngbNavItem> <a ngbNavLink><i class="fa fa-user-plus"></i>Datos Linea de Crédito</a>
+          <ng-template ngbNavContent>
+            <form>
+
+              <!--End Row-->
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+
+                      <div class="row">
+
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label"> Cliente</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text" class="form-control" placeholder="# del Cliente">
+                              <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Número linea de Crédito </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="Número linea de Crédito"  value=" 000 " readonly>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Revolvente</label>
+                            <div class="col-sm-6">
+
+                              <div class="custom-control custom-radio d-block float-left">
+                                <input type="radio" id="EstatusCta" checked name="EstatusCta" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline3">Si
+                                  &nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                              </div>
+
+                              <div class="custom-control custom-radio d-block float-left ml-1">
+                                <input type="radio" id="EstatusCta" name="EstatusCta" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline4">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Refinanciamiento</label>
+                            <div class="col-sm-6">
+
+                              <div class="custom-control custom-radio d-block float-left">
+                                <input type="radio" id="EstatusCta" checked name="EstatusCta" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline3">Si
+                                  &nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                              </div>
+
+                              <div class="custom-control custom-radio d-block float-left ml-1">
+                                <input type="radio" id="EstatusCta" name="EstatusCta" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline4">No</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Monto de la Linea</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Linea Crédito Dispuesto</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Linea Crédito Disponible</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Número de Contrato </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="Número de Contrato"  value=" 00101 " readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Monto del Contrato</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Monto Contrato Dispuesto</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Monto Contrato Disponible</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+          </ng-template>
+        </ng-container>
+
+        <ng-container ngbNavItem> <a ngbNavLink><i class="icon-home"></i>Condiciones de Operación</a>
+          <ng-template ngbNavContent>
+            <form>
+
+              <!--End Row-->
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+
+                      <div class="row">
+
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Tasa Fija</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Tasa Variable</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Puntos Adicionales </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="00 "  >
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Tasa Moratoria Fija</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Tasa Moratoria Variable</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Sobre Tasa Moratoria</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Esquema de Calculo</label>
+                            <div class="col-sm-6">
+                              <select class="form-control form-control-sm" id="small-select">
+                                <option selected>Seleccione el esquema de calculo ...</option>
+                                <option value="1">Opción 1</option>
+                                <option value="2">Opción 2</option>
+                                <option value="3">Opción 3</option>
+                                <option value="3">Opción 4</option>
+                                <option value="4">Opción 5</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Disposiciones </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder=" 00 "  >
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Periocidad </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="Puntos Adicionales "  value=" 00 " readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Periocidad pago capital</label>
+                            <div class="col-sm-6">
+                              <select class="form-control form-control-sm" id="small-select">
+                                <option selected>Seleccione la periocidad pago ...</option>
+                                <option value="1">Opción 1</option>
+                                <option value="2">Opción 2</option>
+                                <option value="3">Opción 3</option>
+                                <option value="3">Opción 4</option>
+                                <option value="4">Opción 5</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Periocidad pago interés</label>
+                            <div class="col-sm-6">
+                              <select class="form-control form-control-sm" id="small-select">
+                                <option selected>Seleccione la periocidad pago ...</option>
+                                <option value="1">Opción 1</option>
+                                <option value="2">Opción 2</option>
+                                <option value="3">Opción 3</option>
+                                <option value="3">Opción 4</option>
+                                <option value="4">Opción 5</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Periocidad de gracia de capital</label>
+                            <div class="col-sm-6">
+                              <select class="form-control form-control-sm" id="small-select">
+                                <option selected>Seleccione la gracia de capital ...</option>
+                                <option value="1">Opción 1</option>
+                                <option value="2">Opción 2</option>
+                                <option value="3">Opción 3</option>
+                                <option value="3">Opción 4</option>
+                                <option value="4">Opción 5</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Número gracia de capital </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="Número gracia de capital  "  value=" 00 " readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Número gracia de capital </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="Número gracia de capital  "  value=" 00 " readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Número gracia de interés </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="Número gracia de interés  "  value=" 00 " readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Número gracia de interés </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="Número gracia de interés  "  value=" 00 " readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Pago Especial </label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Pago Especial </label>
+                            <div class="col-sm-6">
+                              <input type="date" class="form-control" placeholder=" XX XX XXXX ">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Monto pago Especial</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+          </ng-template>
+        </ng-container>
+
+        <ng-container ngbNavItem> <a ngbNavLink><i class="icon-home"></i>Datos de la Disposición de Crédito </a>
+          <ng-template ngbNavContent>
+            <form>
+
+              <!--End Row-->
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+
+                      <div class="row">
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Número de Disposición </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="Número de Disposición "  value=" 4749384 " readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Número de Pagare </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder="Número de Pagare "  value=" 00474 " readonly>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Monto de la Disposición</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Fecha de Disposición </label>
+                            <div class="col-sm-6">
+                              <input type="date" class="form-control" placeholder=" XXXX XX XXXX "  >
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Vencimiento de la Disposición </label>
+                            <div class="col-sm-6">
+                              <input type="date" class="form-control" placeholder=" XXXX XX XXXX "  >
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Monto de la Amortización</label>
+                            <div class="col-sm-6 input-group">
+                              <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                              <input type="text" class="form-control" placeholder="$ 0.00 "  value=" 0.00" readonly>
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Fecha de 1er pago </label>
+                            <div class="col-sm-6">
+                              <input type="date" class="form-control" placeholder=" XXXX XX XXXX "  >
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Fecha ultimo pago </label>
+                            <div class="col-sm-6">
+                              <input type="date" class="form-control" placeholder=" XXXX XX XXXX "  >
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-6 col-lg-6 col-xl-6">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Día de Pago </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" placeholder=" 00 "  >
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+          </ng-template>
+        </ng-container>
+
+      </nav>
+
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+</div>
+

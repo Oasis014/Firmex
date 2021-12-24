@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1092844212,
+    "cuenta": "Cuenta Basica",
+    "nombre": "Angel Samudio Martinez Lopez",
+    "tipo": "Debito",
+    "moneda":"MXN",
+    "producto": "Automotriz"
+  },
+  {
+    "id": 105676822212,
+    "cuenta": "Cuenta Basica",
+    "nombre": "Jose Manuel Medina Martinez",
+    "tipo": "Debito",
+    "moneda":"MXN",
+    "producto": "Roble"
+  },
+  {
+    "id": 1023422212,
+    "cuenta": "Cuenta Basica",
+    "nombre": "Fernanda Peres Castro",
+    "tipo": "Debito",
+    "moneda":"MXN",
+    "producto": "Agropecuario"
+  }
+
+]

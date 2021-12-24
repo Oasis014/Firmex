@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1092122212,
+        "linea": "Cuenta Basica",
+        "nombre": "Luis Miguel Medina Lopez",
+        "tipo": "Debito",
+        "producto":"Roble",
+        "fuente": "Crédito Grupal",
+        "programa": "Crédito Grupal",
+        "revolvente": "Si"
+    },
+    {
+        "id": 10921223333,
+        "linea": "Cuenta Basica",
+        "nombre": "Marco Antonio Medina Lopez",
+        "tipo": "Debito",
+        "producto":"Automotriz",
+        "fuente": "Crédito Grupal",
+        "programa": "Crédito Grupal",
+        "revolvente": "No"
+    },
+    {
+        "id": 1092122223,
+        "linea": "Cuenta Basica",
+        "nombre": "Demian Mael Medina Martinez",
+        "tipo": "Debito",
+        "producto":"Prenda",
+        "fuente": "Crédito Grupal",
+        "programa": "Crédito Grupal",
+        "revolvente": "Si"
+    }
+]

@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 col-lg-4 col-xl-4">
+        <div ngbDropdown class="btn-group m-2" >
+          <button type="button" class="btn btn-light"><i class="fa fa-floppy-o"></i><span>&nbsp;Salvar</span></button>
+        </div>
+      </div>
+      <div class="col-12 col-lg-8 col-xl-8">
+        <div ngbDropdown class="btn-group m-2 float-sm-right" >
+          <button type="button" class="btn btn-light" (click)="open()"><i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ***** Encabezado ***** -->
+<div class="row">
+    <div class="col-sm-6">
+        <label >ID</label>
+        <input type="number" class="form-control" [(ngModel)]="user.id_usuario" >
+    </div>
+    <div class="col-sm-6">
+        <label >Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="user.nombre" >
+    </div>
+    <div class="col-sm-6">
+        <label >Apellido</label>
+        <input type="text" class="form-control" [(ngModel)]="user.apellido" >
+    </div>
+    <div class="col-sm-6">
+        <label >Correo</label>
+        <input type="email" class="form-control" [(ngModel)]="user.correo" >
+    </div>
+    <div class="col-sm-6">
+        <label >Numero</label>
+        <input maxlength="13" type="tel" class="form-control" [(ngModel)]="user.numero" >
+    </div>
+    <div class="col-sm-6">
+        <label >Clave</label>
+        <input  class="form-control" type="text" [(ngModel)]="user.clave" >
+    </div>
+        <div class="col-sm-13">
+        <button class="btn btn-outline-dark float-left" (click)="Agregar()" >Agregar</button>
+        </div>
+</div>
+
+

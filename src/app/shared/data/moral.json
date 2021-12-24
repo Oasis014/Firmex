@@ -1,0 +1,72 @@
+[
+    {
+        "id": 0,
+        "empresa": "Petróleos Mexicanos",
+        "giro": "Producción",
+        "representante": "Germán Larrea",
+        "address": {
+            "estado": "South Carolina",
+            "ciudad": "Glendale"
+        }
+    },
+    {
+        "id": 1,
+        "empresa": "América Móvil",
+        "giro": "Telecomunicaciones",
+        "representante": "Carlos Slim Helú",
+        "address": {
+            "estado": "Arizona",
+            "ciudad": "Beaverdale"
+        }
+    },
+    {
+        "id": 2,
+        "empresa": "Walmart de México",
+        "giro": "Retail",
+        "representante": "Ricardo Salinas Pliego",
+        "address": {
+            "estado": "New Mexico",
+            "ciudad": "Grazierville"
+        }
+    },
+    {
+        "id": 3,
+        "empresa": "Comisión Federal de Electricidad",
+        "giro": "Energía",
+        "representante": "Alberto Baillères",
+        "address": {
+            "estado": "Wisconsin",
+            "ciudad": "Saranap"
+        }
+    },
+    {
+        "id": 4,
+        "empresa": "General Motors de México",
+        "giro": "Manufactura",
+        "representante": "Juan Francisco Beckmann Vidal",
+        "address": {
+            "estado": "Vermont",
+            "ciudad": "Norris"
+        }
+    },
+    {
+        "id": 5,
+        "empresa": "Grupo Bimbo",
+        "giro": "Manufactura y comercialización",
+        "representante": "Antonio del Valle",
+        "address": {
+            "estado": "Montana",
+            "ciudad": "Bordelonville"
+        }
+    },
+    {
+        "id": 6,
+        "empresa": "BBVA México",
+        "giro": "Financiera",
+        "representante": "Jorge Lopez Gomez",
+        "address": {
+            "estado": "New Jersey",
+            "ciudad": "Aguila"
+        }
+    }  
+]

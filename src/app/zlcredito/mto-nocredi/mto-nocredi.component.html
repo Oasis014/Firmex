@@ -1,0 +1,38 @@
+<app-btnview></app-btnview>
+<h4 class="page-title" ><a type = "button" (click)="ModF(router)"> Linea de Crédito </a> </h4>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-body">
+				<nav ngbNav #nav="ngbNav" class="nav-tabs nav-tabs-primary">
+
+					<ng-container ngbNavItem> <a ngbNavLink><i class="icon-user"></i>Alta linea de Crédito</a>
+						<ng-template ngbNavContent>
+							<app-alta-inver></app-alta-inver>
+						</ng-template>
+					</ng-container>
+
+					<ng-container ngbNavItem> <a ngbNavLink><i class="fa fa-bank"></i>Condiciones de Operación</a>
+						<ng-template ngbNavContent>
+							<app-oper-inver></app-oper-inver>
+						</ng-template>
+					</ng-container>
+
+          <ng-container ngbNavItem> <a ngbNavLink><i class="fa fa-bank"></i>Comisiones y Seguros</a>
+            <ng-template ngbNavContent>
+              <app-oper-inver></app-oper-inver>
+            </ng-template>
+          </ng-container>
+
+          <ng-container ngbNavItem> <a ngbNavLink><i class="fa fa-bank"></i>Contratación</a>
+            <ng-template ngbNavContent>
+              <app-mope-inver></app-mope-inver>
+            </ng-template>
+          </ng-container>
+
+				</nav>
+				<div [ngbNavOutlet]="nav" class="mt-2"></div>
+			</div>
+		</div>
+	</div>
+</div>

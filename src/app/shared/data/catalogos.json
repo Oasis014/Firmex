@@ -1,0 +1,27 @@
+[
+    {
+        "id": "Sexo",
+        "description": {
+            "0": "Marculino",
+            "1": "Femenino"
+        }
+    },
+    {
+        "id": "Estado Civil",
+        "description": {
+            "0": "Casado",
+            "1": "soltero",
+            "3": "viudo",
+            "4": "divorciado",
+            "5": "union libre"
+
+        }
+    },
+    {
+        "id": "Tipo de Tasa",
+        "description": {
+            "0": "Fija",
+            "1": "Variable"
+        }
+    }    
+]

@@ -1,0 +1,227 @@
+<app-btnview></app-btnview>
+<h4 class="page-title" ><a type = "button" (click)="ModC(router)"> Edición </a> </h4>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <nav ngbNav #nav="ngbNav" class="nav-tabs nav-tabs-primary nav-justified">
+          <ng-container ngbNavItem> <a ngbNavLink><i class="fa fa-user"></i>Generales</a>
+            <ng-template ngbNavContent>
+              <div class="row invoice-info">
+                <div class="col-sm-2 invoice-col">
+                  <img class="mr-3 rounded" src="assets/images/avatars/People.png" alt="user avatar"><br>
+                  Fotografía
+                </div>
+                <div class="col-sm-3 invoice-col">
+                  <h4>Datos Geneales</h4>
+                  <address>
+                    No. Cliente:  <br>
+                    Sucursal: <br>
+                    Promotor:  <br>
+                    Fecha de Alta: <br>
+                    Estatus del Cliente: <br>
+                    Parte Relacionada: <br>
+                    Grupo del Vinculo al Consejo:<br>
+                    Grupo de Riesgo Comun:
+                  </address>
+                </div>
+                <div class="col-sm-3 invoice-col">
+                  <h4>Datos Especificos</h4>
+                  <address>
+                    Apellido Paterno: ...<br>
+                    Apellido Materno: ...<br>
+                    Primer Nombre: ...<br>
+                    Segundo Nombre: ...<br>
+                    Fecha de Nacimiento: ...<br>
+                    Persona Juridica: ...<br>
+                    Genero: ...<br>
+                    Estado Civil: ...
+                  </address>
+                </div>
+                <div class="col-sm-3 invoice-col">
+                  <h4>Datos Especificos</h4>
+                  <address>
+                    CURP: ...<br>
+                    R.F.C: ...<br>
+                    Tipo Identificación: ...<br>
+                    No. Identificación: ...<br>
+                    Nacionalidad: ...<br>
+                    Listas Negras: ...
+                  </address>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+          <ng-container ngbNavItem> <a ngbNavLink><i class="icon-user"></i>Domicilio</a>
+            <ng-template ngbNavContent>
+              <div class="row invoice-info">
+                <div class="col-sm-5 invoice-col">
+                  <address>
+                    <h4>Domicilio</h4>
+                    Calle: ... <br>
+                    Colonia: ...<br>
+                    No. Ext: ...<br>
+                    No. Int: ...<br>
+                    Codigo Postal: ...<br>
+                    Municipio: ...<br>
+                    Estado: ...
+                  </address>
+                </div>
+                <div class="col-sm-5 invoice-col">
+                  <address>
+                    <h4>Domicilio </h4>
+                    Pais: ...<br>
+                    Teléfono: ...<br>
+                    Extención: ...<br>
+                    Celular: ...<br>
+                    Whatsapp: ...<br>
+                    Email: ...<br>
+                    Redes Sociales: ...
+                  </address>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+
+          <ng-container ngbNavItem> <a ngbNavLink><i class="fa fa-bank"></i>Actividad Y Referencia</a>
+            <ng-template ngbNavContent>
+              <div class="row invoice-info">
+                <div class="col-sm-3 invoice-col">
+                  <h4>Parte Relacionada</h4>
+                  <address>
+                    Apellido Parterno: ...<br>
+                    Apellido Materno: ...<br>
+                    1er Nombre: ...<br>
+                    2do Nombre: ...<br>
+                    Nombre: ...<br>
+                    RFC: ... <br>
+                    Calle: ... <br>
+                    Número Exterior: ... <br>
+                    Número Interior: ... <br>
+                    Colonia: ... <br>
+                    Código postal: ... <br>
+                    Municipio localidad: ... <br>
+                    Estado: ... <br>
+                    Pais: ...
+                  </address>
+                </div>
+
+                <div class="col-sm-3 invoice-col">
+                  <h4>Grupo Socioeconómico</h4>
+                  <address>
+                    Apellido Parterno: ...<br>
+                    Apellido Materno: ...<br>
+                    1er Nombre: ...<br>
+                    2do Nombre: ...<br>
+                    Nombre: ...<br>
+                    RFC: ... <br>
+                    Calle: ... <br>
+                    Número Exterior: ... <br>
+                    Número Interior: ... <br>
+                    Colonia: ... <br>
+                    Código postal: ... <br>
+                    Municipio localidad: ... <br>
+                    Estado: ... <br>
+                    Pais: ...
+                  </address>
+                </div>
+                <div class="col-sm-3 invoice-col">
+                  <h4>Grupo de riesgo común</h4>
+                  <address>
+                    Apellido Parterno: ...<br>
+                    Apellido Materno: ...<br>
+                    1er Nombre: ...<br>
+                    2do Nombre: ...<br>
+                    Nombre: ...<br>
+                    RFC: ... <br>
+                    Calle: ... <br>
+                    Número Exterior: ... <br>
+                    Número Interior: ... <br>
+                    Colonia: ... <br>
+                    Código postal: ... <br>
+                    Municipio localidad: ... <br>
+                    Estado: ... <br>
+                    Pais: ...
+                  </address>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+
+          <ng-container ngbNavItem> <a ngbNavLink><i class="icon-docs icons"></i>Cuentas Bancarias</a>
+            <ng-template ngbNavContent>
+              <div class="row invoice-info">
+                <div class="col-sm-5 invoice-col">
+                  <address>
+                    <h4>Cuentas Bancarias</h4>
+                    Nombre del Cuentahabiente: ... <br>
+                    Nombre del Banco: ... <br>
+                    No. Cuenta: ... <br>
+                    Clave Interbancaria: ...
+                  </address>
+                </div>
+                <div class="col-sm-5 invoice-col">
+                  <address>
+                    <h4>Cuentas Bancarias</h4>
+                    Nombre del Cuentahabiente: ... <br>
+                    Nombre del Banco: ... <br>
+                    No. Cuenta: ... <br>
+                    Clave Interbancaria: ...
+                  </address>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+
+          <ng-container ngbNavItem> <a ngbNavLink><i class="fa fa-users"></i>Beneficiarios </a>
+            <ng-template ngbNavContent>
+
+              <div class="row invoice-info">
+                <div class="col-sm-5 invoice-col">
+                  <address>
+                    <h4>Beneficiarios</h4>
+                    Compra de 1er Acción: ... <br>
+                    Parte Social Inicial: ... <br>
+                    Fecha de Pago: ... <br>
+                    Parte Social Actual: ... <br>
+                    Costo de Acciones: ...<br>
+                    Ferma de Pago: ... <br>
+                    Retirables A: ... <br>
+                    Retirables B: ... <br>
+                    Total de Acciones: ...
+                  </address>
+                </div>
+                <div class="col-sm-5 invoice-col">
+                  <address>
+                    <h4>Beneficiarios</h4>
+                    Compra de 1er Acción: ... <br>
+                    Parte Social Inicial: ... <br>
+                    Fecha de Pago: ... <br>
+                    Parte Social Actual: ... <br>
+                    Costo de Acciones: ...<br>
+                    Ferma de Pago: ... <br>
+                    Retirables A: ... <br>
+                    Retirables B: ... <br>
+                    Total de Acciones: ...
+                  </address>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+
+          <ng-container ngbNavItem> <a ngbNavLink><i class="icon-docs icons"></i>Documentación</a>
+            <ng-template ngbNavContent>
+
+
+
+
+            </ng-template>
+          </ng-container>
+
+        </nav>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+

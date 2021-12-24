@@ -1,0 +1,14 @@
+[
+  {
+    "id": 124575,
+    "producto": "Agricultura",
+    "linea": 101010,
+    "tipo": "Fondeo 1"
+  },
+  {
+    "id": 124575,
+    "producto": "Ferreteria",
+    "linea": 101011,
+    "tipo": "Fondeo 2"
+  }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "empresa": "Jorge Gonzalez Lopez",
+        "cliente": "Jorge Gonzalez Lopez",
+        "rfc": "Union de Credito",
+        "empresa": "Director General",
+        "estatus": "Union de Credito",
+        "sucursal": "Director General",
+        "no_sucursal": "Jorge Gonzalez Lopez"
+    },
+    {
+        "id": 1,
+        "empresa": "Jorge Gonzalez Lopez",
+        "cliente": "Jorge Gonzalez Lopez",
+        "rfc": "Union de Credito",
+        "empresa": "Director General",
+        "estatus": "Union de Credito",
+        "sucursal": "Director General",
+        "no_sucursal": "Jorge Gonzalez Lopez"
+    },
+    {
+        "id": 2,
+        "empresa": "Jorge Gonzalez Lopez",
+        "cliente": "Jorge Gonzalez Lopez",
+        "rfc": "Union de Credito",
+        "empresa": "Director General",
+        "estatus": "Union de Credito",
+        "sucursal": "Director General",
+        "no_sucursal": "Jorge Gonzalez Lopez"
+    }
+]

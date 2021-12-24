@@ -1,0 +1,86 @@
+
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 col-lg-4 col-xl-4">
+        <div ngbDropdown class="btn-group m-2" >
+          <button type="button" class="btn btn-light"><i class="fa fa-floppy-o"></i><span>&nbsp;Salvar</span></button>
+        </div>
+      </div>
+      <div class="col-12 col-lg-8 col-xl-8">
+        <div ngbDropdown class="btn-group m-2 float-sm-right" >
+          <button type="button" class="btn btn-light" (click)="open()"><i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ***** Encabezado ***** -->
+<!-- <div class="card col-sm-4 p-2 float-right">
+  <p>
+    ID <input type="number" class="form-control m-1" [(ngModel)]="dato.id_usuario" >
+  </p>
+  <p>
+    Nombre <input type="text" class="form-control m-1" [(ngModel)]="dato.nombre" >
+  </p>
+  <p>
+    Apellido <input type="text" class="form-control m-1" [(ngModel)]="dato.apellido" >
+  </p>
+  <p>
+    Correo <input type="email" class="form-control m-1" [(ngModel)]="dato.correo" >
+  </p>
+  <p>
+    Numero <input maxlength="13" type="tel" class="form-control m-1" [(ngModel)]="dato.numero" >
+  </p>
+  <p>
+    Clave <input  class="form-control m-1" type="text" [(ngModel)]="dato.clave" >
+  </p>
+  <div class="row">
+    <div class="col-sm-2 "> <p><button class="btn btn-outline-dark float-left" (click)="Agregar()" >Agregar</button></p>&nbsp;</div>
+  </div>
+</div> -->
+<div class="row">
+        <div  class="col-sm-6">
+            <label>Numero Cliente</label>
+            <input class="form-control" type="number" [(ngModel)]="dato.Id">
+        </div>
+        <div class="col-sm-6">
+            <label >Calle</label>
+            <input class="form-control" type="text" [(ngModel)]="dato.Calle">
+        </div>
+        <div class="col-sm-6">
+            <label >Numero Exterior</label>
+            <input class="form-control" type="text" [(ngModel)]="dato.NoEx">
+        </div>
+        <div class="col-sm-6">
+            <label >Número Interior</label>
+            <input class="form-control" type="text" [(ngModel)]="dato.NoIn">
+        </div>
+        <div class="col-sm-6">
+            <label >Código Postal</label>
+            <input class="form-control" type="text" [(ngModel)]="dato.CodPos">
+        </div>
+        <div class="col-sm-6">
+            <label >Colonia</label>
+            <input class="form-control" type="text" [(ngModel)]="dato.Colonia">
+        </div>
+        <div class="col-sm-6">
+            <label >Municipio</label>
+            <input class="form-control" type="text" [(ngModel)]="dato.Municipio">
+        </div>
+        <div class="col-sm-6">
+            <label >Estado</label>
+            <input class="form-control" type="text" [(ngModel)]="dato.Estado">
+        </div>
+        <div class="col-sm-6">
+            <label >País</label>
+            <input class="form-control" type="text" [(ngModel)]="dato.Pais">
+        </div>
+        <div class="col-sm-6">
+            <label >Tipo Domicilio</label>
+            <input class="form-control" type="text" [(ngModel)]="dato.TipoDom">
+        </div>
+        <div class="row">
+            <button (click)="Agregar()" type="submit" class="btn btn-primary  btn-block">Guardar</button>
+        </div>
+    </div>

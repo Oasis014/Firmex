@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "empresa":"Gonzalez Lopez",
+        "cliente": "Jorge Gonzalez Lopez",
+        "rfc": "Union de Credito",
+        "negocio": "Cruz Azul",
+        "estatus": "Pendiente",
+        "sucursal": "Crédito Grupal",
+        "no_sucursal": "Jorge Gonzalez Lopez"
+    },
+    {
+        "id": 1,
+        "empresa": "Jorge Gonzalez Lopez",
+        "cliente": "Jorge Gonzalez Lopez",
+        "rfc": "Union de Credito",
+        "negocio": "BBVA",
+        "estatus": "Rechazado",
+        "sucursal": "Crédito Grupal",
+        "no_sucursal": "Jorge Gonzalez Lopez"
+    },
+    {
+        "id": 2,
+        "empresa": "Jorge Gonzalez Lopez",
+        "cliente": "Jorge Gonzalez Lopez",
+        "rfc": "Union de Credito",
+        "negocio": "Santander",
+        "estatus": "Aprobado",
+        "sucursal": "Crédito Grupal",
+        "no_sucursal": "Jorge Gonzalez Lopez"
+    }
+]

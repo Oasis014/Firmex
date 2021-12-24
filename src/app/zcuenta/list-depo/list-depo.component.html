@@ -1,0 +1,14 @@
+<app-btnlist></app-btnlist>
+<!-- Filter Datatable Options Begin -->
+<div class="row">
+	<div class="col-sm-12 mb-4">
+		<ngx-datatable #table class='bootstrap selection-cell' [selected]="selected" [rows]='rows' [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='cursor:pointer;' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" (dblclick) = "doubleClicked($event)">
+			<ngx-datatable-column name="No. Cliente" [frozenLeft]="true" [width]="20" prop="id"></ngx-datatable-column>
+			<ngx-datatable-column name="Cliente" [width]="10" prop="nombre"></ngx-datatable-column>
+		</ngx-datatable>
+
+
+	</div>
+</div>
+<!-- Filter Datatable Options Ends -->
+

@@ -1,0 +1,23 @@
+[
+    {
+        "id": 0,
+        "prospecto": "Jorge Gonzalez Lopez",
+        "acciones": "52",
+        "valor": "$ 52,000.00",
+        "estatus": "Pago confirmado"
+    },
+    {
+        "id": 1,
+        "prospecto": "Martin Espejel Marquez",
+        "acciones": "74",
+        "valor": "$ 74,000.00",
+        "estatus": "Pago confirmado"
+    },
+    {
+        "id": 2,
+        "prospecto": "Noemi Alfaro Lopez",
+        "acciones": "23",
+        "valor": "$ 23,000.00",
+        "estatus": "Pago confirmado"
+    }
+]
