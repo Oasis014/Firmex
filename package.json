@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve": "./node_modules/.bin/ng serve"
   },
   "private": true,
   "dependencies": {
@@ -56,7 +57,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1000.3",
-    "@angular/cli": "~10.0.3",
+    "@angular/cli": "^10.0.8",
     "@angular/compiler-cli": "~10.0.4",
     "@angular/language-service": "~10.0.4",
     "@types/jasmine": "~3.3.8",
