@@ -44,6 +44,8 @@ export class NavbarComponent implements OnInit{
     
     ngOnInit() {
 
+    this.toggleSidebar();
+
         /* Search Bar */
         $(document).ready(function () {
             $(".search-btn-mobile").on("click", function () {

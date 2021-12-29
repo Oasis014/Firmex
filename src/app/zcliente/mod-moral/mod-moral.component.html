@@ -356,26 +356,6 @@
                             <td>{{retornoCon.errorSp}}</td>
                             <td>{{retornoCon.errorDescripcion}}</td>
                           </tr>
-                          <tr *ngFor="let retornotel of telclien">
-                            <td>{{retornotel.errorClave}}</td>
-                            <td>{{retornotel.errorSp}}</td>
-                            <td>{{retornotel.errorDescripcion}}</td>
-                          </tr>
-                          <tr *ngFor="let retornotelb of telclienb">
-                            <td>{{retornotelb.errorClave}}</td>
-                            <td>{{retornotelb.errorSp}}</td>
-                            <td>{{retornotelb.errorDescripcion}}</td>
-                          </tr>
-                          <tr *ngFor="let retornored of redclien">
-                            <td>{{retornored.errorClave}}</td>
-                            <td>{{retornored.errorSp}}</td>
-                            <td>{{retornored.errorDescripcion}}</td>
-                          </tr>
-                          <tr *ngFor="let retornoredb of redclienb">
-                            <td>{{retornoredb.errorClave}}</td>
-                            <td>{{retornoredb.errorSp}}</td>
-                            <td>{{retornoredb.errorDescripcion}}</td>
-                          </tr>
                           </tbody>
                         </table>
 
@@ -412,7 +392,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Calle </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabled2" [attr.aria-expanded]="disabled2 ? 'disabled2' : ''" type="text" class="form-control" name="calle" id="calle" placeholder="Nombre de la Calle"  [(ngModel)]="dom.Calle" >
+                                <input [disabled]="disabled2" [attr.aria-expanded]="disabled2 ? 'disabled2' : ''" type="text" class="form-control" name="calle"  placeholder="Nombre de la Calle"  [(ngModel)]="dom.Calle" >
                                 <div class="input-group-append">
                                 </div>
                               </div>
@@ -552,7 +532,7 @@
                           </div>
                           <!-- Botones de guardar -->
                           <div [ngbCollapse]="isCollapsed8" class="col-1 col-lg-1 col-xl-2">
-                            <button  data-toggle="modal" data-target="#largesizemodal2" (click)= "typeSuccess()" (click)= "Bloquear()" type="submit" (click)="Domicilio()" type = "reset" class="btn btn-light  btn-block" >Guardar</button>
+                            <button class="btn btn-light  btn-block" data-toggle="modal" data-target="#largesizemodal2" (click)= "Bloquear()" type="submit" (click)="Domicilio()" type = "reset" >Guardar</button>
                           </div>
                         </div>
                       </div>
@@ -575,7 +555,9 @@
                               <div class="form-group row">
                                 <label class="col-sm-5 col-form-label">Tipo de Domicilio</label>
                                 <div class="col-sm-6">
-                                  <select  class="form-control form-control-sm" name="tipo_domicilio" [(ngModel)]="domMod.TipoDom">
+                                  <select  class="form-control form-control-sm" name="tipo_domicilio" [(ngModel)]="domMod.TipoDom" >
+                                    <option value="{{Tipo}}">{{Tipo}}
+                                    </option>
                                     <option *ngFor="let catTipdom of catalogo1" [value]="catTipdom.catalogo_cve">{{catTipdom.desc_45}}
                                     </option>
                                   </select>
@@ -586,9 +568,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Calle </label>
                               <div class="col-sm-6 input-group form-group ">
-                                <input [(ngModel)]="domMod.Calle" *ngFor="let retornoCon of domcon" type="text" class="form-control" value="{{retornoCon.Calle}}" placeholder="Nombre de la Calle" >
-                                <div class="input-group-append">
-                                </div>
+                                <input type="text" class="form-control" name = "CalleMod" value = "{{Calle}}" [(ngModel)]="domMod.Calle" />
                               </div>
                             </div>
                           </div>
@@ -596,9 +576,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Número Exterior</label>
                               <div class="col-sm-6 input-group form-group">
-                                <input [(ngModel)]="domMod.NoEx" *ngFor="let retornoCon of domcon" type="text" class="form-control" value="{{retornoCon.NoEx}}"  placeholder="Número Exterior" >
-                                <div class="input-group-append">
-                                </div>
+                                <input type="text" class="form-control" name = "NoExMod" value = "{{NoEx}}" [(ngModel)]="domMod.NoEx" />
                               </div>
                             </div>
                           </div>
@@ -606,9 +584,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Número Interior</label>
                               <div class="col-sm-6 input-group form-group" >
-                                <input [(ngModel)]="domMod.NoIn" *ngFor="let retornoCon of domcon" type="text" class="form-control" value="{{retornoCon.NoIn}}" placeholder="Número Interior" >
-                                <div class="input-group-append">
-                                </div>
+                                <input type="text" class="form-control" name = "NoInMod" value = "{{NoIn}}" [(ngModel)]="domMod.NoIn" />
                               </div>
                             </div>
                           </div>
@@ -616,9 +592,8 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Código Postal</label>
                               <div class="col-sm-6">
-                                <select  class="form-control form-control-sm" name="c_p"  [(ngModel)]="domMod.CodPos" >
-                                  <option *ngFor="let retornoCon of domcon" >{{retornoCon.CodPos}}</option>
-
+                                <select class="form-control form-control-sm" name="c_p" [(ngModel)]="domMod.CodPos" >
+                                  <option >{{CodPos}}</option>
                                 </select>
                               </div>
                             </div>
@@ -627,9 +602,8 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Colonia</label>
                               <div class="col-sm-6">
-                                <select  class="form-control form-control-sm" name="colonia"   [(ngModel)]="domMod.Colonia"  >
-                                  <option *ngFor="let retornoCon of domcon" >{{retornoCon.Colonia}}</option>
-
+                                <select class="form-control form-control-sm" name="colonia"  [(ngModel)]="domMod.Colonia" >
+                                  <option  >{{Colonia}}</option>
                                 </select>
                               </div>
                             </div>
@@ -638,9 +612,8 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Delegación o Municipio</label>
                               <div class="col-sm-6">
-                                <select  class="form-control form-control-sm" name="municipio"  [(ngModel)]="domMod.Municipio" >
-                                  <option *ngFor="let retornoCon of domcon">{{retornoCon.Municipio}}</option>
-
+                                <select class="form-control form-control-sm" name="municipio" [(ngModel)]="domMod.Municipio" >
+                                  <option >{{Municipio}}</option>
                                 </select>
                               </div>
                             </div>
@@ -649,8 +622,8 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Estado</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="edo"  [(ngModel)]="domMod.Estado" >
-                                  <option *ngFor="let retornoCon of domcon" >{{retornoCon.Estado}}</option>
+                                <select class="form-control form-control-sm" name="edo" [(ngModel)]="domMod.Estado" >
+                                  <option >{{Estado}}</option>
 
                                 </select>
                               </div>
@@ -660,9 +633,8 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">País</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="Pais"  [(ngModel)]="domMod.Pais" >
-                                  <option *ngFor="let retornoCon of domcon" >{{retornoCon.Pais}}</option>
-
+                                <select class="form-control form-control-sm" name="Pais" [(ngModel)]="domMod.Pais" >
+                                  <option >{{Pais}}</option>
                                 </select>
                               </div>
                             </div>
@@ -675,7 +647,7 @@
                           </div>
                           <!-- Botones de guardar -->
                           <div  class="col-1 col-lg-1 col-xl-2">
-                            <button data-toggle="modal" data-target="#largesizemodal2" type="submit" class="btn btn-light  btn-block" (click)= "obtenerDomicilio()" (click)="DomicilioMod()" >Guardar</button>
+                            <button type="submit" class="btn btn-light  btn-block"  (click)="DomicilioMod()" (click)="obtenerDomicilio()" >Guardar</button>
                           </div>
                         </div>
                       </div>
@@ -684,8 +656,44 @@
                 </div>
               </form>
               <!-- FIN CONSULTA-->
+              <div class="modal fade" id="largesizemodal3">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header border-light-2">
+                      <h5 class="modal-title text-white">Información</h5>
+                    </div>
+                    <div class="modal-body">
+                      <div >
+                        <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
+                          <thead >
+                          <tr>
+                            <td>Clave de Error: </td>
+                            <td>Error: </td>
+                            <td>Descripcion de error: </td>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let retornoCon of domcon">
+                            <td>{{retornoCon.errorClave}}</td>
+                            <td>{{retornoCon.errorSp}}</td>
+                            <td>{{retornoCon.errorDescripcion}}</td>
+                          </tr>
+                          </tbody>
+                        </table>
+
+                      </div>
+                    </div>
+                    <div class="modal-footer border-light-2">
+                      <button type="button" class="btn btn-link text-white" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div  class="col-1 col-lg-1 col-xl-2">
+                <button type="submit" class="btn btn-light  btn-block" (click)="obtenerDomicilio()" >Actualizar</button>
+              </div>
               <div class="card">
-                <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                  <table class="table table-striped text-center " style="width:auto; height:5px;" >
                   <thead >
                   <th>Numero CLiente</th>
                   <th>Tipo de Domicilio</th>
@@ -711,8 +719,8 @@
                     <td>{{dom.Estado}}</td>
                     <td>{{dom.Pais}}</td>
                     <td>
-                      <a data-toggle="modal" data-target="#largesizemodal2" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" (click)= "Consultar(dom)" ><i class="fa fa-pencil"></i></a>
-                      <a data-toggle="modal" data-target="#largesizemodal2" class="btn btn-sm btn-danger text-white ml-1" (click)="DomBorrar(dom)" ><i class="fa fa-trash"></i></a></td>
+                      <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" (click)= "Consultar(dom)" ><i class="fa fa-pencil"></i></a>
+                      <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-danger text-white ml-1" (click)="DomBorrar(dom)" ><i class="fa fa-trash"></i></a></td>
                   </tr>
                   </tbody>
                 </table>
