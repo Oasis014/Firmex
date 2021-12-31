@@ -2,8 +2,19 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const host = `http://firmex-back.local/`;
+
 export const environment = {
-  production: false
+  production: false,
+  api: {
+    client: {
+      getDomicilio: `${host}DomicilioMostrar.php`,
+      deleteDomicilio: `${host}DomicilioBorrar.php`,
+      mostrarTodos: `${host}mostrarTodos.php`,
+      mostrarDomicilio: `${host}DomicilioMostrar.php`,
+      selecionarGenerales: `${host}SelecGenerales.php`,
+    }
+  }
 };
 
 /*
