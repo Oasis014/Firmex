@@ -93,12 +93,19 @@
                               <div class="col-sm-6">
                                 <select class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal">
                                   <option selected>Seleccione la sucursal ...</option>
+                                  <option *ngFor="let cSuc of ctSucursal" [value]="cSuc.sucursal_id">{{cSuc.sucursal_nom}} 
+                                    </option>  
+                                </select>
+                              <!--
+                                <select class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal">
+                                  <option selected>Seleccione la sucursal ...</option>
                                   <option>Oficina Matriz</option>
                                   <option>Ciudad de México</option>
                                   <option>Queretaro</option>
                                   <option>Puebla</option>
                                   <option>Estado de México </option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
@@ -140,6 +147,12 @@
                               <div class="col-sm-6">
                                 <select class="form-control form-control-sm" name="ClavePromotor" id="ClavePromotor" required [(ngModel)]="general.ClavePromotor">
                                   <option selected>Seleccione al promotor ...</option>
+                                  <option *ngFor="let cProm of ctPromotor" [value]="cProm.Promotor_id">{{cProm.PromotorNombre}} 
+                                    </option>  
+                                </select>
+                                <!--
+                                <select class="form-control form-control-sm" name="ClavePromotor" id="ClavePromotor" required [(ngModel)]="general.ClavePromotor">
+                                  <option selected>Seleccione al promotor ...</option>
                                   <option>Director General</option>
                                   <option>Director Finanzas</option>
                                   <option>Director Promotor</option>
@@ -151,6 +164,7 @@
                                   <option>Subgerente Promoción </option>
                                   <option>Promotor </option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
@@ -231,11 +245,17 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Sexo </label>
                               <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="sexo" id="sexo" required [(ngModel)]="general.Sexo"> 
+                                  <option *ngFor="let ctsxo of ctSexo" [value]="ctsxo.catalogo_cve">{{ctsxo.desc_45}} 
+                                    </option>  
+                                </select>
+                                <!--
                                 <select class="form-control form-control-sm" name="sexo" id="sexo" required [(ngModel)]="general.Sexo">
                                   <option selected>Seleccione el tipo de sexo ...</option>
                                   <option>Hombre</option>
                                   <option>Mujer</option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
@@ -243,6 +263,11 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Estado Civil </label>
                               <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="edo_civil" id="edo_civil" required [(ngModel)]="general.EstadoCivil"> 
+                                  <option *ngFor="let edoC of ctEdociv" [value]="edoC.catalogo_cve">{{edoC.desc_45}} 
+                                    </option>  
+                                </select>
+                                <!--
                                 <select class="form-control form-control-sm" name="edo_civil" id="edo_civil" required [(ngModel)]="general.EstadoCivil">
                                   <option selected>Seleccione el estado civil ...</option>
                                   <option>Casado (Sociedad Conyuge)</option>
@@ -251,6 +276,7 @@
                                   <option>Viudo</option>
                                   <option>Union Libre</option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
@@ -477,6 +503,11 @@
                               <label class="col-sm-5 col-form-label">Tipo de Domicilio</label>
                               <div class="col-sm-6">
                                 <select class="form-control form-control-sm" name="tipo_domicilio" id="tipo_domicilio"  [(ngModel)]="dom.TipoDom">
+                                  <option *ngFor="let ctdom of ctTipdom" [value]="ctdom.catalogo_cve">{{ctdom.desc_45}} 
+                                    </option>  
+                                </select>
+                                <!--
+                                <select class="form-control form-control-sm" name="tipo_domicilio" id="tipo_domicilio"  [(ngModel)]="dom.TipoDom">
                                   <option selected>Seleccione la tipo de comicilio ...</option>
                                   <option>Político</option>
                                   <option>Civil</option>
@@ -487,9 +518,155 @@
                                   <option>General</option>
                                   <option>Fiscal</option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">País</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="Pais" id="pais"  [(ngModel)]="dom.Pais">
+                                  <option selected>Seleccione el Pais ...</option>
+                                  <option *ngFor="let cPs of cPaises" [value]="cPs.Pais_id">{{cPs.Pais_desc}} 
+                                  </option>  
+                                </select>
+                                <!--
+                                <select class="form-control form-control-sm" name="Pais" id="pais"  [(ngModel)]="dom.Pais">
+                                  <option selected>Seleccione el Pais ...</option>
+                                  <option>MP Islas Marianas</option>
+                                  <option>MQ Martinica</option>
+                                  <option>MR Mauritania</option>
+                                  <option>MS Monserrat</option>
+                                  <option>MT Malta</option>
+                                  <option>MU Mauricio</option>
+                                  <option>MV Maldivas</option>
+                                  <option>MW Malawi</option>
+                                  <option>MX México</option>
+                                  <option>MY Malaysia</option>
+                                  <option>MZ Monzambique</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Estado</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="edo" id="edo"  [(ngModel)]="dom.Estado" (change)="onChangeMunicipio($event.target.value)">
+                                  <option selected>Seleccione el Estado ...</option>
+                                  <option *ngFor="let cEdo of cEstado" [value]="cEdo.estado_id">{{cEdo.estado_desc}} 
+                                  </option>  
+                                </select>
+                                <!--
+                                <select class="form-control form-control-sm" name="edo" id="edo"  [(ngModel)]="dom.Estado">
+                                  <option selected>Seleccione el Estado ...</option>
+                                  <option>MX México</option>
+                                  <option>MN Michoacan de Ocampo</option>
+                                  <option>MS Morelos</option>
+                                  <option>NT Nayarit</option>
+                                  <option>NL Nuevo Leon</option>
+                                  <option>OC Oaxaca</option>
+                                  <option>PL Puebla</option>
+                                  <option>QT Queretaro de Areteaga</option>
+                                  <option>QR Quintana Roo</option>
+                                  <option>SP San Luis Potosi</option>
+                                  <option>SL Sinaloa</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-success">Delegación o Municipio</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="municipio" id="municipio"  [(ngModel)]="dom.Municipio" (change)="onChangeCodPostal($event.target.value)">
+                                  <option selected>Seleccione el Municipio ...</option>
+                                  <option *ngFor="let cm of cMpio" [value]="cm.municipio_id">{{cm.municipio_desc}} 
+                                  </option>  
+                                </select>                                
+                                <!--
+                                <select class="form-control form-control-sm" name="municipio" id="municipio"  [(ngModel)]="dom.Municipio">
+                                  <option selected>Seleccione el Municipio ...</option>
+                                  <option>Tepetitlan </option>
+                                  <option>Tetepango</option>
+                                  <option>Villa de Tezontepec</option>
+                                  <option>Tezontepec de Aldama</option>
+                                  <option>Tianguistengo</option>
+                                  <option>Tizayuca</option>
+                                  <option>Tlahuelilpan</option>
+                                  <option>Tlahuiltepa</option>
+                                  <option>Tlanalapa</option>
+                                  <option>Tlanchinol</option>
+                                  <option>Tlaxcoapan</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Código Postal</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="c_p" id="c_p"  [(ngModel)]="dom.CodPos" (change)="onChangeColonia($event.target.value)">
+                                  <option selected>Seleccione el C.P ...</option>
+                                  <option *ngFor="let cm of cCP" [value]="cm.cpostal">{{cm.cpostal}} 
+                                  </option>  
+                                </select> 
+                                <!--
+                                <select class="form-control form-control-sm" name="c_p" id="c_p"  [(ngModel)]="dom.CodPos">
+                                  <option selected>Seleccione el C.P ...</option>
+                                  <option> 08100 </option>
+                                  <option> 08200 </option>
+                                  <option> 08300 </option>
+                                  <option> 04500 </option>
+                                  <option> 05420 </option>
+                                  <option> 05600 </option>
+                                  <option> 05500 </option>
+                                  <option> 07890 </option>
+                                  <option> 08400 </option>
+                                  <option> 05600 </option>
+                                  <option> 13400 </option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Colonia</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="colonia" id="colonia"  [(ngModel)]="dom.Colonia">
+                                  <option selected>Seleccione la colonia ...</option>
+                                  <option *ngFor="let cm of cColonia" [value]="cm.asentamiento_desc">{{cm.asentamiento_desc}} 
+                                  </option>  
+                                </select> 
+                                <!--
+                                <select class="form-control form-control-sm" name="colonia" id="colonia"  [(ngModel)]="dom.Colonia">
+                                  <option selected>Seleccione la colonia ...</option>
+                                  <option>Lomas de San Jorge</option>
+                                  <option>Ciudad Satelite</option>
+                                  <option>Dolores</option>
+                                  <option>La Loma</option>
+                                  <option>Lomas del Ajedrez</option>
+                                  <option>Mujeres Ilustres</option>
+                                  <option>Periodistas</option>
+                                  <option>Fundadores</option>
+                                  <option>Los Negritos</option>
+                                  <option>Coyotes Norte</option>
+                                  <option>Sandovales</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Calle </label>
@@ -523,111 +700,11 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Código Postal</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="c_p" id="c_p"  [(ngModel)]="dom.CodPos">
-                                  <option selected>Seleccione el C.P ...</option>
-                                  <option> 08100 </option>
-                                  <option> 08200 </option>
-                                  <option> 08300 </option>
-                                  <option> 04500 </option>
-                                  <option> 05420 </option>
-                                  <option> 05600 </option>
-                                  <option> 05500 </option>
-                                  <option> 07890 </option>
-                                  <option> 08400 </option>
-                                  <option> 05600 </option>
-                                  <option> 13400 </option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Colonia</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="colonia" id="colonia"  [(ngModel)]="dom.Colonia">
-                                  <option selected>Seleccione la colonia ...</option>
-                                  <option>Lomas de San Jorge</option>
-                                  <option>Ciudad Satelite</option>
-                                  <option>Dolores</option>
-                                  <option>La Loma</option>
-                                  <option>Lomas del Ajedrez</option>
-                                  <option>Mujeres Ilustres</option>
-                                  <option>Periodistas</option>
-                                  <option>Fundadores</option>
-                                  <option>Los Negritos</option>
-                                  <option>Coyotes Norte</option>
-                                  <option>Sandovales</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-success">Delegación o Municipio</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="municipio" id="municipio"  [(ngModel)]="dom.Municipio">
-                                  <option selected>Seleccione el Municipio ...</option>
-                                  <option>Tepetitlan </option>
-                                  <option>Tetepango</option>
-                                  <option>Villa de Tezontepec</option>
-                                  <option>Tezontepec de Aldama</option>
-                                  <option>Tianguistengo</option>
-                                  <option>Tizayuca</option>
-                                  <option>Tlahuelilpan</option>
-                                  <option>Tlahuiltepa</option>
-                                  <option>Tlanalapa</option>
-                                  <option>Tlanchinol</option>
-                                  <option>Tlaxcoapan</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Estado</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="edo" id="edo"  [(ngModel)]="dom.Estado">
-                                  <option selected>Seleccione el Estado ...</option>
-                                  <option>MX México</option>
-                                  <option>MN Michoacan de Ocampo</option>
-                                  <option>MS Morelos</option>
-                                  <option>NT Nayarit</option>
-                                  <option>NL Nuevo Leon</option>
-                                  <option>OC Oaxaca</option>
-                                  <option>PL Puebla</option>
-                                  <option>QT Queretaro de Areteaga</option>
-                                  <option>QR Quintana Roo</option>
-                                  <option>SP San Luis Potosi</option>
-                                  <option>SL Sinaloa</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">País</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="Pais" id="pais"  [(ngModel)]="dom.Pais">
-                                  <option selected>Seleccione el Pais ...</option>
-                                  <option>MP Islas Marianas</option>
-                                  <option>MQ Martinica</option>
-                                  <option>MR Mauritania</option>
-                                  <option>MS Monserrat</option>
-                                  <option>MT Malta</option>
-                                  <option>MU Mauricio</option>
-                                  <option>MV Maldivas</option>
-                                  <option>MW Malawi</option>
-                                  <option>MX México</option>
-                                  <option>MY Malaysia</option>
-                                  <option>MZ Monzambique</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
+                          
+                          
+                         
+                          
+                         
                           <div class="col-1 col-lg-9 col-xl-9">
                           </div>
                           <div class="col-2 col-lg-3 col-xl-3">
@@ -668,6 +745,11 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Actividad Económica </label>
                               <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="ActividadEconomica" id="ActividadEconomica" required [(ngModel)]="economica.ActividadEconomica">                               
+                                  <option *ngFor="let ctAE of ctActeco" [value]="ctAE.catalogo_cve">{{ctAE.desc_45}} 
+                                    </option>  
+                                </select>
+                                <!--
                                 <select class="form-control form-control-sm" name="ActividadEconomica" id="ActividadEconomica" required [(ngModel)]="economica.ActividadEconomica">
                                   <option selected>Seleccione la Actividad ...</option>
                                   <option value="1">Agrupecuario y Ganadería</option>
@@ -687,6 +769,7 @@
                                   <option value="14">Servicios</option>
                                   <option value="15">Sector Publico</option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
@@ -694,6 +777,12 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Actividad Detallada </label>
                               <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="ActividadDetallada" id="ActividadDetallada" required [(ngModel)]="economica.ActividadDetallada">                               
+                                  <option *ngFor="let ctAED of ctActdet" [value]="ctAED.catalogo_cve">{{ctAED.desc_45}} 
+                                    </option>  
+                                </select>
+                                
+                                <!--
                                 <select class="form-control form-control-sm" name="ActividadDetallada" id="ActividadDetallada" required [(ngModel)]="economica.ActividadDetallada">
                                   <option selected>Seleccione la actividad ...</option>
                                   <option value="1">Otros Servicios Profesionales Cientificos y Técnivos</option>
@@ -702,6 +791,7 @@
                                   <option value="4">Otros Servicios Profesionales Cientificos y Técnivos</option>
                                   <option value="5">Otros Servicios Profesionales Cientificos y Técnivos</option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>

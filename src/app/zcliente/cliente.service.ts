@@ -6,7 +6,8 @@ import { environment } from "src/environments/environment";
   providedIn: 'root'
 })
 export class ClienteService {
-  url = 'http://firmex-back.local/';
+  //url = 'http://firmex-back.local/';
+  url ='http://localhost/2021/FirmexGit/FirmexBack/';
 
   private readonly api = environment.api.client;
 
@@ -137,87 +138,116 @@ export class ClienteService {
 
   //Catalogo
 
-  catTiptel(){
-    return this.http.get(`${this.url}CatalogoTiptel.php`);
+  catActdet(){
+    return this.http.get(`${this.url}CatalogoActdet.php`);
   }
 
-  catTiprrc(){
-    return this.http.get(`${this.url}CatalogoTiprrc.php`);
-  }
+  catActeco(){
+    return this.http.get(`${this.url}CatalogoActeco.php`);
+  } 
 
-  catTiprpe(){
-    return this.http.get(`${this.url}CatalogoTiprpe.php`);
-  }
-
-  catTiprel(){
-    return this.http.get(`${this.url}CatalogoTiprel.php`);
-  }
-
-  catTipred(){
-    return this.http.get(`${this.url}CatalogoTipred.php`);
-  }
-
-  catTipman(){
-    return this.http.get(`${this.url}CatalogoTipman.php`);
-  }
-
-  catTipgse(){
-    return this.http.get(`${this.url}CatalogoTipgse.php`);
-  }
-
-  catTipdom(){
-    return this.http.get(`${this.url}CatalogoTipdom.php`);
-  }
-
-  catTipded(){
-    return this.http.get(`${this.url}CatalogoTipded.php`);
-  }
-
-  catStscte(){
-    return this.http.get(`${this.url}CatalogoStscte.php`);
-  }
-
-  catSexo(){
-    return this.http.get(`${this.url}CatalogoSexo.php`);
-  }
-
-  catProfes(){
-    return this.http.get(`${this.url}CatalogoProfes.php`);
-  }
-
-  catPerjur(){
-    return this.http.get(`${this.url}CatalogoPerjur.php`);
-  }
-
-  catnaCION(){
-    return this.http.get(`${this.url}CatalogonaCION.php`);
-  }
-
-  catIdentif(){
-    return this.http.get(`${this.url}CatalogoIdentif.php`);
-  }
-
-  catEdociv(){
-    return this.http.get(`${this.url}CatalogoEdociv.php`);
-  }
-
-  catCodId(){
-    return this.http.get(`${this.url}CatalogoCod_id.php`);
+  catBancos(){
+    return this.http.get(`${this.url}CatalogoBancos.php`);
   }
 
   catCatpue(){
     return this.http.get(`${this.url}CatalogoCatpue.php`);
   }
 
-  catBancos(){
-    return this.http.get(`${this.url}CatalogoBancos.php`);
+  catCodId(){
+    return this.http.get(`${this.url}CatalogoCod_id.php`);
   }
 
-  catActeco(){
-    return this.http.get(`${this.url}CatalogoActeco.php`);
+  catEdociv(){
+    return this.http.get(`${this.url}CatalogoEdociv.php`);
   }
 
-  catActdet(){
-    return this.http.get(`${this.url}CatalogoActdet.php`);
+  catIdentif(){
+    return this.http.get(`${this.url}CatalogoIdentif.php`);
+  }
+
+  catPerjur(){
+    return this.http.get(`${this.url}CatalogoPerjur.php`);
+  }
+
+  catProfes(){
+    return this.http.get(`${this.url}CatalogoProfes.php`);
+  }
+        
+  catSexo(){
+    return this.http.get(`${this.url}CatalogoSexo.php`);
+  }
+
+  catStscte(){
+    return this.http.get(`${this.url}CatalogoStscte.php`);
+  }
+
+  catTipded(){
+    return this.http.get(`${this.url}CatalogoTipded.php`);
+  }
+        
+  catTipdom(){
+    return this.http.get(`${this.url}CatalogoTipdom.php`);
+  }
+
+  catTipgse(){
+    return this.http.get(`${this.url}CatalogoTipgse.php`);
+  }
+        
+  catTipman(){
+    return this.http.get(`${this.url}CatalogoTipman.php`);
+  }
+  
+  catTipred(){
+    return this.http.get(`${this.url}CatalogoTipred.php`);
+  }
+        
+  catTiprel(){
+    return this.http.get(`${this.url}CatalogoTiprel.php`);
+  }
+        
+  catTiprpe(){
+    return this.http.get(`${this.url}CatalogoTiprpe.php`);
+  }	  
+        
+  catTiprrc(){
+    return this.http.get(`${this.url}CatalogoTiprrc.php`);
+  }
+      
+  catTiptel(){
+    return this.http.get(`${this.url}CatalogoTiptel.php`);
+  }
+  
+  catnaCION(){
+    return this.http.get(`${this.url}CatalogonaCION.php`);
+  }
+
+  catSucursales(){
+    return this.http.get(`${this.url}CatalogoSucursales.php`);
+  }
+
+  catPromotor(){
+    return this.http.get(`${this.url}CatalogoPromotor.php`);
+  }
+
+  catPaises(){
+    return this.http.get(`${this.url}CatalogoPaises.php`);
+  }
+
+  catEstado(){
+    return this.http.get(`${this.url}CatalogoEstado.php`);
+  }
+
+  catMunicipio(edoId: any){    
+    return this.http.post(`${this.url}CatalogoMunicipio.php`,JSON.stringify(edoId));
+  }
+
+  catCP(mpioId: any){    
+    return this.http.post(`${this.url}CatalogoCodPostal.php`,JSON.stringify(mpioId));
+  }
+
+  catCol(codPosId: any){   
+    console.log(codPosId); 
+    return this.http.post(`${this.url}CatalogoColonia.php`,JSON.stringify(codPosId));
   }
 }
