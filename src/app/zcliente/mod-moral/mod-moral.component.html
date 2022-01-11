@@ -97,7 +97,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Sucursal</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal" [(ngModel)]="SucursalA" >
+                                <select [disabled]="disabledGen1" [attr.aria-expanded]="disabledGen1 ? 'disabledGen1' : ''" class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal" [(ngModel)]="SucursalA" >
                                   <option selected>Seleccione la sucursal ...</option>
                                   <option>Oficina Matriz</option>
                                   <option>Ciudad de México</option>
@@ -112,18 +112,9 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Promotor</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="ClavePromotor" id="ClavePromotor"  [(ngModel)]="general.ClavePromotor" [(ngModel)]="ClavePromotorA" >
-                                  <option selected>Seleccione al promotor ...</option>
-                                  <option>Director General</option>
-                                  <option>Director Finanzas</option>
-                                  <option>Director Promotor</option>
-                                  <option>Director Crédito</option>
-                                  <option>Director Operaciones</option>
-                                  <option>Director Auditoria </option>
-                                  <option>Subdirector Promoción </option>
-                                  <option>Gerente Promoción </option>
-                                  <option>Subgerente Promoción </option>
-                                  <option>Promotor </option>
+                                <select [disabled]="disabledGen2" [attr.aria-expanded]="disabledGen2 ? 'disabledGen2' : ''" class="form-control form-control-sm" name="ClavePromotor" id="ClavePromotor"  [(ngModel)]="general.ClavePromotor" [(ngModel)]="ClavePromotorA" >
+                                  <option *ngFor="let cPue of ctCatpue" [value]="cPue.catalogo_cve">{{cPue.desc_45}}
+                                  </option>
                                 </select>
                               </div>
                             </div>
@@ -132,7 +123,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Razon Social</label>
                               <div class="col-sm-6">
-                                <input type="text"  class="form-control" name="RazonSocial" id="RazonSocial"  [(ngModel)]="general.RazonSocial" [(ngModel)]="Val.RazonSocial" [(ngModel)]="RazonSocialA" placeholder="00000">
+                                <input [disabled]="disabledGen3" [attr.aria-expanded]="disabledGen3 ? 'disabledGen3' : ''" type="text"  class="form-control" name="RazonSocial" id="RazonSocial"  [(ngModel)]="general.RazonSocial" [(ngModel)]="Val.RazonSocial" [(ngModel)]="RazonSocialA" placeholder="00000">
                               </div>
                             </div>
                           </div>
@@ -140,7 +131,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Fecha de Constitución </label>
                               <div class="col-sm-6">
-                                <input type="date" class="form-control" name="FechaConstitucion" id="FechaConstitucion"  [(ngModel)]="general.FechaConstitucion">
+                                <input [disabled]="disabledGen4" [attr.aria-expanded]="disabledGen4 ? 'disabledGen4' : ''" type="date" class="form-control" name="FechaConstitucion" id="FechaConstitucion"  [(ngModel)]="general.FechaConstitucion">
                               </div>
                             </div>
                           </div>
@@ -148,7 +139,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">RFC</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="RFC" id="RFC" placeholder=" XXXX999999XXX "  [(ngModel)]="general.RFC" [(ngModel)]="Val.RFC">
+                                <input [disabled]="disabledGen5" [attr.aria-expanded]="disabledGen5 ? 'disabledGen5' : ''" type="text" class="form-control" name="RFC" id="RFC" placeholder=" XXXX999999XXX "  [(ngModel)]="general.RFC" [(ngModel)]="Val.RFC">
                               </div>
                             </div>
                           </div>
@@ -213,7 +204,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Nombre de la sociedad </label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="NombreSociedad" id="NombreSociedad" placeholder=" Nombre de la sociedad "  [(ngModel)]="general.NombreSociedad">
+                                <input [disabled]="disabledGen6" [attr.aria-expanded]="disabledGen6 ? 'disabledGen6' : ''" type="text" class="form-control" name="NombreSociedad" id="NombreSociedad" placeholder=" Nombre de la sociedad "  [(ngModel)]="general.NombreSociedad">
                               </div>
                             </div>
                           </div>
@@ -221,7 +212,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Representante Legal</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder="Representante legal"  [(ngModel)]="general.RepresentanteLegal">
+                                <input [disabled]="disabledGen7" [attr.aria-expanded]="disabledGen7 ? 'disabledGen7' : ''" type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder="Representante legal"  [(ngModel)]="general.RepresentanteLegal">
                               </div>
                             </div>
                           </div>
@@ -229,7 +220,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Presidente del consejo</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="PresidenteConsejo" id="PresidenteConsejo" placeholder="Nombre del presidente"  [(ngModel)]="general.PresidenteConsejo">
+                                <input [disabled]="disabledGen8" [attr.aria-expanded]="disabledGen8 ? 'disabledGen8' : ''" type="text" class="form-control" name="PresidenteConsejo" id="PresidenteConsejo" placeholder="Nombre del presidente"  [(ngModel)]="general.PresidenteConsejo">
                               </div>
                             </div>
                           </div>
@@ -237,7 +228,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Consejero</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="Consejero" id="Consejero" placeholder="Nombre del consejero"  [(ngModel)]="general.Consejero">
+                                <input [disabled]="disabledGen9" [attr.aria-expanded]="disabledGen9 ? 'disabledGen9' : ''" type="text" class="form-control" name="Consejero" id="Consejero" placeholder="Nombre del consejero"  [(ngModel)]="general.Consejero">
                               </div>
                             </div>
                           </div>
@@ -245,7 +236,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Email Personal</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="EmailPersonal" id="EmailPersonal" placeholder=" nombre@micorreo.com" [(ngModel)]="general.EmailPersonal">
+                                <input [disabled]="disabledGen10" [attr.aria-expanded]="disabledGen10 ? 'disabledGen10' : ''" type="text" class="form-control" name="EmailPersonal" id="EmailPersonal" placeholder=" nombre@micorreo.com" [(ngModel)]="general.EmailPersonal">
                               </div>
                             </div>
                           </div>
@@ -253,7 +244,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Email Empresa </label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="EmailEmpresa" id="EmailEmpresa" placeholder=" nombre@micorreo.com"  [(ngModel)]="general.EmailEmpresa">
+                                <input [disabled]="disabledGen11" [attr.aria-expanded]="disabledGen11 ? 'disabledGen11' : ''" type="text" class="form-control" name="EmailEmpresa" id="EmailEmpresa" placeholder=" nombre@micorreo.com"  [(ngModel)]="general.EmailEmpresa">
                               </div>
                             </div>
                           </div>
@@ -261,16 +252,9 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Parte Relacionada </label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="ParteRelacionada" id="ParteRelacionada"  [(ngModel)]="general.ParteRelacionada">
-                                  <option selected>Seleccione parte relacionada ...</option>
-                                  <option>Poseedoras de 2% o mas de los titulos representativos</option>
-                                  <option>Miembros del consejo de administración</option>
-                                  <option>Conyuges y personas con parentesco</option>
-                                  <option>Personas con ingerencia</option>
-                                  <option>Poseedores del 10% o mas de los titulos representativos</option>
-                                  <option>Consejeros o administradores</option>
-                                  <option>Personas con poder de mando</option>
-                                  <option>No relacionado</option>
+                                <select [disabled]="disabledGen12" [attr.aria-expanded]="disabledGen12 ? 'disabledGen12' : ''" class="form-control form-control-sm" name="ParteRelacionada" id="ParteRelacionada"  [(ngModel)]="general.ParteRelacionada">
+                                  <option *ngFor="let tRel of ctTiprel" [value]="tRel.catalogo_cve">{{tRel.desc_45}}
+                                  </option>
                                 </select>
                               </div>
                             </div>
@@ -279,7 +263,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Grupo de Vinculo al Consejo </label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder="Nombre del Grupo"  [(ngModel)]="general.GrupoConsejo">
+                                <input [disabled]="disabledGen13" [attr.aria-expanded]="disabledGen13 ? 'disabledGen13' : ''" type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder="Nombre del Grupo"  [(ngModel)]="general.GrupoConsejo">
                               </div>
                             </div>
                           </div>
@@ -287,7 +271,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Grupo de Riesgo Comun </label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="GrupoRiesgoComun" id="GrupoRiesgoComun"  [(ngModel)]="general.GrupoRiesgoComun">
+                                <select [disabled]="disabledGen14" [attr.aria-expanded]="disabledGen14 ? 'disabledGen14' : ''" class="form-control form-control-sm" name="GrupoRiesgoComun" id="GrupoRiesgoComun"  [(ngModel)]="general.GrupoRiesgoComun">
                                   <option selected>Seleccione al promotor ...</option>
                                   <option>Sin Grupo</option>
                                   <option>B</option>
@@ -308,10 +292,10 @@
                           <div class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div  class="col-2 col-lg-2 col-xl-2">
-                            <button type="submit" class="btn btn-light  btn-block" (click) = "Cancelar()" >Cancelar</button>
+                            <button [disabled]="disabledGen14" [attr.aria-expanded]="disabledGen15 ? 'disabledGen15' : ''" type="submit" class="btn btn-light  btn-block" (click) = "Cancelar()" >Cancelar</button>
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <button data-toggle="modal" data-target="#largesizemodal1"  (click)="General()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                            <button [disabled]="disabledGen14" [attr.aria-expanded]="disabledGen16 ? 'disabledGen16' : ''" data-toggle="modal" data-target="#largesizemodal1" (click)="General()" (click)= "typeSuccess()" (click)="Desabilitar()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
                           </div>
                         </div>
                       </div>
@@ -319,7 +303,7 @@
                   </div>
                 </div>
               </form>
-              <button (click)="isCollapsed5 = !isCollapsed5" [attr.aria-expanded]="!isCollapsed5" class="btn btn-sm btn-light" [disabled]="active === 2" (click)="nav3.select(2)" type="submit" >Siguiente Sección</button>
+              <button (click)="DatosMuestra()" class="btn btn-sm btn-light" [disabled]="active === 2" (click)="nav3.select(2)" type="submit" >Siguiente Sección</button>
             </ng-template>
           </li>
           <li [ngbNavItem]="2"> <a ngbNavLink><i class="icon-home"></i>Domicilio</a>
@@ -382,9 +366,9 @@
                               <label class="col-sm-5 col-form-label">Tipo de Domicilio</label>
                               <div class="col-sm-6">
                                 <select [disabled]="disabled1" [attr.aria-expanded]="disabled1 ? 'disabled1' : ''" class="form-control form-control-sm" name="tipo_domicilio" id="tipo_domicilio"  [(ngModel)]="dom.TipoDom">
-                                      <option *ngFor="let catTipdom of catalogo1" [value]="catTipdom.catalogo_cve">{{catTipdom.desc_45}}
-                                      </option>
-                                  </select>
+                                  <option *ngFor="let ctdom of ctTipdom" [value]="ctdom.catalogo_cve">{{ctdom.desc_45}}
+                                  </option>
+                                </select>
                               </div>
                             </div>
                           </div>
@@ -695,7 +679,7 @@
               <div class="card">
                   <table class="table table-striped text-center " style="width:auto; height:5px;" >
                   <thead >
-                  <th>Numero CLiente</th>
+                  <th>Numero Cliente</th>
                   <th>Tipo de Domicilio</th>
                   <th>Calle</th>
                   <th>Numero Exterior</th>
@@ -720,7 +704,7 @@
                     <td>{{dom.Pais}}</td>
                     <td>
                       <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" (click)= "Consultar(dom)" ><i class="fa fa-pencil"></i></a>
-                      <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-danger text-white ml-1" (click)="DomBorrar(dom)" ><i class="fa fa-trash"></i></a></td>
+                      <a data-toggle="modal" data-target="#largesizemodal2" class="btn btn-sm btn-danger text-white ml-1" (click)="DomBorrar(dom)" ><i class="fa fa-trash"></i></a></td>
                   </tr>
                   </tbody>
                 </table>
@@ -734,786 +718,18 @@
           </li>
           <li [ngbNavItem]="3" > <a ngbNavLink><i class="icon-note"></i>Actividad y Referencia</a>
             <ng-template ngbNavContent>
-              <form action="#">
-                <div class="row">
-                  <div class="col-12 col-lg-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h6 class="page-title">Actividad Económica</h6>
-                        <hr>
-                        <div class="row">
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Actividad Económica</label>
-                              <div class="col-sm-6">
-                                <input style="display:none" value ="2" type="number" class="form-control" id="Id3" name="Id" [(ngModel)]="economica.Id">
-                                <select class="form-control form-control-sm" name="act_economica" id="act_economica" [(ngModel)]="economica.ActividadEconomica">
-                                  <option selected>Seleccione la Actividad ...</option>
-                                  <option>Comerciante</option>
-                                  <option>Emprendedor</option>
-                                  <option>Alimenticios, bebidas</option>
-                                  <option>Industria, Textil</option>
-                                  <option>Ind. de la madera y prod. de madera</option>
-                                  <option>Pepel, prod, papel imprentas y edito</option>
-                                  <option>Industrias Metálicas Básicas</option>
-                                  <option>Prod.Metálicos Maquinaria y equipo</option>
-                                  <option>Otras Industrias Manufactureras</option>
-                                  <option>Construcción</option>
-                                  <option>Electricidad, gas y agua</option>
-                                  <option>Servicios</option>
-                                  <option>Sector Publico</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Actividad Detallada </label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="act_detallada" id="act_detallada"  [(ngModel)]="economica.ActividadDetallada">
-                                  <option selected>Seleccione la actividad ...</option>
-                                  <option>Otros Servicios Profesionales </option>
-                                  <option>Otros Servicios Profesionales </option>
-                                  <option>Otros Servicios Profesionales </option>
-                                  <option>Otros Servicios Profesionales </option>
-                                  <option>Otros Servicios Profesionales </option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Ingresos Mensuales </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
-                                <input type="text" class="form-control" name="ing_mes" id="ing_mes" placeholder=" 0.00"  [(ngModel)]="economica.IngresoMensual">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-success">Otros Ingresos Mensuales  </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
-                                <input type="text" class="form-control" name="OtroIngresoMensual" id="OtroIngresoMensual" placeholder=" 0.00"  [(ngModel)]="economica.OtroIngresoMensual">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Gastos Mensuales </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
-                                <input type="text" class="form-control" name="GastosMensuales" id="GastosMensuales" placeholder=" 0.00"  [(ngModel)]="economica.GastosMensuales">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Flujo de Efectivo </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" name="FlujoEfectivo" id="FlujoEfectivo" placeholder=" 0.00"  [(ngModel)]="economica.FlujoEfectivo">
-                              </div>
-                            </div>
-                          </div>
-                          <button  (click)="Economica()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12 col-lg-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h6 class="page-title">Referencias Comerciales</h6>
-                        <hr>
-                        <div class="row">
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <input style="display:none" value ="2" type="number" class="form-control" id="Id4" name="Id" [(ngModel)]="comerciales.Id">
-                            <input style="display:none" value ="2" type="number" class="form-control" id="Consecutivo2" name="Consecutivo" [(ngModel)]="comerciales.Consecutivo">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Nombre del Proveedor</label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" id="com_name_provider" name="NombreRefCom" placeholder="Nombre del Proveedor" [(ngModel)]="comerciales.NombreRefCom" >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Limite Crédito </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
-                                <input type="text" class="form-control" id="com_credit_limit" name="LimiteCreditoRefCom" placeholder=" 0.00 " [(ngModel)]="comerciales.LimiteCreditoRefCom">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Saldo de Cuenta </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
-                                <input type="text" class="form-control" id="com_credit_balance" name = "SaldoCuentaRefCom" placeholder=" 0.00 " [(ngModel)]="comerciales.SaldoCuentaRefCom">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <button  (click)="Comerciales()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                </div>
-                <div class="row">
-                  <div class="col-12 col-lg-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h6 class="page-title">Referencias Personales</h6>
-                        <hr>
-                        <div class="row">
-                          <input style="display:none" value ="2" type="number" class="form-control" id="Id5" name="Id" [(ngModel)]="personales.Id">
-                          <input style="display:none" value ="2" type="number" class="form-control" id="Consecutivo3" name="Consecutivo" [(ngModel)]="personales.Consecutivo">
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Nombre Completo</label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" name="NombreRefPer" id="NombreRefPer"  placeholder="Nombre" [(ngModel)]="personales.NombreRefPer">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-success">Tipo Relación  </label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="TipoRelacionRefPer" id="TipoRelacionRefPer"  [(ngModel)]="personales.TipoRelacionRefPer">
-                                  <option>Seleccione el tipo ..</option>
-                                  <option>Option 1</option>
-                                  <option>Option 2</option>
-                                  <option>Option 3</option>
-                                  <option>Option 4</option>
-                                  <option>Option 5</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Teléfono(s) </label>
-                              <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="TelefonoRefPer" id="TelefonoRefPer"  placeholder="55.5555.5555" [(ngModel)]="personales.TelefonoRefPer">
-                                <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <button  (click)="Personales()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12 col-lg-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h6 class="page-title">Referencias Bancarias</h6>
-                        <hr>
-                        <div class="row">
-                          <input style="display:none" value ="2" type="number" class="form-control" id="Id6" name="Id" [(ngModel)]="bancarias.Id">
-                          <input style="display:none" value ="2" type="number" class="form-control" id="Consecutivo4" name="Consecutivo" [(ngModel)]="bancarias.Consecutivo">
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Institucion </label>
-                              <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="InstitucionRefBan"  id="InstitucionRefBan"  [(ngModel)]="bancarias.InstitucionRefBan">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Saldo Crédito </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
-                                <input type="text" class="form-control" name="SaldoCuentaRefBan" id="SaldoCuentaRefBan"  placeholder=" 0.00" [(ngModel)]="bancarias.SaldoCuentaRefBan">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Límite Crédito </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
-                                <input type="text" class="form-control" name="LimiteCreditoRefBan"  id="LimiteCreditoRefBan" placeholder=" 0.00" [(ngModel)]="bancarias.LimiteCreditoRefBan">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Antigüedad </label>
-                              <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" name="AntiguedadRefBan"  id="AntiguedadRefBan" [(ngModel)]="bancarias.AntiguedadRefBan">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <button  (click)="Bancarias()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                </div>
-                <div class="row">
-                  <div class="col-12 col-lg-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h6 class="page-title">Referencias Proveedores</h6>
-                        <hr>
-                        <div class="row">
-                          <input style="display:none" value ="2" type="number" class="form-control" id="Id7" name="Id" [(ngModel)]="proveedores.Id">
-                          <input style="display:none" value ="2" type="number" class="form-control" id="Consecutivo5" name="Consecutivo" [(ngModel)]="proveedores.Consecutivo">
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Nombre Completo</label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" name="NombreProvee" id="NombreProvee"  placeholder="Nombre Completo" [(ngModel)]="proveedores.NombreProvee">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Límite Crédito</label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" name="LimiteCreditoProvee" id="LimiteCreditoProvee" placeholder="Referencia Personal" [(ngModel)]="proveedores.LimiteCreditoProvee" >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Saldo Crédito </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
-                                <input type="text" class="form-control" name="SaldoCuentaProvee" id="SaldoCuentaProvee"  placeholder=" 0.00" [(ngModel)]="proveedores.SaldoCuentaProvee">
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <button  (click)="Proveedores()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                </div>
-                <div class="row">
-                </div>
-              </form>
+              <app-activ-eco></app-activ-eco>
               <button class="btn btn-sm btn-light"  (click)="nav3.select(2)">Anterior</button>
               <button class="btn btn-sm btn-light"  (click)="nav3.select(4)">Siguiente Sección</button>
             </ng-template>
           </li>
           <li [ngbNavItem]="4"> <a ngbNavLink><i class="fa fa-university"></i>Cuentas Bancarias </a>
             <ng-template ngbNavContent>
-              <form action="#">
-                <div class="row">
-                  <div class="row">
-                    <div class="col-12 col-lg-12">
-                      <div class="card">
-                        <div class="card-body">
-                          <button type = "reset" class="btn btn-light " >Limpiar Variables</button>
-                          <hr>
-                          <div class="row">
-                            <input style="display:none" value ="1" type="text" class="form-control" id="Id2" name="Id" [(ngModel)]="cuenta.Id">
-                            <input style="display:none" value ="1" type="text" class="form-control" id="Consecutivo" name="Consecutivo" [(ngModel)]="cuenta.Consecutivo">
-                            <div class="col-6 col-lg-6 col-xl-6">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Nombre del Cuentahabiente</label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" id="account_holder_name" name="account_holder_name" placeholder="Nombre del Cuentahabiente" [(ngModel)]="cuenta.NombreBank">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6 col-lg-6 col-xl-6">
-                              <div class="form-group row">
-                                <label  class="col-sm-5 col-form-success">Nombre del Banco </label>
-                                <div class="col-sm-6">
-                                  <select class="form-control form-control-sm" id="name_bank" name="name_bank" [(ngModel)]="cuenta.BancoCtaBan">
-                                    <option selected>Seleccione el banco ...</option>
-                                    <option value="1">BBVA Bancomer</option>
-                                    <option value="2">City Banamex</option>
-                                    <option value="3">Santander</option>
-                                    <option value="3">Scotiabank</option>
-                                    <option value="4">Serfin</option>
-                                    <option value="5">Santander</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6 col-lg-6 col-xl-6">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Número de Cuenta </label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" id="number_bill" name="number_bill" placeholder=" 000865567898890 " [(ngModel)]="cuenta.NumBan">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6 col-lg-6 col-xl-6">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Clave Interbancaria </label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" id="interbank_code" name="interbank_code" placeholder=" 00086556789889068909 " [(ngModel)]="cuenta.ClaveInter">
-                                </div>
-                              </div>
-                            </div>
-                            <button (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed" (click)="Cuenta()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div [ngbCollapse]="isCollapsed2" class="row">
-                      <div class="row">
-                        <div class="col-12 col-lg-12">
-                          <div class="card">
-                            <div class="card-body">
-                              <button type = "reset" class="btn btn-light " >Limpiar Variables</button>
-                              <hr>
-                              <div class="row">
-                                <input style="display:none" value ="1" type="text" class="form-control" id="Id2" name="Id" [(ngModel)]="cuenta.Id">
-                                <input style="display:none" value ="1" type="text" class="form-control" id="Consecutivo" name="Consecutivo" [(ngModel)]="cuenta.Consecutivo">
-                                <div class="col-6 col-lg-6 col-xl-6">
-                                  <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Nombre del Cuentahabiente</label>
-                                    <div class="col-sm-6">
-                                      <input type="text" class="form-control" id="account_holder_name" name="account_holder_name" placeholder="Nombre del Cuentahabiente" [(ngModel)]="cuenta.NombreBank">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-6 col-lg-6 col-xl-6">
-                                  <div class="form-group row">
-                                    <label  class="col-sm-5 col-form-success">Nombre del Banco </label>
-                                    <div class="col-sm-6">
-                                      <select class="form-control form-control-sm" id="name_bank" name="name_bank" [(ngModel)]="cuenta.BancoCtaBan">
-                                        <option selected>Seleccione el banco ...</option>
-                                        <option value="1">BBVA Bancomer</option>
-                                        <option value="2">City Banamex</option>
-                                        <option value="3">Santander</option>
-                                        <option value="3">Scotiabank</option>
-                                        <option value="4">Serfin</option>
-                                        <option value="5">Santander</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-6 col-lg-6 col-xl-6">
-                                  <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Número de Cuenta </label>
-                                    <div class="col-sm-6">
-                                      <input type="text" class="form-control" id="number_bill" name="number_bill" placeholder=" 000865567898890 " [(ngModel)]="cuenta.NumBan">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-6 col-lg-6 col-xl-6">
-                                  <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Clave Interbancaria </label>
-                                    <div class="col-sm-6">
-                                      <input type="text" class="form-control" id="interbank_code" name="interbank_code" placeholder=" 00086556789889068909 " [(ngModel)]="cuenta.ClaveInter">
-                                    </div>
-                                  </div>
-                                </div>
-                                <button (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed" (click)="Cuenta()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <h3 class="card-title"> </h3>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </form>
+              <app-cuenta-bancaria></app-cuenta-bancaria>
               <button class="btn btn-sm btn-light"  (click)="nav3.select(3)">Anterior</button>
               <button class="btn btn-sm btn-light"  (click)="nav3.select(5)">Siguiente Sección</button>
             </ng-template>
           </li>
-          <!--<li [ngbNavItem]="5"> <a ngbNavLink><i class="fa fa-users"></i>Beneficiarios</a>
-            <ng-template ngbNavContent>
-              <form>
-                <div class="row">
-                  <div class="col-12 col-lg-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h6 class="page-title">Datos del Conyugue</h6>
-                        <hr>
-                        <div class="row">
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Apellido Paterno </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" name="apell_pat" id="apell_pat" placeholder="Apellido paterno" >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Apellido Materno </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" name="apell_mat" id="apell_mat" placeholder="Apellido materno" >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Primer Nombre </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" name="1er_nom" id="1er_nom" placeholder="Primer Nombre" >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Segundo Nombre </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" name="2do_nom" id="2do_nom" placeholder="Segundo Nombre" >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Nombre  </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" name="nombre.concat" id="nombre.concat" placeholder="Nombre del Cliente"  value="Nombre del Cliente" readonly>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-success">Fecha de Nacimiento </label>
-                              <div class="col-sm-6">
-                                <input type="date" class="form-control" name="fec_nac" id="fec_nac" >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Teléfono </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                <input type="text" class="form-control" name="num_identif" id="num_identif" placeholder="Número Identificación " >
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Antigüedad </label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" name="num_identif" id="num_identif" placeholder="Número Identificación " >
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Teléfono Empresa</label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                <input type="text" class="form-control" name="num_identif" id="num_identif" placeholder="Número Identificación " >
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Email Personal*</label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-at"></i></span>
-                                <input type="text" class="form-control" name="email_pers" id="email_pers" placeholder=" nombre@micorreo.com"  >
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Puesto que desempeña</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="cve_prom" id="cve_prom" >
-                                  <option selected>Seleccione al promotor ...</option>
-                                  <option>Director General</option>
-                                  <option>Director Finanzas</option>
-                                  <option>Director Promotor</option>
-                                  <option>Director Crédito</option>
-                                  <option>Director Operaciones</option>
-                                  <option>Director Auditoria </option>
-                                  <option>Subdirector Promoción </option>
-                                  <option>Gerente Promoción </option>
-                                  <option>Subgerente Promoción </option>
-                                  <option>Otro </option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Domicilio</label>
-                              <div class="col-sm-6 input-group">
-                                <span class="input-group-text"><i class="fa fa-home"></i></span>
-                                <input type="text" class="form-control" name="email_pers" id="email_pers" placeholder=" nombre@micorreo.com"  >
-                                <div class="input-group-append">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-lg-12">
-                      <div class="card">
-                        <div class="card-body">
-                          <h6 class="page-title">Beneficiario</h6>
-                          <hr>
-                          <div class="row">
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Apellido Paterno </label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" name="apell_pat" id="apell_pat" placeholder="Apellido paterno" >
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Apellido Materno </label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" name="apell_mat" id="apell_mat" placeholder="Apellido materno" >
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Primer Nombre </label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" name="1er_nom" id="1er_nom" placeholder="Primer Nombre" >
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Segundo Nombre </label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" name="2do_nom" id="2do_nom" placeholder="Segundo Nombre" >
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Nombre  </label>
-                                <div class="col-sm-6">
-                                  <input type="text" class="form-control" name="nombre.concat" id="nombre.concat" placeholder="Nombre del Cliente"  value="Nombre del Cliente" readonly>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Parentesco </label>
-                                <div class="col-sm-6">
-                                  <select class="form-control form-control-sm" name=" " id=" " >
-                                    <option selected>Seleccione el parentesco ...</option>
-                                    <option >Esposa</option>
-                                    <option>Esposo</option>
-                                    <option>Madre</option>
-                                    <option>Padre</option>
-                                    <option>Hijo</option>
-                                    <option>Otro</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label  class="col-sm-5 col-form-label">Porcentaje</label>
-                                <div class="col-sm-6 input-group">
-                                  <span class="input-group-text"><i class="fa fa-percent"></i></span>
-                                  <input type="text" class="form-control" name="email_pers" id="email_pers" placeholder=" nombre@micorreo.com"  >
-                                  <div class="input-group-append">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label  class="col-sm-5 col-form-label">Teléfono Domicilio</label>
-                                <div class="col-sm-6 input-group">
-                                  <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                  <input type="text" class="form-control" name="num_identif" id="num_identif" placeholder="Número Identificación " >
-                                  <div class="input-group-append">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label  class="col-sm-5 col-form-label">Teléfono Celular</label>
-                                <div class="col-sm-6 input-group">
-                                  <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                  <input type="text" class="form-control" name="num_cel" id="num_cel" placeholder="Número Identificación " >
-                                  <div class="input-group-append">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                      <button type="button" class="btn btn-light" (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2" aria-controls="collapseExample">+</button>
-                      <div  [ngbCollapse]="isCollapsed2" class="row">
-                        <div class="col-12 col-lg-12">
-                          <div class="card">
-                            <div class="card-body">
-                              <h6 class="page-title">Beneficiario</h6>
-                              <hr>
-                              <div class="row">
-                                <div class="col-5 col-lg-4 col-xl-4">
-                                  <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Apellido Paterno </label>
-                                    <div class="col-sm-6">
-                                      <input type="text" class="form-control" name="apell_pat" id="apell_pat" placeholder="Apellido paterno" >
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-5 col-lg-4 col-xl-4">
-                                  <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Apellido Materno </label>
-                                    <div class="col-sm-6">
-                                      <input type="text" class="form-control" name="apell_mat" id="apell_mat" placeholder="Apellido materno" >
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-5 col-lg-4 col-xl-4">
-                                  <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Primer Nombre </label>
-                                    <div class="col-sm-6">
-                                      <input type="text" class="form-control" name="1er_nom" id="1er_nom" placeholder="Primer Nombre" >
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-5 col-lg-4 col-xl-4">
-                                  <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Segundo Nombre </label>
-                                    <div class="col-sm-6">
-                                      <input type="text" class="form-control" name="2do_nom" id="2do_nom" placeholder="Segundo Nombre" >
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-5 col-lg-4 col-xl-4">
-                                  <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Nombre  </label>
-                                    <div class="col-sm-6">
-                                      <input type="text" class="form-control" name="nombre.concat" id="nombre.concat" placeholder="Nombre del Cliente"  value="Nombre del Cliente" readonly>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-5 col-lg-4 col-xl-4">
-                                  <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">Parentesco </label>
-                                    <div class="col-sm-6">
-                                      <select class="form-control form-control-sm" name=" " id=" " >
-                                        <option selected>Seleccione el parentesco ...</option>
-                                        <option>Esposa</option>
-                                        <option>Esposo</option>
-                                        <option>Madre</option>
-                                        <option>Padre</option>
-                                        <option>Hijo</option>
-                                        <option>Otro</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-5 col-lg-4 col-xl-4">
-                                  <div class="form-group row">
-                                    <label  class="col-sm-5 col-form-label">Porcentaje</label>
-                                    <div class="col-sm-6 input-group">
-                                      <span class="input-group-text"><i class="fa fa-percent"></i></span>
-                                      <input type="text" class="form-control" name="email_pers" id="email_pers" placeholder=" nombre@micorreo.com"  >
-                                      <div class="input-group-append">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-5 col-lg-4 col-xl-4">
-                                  <div class="form-group row">
-                                    <label  class="col-sm-5 col-form-label">Teléfono Domicilio</label>
-                                    <div class="col-sm-6 input-group">
-                                      <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                      <input type="text" class="form-control" name="num_identif" id="num_identif" placeholder="Número Identificación " >
-                                      <div class="input-group-append">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-5 col-lg-4 col-xl-4">
-                                  <div class="form-group row">
-                                    <label  class="col-sm-5 col-form-label">Teléfono Celular</label>
-                                    <div class="col-sm-6 input-group">
-                                      <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                                      <input type="text" class="form-control" name="num_cel" id="num_cel" placeholder="Número Identificación " >
-                                      <div class="input-group-append">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-
-              <button class="btn btn-sm btn-light" [disabled]="active === 6" (click)="nav3.select(6)">Siguiente Sección</button>
-            </ng-template>
-          </li>-->
           <li [ngbNavItem]="6" > <a ngbNavLink><i class="fa fa-folder-open-o"></i>Documentación</a>
             <ng-template ngbNavContent>
               <h5 class="card-title">Relación con inversionistas y socios</h5>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="firmex">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/firmex.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

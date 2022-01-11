@@ -1,0 +1,614 @@
+<div class="modal fade" id="largesizemodal1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-light-2">
+        <h5 class="modal-title text-white">Información</h5>
+      </div>
+      <div class="modal-body">
+        <div >
+          <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
+            <thead >
+            <tr>
+              <td>Clave de Error: </td>
+              <td>Error: </td>
+              <td>Descripcion de error: </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let agregar4 of arreglo">
+              <td>{{agregar4.errorClave}}</td>
+              <td>{{agregar4.errorSp}}</td>
+              <td>{{agregar4.errorDescripcion}}</td>
+            </tr>
+
+            <tr *ngFor="let ecoborrar of arreglob">
+              <td>{{ecoborrar.errorClave}}</td>
+              <td>{{ecoborrar.errorSp}}</td>
+              <td>{{ecoborrar.errorDescripcion}}</td>
+            </tr>
+
+            <tr *ngFor="let agregar6 of arreglo2">
+              <td>{{agregar6.errorClave}}</td>
+              <td>{{agregar6.errorSp}}</td>
+              <td>{{agregar6.errorDescripcion}}</td>
+            </tr>
+
+            <tr *ngFor="let perborrar of arreglo2b">
+              <td>{{perborrar.errorClave}}</td>
+              <td>{{perborrar.errorSp}}</td>
+              <td>{{perborrar.errorDescripcion}}</td>
+            </tr>
+
+            <tr *ngFor="let agregar5 of arreglo3">
+              <td>{{agregar5.errorClave}}</td>
+              <td>{{agregar5.errorSp}}</td>
+              <td>{{agregar5.errorDescripcion}}</td>
+            </tr>
+
+            <tr *ngFor="let comborrar of arreglo3b">
+              <td>{{comborrar.errorClave}}</td>
+              <td>{{comborrar.errorSp}}</td>
+              <td>{{comborrar.errorDescripcion}}</td>
+            </tr>
+
+            <tr *ngFor="let agregar8 of arreglo4">
+              <td>{{agregar8.errorClave}}</td>
+              <td>{{agregar8.errorSp}}</td>
+              <td>{{agregar8.errorDescripcion}}</td>
+            </tr>
+
+            <tr *ngFor="let proborrar of arreglo4b">
+              <td>{{proborrar.errorClave}}</td>
+              <td>{{proborrar.errorSp}}</td>
+              <td>{{proborrar.errorDescripcion}}</td>
+            </tr>
+
+            <tr *ngFor="let agregar7 of arreglo5">
+              <td>{{agregar7.errorClave}}</td>
+              <td>{{agregar7.errorSp}}</td>
+              <td>{{agregar7.errorDescripcion}}</td>
+            </tr>
+
+            <tr *ngFor="let banborrar of arreglo5b">
+              <td>{{banborrar.errorClave}}</td>
+              <td>{{banborrar.errorSp}}</td>
+              <td>{{banborrar.errorDescripcion}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer border-light-2">
+        <button type="button" class="btn btn-link text-white" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+                <div class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6 class="page-title">Acciones</h6>
+                        <hr>
+                        <form action="#">
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Fecha de Primera Compra Acción</label>
+                              <div class="col-sm-6">
+                                <input [disabled]="disabledAcc1" [attr.aria-expanded]="disabledAcc1 ? 'disabledAcc1' : ''" type="date" class="form-control" name="FechaCompra1aAccion" id="FechaCompra1aAccion"  [(ngModel)]="acc.FechaCompra1aAccion" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Parte Inicial Social</label>
+                              <div class="col-sm-6">
+                                <input [disabled]="disabledAcc2" [attr.aria-expanded]="disabledAcc2 ? 'disabledAcc2' : ''" type="number" class="form-control" name="ParteInicialSocial" id="ParteInicialSocial"  [(ngModel)]="acc.ParteInicialSocial" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Fecha de Pago</label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledAcc3" [attr.aria-expanded]="disabledAcc3 ? 'disabledAcc3' : ''" type="date" class="form-control" name="FechaPago" id="FechaPago"  [(ngModel)]="acc.FechaPago" >
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-success">Parte Social Actual</label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledAcc4" [attr.aria-expanded]="disabledAcc4 ? 'disabledAcc4' : ''" type="number" class="form-control" name="ParteSocialActual" id="ParteSocialActual"  [(ngModel)]="acc.ParteSocialActual" >
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Costo de las Acciones</label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledAcc5" [attr.aria-expanded]="disabledAcc5 ? 'disabledAcc5' : ''" type="number" class="form-control" name="CostoAcciones" id="CostoAcciones"  [(ngModel)]="acc.CostoAcciones" >
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Forma de Pago de las Acciones </label>
+                              <div class="col-sm-6">
+                                <input [disabled]="disabledAcc6" [attr.aria-expanded]="disabledAcc6 ? 'disabledAcc6' : ''" type="text" class="form-control" name="FormaPagoAcciones" id="FormaPagoAcciones"  [(ngModel)]="acc.FormaPagoAcciones" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Retirables A </label>
+                              <div class="col-sm-6">
+                                <input [disabled]="disabledAcc7" [attr.aria-expanded]="disabledAcc7 ? 'disabledAcc7' : ''" type="number" class="form-control" name="RetirablesA" id="RetirablesA"  [(ngModel)]="acc.RetirablesA" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Retirables B</label>
+                              <div class="col-sm-6">
+                                <input [disabled]="disabledAcc8" [attr.aria-expanded]="disabledAcc8 ? 'disabledAcc8' : ''" type="number" class="form-control" name="RetirablesB" id="RetirablesB"  [(ngModel)]="acc.RetirablesB" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Total de Acciones</label>
+                              <div class="col-sm-6">
+                                <input [disabled]="disabledAcc9" [attr.aria-expanded]="disabledAcc9 ? 'disabledAcc9' : ''" type="number" class="form-control" name="TotalAcciones" id="TotalAcciones"  [(ngModel)]="acc.TotalAcciones" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-1 col-lg-4 col-xl-4">
+                          </div>
+                          <div  class="col-1 col-lg-4 col-xl-4">
+                          </div>
+                          <div  class="col-1 col-lg-1 col-xl-2">
+                            <button  [disabled]="disabledAcc10"  [attr.aria-expanded]="disabledAcc10 ? 'disabledAcc10' : ''" (click)="Insert()" type="submit" class="btn btn-light  btn-block" >Insertar</button>
+                          </div>
+                          <div [ngbCollapse]="isCollapsedAcc1" class="col-1 col-lg-1 col-xl-2">
+                          <button data-toggle="modal" data-target="#largesizemodal1" type="submit" class="btn btn-light  btn-block" (click)="Acciones()" (click)="Insert()" type = "reset" >Guardar</button>
+                          </div>
+                          </div>
+                       </form>
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div  class="col-2 col-lg-2 col-xl-2">
+                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerAcciones()" >Actualizar</button>
+                    </div>
+                      <div  class="col-6 col-lg-6 col-xl-6">
+                      </div>
+                    <div  class="col-4 col-lg-4 col-xl-4">
+                      <label>Listado de Acciones</label>
+                    </div>
+                    </div>
+                    <div class="card">
+                      <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                        <thead >
+                        <th>Numero Cliente</th>
+                        <th>Consecutivo</th>
+                        <th>Fecha primera acción</th>
+                        <th>Ingreso Mensual</th>
+                        <th>Parte Inicial Social</th>
+                        <th>Fecha de Pago</th>
+                        <th>Parte Social Actual</th>
+                        <th>Costo Acciones</th>
+                        <th>Forma de Pago</th>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let acc of arreglo;let i=index;" >
+                          <td scope="row" >{{acc.Id}}</td>
+                          <td scope="row" >{{acc.Consecutivo}}</td>
+                          <td>{{acc.FechaCompra1aAccion}}</td>
+                          <td>{{acc.ParteInicialSocial}}</td>
+                          <td>{{acc.FechaPago}}</td>
+                          <td>{{acc.ParteSocialActual}}</td>
+                          <td>{{acc.CostoAcciones}}</td>
+                          <td>{{acc.FormaPagoAcciones}}</td>
+                          <td>
+                            <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                            <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "AccionesBorrar(acc)" ><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6 class="page-title">Cuentas Bancarias</h6>
+                        <hr>
+                        <form action="#">
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">cuenta bancaria</label>
+                              <div class="col-sm-6">
+                                <input [disabled]="disabledCue1" [attr.aria-expanded]="disabledCue1 ? 'disabledCue1' : ''" type="text" class="form-control" name="NombreCuentaBancariaCtaBan" id="NombreCuentaBancariaCtaBan"  [(ngModel)]="cuen.NombreCuentaBancariaCtaBan">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-success">Banco</label>
+                              <div class="col-sm-6">
+                                  <select [disabled]="disabledCue2" [attr.aria-expanded]="disabledCue2 ? 'disabledCue2' : ''" class="form-control form-control-sm"  name="BancoCtaBan" id="BancoCtaBan"  [(ngModel)]="cuen.BancoCtaBan">
+                                    <option *ngFor="let CatBncs of ctBancos" [value]="CatBncs.catalogo_cve">{{CatBncs.desc_45}}
+                                    </option>
+                                  </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Numero de Cuenta </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledCue3" [attr.aria-expanded]="disabledCue3 ? 'disabledCue3' : ''" type="number" class="form-control" name="NumeroCuentaCtaBan" id="NumeroCuentaCtaBan"  [(ngModel)]="cuen.NumeroCuentaCtaBan">
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Clabe Interbancaria </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledCue4" [attr.aria-expanded]="disabledCue4 ? 'disabledCue4' : ''" type="text" class="form-control" name="ClaveInterbancariaCtaBan" id="ClaveInterbancariaCtaBan"  [(ngModel)]="cuen.ClaveInterbancariaCtaBan">
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-1 col-lg-4 col-xl-4">
+                          </div>
+                          <div  class="col-1 col-lg-1 col-xl-2">
+                            <button  [disabled]="disabledCue5"  [attr.aria-expanded]="disabledCue5 ? 'disabledCue5' : ''" (click)="Insert2()" type="submit" class="btn btn-light  btn-block" >Insertar</button>
+                          </div>
+                          <div [ngbCollapse]="isCollapsedCue1" class="col-1 col-lg-1 col-xl-2">
+                            <button data-toggle="modal" data-target="#largesizemodal1" type="submit" class="btn btn-light  btn-block" (click)="Insert2()" (click)="Cuenta()"  type = "reset" >Guardar</button>
+                          </div>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div  class="col-2 col-lg-2 col-xl-2">
+                        <button type="submit" class="btn btn-light  btn-block" (click)="obtenerCuenta()" >Actualizar</button>
+                      </div>
+                      <div  class="col-6 col-lg-6 col-xl-6">
+                      </div>
+                      <div  class="col-4 col-lg-4 col-xl-4">
+                        <label>Listado de Cuentas Bancarias</label>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                        <thead >
+                        <th>Numero Cliente</th>
+                        <th>Consecutivo</th>
+                        <th>Nombre cuenta bancaria</th>
+                        <th>Banco</th>
+                        <th>Número de Cuenta</th>
+                        <th>Clabe Interbancaria</th>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let cuen of arreglo2;let i=index;" >
+                          <td scope="row" >{{cuen.Id}}</td>
+                          <td scope="row" >{{cuen.Consecutivo}}</td>
+                          <td>{{cuen.NombreCuentaBancariaCtaBan}}</td>
+                          <td>{{cuen.BancoCtaBan}}</td>
+                          <td>{{cuen.NumeroCuentaCtaBan}}</td>
+                          <td>{{cuen.ClaveInterbancariaCtaBan}}</td>
+                          <td>
+                            <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                            <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "CuentaBorrar(cuen)" ><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Partes Relacionadas</h6>
+                      <hr>
+                      <form action="#" >
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Parte Relacionada</label>
+                            <div class="col-sm-6">
+                              <input [disabled]="disabledRel1" [attr.aria-expanded]="disabledRel1 ? 'disabledRel1' : ''" type="text" class="form-control" id="ParteRelacionadaParRel" name="ParteRelacionadaParRel" [(ngModel)]="rel.ParteRelacionadaParRel" >
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Nombre completo </label>
+                            <div class="col-sm-6 input-group">
+                              <input [disabled]="disabledRel2" [attr.aria-expanded]="disabledRel2 ? 'disabledRel2' : ''" type="text" class="form-control" id="NombreParRel" name="NombreParRel" [(ngModel)]="rel.NombreParRel">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">RFC </label>
+                            <div class="col-sm-6 input-group">
+                              <input [disabled]="disabledRel3" [attr.aria-expanded]="disabledRel3 ? 'disabledRel3' : ''" type="text" class="form-control" id="RFCParRel" name = "RFCParRel" [(ngModel)]="rel.RFCParRel">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Dirección </label>
+                            <div class="col-sm-6 input-group">
+                              <input [disabled]="disabledRel4" [attr.aria-expanded]="disabledRel4 ? 'disabledRel4' : ''" type="text" class="form-control" id="DireccionParRel" name = "DireccionParRel" [(ngModel)]="rel.DireccionParRel">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button  [disabled]="disabledRel5"  [attr.aria-expanded]="disabledRel5 ? 'disabledRel5' : ''" (click)="Insert3()" type="submit" class="btn btn-light  btn-block" >Insertar</button>
+                        </div>
+                        <div [ngbCollapse]="isCollapsedRel1" class="col-1 col-lg-1 col-xl-2">
+                          <button data-toggle="modal" data-target="#largesizemodal1" type="submit" class="btn btn-light  btn-block" (click)="Relacional()" (click)="Insert3()" type = "reset" >Guardar</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div  class="col-2 col-lg-2 col-xl-2">
+                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerRelacional()" >Actualizar</button>
+                    </div>
+                    <div  class="col-6 col-lg-6 col-xl-6">
+                    </div>
+                    <div  class="col-4 col-lg-4 col-xl-4">
+                      <label>Listado de Parte Relacionada</label>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                      <thead >
+                      <th>Numero Cliente</th>
+                      <th>Consecutivo</th>
+                      <th>Parte Relacionada</th>
+                      <th>Nombre completo</th>
+                      <th>RFC</th>
+                      <th>Dirección</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let rel of arreglo3;let i=index;" >
+                        <td scope="row" >{{rel.Id}}</td>
+                        <td scope="row" >{{rel.Consecutivo}}</td>
+                        <td>{{rel.ParteRelacionadaParRel}}</td>
+                        <td>{{rel.NombreParRel}}</td>
+                        <td>{{rel.RFCParRel}}</td>
+                        <td>{{rel.DireccionParRel}}</td>
+                        <td>
+                          <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                          <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "RelacionalBorrar(rel)" ><i class="fa fa-trash"></i></a></td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Grupo Socieconomico</h6>
+                      <hr>
+                      <form action="#" >
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Grupo Socieconomico</label>
+                            <div class="col-sm-6">
+                              <select [disabled]="disabledSoc1" [attr.aria-expanded]="disabledSoc1 ? 'disabledSoc1' : ''" class="form-control form-control-sm"  name="GrupoSocioeconomicoGpoSoc" id="GrupoSocioeconomicoGpoSoc"  [(ngModel)]="soc.GrupoSocioeconomicoGpoSoc">
+                                <option *ngFor="let CatEco of ctActeco" [value]="CatEco.catalogo_cve">{{CatEco.desc_45}}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Nombre Completo</label>
+                            <div class="col-sm-6">
+                              <input [disabled]="disabledSoc2" [attr.aria-expanded]="disabledSoc2 ? 'disabledSoc2' : ''" type="text" class="form-control" name="NombreGpoSoc" id="NombreGpoSoc" [(ngModel)]="soc.NombreGpoSoc" >
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">RFC </label>
+                            <div class="col-sm-6 input-group">
+                              <input [disabled]="disabledSoc3" [attr.aria-expanded]="disabledSoc3 ? 'disabledSoc3' : ''" type="text" class="form-control" name="RFCGpoSoc" id="RFCGpoSoc"  [(ngModel)]="soc.RFCGpoSoc">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Dirección </label>
+                            <div class="col-sm-6 input-group">
+                              <input [disabled]="disabledSoc4" [attr.aria-expanded]="disabledSoc4 ? 'disabledSoc4' : ''" type="text" class="form-control" name="DireccionGpoSoc" id="DireccionGpoSoc"  [(ngModel)]="soc.DireccionGpoSoc">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button  [disabled]="disabledSoc5"  [attr.aria-expanded]="disabledSoc5 ? 'disabledSoc5' : ''" (click)="Insert4()" type="submit" class="btn btn-light  btn-block" >Insertar</button>
+                        </div>
+                        <div [ngbCollapse]="isCollapsedSoc1" class="col-1 col-lg-1 col-xl-2">
+                          <button  data-toggle="modal" data-target="#largesizemodal1" type="submit" class="btn btn-light  btn-block" (click)="SocioEco()" (click)="Insert4()"type = "reset" >Guardar</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div  class="col-2 col-lg-2 col-xl-2">
+                  <button type="submit" class="btn btn-light  btn-block" (click)="obtenerSocioEco()" >Actualizar</button>
+                </div>
+                <div  class="col-6 col-lg-6 col-xl-6">
+                </div>
+                <div  class="col-4 col-lg-4 col-xl-4">
+                  <label>Listado de Grupo Socieconimico</label>
+                </div>
+              </div>
+              <div class="card">
+                <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                  <thead >
+                  <th>Numero Cliente</th>
+                  <th>Consecutivo</th>
+                  <th>Grupo Socieconomico</th>
+                  <th>Nombre Completo</th>
+                  <th>RFC</th>
+                  <th>Dirección</th>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let soc of arreglo4;let i=index;" >
+                    <td scope="row" >{{soc.Id}}</td>
+                    <td scope="row" >{{soc.Consecutivo}}</td>
+                    <td>{{soc.GrupoSocioeconomicoGpoSoc}}</td>
+                    <td>{{soc.NombreGpoSoc}}</td>
+                    <td>{{soc.RFCGpoSoc}}</td>
+                    <td>{{soc.DireccionGpoSoc}}</td>
+                    <td>
+                      <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                      <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "SocioEcoBorrar(soc)" ><i class="fa fa-trash"></i></a></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+                <div class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6 class="page-title">Grupo de Riesgo Común</h6>
+                        <hr>
+                        <form action="#" >
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Grupo de Riesgo Común </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledCom1" [attr.aria-expanded]="disabledCom1 ? 'disabledCom1' : ''" type="text" class="form-control" name="GrupoRiesgoComunRgoCom"  id="GrupoRiesgoComunRgoCom"  [(ngModel)]="com.GrupoRiesgoComunRgoCom">
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Nombre Completo </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledCom2" [attr.aria-expanded]="disabledCom2 ? 'disabledCom2' : ''" type="text" class="form-control" name="NombreRgoCom" id="NombreRgoCom"  [(ngModel)]="com.NombreRgoCom">
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">RFC </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledCom3" [attr.aria-expanded]="disabledCom3 ? 'disabledCom3' : ''" type="text" class="form-control" name="RFCRgoCom"  id="RFCRgoCom"  [(ngModel)]="com.RFCRgoCom">
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Dirección </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledCom4" [attr.aria-expanded]="disabledCom4 ? 'disabledCom4' : ''" type="text" class="form-control" name="DireccionRgoCom"  id="DireccionRgoCom" [(ngModel)]="com.DireccionRgoCom">
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div  class="col-1 col-lg-4 col-xl-4">
+                          </div>
+                          <div  class="col-1 col-lg-1 col-xl-2">
+                            <button  [disabled]="disabledCom5"  [attr.aria-expanded]="disabledCom5 ? 'disabledCom5' : ''" (click)="Insert5()" type="submit" class="btn btn-light  btn-block" >Insertar</button>
+                          </div>
+                          <div [ngbCollapse]="isCollapsedCom1" class="col-1 col-lg-1 col-xl-2">
+                            <button data-toggle="modal" data-target="#largesizemodal1" type="submit" class="btn btn-light  btn-block" (click)="RiesgoComun()" (click)="Insert5()" type = "reset" >Guardar</button>
+                          </div>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div  class="col-2 col-lg-2 col-xl-2">
+                    <button type="submit" class="btn btn-light  btn-block" (click)="obtenerRiesgoComun()" >Actualizar</button>
+                  </div>
+                    <div  class="col-6 col-lg-6 col-xl-6">
+                      </div>
+                  <div  class="col-4 col-lg-4 col-xl-4">
+                      <label>Listado de Grupo de Riesgo comun</label>
+                  </div>
+                </div>
+            <div class="card">
+                  <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                    <thead >
+                        <th>Numero Cliente</th>
+                        <th>Consecutivo</th>
+                        <th>Grupo de Riesgo Común</th>
+                        <th>Nombre Completo</th>
+                        <th>RFC</th>
+                        <th>Dirección</th>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let com of arreglo5;let i=index;" >
+                    <td scope="row" >{{com.Id}}</td>
+                     <td scope="row" >{{com.Consecutivo}}</td>
+                      <td>{{com.GrupoRiesgoComunRgoCom}}</td>
+                      <td>{{com.NombreRgoCom}}</td>
+                    <td>{{com.RFCRgoCom}}</td>
+                    <td>{{com.DireccionRgoCom}}</td>
+                    <td>
+                    <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                    <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "RiesgoComunBorrar(com)" ><i class="fa fa-trash"></i></a></td>
+                </tr>
+              </tbody>
+              </table>
+                </div>

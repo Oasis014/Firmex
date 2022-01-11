@@ -191,8 +191,6 @@ open() {this.router.navigate(['list-clienteF'], { relativeTo: this.route.parent 
 
       Cuenta(){ this.clienteService.agregar3(this.cuenta).subscribe(datos =>{ }); }
 
-      Economica(){ this.clienteService.agregar4(this.economica).subscribe(datos =>{ }); }
-
       Comerciales(){ this.clienteService.agregar5(this.comerciales).subscribe(datos =>{ }); }
 
       Personales(){ this.clienteService.agregar6(this.personales).subscribe(datos =>{ }); }

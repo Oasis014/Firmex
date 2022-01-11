@@ -53,15 +53,28 @@ EstatusClienteA: string = 'Prospecto';
 SucursalA: string = '';
 ClavePromotorA: string = '';
 RazonSocialA: string = '';
+Contador: number = 0;
 // Objetos Ocultos Cliente
 public isCollapsed = false; public isCollapsed2 = true; public isCollapsed4 = false; public isCollapsed5 = true; public isCollapsed6 = true; public isCollapsed7 = false; public isCollapsed8 = true;
 //Objetos Desabilitados Cliente
+public disabledGen1 = false; public disabledGen2 = false; public disabledGen3 = false; public disabledGen4 = false; public disabledGen5 = false; public disabledGen6 = false; public disabledGen7 = false;
+public disabledGen8 = false; public disabledGen9 = false; public disabledGen10 = false; public disabledGen11 = false; public disabledGen12 = false; public disabledGen13 = false; public disabledGen14 = false; public disabledGen15 = true; public disabledGen16 = true;
+
 public disabled1 = true; public disabled2 = true; public disabled3 = true; public disabled4 = true; public disabled5 = true; public disabled6 = true; public disabled7 = true;
 public disabled8 = true; public disabled9 = true; public disabled10 = false; public disabled11 = true; public disabled12 = false; public disabled13 = false; public disabled14 = false;
+
 //objetos any Service
 domicilio = null as any; catalogo = null as any; catalogo1 = null as any; cliente = null as any;
 domborrar = null as any; clienteM = null as any; clienteMod = null as any; domcon = null as any;
 telclien = null as any; telclienb = null as any; redclien = null as any; redclienb = null as any;
+
+//Objetos any Catalogos
+ctActdet = null as any; ctActeco = null as any; ctBancos = null as any; ctCatpue = null as any;
+ctCodId = null as any; ctEdociv = null as any; ctIdentif = null as any; ctPerjur = null as any;
+ctProfes = null as any; ctStscte  = null as any; ctTipded = null as any; ctTipdom = null as any;
+ctTipgse = null as any; ctTipman = null as any; ctTipred = null as any; ctTiprel = null as any;
+ctTiprpe = null as any; ctTiprrc = null as any;	 ctTiptel = null as any; ctnaCION = null as any;
+ctSexo = null as any;
 
 //Arreglos de variables para obtener campos
 proveedores = {
@@ -134,14 +147,14 @@ general = { Id: null, Sucursal: null, ApellidoPaterno: null, ApellidoMaterno: nu
   listado = { CodPos: null, Colonia: null,
         Municipio: null, Estado: null, Pais: null
         }
-
+DatosMuestra(){this.Contador ++; if(this.Contador == 1){this.isCollapsed5 = ! this.isCollapsed5;} }
   constructor(public toastr: ToastrService, private router: Router, private route: ActivatedRoute, private clienteService: ClienteService) { }
 
     Validate(){ this.clienteService.agregar9(this.Val).subscribe(result => this.cliente = result, datos =>{  }); }
 
-    Domicilio(){ this.clienteService.agregar2(this.dom).subscribe(result => this.clienteM = result, datos =>{ }); }
+    Domicilio(){this.dom.Id = this.general.Id; this.clienteService.agregar2(this.dom).subscribe((result: any) => { this.clienteM = result, this.domcon = null, this.domborrar = null, this.obtenerDomicilio(); }); }
 
-    DomicilioMod(){ this.isCollapsed6 = !this.isCollapsed6; this.isCollapsed7 = !this.isCollapsed7; this.clienteService.agregar02(this.domMod).subscribe( datos =>{ }), this.clienteM = null }
+    DomicilioMod(){ this.isCollapsed6 = !this.isCollapsed6; this.isCollapsed7 = !this.isCollapsed7; this.clienteService.agregar02(this.domMod).subscribe( (result: any) => { this.clienteM = result, this.domcon = null, this.domborrar = null, this.obtenerDomicilio(); }); }
 
     Consultar(dom: any){
     localStorage.setItem( "Tipo", dom.TipoDom ),this.Tipo = localStorage.getItem("Tipo"),
@@ -159,23 +172,71 @@ general = { Id: null, Sucursal: null, ApellidoPaterno: null, ApellidoMaterno: nu
     Retorno2(){ this.clienteService.retorno2().subscribe(result => this.cliente = result); }
     Retorno3(){ this.clienteService.retorno3().subscribe(result => this.clienteM = result); }
     RetornoDomb(){ this.clienteService.retornodomb().subscribe(result => this.domborrar = result); }
-    DomBorrar(dom: any){localStorage.setItem( "Listado", JSON.stringify(dom)), this.dom2 = JSON.parse(localStorage.getItem("Listado")), this.clienteService.domborrar(this.dom2).subscribe(result => this.domborrar = result, datos =>{ } ), this.obtenerDomicilio(), this.clienteM = null  }
-    General(){this.clienteService.agregar(this.general).subscribe(result => this.cliente = result,  datos =>{ }); }
+    DomBorrar(dom: any){localStorage.setItem( "Listado", JSON.stringify(dom)), this.dom2 = JSON.parse(localStorage.getItem("Listado")), this.clienteService.domborrar(this.dom2).subscribe(result => this.domborrar = result, datos =>{ } ), this.obtenerDomicilio(), this.clienteM = null, this.domcon = null  }
+    General(){this.clienteService.agregar(this.general).subscribe((result: any) => { this.cliente = result; this.general.Id = result[0].noCliente; }); }
     Cuenta(){ this.clienteService.agregar3(this.cuenta).subscribe(datos =>{ }); }
-    Economica(){ this.clienteService.agregar4(this.economica).subscribe(datos =>{ }); }
+
     Comerciales(){ this.clienteService.agregar5(this.comerciales).subscribe(datos =>{ }); }
     Personales(){ this.clienteService.agregar6(this.personales).subscribe(datos =>{ }); }
     Bancarias(){ this.clienteService.agregar7(this.bancarias).subscribe(datos =>{ }); }
     Proveedores(){ this.clienteService.agregar8(this.proveedores).subscribe(datos =>{ }); }
 	CatTipdom(){this.clienteService.catTipdom().subscribe(result => this.catalogo1 = result);}
-    ngOnInit() { this.CatTipdom();}
+    ngOnInit() { this.CatDet(); this.CatEco(); this.CatBncs(); this.CatPue(); this.CodId(); this.EdoCiv(); this.Identif(); this.Perjur();
+                 this.Profes(); this.StsCte(); this.Tipded(); this.TipDom(); this.Tipgse(); this.Tipman(); this.Tipred(); this.TipRel();
+                 this.Tiprpe(); this.Tiprrc(); this.Tiptel(); this.cnaCION(); this.ctSx(); }
     list() {this.router.navigate(['mto-fisica'], { relativeTo: this.route.parent }); }
     open() {this.router.navigate(['list-clienteM'], { relativeTo: this.route.parent }); }
     typeSuccess() { this.toastr.success('Finalizado con exito!!'); }
     Cancelar() {this.router.navigate(['list-clienteM'], { relativeTo: this.route.parent }); }
     Bloquear(){ this.disabled1 = !this.disabled1; this.disabled2 = !this.disabled2; this.disabled3 = !this.disabled3; this.disabled4 = !this.disabled4; this.disabled5 = !this.disabled5; this.disabled6 = !this.disabled6; this.disabled7 = !this.disabled7; this.disabled8 = !this.disabled8; this.disabled9 = !this.disabled9; this.disabled10 = !this.disabled10; this.disabled11 = !this.disabled11; this.disabled14 = !this.disabled14; this.disabled13 = !this.disabled13; this.disabled12 = !this.disabled12; this.isCollapsed8 = !this.isCollapsed8;}
+    Desabilitar(){ this.disabledGen1 = !this.disabledGen1; this.disabledGen2 = !this.disabledGen2; this.disabledGen3 = !this.disabledGen3; this.disabledGen4 = !this.disabledGen4; this.disabledGen5 = !this.disabledGen5; this.disabledGen6 = !this.disabledGen6; this.disabledGen7 = !this.disabledGen7; this.disabledGen8 = !this.disabledGen8; this.disabledGen9 = !this.disabledGen9; this.disabledGen10 = !this.disabledGen10; this.disabledGen11 = !this.disabledGen11; this.disabledGen14 = !this.disabledGen14; this.disabledGen13 = !this.disabledGen13; this.disabledGen12 = !this.disabledGen12; this.disabledGen15 = !this.disabledGen15; this.disabledGen16 = !this.disabledGen16; }
     MostrarDom() { this.clienteService.mostrardom().subscribe(result => this.domicilio = result); }
     obtenerDomicilio() { this.clienteService.getDomicilio().subscribe(result => this.domicilio = result);}
+
+//Funcion para obtener registros catalogos
+
+  CatDet(){ this.clienteService.catActdet().subscribe( result => {this.ctActdet = result}); }
+
+  CatEco(){ this.clienteService.catActeco().subscribe( result => {this.ctActeco = result}); }
+
+  CatBncs(){ this.clienteService.catBancos().subscribe( result => {this.ctBancos = result}); }
+
+  CatPue(){ this.clienteService.catCatpue().subscribe( result => {this.ctCatpue = result}); }
+
+  CodId(){ this.clienteService.catCodId().subscribe( result => {this.ctCodId = result}); }
+
+  EdoCiv(){ this.clienteService.catEdociv().subscribe( result => {this.ctEdociv = result}); }
+
+  Identif(){ this.clienteService.catIdentif().subscribe( result => {this.ctIdentif = result}); }
+
+  Perjur(){ this.clienteService.catPerjur().subscribe( result => {this.ctPerjur = result}); }
+
+  Profes(){ this.clienteService.catProfes().subscribe( result => {this.ctProfes = result}); }
+
+  ctSx(){ this.clienteService.catSexo().subscribe( result => {this.ctSexo = result}); }
+
+  StsCte(){ this.clienteService.catStscte().subscribe( result => {this.ctStscte = result}); }
+
+  Tipded(){ this.clienteService.catTipded().subscribe( result => {this.ctTipded = result}); }
+
+  TipDom(){ this.clienteService.catTipdom().subscribe( result => {this.ctTipdom = result}); }
+
+  Tipgse(){ this.clienteService.catTipgse().subscribe( result => {this.ctTipgse = result}); }
+
+  Tipman(){ this.clienteService.catTipman().subscribe( result =>{this.ctTipman = result}); }
+
+  Tipred(){ this.clienteService.catTipred().subscribe( result =>{this.ctTipred = result}); }
+
+  TipRel(){ this.clienteService.catTiprel().subscribe( result =>{this.ctTiprel = result}); }
+
+  Tiprpe(){ this.clienteService.catTiprpe().subscribe( result =>{this.ctTiprpe = result}); }
+
+  Tiprrc(){ this.clienteService.catTiprrc().subscribe( result =>{this.ctTiprrc = result}); }
+
+  Tiptel(){ this.clienteService.catTiptel().subscribe( result =>{this.ctTiptel = result}); }
+
+  cnaCION(){ this.clienteService.catnaCION().subscribe( result =>{this.ctnaCION = result}); }
+
 
 }
 
