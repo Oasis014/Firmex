@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbProgressbarModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatTableModule } from '@angular/material/table'
-import {DataSource} from '@angular/cdk/collections';
+//import { MatTableModule } from '@angular/material/table'
+//import { DataSource } from '@angular/cdk/collections';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ClienteRoutingModule } from './zcliente-routing.module';
@@ -50,7 +50,7 @@ import { PhpPruebaComponent } from './php-prueba/php-prueba.component';
 
 ],
   imports: [
-  MatTableModule,
+    /*MatTableModule,*/
     CommonModule,
     ClienteRoutingModule,
     NgbModule,
