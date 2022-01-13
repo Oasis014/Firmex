@@ -12,6 +12,8 @@ import { QryClienteMComponent } from './qry-clienteM/qry-clienteM.component';
 // Edición o Nuevo Prospecto Cliente Persona Fisica
 import { ModClienteComponent } from './mod-cliente/mod-cliente.component';
 import { ModMoralComponent } from './mod-moral/mod-moral.component';
+import { ActivEcoComponent } from './mod-moral/activ-eco.component';
+import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';
 //Pruebas
 import { PhpFuncionaComponent } from './php-funciona/php-funciona.component';
 import { PhpPruebaComponent } from './php-prueba/php-prueba.component';
@@ -101,8 +103,20 @@ const routes: Routes = [
                       title: 'Cliente'
                       }
                     },
-
-
+{
+                    path: 'activ-eco',
+                    component: ActivEcoComponent,
+                    data: {
+                      title: 'Actividad Economica'
+                      }
+                    },
+{
+                    path: 'cuenta-bancaria',
+                    component: CuentaBanComponent,
+                    data: {
+                      title: 'Actividad Economica'
+                      }
+                    },
 
 
     ]

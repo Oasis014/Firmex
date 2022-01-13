@@ -42,63 +42,15 @@
   <br>
 	<div class="col-sm-12 mb-4">
 		<ngx-datatable #table class='bootstrap selection-cell' [selected]="selected" [rows]='rows' [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='cursor:pointer;' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" (dblclick) = "doubleClicked($event)">
-      <ngx-datatable-column name="ID"  [frozenLeft]="true" prop="id"></ngx-datatable-column>
-      <ngx-datatable-column name="Empresa" prop="empresa"></ngx-datatable-column>
-      <ngx-datatable-column name="Cliente" prop="cliente"></ngx-datatable-column>
-      <ngx-datatable-column name="RFC"  prop="rfc"></ngx-datatable-column>
-      <ngx-datatable-column name="Empresa"  prop="empresa"></ngx-datatable-column>
-      <ngx-datatable-column name="Estatus" prop="estatus"></ngx-datatable-column>
-      <ngx-datatable-column name="Sucursal" prop="sucursal"></ngx-datatable-column>
-      <ngx-datatable-column name="No. Sucursal"  prop="no_sucursal"></ngx-datatable-column>
+      <ngx-datatable-column name="ID"  value="id"></ngx-datatable-column>
+      <ngx-datatable-column name="Empresa" value="empresa"></ngx-datatable-column>
+      <ngx-datatable-column name="Cliente" value="cliente"></ngx-datatable-column>
+      <ngx-datatable-column name="RFC"  value="rfc"></ngx-datatable-column>
+      <ngx-datatable-column name="Empresa"  value="empresa"></ngx-datatable-column>
+      <ngx-datatable-column name="Estatus" value="estatus"></ngx-datatable-column>
+      <ngx-datatable-column name="Sucursal" value="sucursal"></ngx-datatable-column>
+      <ngx-datatable-column name="No. Sucursal"  value="no_sucursal"></ngx-datatable-column>
 		</ngx-datatable>
 	</div>
 <!-- Filter Datatable Options Ends -->
-    <div class="col-sm-12 mb-4">
-        <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 5px 4px rgba(0,0,0,0.25);">
-            <thead >
-            <tr>
-                <td>Numero CLiente</td>
-                <td>Sucursal</td>
-                <td>Apellido Paterno</td>
-                <td>Apellido Materno</td>
-                <td>Primer Nombre</td>
-                <td>Segundo Nombre</td>
-                <td>Razon Social</td>
-                <td>Clave Promotor</td>
-                <td>Estatus Cliente</td>
-                <td>Fecha Alta</td>
-                <td>Personalidad Juridica</td>
-                <td>RFC</td>
-                <td>Nacionalidad</td>
-                <td>Email Personal</td>
-                <td>Email Empresa</td>
-                <td>Parte Relacionada</td>
-                <td>Grupo Consejo</td>
-                <td>Grupo Riesgo Comun</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let dato of cliente">
-                <td>{{dato.NumeroCLiente}}</td>
-                <td>{{dato.Sucursal}}</td>
-                <td>{{dato.ApellidoPaterno}}</td>
-                <td>{{dato.ApellidoMaterno}}</td>
-                <td>{{dato.PrimerNombre}}</td>
-                <td>{{dato.SegundoNombre}}</td>
-                <td>{{dato.RazonSocial}}</td>
-                <td>{{dato.ClavePromotor}}</td>
-                <td>{{dato.EstatusCliente}}</td>
-                <td>{{dato.FechaAlta}}</td>
-                <td>{{dato.PersonalidadJuridica}}</td>
-                <td>{{dato.RFC}}</td>
-                <td>{{dato.Nacionalidad}}</td>
-                <td>{{dato.EmailPersonal}}</td>
-                <td>{{dato.EmailEmpresa}}</td>
-                <td>{{dato.ParteRelacionada}}</td>
-                <td>{{dato.GrupoConsejo}}</td>
-                <td>{{dato.GrupoRiesgoComun}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
 </div>

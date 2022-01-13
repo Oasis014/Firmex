@@ -35,17 +35,16 @@
 	</div>
 	<br>
 	<div class="col-sm-12 mb-4">
-		<ngx-datatable #table class='bootstrap selection-cell' [selected]="selected" [rows]='rows' [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='cursor:pointer;' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" (dblclick) = "doubleClicked($event)">
-			<ngx-datatable-column name="ID"  [frozenLeft]="true" prop="id"></ngx-datatable-column>
-			<ngx-datatable-column name="Empresa" prop="empresa"></ngx-datatable-column>
-			<ngx-datatable-column name="Cliente" prop="cliente"></ngx-datatable-column>
-			<ngx-datatable-column name="RFC"  prop="rfc"></ngx-datatable-column>
-			<ngx-datatable-column name="Moral" prop="moral"></ngx-datatable-column>
-			<ngx-datatable-column name="Estatus" prop="estatus"></ngx-datatable-column>
-			<ngx-datatable-column name="Sucursal" prop="sucursal"></ngx-datatable-column>
-			<ngx-datatable-column name="No. Sucursal"  prop="no_sucursal"></ngx-datatable-column>
+		<ngx-datatable class='bootstrap selection-cell' *ngFor="let dom of domicilio;let i=index;" [selected]="selected" [rows]='rows' [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='cursor:pointer;' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" (dblclick) = "doubleClicked($event)">
+			<ngx-datatable-column name="ID"  >{{dom.Id}}</ngx-datatable-column>
+			<ngx-datatable-column name="Empresa" >{{dom.TipoDom}}</ngx-datatable-column>
+			<ngx-datatable-column name="Cliente" >{{dom.Calle}}</ngx-datatable-column>
+			<ngx-datatable-column name="RFC"  >{{dom.NoEx}}</ngx-datatable-column>
+			<ngx-datatable-column name="Empresa"  >{{dom.NoIn}}</ngx-datatable-column>
+			<ngx-datatable-column name="Estatus" >{{dom.CodPos}}</ngx-datatable-column>
+			<ngx-datatable-column name="Sucursal" >{{dom.Colonia}}</ngx-datatable-column>
+			<ngx-datatable-column name="No. Sucursal"  >{{dom.Municipio}}</ngx-datatable-column>
 		</ngx-datatable>
-
 	</div>
 <!-- Filter Datatable Options Ends -->
 </div>

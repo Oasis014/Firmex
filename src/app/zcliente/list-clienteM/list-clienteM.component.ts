@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit  } from '@angular/core';
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { Router, ActivatedRoute } from "@angular/router";
+import { ClienteService } from '../cliente.service';
 
 declare var require: any;
 const data: any = require('../../shared/data/prospectoM.json');
@@ -11,7 +12,16 @@ const data: any = require('../../shared/data/prospectoM.json');
     styleUrls: ['./list-clienteM.component.scss']
 })
 
-export class ListClienteMComponent  {
+export class ListClienteMComponent  implements OnInit{
+domicilio = null as any;
+dom = { Id: null, TipoDom: null,
+        Calle: null, NoEx: null,
+        NoIn: null, CodPos: null,
+        Colonia: null, Municipio: null,
+        Estado: null, Pais: null
+}
+obtenerDomicilio() { this.clienteService.getDomicilio().subscribe(result => this.domicilio = result);}
+ ngOnInit() { this.obtenerDomicilio(); }
     rows = [];
     selected: any[] = [];
     temp = [];
@@ -31,7 +41,7 @@ export class ListClienteMComponent  {
 
 
     constructor(private router: Router,
-                        private route: ActivatedRoute) {
+                        private route: ActivatedRoute, private clienteService: ClienteService) {
         this.temp = [...data];
         this.rows = data;
     }
