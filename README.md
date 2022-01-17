@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 **Important Update**:
 
 > Instead `ng serve` command,
-> Please run `npm run serve` for a dev server, to ensure that **Local Angular Cli** will be used.
+> Please run `npm run dev-server` for a dev server, to ensure that **Local Angular Cli** will be used.
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
