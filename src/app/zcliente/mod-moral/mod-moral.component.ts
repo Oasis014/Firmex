@@ -630,6 +630,9 @@ export class ModMoralComponent implements OnInit {
       }, {
         Catalogo_cve: 5,
         desc_45: 'Documento 5'
+      }, {
+        Catalogo_cve: 6,
+        desc_45: 'Documento 6'
       }
     ];
   }
