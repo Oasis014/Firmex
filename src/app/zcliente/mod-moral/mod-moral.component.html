@@ -1154,7 +1154,7 @@
                 </div>
               </form>
               <button class="btn btn-sm btn-light"  (click)="nav3.select(3)">Anterior</button>
-              <button class="btn btn-sm btn-light"  (click)="nav3.select(5)">Siguiente Sección</button>
+              <button class="btn btn-sm btn-light"  (click)="nav3.select(6)">Siguiente Sección</button>
             </ng-template>
           </li>
           <!--<li [ngbNavItem]="5"> <a ngbNavLink><i class="fa fa-users"></i>Beneficiarios</a>
@@ -1508,8 +1508,86 @@
           </li>-->
           <li [ngbNavItem]="6" > <a ngbNavLink><i class="fa fa-folder-open-o"></i>Documentación</a>
             <ng-template ngbNavContent>
-              <h5 class="card-title">Relación con inversionistas y socios</h5>
+              <!--<h5 class="card-title">Relación con inversionistas y socios</h5>
               <ngb-alert type='danger' [dismissible]="false"> <strong>Advertencia!</strong> Actuamente hay documentación vencida!</ngb-alert>
+              -->
+              <div class="row" >
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <h6 class="page-title">Carga de documentos</h6>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Tipo de Documento</label>
+                            <div class="col-sm-6">
+                              <select [disabled]="disabled1"
+                                [attr.aria-expanded]="disabled1 ? 'disabled1' : ''"
+                                class="form-control form-control-sm"
+                                name="tipo_domicilio"
+                                id="tipo_domicilio"
+                                [(ngModel)]="dom.TipoDom"
+                              >
+                                <option *ngFor="let item of catDocumentType" [value]="item.Catalogo_cve">
+                                  {{item.desc_45}}
+                                </option>
+                                </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Documento </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="file" name="file1">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button [disabled]="disabled10" [attr.aria-expanded]="disabled10 ? 'disabled10' : ''" 
+                            (click)="disabled14 = !disabled14"
+                            (click)="disabled13 = !disabled13"
+                            (click)="disabled12 = !disabled12"
+                            (click)="disabled11 = !disabled11"
+                            (click)="disabled10 = !disabled10"
+                            (click)="disabled1 = !disabled1"
+                            (click)="disabled2 = !disabled2"
+                            (click)="disabled3 = !disabled3"
+                            (click)="disabled4 = !disabled4"
+                            (click)="disabled5 = !disabled5"
+                            (click)="disabled6 = !disabled6"
+                            (click)="disabled7 = !disabled7"
+                            (click)="disabled8 = !disabled8"
+                            (click)="disabled9 = !disabled9"
+                            type="submit"
+                            class="btn btn-light  btn-block" >Insertar</button>
+                        </div>
+                        <!-- Botones de guardar -->
+                        <div [ngbCollapse]="isCollapsed8" class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            type="submit"
+                            data-toggle="modal"
+                            data-target="#largesizemodal2"
+                            (click)= "typeSuccess()"
+                            (click)= "Bloquear()"
+                            (click)="Domicilio()"
+                            type = "reset"
+                            class="btn btn-light btn-block"
+                          >
+                            Guardar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -1639,7 +1717,7 @@
                   </tbody>
                 </table>
               </div>
-              <button class="btn btn-sm btn-light"  (click)="nav3.select(5)">Anterior</button>
+              <button class="btn btn-sm btn-light"  (click)="nav3.select(4)">Anterior</button>
             </ng-template>
           </li>
         </ul>

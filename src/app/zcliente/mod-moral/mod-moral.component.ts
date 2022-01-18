@@ -128,26 +128,27 @@ export class ModMoralComponent implements OnInit {
   RazonSocialA: string = "";
 
   //Catalogos array
-  Tiprrc: Catalogo;
-  Tiprpe: Catalogo;
-  Tiprel: Catalogo;
-  Tipred: Catalogo;
-  Tipman: Catalogo;
-  Tipgse: Catalogo;
-  Tipdom: Catalogo;
-  Tipded: Catalogo;
-  Stscte: Catalogo;
-  Sexo: Catalogo;
-  Profes: Catalogo;
-  Perjur: Catalogo;
-  naCION: Catalogo;
-  Identif: Catalogo;
-  Edociv: Catalogo;
-  CodId: Catalogo;
-  Catpue: Catalogo;
-  Bancos: Catalogo;
-  Acteco: Catalogo;
-  Actdet: Catalogo;
+  Tiprrc: Catalogo[];
+  Tiprpe: Catalogo[];
+  Tiprel: Catalogo[];
+  Tipred: Catalogo[];
+  Tipman: Catalogo[];
+  Tipgse: Catalogo[];
+  Tipdom: Catalogo[];
+  Tipded: Catalogo[];
+  Stscte: Catalogo[];
+  Sexo: Catalogo[];
+  Profes: Catalogo[];
+  Perjur: Catalogo[];
+  naCION: Catalogo[];
+  Identif: Catalogo[];
+  Edociv: Catalogo[];
+  CodId: Catalogo[];
+  Catpue: Catalogo[];
+  Bancos: Catalogo[];
+  Acteco: Catalogo[];
+  Actdet: Catalogo[];
+  catDocumentType: Catalogo[];
   //Fin Catalogos
 
   general = {
@@ -303,6 +304,7 @@ export class ModMoralComponent implements OnInit {
 
   ngOnInit() {
     this.CatTipdom();
+    this.getDocumentTypeCat();
   }
 
   /**
@@ -434,57 +436,57 @@ export class ModMoralComponent implements OnInit {
   }
 
   RetornoTel() {
-    this.clienteService
+    /*this.clienteService
       .retornotel()
-      .subscribe((result) => (this.telclien = result));
+      .subscribe((result) => (this.telclien = result));*/
   }
 
   AgregarTel() {
-    this.clienteService.agregartel(this.tel).subscribe(
+    /*this.clienteService.agregartel(this.tel).subscribe(
       (result) => (this.telclien = result),
       (datos) => { }
-    );
+    );*/
   }
 
   RetornoTelB() {
-    this.clienteService
+    /*this.clienteService
       .retornotelb()
-      .subscribe((result) => (this.telclien = result));
+      .subscribe((result) => (this.telclien = result));*/
   }
 
   BorrarTel() {
-    this.clienteService.borrartel(this.tel).subscribe(
+    /*this.clienteService.borrartel(this.tel).subscribe(
       (result) => (this.telclien = result),
       (datos) => { }
     );
-    (this.domborrar = null), (this.redclienb = null);
+    (this.domborrar = null), (this.redclienb = null);*/
   }
 
   RetornoRed() {
-    this.clienteService
+    /*this.clienteService
       .retornored()
-      .subscribe((result) => (this.redclien = result));
+      .subscribe((result) => (this.redclien = result));*/
   }
 
   AgregarRed() {
-    this.clienteService.agregarred(this.red).subscribe(
+    /* this.clienteService.agregarred(this.red).subscribe(
       (result) => (this.redclien = result),
       (datos) => { }
-    );
+    ); */
   }
 
   RetornoRedB() {
-    this.clienteService
+    /* this.clienteService
       .retornoredb()
-      .subscribe((result) => (this.redclienb = result));
+      .subscribe((result) => (this.redclienb = result)); */
   }
 
   BorrarRed() {
-    this.clienteService.borrarred(this.red).subscribe(
+    /* this.clienteService.borrarred(this.red).subscribe(
       (result) => (this.redclienb = result),
       (datos) => { }
     );
-    (this.domborrar = null), (this.telclien = null);
+    (this.domborrar = null), (this.telclien = null); */
   }
 
   CatTipdom() {
@@ -609,4 +611,27 @@ export class ModMoralComponent implements OnInit {
       (result: any) => (this.domicilio = result)
     );
   }
+
+  getDocumentTypeCat() {
+    /* this.clienteService.catDocumentType() */
+    this.catDocumentType = [
+      {
+        Catalogo_cve: 1,
+        desc_45: 'Documento 1'
+      }, {
+        Catalogo_cve: 2,
+        desc_45: 'Documento 2'
+      }, {
+        Catalogo_cve: 3,
+        desc_45: 'Documento 3'
+      }, {
+        Catalogo_cve: 4,
+        desc_45: 'Documento 4'
+      }, {
+        Catalogo_cve: 5,
+        desc_45: 'Documento 5'
+      }
+    ];
+  }
+
 }

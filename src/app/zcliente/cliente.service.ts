@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { HttpService } from 'src/app/core/services/http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ export class ClienteService {
   private readonly api = environment.api.client;
   private readonly cats = environment.api.catalogos;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private readonly httpService: HttpService
+  ) { }
 
   getDomicilio() {
     return this.http.get(this.api.getDomicilio);
@@ -328,6 +332,10 @@ export class ClienteService {
 
   catnaCION() {
     return this.http.get(this.cats.catalogonaCION);
+  }
+
+  catDocumentType() {
+    //return this.httpService.get(this.cats.);
   }
 
 }

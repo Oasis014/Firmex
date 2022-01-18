@@ -37,6 +37,7 @@ export const environment = {
       catalogoTiprrc: `${host}CatalogoTiprrc.php`,
       catalogoTiptel: `${host}CatalogoTiptel.php`,
       catalogonaCION: `${host}CatalogonaCION.php`,
+      catalogoDocumentType: `${host}CatalogonaCION.php`,
     }
   }
 };
