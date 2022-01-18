@@ -1,77 +1,79 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
   url = 'http://127.0.0.1/insert/';
-
+  private readonly api = environment.api.client;
+  private readonly cats = environment.api.catalogos;
 
   constructor(private http: HttpClient) { }
 
   getDomicilio() {
-    return this.http.get(`${this.url}DomicilioMostrar.php`); 
+    return this.http.get(this.api.getDomicilio);
   }
 
   getActiEco() {
-    return this.http.get(`${this.url}ActividadEcoMostrar.php`); 
+    return this.http.get(`${this.url}ActividadEcoMostrar.php`);
   }
 
   getPersonales() {
-    return this.http.get(`${this.url}PersonalesMostrar.php`); 
+    return this.http.get(`${this.url}PersonalesMostrar.php`);
   }
 
   getComerciales() {
-    return this.http.get(`${this.url}ComercialesMostrar.php`); 
+    return this.http.get(`${this.url}ComercialesMostrar.php`);
   }
 
   getProveedores() {
-    return this.http.get(`${this.url}ProveedoresMostrar.php`); 
+    return this.http.get(`${this.url}ProveedoresMostrar.php`);
   }
 
   getBancarias() {
-    return this.http.get(`${this.url}BancariasMostrar.php`); 
+    return this.http.get(`${this.url}BancariasMostrar.php`);
   }
 
   getAcciones() {
-    return this.http.get(`${this.url}AccionesMostrar.php`); 
+    return this.http.get(`${this.url}AccionesMostrar.php`);
   }
 
   getCuenta() {
-    return this.http.get(`${this.url}CuentasBanMostrar.php`); 
+    return this.http.get(`${this.url}CuentasBanMostrar.php`);
   }
 
   getRelacional() {
-    return this.http.get(`${this.url}ParteRelacionalMostrar.php`); 
+    return this.http.get(`${this.url}ParteRelacionalMostrar.php`);
   }
 
   getSocioEco() {
-    return this.http.get(`${this.url}GrupoSocieconomicoMostrar.php`); 
+    return this.http.get(`${this.url}GrupoSocieconomicoMostrar.php`);
   }
 
   getRiesgoComun() {
-    return this.http.get(`${this.url}GrupoRiesgoComunMostrar.php`); 
+    return this.http.get(`${this.url}GrupoRiesgoComunMostrar.php`);
   }
 
   deleteDomicilio(domicilio: any) {
-    return this.http.post(`${this.url}DomicilioBorrar.php`, JSON.stringify(domicilio)); 
+    return this.http.post(`${this.url}DomicilioBorrar.php`, JSON.stringify(domicilio));
   }
 
   mostrarTodos() {
-    return this.http.get(`${this.url}mostrarTodos.php`); 
+    return this.http.get(this.api.mostrarTodos);
   }
 
   mostrardom() {
-    return this.http.get(`${this.url}DomicilioMostrar.php`); 
+    return this.http.get(`${this.url}DomicilioMostrar.php`);
   }
 
   select() {
-    return this.http.get(`${this.url}SelecGenerales.php`); 
+    return this.http.get(this.api.selecionarGenerales);
   }
 
   agregarS(selec: any) {
-    return this.http.post(`${this.url}SelecGenerales.php`, JSON.stringify(selec)); 
+    return this.http.post(this.api.selecionarGenerales, JSON.stringify(selec));
   }
 
   retorno() {
@@ -83,7 +85,7 @@ export class ClienteService {
   }
 
   retorno3() {
-    return this.http.get(`${this.url}Domicilio.php`);
+    return this.http.get(this.api.domicilio);
   }
 
   retornodomb() {
@@ -183,149 +185,149 @@ export class ClienteService {
   }
 
   agregar(usuario: any) {
-    return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario)); 
+    return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario));
   }
 
   agregar2(clienteM: any) {
-    return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteM)); 
+    return this.http.post(this.api.domicilio, JSON.stringify(clienteM));
   }
 
   agregar02(clienteMod: any) {
-    return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteMod)); 
+    return this.http.post(this.api.domicilio, JSON.stringify(clienteMod));
   }
 
   agregar3(usuario: any) {
-    return this.http.post(`${this.url}CuentaBancaria.php`, JSON.stringify(usuario)); 
+    return this.http.post(`${this.url}CuentaBancaria.php`, JSON.stringify(usuario));
   }
 
   agregar4(arreglo: any) {
-    return this.http.post(`${this.url}Economica.php`, JSON.stringify(arreglo)); 
+    return this.http.post(`${this.url}Economica.php`, JSON.stringify(arreglo));
   }
 
   agregar5(usuario: any) {
-    return this.http.post(`${this.url}Comerciales.php`, JSON.stringify(usuario)); 
+    return this.http.post(`${this.url}Comerciales.php`, JSON.stringify(usuario));
   }
 
   agregar6(usuario: any) {
-    return this.http.post(`${this.url}Personales.php`, JSON.stringify(usuario)); 
+    return this.http.post(`${this.url}Personales.php`, JSON.stringify(usuario));
   }
 
   agregar7(usuario: any) {
-    return this.http.post(`${this.url}Bancarias.php`, JSON.stringify(usuario)); 
+    return this.http.post(`${this.url}Bancarias.php`, JSON.stringify(usuario));
   }
 
   agregar8(usuario: any) {
-    return this.http.post(`${this.url}Proveedores.php`, JSON.stringify(usuario)); 
+    return this.http.post(`${this.url}Proveedores.php`, JSON.stringify(usuario));
   }
 
   agregar9(usuario: any) {
-    return this.http.post(`${this.url}GeneralValidar.php`, JSON.stringify(usuario)); 
+    return this.http.post(`${this.url}GeneralValidar.php`, JSON.stringify(usuario));
   }
 
-  agregar10(usuario: any) { 
-    return this.http.post(`${this.url}Acciones.php`, JSON.stringify(usuario)); 
+  agregar10(usuario: any) {
+    return this.http.post(`${this.url}Acciones.php`, JSON.stringify(usuario));
   }
 
-  agregar11(usuario: any) { 
-    return this.http.post(`${this.url}CuentasBan.php`, JSON.stringify(usuario)); 
+  agregar11(usuario: any) {
+    return this.http.post(`${this.url}CuentasBan.php`, JSON.stringify(usuario));
   }
-  
-  agregar12(usuario: any) { 
-    return this.http.post(`${this.url}ParteRelacional.php`, JSON.stringify(usuario)); 
+
+  agregar12(usuario: any) {
+    return this.http.post(`${this.url}ParteRelacional.php`, JSON.stringify(usuario));
   }
-  
-  agregar13(usuario: any) { 
-    return this.http.post(`${this.url}GrupoSocieconomico.php`, JSON.stringify(usuario)); 
+
+  agregar13(usuario: any) {
+    return this.http.post(`${this.url}GrupoSocieconomico.php`, JSON.stringify(usuario));
   }
-  
-  agregar14(usuario: any) { 
-    return this.http.post(`${this.url}GrupoRiesgoComun.php`, JSON.stringify(usuario)); 
+
+  agregar14(usuario: any) {
+    return this.http.post(`${this.url}GrupoRiesgoComun.php`, JSON.stringify(usuario));
   }
 
   //Catalogo
 
   catActdet() {
-    return this.http.get(`${this.url}CatalogoActdet.php`);
+    return this.http.get(this.cats.catalogoActdet);
   }
 
   catActeco() {
-    return this.http.get(`${this.url}CatalogoActeco.php`);
+    return this.http.get(this.cats.catalogoActeco);
   }
 
   catBancos() {
-    return this.http.get(`${this.url}CatalogoBancos.php`);
+    return this.http.get(this.cats.catalogoBancos);
   }
 
   catCatpue() {
-    return this.http.get(`${this.url}CatalogoCatpue.php`);
+    return this.http.get(this.cats.catalogoCatpue);
   }
 
   catCodId() {
-    return this.http.get(`${this.url}CatalogoCod_id.php`);
+    return this.http.get(this.cats.catalogoCodId);
   }
 
   catEdociv() {
-    return this.http.get(`${this.url}CatalogoEdociv.php`);
+    return this.http.get(this.cats.catalogoEdociv);
   }
 
   catIdentif() {
-    return this.http.get(`${this.url}CatalogoIdentif.php`);
+    return this.http.get(this.cats.catalogoIdentif);
   }
 
   catPerjur() {
-    return this.http.get(`${this.url}CatalogoPerjur.php`);
+    return this.http.get(this.cats.catalogoPerjur);
   }
 
   catProfes() {
-    return this.http.get(`${this.url}CatalogoProfes.php`);
+    return this.http.get(this.cats.catalogoProfes);
   }
 
   catSexo() {
-    return this.http.get(`${this.url}CatalogoSexo.php`);
+    return this.http.get(this.cats.catalogoSexo);
   }
 
   catStscte() {
-    return this.http.get(`${this.url}CatalogoStscte.php`);
+    return this.http.get(this.cats.catalogoStscte);
   }
 
   catTipded() {
-    return this.http.get(`${this.url}CatalogoTipded.php`);
+    return this.http.get(this.cats.catalogoTipded);
   }
 
   catTipdom() {
-    return this.http.get(`${this.url}CatalogoTipdom.php`);
+    return this.http.get(this.cats.catalogoTipdom);
   }
 
   catTipgse() {
-    return this.http.get(`${this.url}CatalogoTipgse.php`);
+    return this.http.get(this.cats.catalogoTipgse);
   }
 
   catTipman() {
-    return this.http.get(`${this.url}CatalogoTipman.php`);
+    return this.http.get(this.cats.catalogoTipman);
   }
 
   catTipred() {
-    return this.http.get(`${this.url}CatalogoTipred.php`);
+    return this.http.get(this.cats.catalogoTipred);
   }
 
   catTiprel() {
-    return this.http.get(`${this.url}CatalogoTiprel.php`);
+    return this.http.get(this.cats.catalogoTiprel);
   }
 
   catTiprpe() {
-    return this.http.get(`${this.url}CatalogoTiprpe.php`);
+    return this.http.get(this.cats.catalogoTiprpe);
   }
 
   catTiprrc() {
-    return this.http.get(`${this.url}CatalogoTiprrc.php`);
+    return this.http.get(this.cats.catalogoTiprrc);
   }
 
   catTiptel() {
-    return this.http.get(`${this.url}CatalogoTiptel.php`);
+    return this.http.get(this.cats.catalogoTiptel);
   }
 
   catnaCION() {
-    return this.http.get(`${this.url}CatalogonaCION.php`);
+    return this.http.get(this.cats.catalogonaCION);
   }
-  
+
 }
