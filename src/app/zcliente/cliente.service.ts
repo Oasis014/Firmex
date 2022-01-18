@@ -1,253 +1,331 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  //url = 'http://firmex-back.local/';
-  url ='http://localhost/2021/FirmexGit/FirmexBack/';
+  url = 'http://127.0.0.1/insert/';
 
-  private readonly api = environment.api.client;
 
   constructor(private http: HttpClient) { }
 
   getDomicilio() {
-      return this.http.get(this.api.getDomicilio);
-    }
+    return this.http.get(`${this.url}DomicilioMostrar.php`); 
+  }
+
+  getActiEco() {
+    return this.http.get(`${this.url}ActividadEcoMostrar.php`); 
+  }
+
+  getPersonales() {
+    return this.http.get(`${this.url}PersonalesMostrar.php`); 
+  }
+
+  getComerciales() {
+    return this.http.get(`${this.url}ComercialesMostrar.php`); 
+  }
+
+  getProveedores() {
+    return this.http.get(`${this.url}ProveedoresMostrar.php`); 
+  }
+
+  getBancarias() {
+    return this.http.get(`${this.url}BancariasMostrar.php`); 
+  }
+
+  getAcciones() {
+    return this.http.get(`${this.url}AccionesMostrar.php`); 
+  }
+
+  getCuenta() {
+    return this.http.get(`${this.url}CuentasBanMostrar.php`); 
+  }
+
+  getRelacional() {
+    return this.http.get(`${this.url}ParteRelacionalMostrar.php`); 
+  }
+
+  getSocioEco() {
+    return this.http.get(`${this.url}GrupoSocieconomicoMostrar.php`); 
+  }
+
+  getRiesgoComun() {
+    return this.http.get(`${this.url}GrupoRiesgoComunMostrar.php`); 
+  }
 
   deleteDomicilio(domicilio: any) {
-      return this.http.post(this.api.deleteDomicilio, JSON.stringify(domicilio));
-    }
-
-  mostrarTodos(){
-    return this.http.get(this.api.mostrarTodos);
+    return this.http.post(`${this.url}DomicilioBorrar.php`, JSON.stringify(domicilio)); 
   }
 
-  mostrardom(){
-    return this.http.get(this.api.mostrarDomicilio);
+  mostrarTodos() {
+    return this.http.get(`${this.url}mostrarTodos.php`); 
   }
 
-  select(){
-    return this.http.get(this.api.selecionarGenerales);
+  mostrardom() {
+    return this.http.get(`${this.url}DomicilioMostrar.php`); 
   }
 
-  agregarS(selec: any){
-    return this.http.post(`${this.url}SelecGenerales.php`, JSON.stringify(selec));
+  select() {
+    return this.http.get(`${this.url}SelecGenerales.php`); 
   }
 
-  retorno(){
+  agregarS(selec: any) {
+    return this.http.post(`${this.url}SelecGenerales.php`, JSON.stringify(selec)); 
+  }
+
+  retorno() {
     return this.http.get(`${this.url}Generales.php`);
   }
-  retorno2(){
+
+  retorno2() {
     return this.http.get(`${this.url}GeneralValidar.php`);
   }
 
-  retorno3(){
+  retorno3() {
     return this.http.get(`${this.url}Domicilio.php`);
   }
-  retornodomb(){
-    return this.http.get(this.api.deleteDomicilio);
+
+  retornodomb() {
+    return this.http.get(`${this.url}DomicilioBorrar.php`);
   }
 
-  domborrar(domborrar: any){
-    return this.http.post(this.api.deleteDomicilio, JSON.stringify(domborrar));
+  domborrar(domborrar: any) {
+    return this.http.post(`${this.url}DomicilioBorrar.php`, JSON.stringify(domborrar));
   }
 
-  retornoCon(){
+  ecoborrar(arreglob: any) {
+    return this.http.post(`${this.url}ActividadEcoBorrar.php`, JSON.stringify(arreglob));
+  }
+
+  perborrar(arreglo2b: any) {
+    return this.http.post(`${this.url}PersonalesBorrar.php`, JSON.stringify(arreglo2b));
+  }
+
+  comborrar(arreglo3b: any) {
+    return this.http.post(`${this.url}ComercialesBorrar.php`, JSON.stringify(arreglo3b));
+  }
+
+  proborrar(arreglo4b: any) {
+    return this.http.post(`${this.url}ProveedoresBorrar.php`, JSON.stringify(arreglo4b));
+  }
+
+  banborrar(arreglo5b: any) {
+    return this.http.post(`${this.url}BancariasBorrar.php`, JSON.stringify(arreglo5b));
+  }
+
+  accborrar(arreglob: any) {
+    return this.http.post(`${this.url}AccionesBorrar.php`, JSON.stringify(arreglob));
+  }
+
+  cueborrar(arreglob: any) {
+    return this.http.post(`${this.url}CuentasBanBorrar.php`, JSON.stringify(arreglob));
+  }
+
+  socborrar(arreglob: any) {
+    return this.http.post(`${this.url}GrupoSocieconomicoBorrar.php`, JSON.stringify(arreglob));
+  }
+
+  relborrar(arreglob: any) {
+    return this.http.post(`${this.url}ParteRelacionalBorrar.php`, JSON.stringify(arreglob));
+  }
+
+  comuborrar(arreglob: any) {
+    return this.http.post(`${this.url}GrupoRiesgoComunBorrar.php`, JSON.stringify(arreglob));
+  }
+
+  retornoCon() {
     return this.http.get(`${this.url}DomiciliosConsulta.php`);
   }
 
-  consultar(domcon: any){
+  consultar(domcon: any) {
     return this.http.post(`${this.url}DomiciliosConsulta.php`, JSON.stringify(domcon));
   }
 
-  agregar(usuario: any){
-    return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario));
+  economicaconsultar(arreglob: any) {
+    return this.http.post(`${this.url}ActividadEcoMostrar.php`, JSON.stringify(arreglob));
   }
 
-  agregar2(clienteM: any){
-    return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteM));
+  personalesconsultar(arreglo2b: any) {
+    return this.http.post(`${this.url}PersonalesMostrar.php`, JSON.stringify(arreglo2b));
+  }
+
+  bancariasconsultar(arreglo5b: any) {
+    return this.http.post(`${this.url}BancariasMostrar.php`, JSON.stringify(arreglo5b));
+  }
+
+  comercialesconsultar(arreglo3b: any) {
+    return this.http.post(`${this.url}ComercialesMostrar.php`, JSON.stringify(arreglo3b));
+  }
+
+  proveedoresconsultar(arreglo4b: any) {
+    return this.http.post(`${this.url}ProveedoresMostrar.php`, JSON.stringify(arreglo4b));
+  }
+
+  accioneconsultar(arreglo: any) {
+    return this.http.post(`${this.url}AccionesMostrar.php`, JSON.stringify(arreglo));
+  }
+
+  cuentasbanconsultar(arreglo: any) {
+    return this.http.post(`${this.url}CuentasBanMostrar.php`, JSON.stringify(arreglo));
+  }
+
+  relacionadasconsultar(arreglo: any) {
+    return this.http.post(`${this.url}ParteRelacionalMostrar.php`, JSON.stringify(arreglo));
+  }
+
+  socioeconomicoconsultar(arreglo: any) {
+    return this.http.post(`${this.url}GrupoSocieconomicoMostrar.php`, JSON.stringify(arreglo));
+  }
+
+  riesgocomunconsultar(arreglo: any) {
+    return this.http.post(`${this.url}GrupoRiesgoComunMostrar.php`, JSON.stringify(arreglo));
+  }
+
+  agregar(usuario: any) {
+    return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario)); 
+  }
+
+  agregar2(clienteM: any) {
+    return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteM)); 
   }
 
   agregar02(clienteMod: any) {
-    return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteMod));
+    return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteMod)); 
   }
 
-  agregar3(usuario: any){
-    return this.http.post(`${this.url}CuentaBancaria.php`, JSON.stringify(usuario));
+  agregar3(usuario: any) {
+    return this.http.post(`${this.url}CuentaBancaria.php`, JSON.stringify(usuario)); 
   }
 
-  agregar4(usuario: any){
-    return this.http.post(`${this.url}Economica.php`, JSON.stringify(usuario));
+  agregar4(arreglo: any) {
+    return this.http.post(`${this.url}Economica.php`, JSON.stringify(arreglo)); 
   }
 
-  agregar5(usuario: any){
-    return this.http.post(`${this.url}Comerciales.php`, JSON.stringify(usuario));
+  agregar5(usuario: any) {
+    return this.http.post(`${this.url}Comerciales.php`, JSON.stringify(usuario)); 
   }
 
-  agregar6(usuario: any){
-    return this.http.post(`${this.url}Personales.php`, JSON.stringify(usuario));
+  agregar6(usuario: any) {
+    return this.http.post(`${this.url}Personales.php`, JSON.stringify(usuario)); 
   }
 
-  agregar7(usuario: any){
-    return this.http.post(`${this.url}Bancarias.php`, JSON.stringify(usuario));
+  agregar7(usuario: any) {
+    return this.http.post(`${this.url}Bancarias.php`, JSON.stringify(usuario)); 
   }
 
-  agregar8(usuario: any){
-    return this.http.post(`${this.url}Proveedores.php`, JSON.stringify(usuario));
+  agregar8(usuario: any) {
+    return this.http.post(`${this.url}Proveedores.php`, JSON.stringify(usuario)); 
   }
 
-  agregar9(usuario: any){
-    return this.http.post(`${this.url}GeneralValidar.php`, JSON.stringify(usuario));
+  agregar9(usuario: any) {
+    return this.http.post(`${this.url}GeneralValidar.php`, JSON.stringify(usuario)); 
   }
 
-  agregartel(telclien: any){
-    return this.http.post(`${this.url}Telefono.php`, JSON.stringify(telclien));
+  agregar10(usuario: any) { 
+    return this.http.post(`${this.url}Acciones.php`, JSON.stringify(usuario)); 
   }
 
-  retornotel(){
-    return this.http.get(`${this.url}Telefono.php`);
+  agregar11(usuario: any) { 
+    return this.http.post(`${this.url}CuentasBan.php`, JSON.stringify(usuario)); 
   }
-
-  borrartel(telclien: any){
-    return this.http.post(`${this.url}TelefonoBorrar.php`, JSON.stringify(telclien));
+  
+  agregar12(usuario: any) { 
+    return this.http.post(`${this.url}ParteRelacional.php`, JSON.stringify(usuario)); 
   }
-
-  retornotelb(){
-    return this.http.get(`${this.url}TelefonoBorrar.php`);
+  
+  agregar13(usuario: any) { 
+    return this.http.post(`${this.url}GrupoSocieconomico.php`, JSON.stringify(usuario)); 
   }
-
-  agregarred(redclien: any){
-    return this.http.post(`${this.url}RedesSociales.php`, JSON.stringify(redclien));
+  
+  agregar14(usuario: any) { 
+    return this.http.post(`${this.url}GrupoRiesgoComun.php`, JSON.stringify(usuario)); 
   }
-
-  retornored(){
-    return this.http.get(`${this.url}RedesSociales.php`);
-  }
-
-  borrarred(redclienb: any){
-    return this.http.post(`${this.url}RedesSocialesBorrar.php`, JSON.stringify(redclienb));
-  }
-
-  retornoredb(){
-    return this.http.get(`${this.url}RedesSocialesBorrar.php`);
-  }
-
 
   //Catalogo
 
-  catActdet(){
+  catActdet() {
     return this.http.get(`${this.url}CatalogoActdet.php`);
   }
 
-  catActeco(){
+  catActeco() {
     return this.http.get(`${this.url}CatalogoActeco.php`);
-  } 
+  }
 
-  catBancos(){
+  catBancos() {
     return this.http.get(`${this.url}CatalogoBancos.php`);
   }
 
-  catCatpue(){
+  catCatpue() {
     return this.http.get(`${this.url}CatalogoCatpue.php`);
   }
 
-  catCodId(){
+  catCodId() {
     return this.http.get(`${this.url}CatalogoCod_id.php`);
   }
 
-  catEdociv(){
+  catEdociv() {
     return this.http.get(`${this.url}CatalogoEdociv.php`);
   }
 
-  catIdentif(){
+  catIdentif() {
     return this.http.get(`${this.url}CatalogoIdentif.php`);
   }
 
-  catPerjur(){
+  catPerjur() {
     return this.http.get(`${this.url}CatalogoPerjur.php`);
   }
 
-  catProfes(){
+  catProfes() {
     return this.http.get(`${this.url}CatalogoProfes.php`);
   }
-        
-  catSexo(){
+
+  catSexo() {
     return this.http.get(`${this.url}CatalogoSexo.php`);
   }
 
-  catStscte(){
+  catStscte() {
     return this.http.get(`${this.url}CatalogoStscte.php`);
   }
 
-  catTipded(){
+  catTipded() {
     return this.http.get(`${this.url}CatalogoTipded.php`);
   }
-        
-  catTipdom(){
+
+  catTipdom() {
     return this.http.get(`${this.url}CatalogoTipdom.php`);
   }
 
-  catTipgse(){
+  catTipgse() {
     return this.http.get(`${this.url}CatalogoTipgse.php`);
   }
-        
-  catTipman(){
+
+  catTipman() {
     return this.http.get(`${this.url}CatalogoTipman.php`);
   }
-  
-  catTipred(){
+
+  catTipred() {
     return this.http.get(`${this.url}CatalogoTipred.php`);
   }
-        
-  catTiprel(){
+
+  catTiprel() {
     return this.http.get(`${this.url}CatalogoTiprel.php`);
   }
-        
-  catTiprpe(){
+
+  catTiprpe() {
     return this.http.get(`${this.url}CatalogoTiprpe.php`);
-  }	  
-        
-  catTiprrc(){
+  }
+
+  catTiprrc() {
     return this.http.get(`${this.url}CatalogoTiprrc.php`);
   }
-      
-  catTiptel(){
+
+  catTiptel() {
     return this.http.get(`${this.url}CatalogoTiptel.php`);
   }
-  
-  catnaCION(){
+
+  catnaCION() {
     return this.http.get(`${this.url}CatalogonaCION.php`);
   }
-
-  catSucursales(){
-    return this.http.get(`${this.url}CatalogoSucursales.php`);
-  }
-
-  catPromotor(){
-    return this.http.get(`${this.url}CatalogoPromotor.php`);
-  }
-
-  catPaises(){
-    return this.http.get(`${this.url}CatalogoPaises.php`);
-  }
-
-  catEstado(){
-    return this.http.get(`${this.url}CatalogoEstado.php`);
-  }
-
-  catMunicipio(edoId: any){    
-    return this.http.post(`${this.url}CatalogoMunicipio.php`,JSON.stringify(edoId));
-  }
-
-  catCP(mpioId: any){    
-    return this.http.post(`${this.url}CatalogoCodPostal.php`,JSON.stringify(mpioId));
-  }
-
-  catCol(codPosId: any){   
-    console.log(codPosId); 
-    return this.http.post(`${this.url}CatalogoColonia.php`,JSON.stringify(codPosId));
-  }
+  
 }
