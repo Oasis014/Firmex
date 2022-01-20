@@ -69,7 +69,7 @@
         <ul ngbNav #nav3="ngbNav" [(activeId)]="active2" (navChange)="onNavChange($event)" class="nav-tabs nav-tabs-primary  nav-justified">
           <li [ngbNavItem]="1"  > <a ngbNavLink><i class="fa fa-user-plus"></i>Datos Generales</a>
             <ng-template ngbNavContent>
-              <form >
+              <form [ngbCollapse]="isCollapsedPrueba1" >
                 <div class="row">
                   <div class="col-12 col-lg-12">
                     <div class="card">
@@ -287,6 +287,48 @@
                               </div>
                             </div>
                           </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-success">Teléfono Oficina </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledGen17" [attr.aria-expanded]="disabledGen17 ? 'disabledGen17' : ''" type="text" class="form-control" name="TelefonoOficina" id="TelefonoOficina" placeholder="55-5555-55555"  [(ngModel)]="general.TelefonoOficina">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-success">Extensión Oficina </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledGen18" [attr.aria-expanded]="disabledGen18 ? 'disabledGen18' : ''" type="text" class="form-control" name="ExtensionOficina" id="ExtensionOficina" placeholder="55-5555-55555"  [(ngModel)]="general.ExtensionOficina">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-success">Celular </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledGen19" [attr.aria-expanded]="disabledGen19 ? 'disabledGen19' : ''" type="text" class="form-control" name="Celular" id="Celular" placeholder="55-5555-55555"  [(ngModel)]="general.Celular">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-success">RedSocial 1 </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledGen20" [attr.aria-expanded]="disabledGen20 ? 'disabledGen20' : ''" type="text" class="form-control" name="RedSocial1" id="RedSocial1" placeholder=" "  [(ngModel)]="general.RedSocial1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-success">RedSocial 2 </label>
+                              <div class="col-sm-6 input-group">
+                                <input [disabled]="disabledGen21" [attr.aria-expanded]="disabledGen21 ? 'disabledGen21' : ''" type="text" class="form-control" name="RedSocial2" id="RedSocial2" placeholder=" "  [(ngModel)]="general.RedSocial2">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-1 col-lg-4 col-xl-4">
+                          </div>
                           <div class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div class="col-1 col-lg-4 col-xl-4">
@@ -303,6 +345,7 @@
                   </div>
                 </div>
               </form>
+              <app-mod-cliente [ngbCollapse]="isCollapsedPrueba2"></app-mod-cliente>
               <button (click)="DatosMuestra()" class="btn btn-sm btn-light" [disabled]="active === 2" (click)="nav3.select(2)" type="submit" >Siguiente Sección</button>
             </ng-template>
           </li>

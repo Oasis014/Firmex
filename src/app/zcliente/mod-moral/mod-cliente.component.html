@@ -1,7 +1,8 @@
 
+
 <div class="row">
   <div class="col-lg-12">
-    <div class="modal fade" id="largesizemodalF">
+    <div class="modal fade" id="largesizemodal">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header border-light-2">
@@ -33,7 +34,6 @@
         </div>
       </div>
     </div>
-    
               <form action="#">
                 <div class="row">
                   <div class="col-12 col-lg-12">
@@ -147,7 +147,7 @@
                           </div>
                           <div class="col-2 col-lg-1 col-xl-1">
                             <div [ngbCollapse]="isCollapsed" class="form-group row">
-                              <button (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2" data-toggle="modal" data-target="#largesizemodalF" (click)="Validate()" type="submit" class="btn btn-light  btn-block" >Validar</button>
+                              <button (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2" data-toggle="modal" data-target="#largesizemodal" (click)="Validate()" type="submit" class="btn btn-light  btn-block" >Validar</button>
                             </div>
                           </div>
                         </div>
@@ -159,7 +159,7 @@
                 </div>
                 <div [ngbCollapse]="isCollapsed2" class="row">
                   <div class="col-12 col-lg-12">
-                    <div class="modal fade" id="largesizemodal1F">
+                    <div class="modal fade" id="largesizemodal1">
                       <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header border-light-2">
@@ -388,7 +388,7 @@
                             <button type="submit" class="btn btn-light  btn-block" (click) = "Cancelar()" >Cancelar</button>
                           </div>
                           <div [ngbCollapse]="isCollapsed3" class="col-2 col-lg-2 col-xl-2">
-                          <button (click)="isCollapsed3 = !isCollapsed3" [attr.aria-expanded]="!isCollapsed3" data-toggle="modal" data-target="#largesizemodal1F"  (click)="General()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                          <button (click)="isCollapsed3 = !isCollapsed3" [attr.aria-expanded]="!isCollapsed3" data-toggle="modal" data-target="#largesizemodal1"  (click)="General()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
                           </div>
                         </div>
                       </div>
@@ -396,5 +396,5 @@
                   </div>
                 </div>
               </form>
-              
+
 

@@ -84,7 +84,7 @@
     </div>
   </div>
 </div>
-                <div class="row">
+                <div class="row" [ngbCollapse]="isCollapsedAcc3">
                   <div class="col-12 col-lg-12">
                     <div class="card">
                       <div class="card-body">
@@ -184,7 +184,7 @@
                        </form>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row" [ngbCollapse]="isCollapsedAcc3">
                     <div  class="col-2 col-lg-2 col-xl-2">
                       <button type="submit" class="btn btn-light  btn-block" (click)="obtenerAcciones()" >Actualizar</button>
                     </div>
@@ -194,7 +194,7 @@
                       <label>Listado de Acciones</label>
                     </div>
                     </div>
-                    <div class="card">
+                    <div class="card" [ngbCollapse]="isCollapsedAcc3">
                       <table class="table table-striped text-center " style="width:auto; height:5px;" >
                         <thead >
                         <th>Numero Cliente</th>
@@ -218,7 +218,7 @@
                           <td>{{acc.CostoAcciones}}</td>
                           <td>{{acc.FormaPagoAcciones}}</td>
                           <td>
-                            <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                            <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedAcc2 = !isCollapsedAcc2" (click)= "isCollapsedAcc3 = !isCollapsedAcc3" (click)= "AccionesConsultar(acc)" ><i class="fa fa-pencil"></i></a>
                             <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "AccionesBorrar(acc)" ><i class="fa fa-trash"></i></a></td>
                         </tr>
                         </tbody>
@@ -226,7 +226,114 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+<!-- CONSULTA-->
+<form action="#" >
+  <div class="row" [ngbCollapse]="isCollapsedAcc2" >
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <h6 class="page-title">Acciones</h6>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Fecha de Primera Compra Acción</label>
+                <div class="col-sm-6">
+                  <input  type="date" class="form-control" name="FechaCompra1aAccionMod" id="FechaCompra1aAccionMod" value = "{{FechaCompra1aAccion}}" [(ngModel)]="accMod.FechaCompra1aAccion" >
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Parte Inicial Social</label>
+                <div class="col-sm-6">
+                  <input  type="number" class="form-control" name="ParteInicialSocialMod" id="ParteInicialSocialMod" value = "{{ParteInicialSocial}}" [(ngModel)]="accMod.ParteInicialSocial" >
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Fecha de Pago</label>
+                <div class="col-sm-6 input-group">
+                  <input  type="date" class="form-control" name="FechaPagoMod" id="FechaPagoMod" value = "{{FechaPago}}" [(ngModel)]="accMod.FechaPago" >
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-success">Parte Social Actual</label>
+                <div class="col-sm-6 input-group">
+                  <input  type="number" class="form-control" name="ParteSocialActualMod" id="ParteSocialActualMod" value = "{{ParteSocialActual}}" [(ngModel)]="accMod.ParteSocialActual" >
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Costo de las Acciones</label>
+                <div class="col-sm-6 input-group">
+                  <input  type="number" class="form-control" name="CostoAccionesMod" id="CostoAccionesMod" value = "{{CostoAcciones}}" [(ngModel)]="accMod.CostoAcciones" >
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Forma de Pago de las Acciones </label>
+                <div class="col-sm-6">
+                  <input  type="text" class="form-control" name="FormaPagoAccionesMod" id="FormaPagoAccionesMod" value = "{{FormaPagoAcciones}}" [(ngModel)]="accMod.FormaPagoAcciones" >
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Retirables A </label>
+                <div class="col-sm-6">
+                  <input  type="number" class="form-control" name="RetirablesAmod" id="RetirablesAmod" value = "{{RetirablesA}}" [(ngModel)]="accMod.RetirablesA" >
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Retirables B</label>
+                <div class="col-sm-6">
+                  <input  type="number" class="form-control" name="RetirablesBMod" id="RetirablesBMod" value = "{{RetirablesB}}" [(ngModel)]="accMod.RetirablesB" >
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Total de Acciones</label>
+                <div class="col-sm-6">
+                  <input  type="number" class="form-control" name="TotalAccionesMod" id="TotalAccionesMod" value = "{{TotalAcciones}}" [(ngModel)]="accMod.TotalAcciones" >
+                </div>
+              </div>
+            </div>
+            <div class="col-1 col-lg-4 col-xl-4">
+            </div>
+            <div  class="col-1 col-lg-4 col-xl-4">
+            </div>
+            <div  class="col-1 col-lg-1 col-xl-2">
+            </div>
+            <!-- Botones de guardar -->
+            <div  class="col-1 col-lg-1 col-xl-2">
+              <button type="submit" class="btn btn-light  btn-block" (click)= "isCollapsedAcc2 = !isCollapsedAcc2" (click)= "isCollapsedAcc3 = !isCollapsedAcc3" (click)= "AccionesMod()">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- FIN CONSULTA-->
+
+                <div class="row" [ngbCollapse]="isCollapsedCue3">
                   <div class="col-12 col-lg-12">
                     <div class="card">
                       <div class="card-body">
@@ -285,7 +392,7 @@
                         </form>
                       </div>
                     </div>
-                    <div class="row">
+                    <div class="row" [ngbCollapse]="isCollapsedCue3">
                       <div  class="col-2 col-lg-2 col-xl-2">
                         <button type="submit" class="btn btn-light  btn-block" (click)="obtenerCuenta()" >Actualizar</button>
                       </div>
@@ -295,7 +402,7 @@
                         <label>Listado de Cuentas Bancarias</label>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="card" [ngbCollapse]="isCollapsedCue3" >
                       <table class="table table-striped text-center " style="width:auto; height:5px;" >
                         <thead >
                         <th>Numero Cliente</th>
@@ -314,7 +421,7 @@
                           <td>{{cuen.NumeroCuentaCtaBan}}</td>
                           <td>{{cuen.ClaveInterbancariaCtaBan}}</td>
                           <td>
-                            <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                            <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedCue2 = !isCollapsedCue2" (click)= "isCollapsedCue3 = !isCollapsedCue3" (click)= "CuentasBanConsultar(cuen)" ><i class="fa fa-pencil"></i></a>
                             <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "CuentaBorrar(cuen)" ><i class="fa fa-trash"></i></a></td>
                         </tr>
                         </tbody>
@@ -323,7 +430,73 @@
                   </div>
                 </div>
 
-              <div class="row">
+<!-- CONSULTA-->
+<form action="#" >
+  <div class="row" [ngbCollapse]="isCollapsedCue2" >
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <h6 class="page-title">Cuentas Bancarias</h6>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">cuenta bancaria</label>
+                <div class="col-sm-6">
+                  <input  type="text" class="form-control" name="NombreCuentaBancariaCtaBanMod" id="NombreCuentaBancariaCtaBanMod" value = "{{NombreCuentaBancariaCtaBan}}" [(ngModel)]="cuenMod.NombreCuentaBancariaCtaBan">
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-success">Banco</label>
+                <div class="col-sm-6">
+                  <select  class="form-control form-control-sm"  name="BancoCtaBanMod" id="BancoCtaBanMod" value = "{{BancoCtaBan}}" [(ngModel)]="cuenMod.BancoCtaBan">
+                    <option *ngFor="let CatBncs of ctBancos" [value]="CatBncs.catalogo_cve">{{CatBncs.desc_45}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Numero de Cuenta </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="number" class="form-control" name="NumeroCuentaCtaBanMod" id="NumeroCuentaCtaBanMod" value = "{{NumeroCuentaCtaBan}}" [(ngModel)]="cuenMod.NumeroCuentaCtaBan">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Clabe Interbancaria </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" name="ClaveInterbancariaCtaBanMod" id="ClaveInterbancariaCtaBanMod" value = "{{ClaveInterbancariaCtaBan}}" [(ngModel)]="cuenMod.ClaveInterbancariaCtaBan">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class="col-1 col-lg-4 col-xl-4">
+            </div>
+            <div  class="col-1 col-lg-1 col-xl-2">
+            </div>
+            <!-- Botones de guardar -->
+            <div  class="col-1 col-lg-1 col-xl-2">
+              <button type="submit" class="btn btn-light  btn-block" (click)= "isCollapsedCue2 = !isCollapsedCue2" (click)= "isCollapsedCue3 = !isCollapsedCue3" (click)= "CuentaMod()">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- FIN CONSULTA-->
+
+              <div class="row" [ngbCollapse]="isCollapsedRel3">
                 <div class="col-12 col-lg-12">
                   <div class="card">
                     <div class="card-body">
@@ -381,7 +554,7 @@
                       </form>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row" [ngbCollapse]="isCollapsedCue3">
                     <div  class="col-2 col-lg-2 col-xl-2">
                       <button type="submit" class="btn btn-light  btn-block" (click)="obtenerRelacional()" >Actualizar</button>
                     </div>
@@ -391,7 +564,7 @@
                       <label>Listado de Parte Relacionada</label>
                     </div>
                   </div>
-                  <div class="card">
+                  <div class="card" [ngbCollapse]="isCollapsedRel3">
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
                       <thead >
                       <th>Numero Cliente</th>
@@ -410,7 +583,7 @@
                         <td>{{rel.RFCParRel}}</td>
                         <td>{{rel.DireccionParRel}}</td>
                         <td>
-                          <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                          <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedRel2 = !isCollapsedRel2" (click)= "isCollapsedRel3 = !isCollapsedRel3" (click)= "RelacionadasConsultar(rel)" ><i class="fa fa-pencil"></i></a>
                           <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "RelacionalBorrar(rel)" ><i class="fa fa-trash"></i></a></td>
                       </tr>
                       </tbody>
@@ -418,8 +591,71 @@
                   </div>
                 </div>
               </div>
-
-              <div class="row">
+<!-- CONSULTA-->
+<form action="#" >
+  <div class="row" [ngbCollapse]="isCollapsedRel2" >
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <h6 class="page-title">Partes Relacionadas</h6>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Parte Relacionada</label>
+                <div class="col-sm-6">
+                  <input  type="text" class="form-control" id="ParteRelacionadaParRelMod" name="ParteRelacionadaParRelMod" value = "{{ParteRelacionadaParRel}}" [(ngModel)]="relMod.ParteRelacionadaParRel" >
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Nombre completo </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" id="NombreParRelMod" name="NombreParRelMod" value = "{{NombreParRel}}" [(ngModel)]="relMod.NombreParRel">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">RFC </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" id="RFCParRelMod" name = "RFCParRelMod" value = "{{RFCParRel}}" [(ngModel)]="relMod.RFCParRel">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Dirección </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" id="DireccionParRelMod" name = "DireccionParRelMod" value = "{{DireccionParRel}}" [(ngModel)]="relMod.DireccionParRel">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class="col-1 col-lg-4 col-xl-4">
+            </div>
+            <div  class="col-1 col-lg-1 col-xl-2">
+            </div>
+            <!-- Botones de guardar -->
+            <div  class="col-1 col-lg-1 col-xl-2">
+              <button type="submit" class="btn btn-light  btn-block" (click)= "isCollapsedRel2 = !isCollapsedRel2" (click)= "isCollapsedRel3 = !isCollapsedRel3" (click)= "RelacionalMod()">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- FIN CONSULTA-->
+              <div class="row" [ngbCollapse]="isCollapsedSoc3">
                 <div class="col-12 col-lg-12">
                   <div class="card">
                     <div class="card-body">
@@ -480,7 +716,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" [ngbCollapse]="isCollapsedSoc3">
                 <div  class="col-2 col-lg-2 col-xl-2">
                   <button type="submit" class="btn btn-light  btn-block" (click)="obtenerSocioEco()" >Actualizar</button>
                 </div>
@@ -490,7 +726,7 @@
                   <label>Listado de Grupo Socieconimico</label>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" [ngbCollapse]="isCollapsedSoc3">
                 <table class="table table-striped text-center " style="width:auto; height:5px;" >
                   <thead >
                   <th>Numero Cliente</th>
@@ -509,13 +745,78 @@
                     <td>{{soc.RFCGpoSoc}}</td>
                     <td>{{soc.DireccionGpoSoc}}</td>
                     <td>
-                      <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                      <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedSoc2 = !isCollapsedSoc2" (click)= "isCollapsedSoc3 = !isCollapsedSoc3" (click)= "SocioEconomicoConsultar(soc)" ><i class="fa fa-pencil"></i></a>
                       <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "SocioEcoBorrar(soc)" ><i class="fa fa-trash"></i></a></td>
                   </tr>
                   </tbody>
                 </table>
               </div>
-                <div class="row">
+<!-- CONSULTA-->
+<form action="#" >
+  <div class="row" [ngbCollapse]="isCollapsedSoc2" >
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <h6 class="page-title">Grupo Socieconomico</h6>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label class="col-sm-5 col-form-label">Grupo Socieconomico</label>
+                <div class="col-sm-6">
+                  <select class="form-control form-control-sm"  name="GrupoSocioeconomicoGpoSocMod" id="GrupoSocioeconomicoGpoSocMod" value = "{{GrupoSocioeconomicoGpoSoc}}" [(ngModel)]="socMod.GrupoSocioeconomicoGpoSoc">
+                    <option *ngFor="let CatEco of ctActeco" [value]="CatEco.catalogo_cve">{{CatEco.desc_45}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Nombre Completo</label>
+                <div class="col-sm-6">
+                  <input  type="text" class="form-control" name="NombreGpoSocMod" id="NombreGpoSocMod" value = "{{NombreGpoSoc}}" [(ngModel)]="socMod.NombreGpoSoc" >
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">RFC </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" name="RFCGpoSocMod" id="RFCGpoSocMod" value = "{{RFCGpoSoc}}" [(ngModel)]="socMod.RFCGpoSoc">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Dirección </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" name="DireccionGpoSocMod" id="DireccionGpoSocMod" value = "{{DireccionGpoSoc}}" [(ngModel)]="socMod.DireccionGpoSoc">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class="col-1 col-lg-4 col-xl-4">
+            </div>
+            <div  class="col-1 col-lg-1 col-xl-2">
+            </div>
+            <!-- Botones de guardar -->
+            <div  class="col-1 col-lg-1 col-xl-2">
+              <button type="submit" class="btn btn-light  btn-block" (click)= "isCollapsedSoc2 = !isCollapsedSoc2" (click)= "isCollapsedSoc3 = !isCollapsedSoc3" (click)= "SocioEcoMod()">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- FIN CONSULTA-->
+                <div class="row" [ngbCollapse]="isCollapsedCom3">
                   <div class="col-12 col-lg-12">
                     <div class="card">
                       <div class="card-body">
@@ -577,7 +878,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" [ngbCollapse]="isCollapsedCom3">
                   <div  class="col-2 col-lg-2 col-xl-2">
                     <button type="submit" class="btn btn-light  btn-block" (click)="obtenerRiesgoComun()" >Actualizar</button>
                   </div>
@@ -587,7 +888,7 @@
                       <label>Listado de Grupo de Riesgo comun</label>
                   </div>
                 </div>
-            <div class="card">
+            <div class="card" [ngbCollapse]="isCollapsedCom3">
                   <table class="table table-striped text-center " style="width:auto; height:5px;" >
                     <thead >
                         <th>Numero Cliente</th>
@@ -606,9 +907,75 @@
                     <td>{{com.RFCRgoCom}}</td>
                     <td>{{com.DireccionRgoCom}}</td>
                     <td>
-                    <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" ><i class="fa fa-pencil"></i></a>
+                    <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedCom2 = !isCollapsedCom2" (click)= "isCollapsedCom3 = !isCollapsedCom3" (click)= "RiesgoComunConsultar(com)" ><i class="fa fa-pencil"></i></a>
                     <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "RiesgoComunBorrar(com)" ><i class="fa fa-trash"></i></a></td>
                 </tr>
               </tbody>
               </table>
                 </div>
+<!-- CONSULTA-->
+<form action="#" >
+  <div class="row" [ngbCollapse]="isCollapsedCom2" >
+    <div class="col-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <h6 class="page-title">Grupo de Riesgo Común</h6>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Grupo de Riesgo Común </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" name="GrupoRiesgoComunRgoComMod"  id="GrupoRiesgoComunRgoComMod" value = "{{GrupoRiesgoComunRgoCom}}" [(ngModel)]="comMod.GrupoRiesgoComunRgoCom">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Nombre Completo </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" name="NombreRgoComMod" id="NombreRgoComMod" value = "{{NombreRgoCom}}" [(ngModel)]="comMod.NombreRgoCom">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">RFC </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" name="RFCRgoComMod"  id="RFCRgoComMod" value = "{{RFCRgoCom}}" [(ngModel)]="comMod.RFCRgoCom">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-5 col-lg-4 col-xl-4">
+              <div class="form-group row">
+                <label  class="col-sm-5 col-form-label">Dirección </label>
+                <div class="col-sm-6 input-group">
+                  <input  type="text" class="form-control" name="DireccionRgoComMod"  id="DireccionRgoComMod" value = "{{DireccionRgoCom}}" [(ngModel)]="comMod.DireccionRgoCom">
+                  <div class="input-group-append">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class="col-1 col-lg-4 col-xl-4">
+            </div>
+            <div  class="col-1 col-lg-1 col-xl-2">
+            </div>
+            <!-- Botones de guardar -->
+            <div  class="col-1 col-lg-1 col-xl-2">
+              <button type="submit" class="btn btn-light  btn-block" (click)= "isCollapsedCom2 = !isCollapsedCom2" (click)= "isCollapsedCom3 = !isCollapsedCom3" (click)= "RiesgoComunMod()">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- FIN CONSULTA-->

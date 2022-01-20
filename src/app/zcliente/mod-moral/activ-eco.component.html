@@ -636,7 +636,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" [ngbCollapse]="isCollapsedPro3">
                 <div  class="col-2 col-lg-2 col-xl-2">
                   <button type="submit" class="btn btn-light  btn-block" (click)="obtenerProveedores()" >Actualizar</button>
                 </div>
@@ -646,7 +646,7 @@
                   <label>Listado de Referencias Proveedores</label>
                 </div>
               </div>
-              <div class="card">
+              <div class="card" [ngbCollapse]="isCollapsedPro3">
                 <table class="table table-striped text-center " style="width:auto; height:5px;" >
                   <thead >
                   <th>Numero Cliente</th>
@@ -679,6 +679,7 @@
             <h6 class="page-title">Referencias Proveedores</h6>
           </div>
           <hr>
+          <div class="row">
           <div class="col-5 col-lg-4 col-xl-4">
             <div class="form-group row">
               <label class="col-sm-5 col-form-label">Nombre Completo</label>
@@ -713,6 +714,7 @@
               <button data-toggle="modal" data-target="#largesizemodal1" type="submit" class="btn btn-light  btn-block" (click)= "isCollapsedPro2 = !isCollapsedPro2" (click)= "isCollapsedPro3 = !isCollapsedPro3" (click)="ProveedoresMod()"  type = "reset" >Guardar</button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

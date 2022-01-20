@@ -13,6 +13,7 @@ const data: any = require('../../shared/data/prospectoM.json');
 })
 
 export class ListClienteMComponent  implements OnInit{
+    Bandera = { ban: null }
 domicilio = null as any;
 dom = { Id: null, TipoDom: null,
         Calle: null, NoEx: null,
@@ -47,6 +48,7 @@ obtenerDomicilio() { this.clienteService.getDomicilio().subscribe(result => this
     }
 
     doubleClicked(event){
+    
                   this.router.navigate(['qry-clienteM'], { relativeTo: this.route.parent });
     }
     onReadOnly() {
@@ -78,5 +80,5 @@ obtenerDomicilio() { this.clienteService.getDomicilio().subscribe(result => this
                   }
 Total() {this.router.navigate(['list-cliente'], { relativeTo: this.route.parent }); }
 Fisica() {this.router.navigate(['list-clienteF'], { relativeTo: this.route.parent }); }
-open() {this.router.navigate(['mod-moral'], { relativeTo: this.route.parent }); }
+open() { this.Bandera.ban = 1,localStorage.setItem( "bandera", this.Bandera.ban ); this.router.navigate(['mod-moral'], { relativeTo: this.route.parent }); }
     }

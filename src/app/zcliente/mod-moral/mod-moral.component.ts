@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
@@ -45,7 +45,7 @@ export class ModMoralComponent implements OnInit{
     this.tabs.push(this.counter++);
     event.preventDefault();
   }
-
+  ban: string = '';
 //Declaracion Var LocalStorage Domicilio.
 Id: string = ''; Tipo: string = ''; Calle: string = ''; NoEx: string = ''; NoIn: string = ''; CodPos: string = ''; Colonia: string = ''; Municipio: string = ''; Estado: string = ''; Pais: string = '';
 //Declaracion Var General
@@ -59,10 +59,11 @@ public isCollapsed = false; public isCollapsed2 = true; public isCollapsed4 = fa
 //Objetos Desabilitados Cliente
 public disabledGen1 = false; public disabledGen2 = false; public disabledGen3 = false; public disabledGen4 = false; public disabledGen5 = false; public disabledGen6 = false; public disabledGen7 = false;
 public disabledGen8 = false; public disabledGen9 = false; public disabledGen10 = false; public disabledGen11 = false; public disabledGen12 = false; public disabledGen13 = false; public disabledGen14 = false; public disabledGen15 = true; public disabledGen16 = true;
-
+public disabledGen17 = false; public disabledGen18 = false; public disabledGen19 = false; public disabledGen20 = false; public disabledGen21 = false;
 public disabled1 = true; public disabled2 = true; public disabled3 = true; public disabled4 = true; public disabled5 = true; public disabled6 = true; public disabled7 = true;
 public disabled8 = true; public disabled9 = true; public disabled10 = false; public disabled11 = true; public disabled12 = false; public disabled13 = false; public disabled14 = false;
-
+public isCollapsedPrueba2 = true;
+public isCollapsedPrueba1 = true;
 //objetos any Service
 domicilio = null as any; catalogo = null as any; catalogo1 = null as any; cliente = null as any;
 domborrar = null as any; clienteM = null as any; clienteMod = null as any; domcon = null as any;
@@ -78,50 +79,52 @@ ctSexo = null as any;
 
 //Arreglos de variables para obtener campos
 proveedores = {
-        Id: null, Consecutivo: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null,
         NombreProvee: null, LimiteCreditoProvee: null, SaldoCuentaProvee: null
 }
 bancarias = {
-        Id: null, Consecutivo: null, InstitucionRefBan: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null, InstitucionRefBan: null,
         AntiguedadRefBan: null, LimiteCreditoRefBan: null, SaldoCuentaRefBan: null
 }
 personales = {
-        Id: null, Consecutivo: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null,
         NombreRefPer: null, TelefonoRefPer: null, TipoRelacionRefPer: null
 }
 comerciales = {
-        Id: null, Consecutivo: null, NombreRefCom: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null, NombreRefCom: null,
         LimiteCreditoRefCom: null, SaldoCuentaRefCom: null
 }
 economica = {
-        Id: null, ActividadEconomica: null,
+        Id: localStorage.getItem("ID"), ActividadEconomica: null,
         ActividadDetallada: null, IngresoMensual: null,
         OtroIngresoMensual: null, GastosMensuales: null, FlujoEfectivo: null
 }
 cuenta = {
-        Id: null, Consecutivo: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null,
         NombreBank: null, BancoCtaBan: null,
         NumBan: null, ClaveInter: null
 }
-domMod = { Id: null, TipoDom: null,
+domMod = { Id: localStorage.getItem("ID"), TipoDom: null,
         Calle: null, NoEx: null,
         NoIn: null, CodPos: null,
         Colonia: null, Municipio: null,
         Estado: null, Pais: null
 }
-dom = { Id: null, TipoDom: null,
+dom = { Id: localStorage.getItem("ID"), TipoDom: null,
         Calle: null, NoEx: null,
         NoIn: null, CodPos: null,
         Colonia: null, Municipio: null,
         Estado: null, Pais: null
 }
-dom2 = { Id: null, TipoDom: null
+dom2 = { Id: localStorage.getItem("ID"), TipoDom: null
 }
 general = { Id: null, Sucursal: null, ApellidoPaterno: null, ApellidoMaterno: null,
     PrimerNombre: null, SegundoNombre: null, RazonSocial: null,
     ClavePromotor: null, EstatusCliente: null, FechaAlta: null,
     PersonalidadJuridica: "0", RFC: null, Nacionalidad: null,
-    EmailPersonal: null, EmailEmpresa: null, ParteRelacionada: null,
+    EmailPersonal: null, EmailEmpresa: null, TelefonoDomicilio: null, ExtensionDomicilio: null,
+    TelefonoOficina: null, ExtensionOficina: null, Celular: null,
+    RedSocial1: null, RedSocial2: null, ParteRelacionada: null,
     GrupoConsejo: null, GrupoRiesgoComun: null, FechaNacimiento: null,
     Sexo: null, EstadoCivil: null, CURP: null, TipoIdentificacion: null,
     NumeroIdentificacion: null, ListaNegra: null, Profesion: null,
@@ -132,7 +135,7 @@ general = { Id: null, Sucursal: null, ApellidoPaterno: null, ApellidoMaterno: nu
     Sucursal: null, PrimerNombre: null,
     SegundoNombre: null, ApellidoPaterno: null,
     ApellidoMaterno: null, RazonSocial: null,
-    PersonalidadJuridica: "01", RFC: null
+    PersonalidadJuridica: null, RFC: null
     }
   retorno = {
   noCliente: null, errorClave: null,
@@ -173,15 +176,14 @@ DatosMuestra(){this.Contador ++; if(this.Contador == 1){this.isCollapsed5 = ! th
     Retorno3(){ this.clienteService.retorno3().subscribe(result => this.clienteM = result); }
     RetornoDomb(){ this.clienteService.retornodomb().subscribe(result => this.domborrar = result); }
     DomBorrar(dom: any){localStorage.setItem( "Listado", JSON.stringify(dom)), this.dom2 = JSON.parse(localStorage.getItem("Listado")), this.clienteService.domborrar(this.dom2).subscribe(result => this.domborrar = result, datos =>{ } ), this.obtenerDomicilio(), this.clienteM = null, this.domcon = null  }
-    General(){this.clienteService.agregar(this.general).subscribe((result: any) => { this.cliente = result; this.general.Id = result[0].noCliente; }); }
+    General(){this.clienteService.agregar(this.general).subscribe((result: any) => { this.cliente = result; this.general.Id = result[0].noCliente,localStorage.setItem( "ID", this.general.Id ); }); }
     Cuenta(){ this.clienteService.agregar3(this.cuenta).subscribe(datos =>{ }); }
-
     Comerciales(){ this.clienteService.agregar5(this.comerciales).subscribe(datos =>{ }); }
     Personales(){ this.clienteService.agregar6(this.personales).subscribe(datos =>{ }); }
     Bancarias(){ this.clienteService.agregar7(this.bancarias).subscribe(datos =>{ }); }
     Proveedores(){ this.clienteService.agregar8(this.proveedores).subscribe(datos =>{ }); }
 	CatTipdom(){this.clienteService.catTipdom().subscribe(result => this.catalogo1 = result);}
-    ngOnInit() { this.CatDet(); this.CatEco(); this.CatBncs(); this.CatPue(); this.CodId(); this.EdoCiv(); this.Identif(); this.Perjur();
+    ngOnInit()  { this.ban = localStorage.getItem("bandera"); if(this.ban == "1"){ this.isCollapsedPrueba1 = !this.isCollapsedPrueba1; } if(this.ban == "2"){ this.isCollapsedPrueba2 = !this.isCollapsedPrueba2; } this.CatDet(); this.CatEco(); this.CatBncs(); this.CatPue(); this.CodId(); this.EdoCiv(); this.Identif(); this.Perjur();
                  this.Profes(); this.StsCte(); this.Tipded(); this.TipDom(); this.Tipgse(); this.Tipman(); this.Tipred(); this.TipRel();
                  this.Tiprpe(); this.Tiprrc(); this.Tiptel(); this.cnaCION(); this.ctSx(); }
     list() {this.router.navigate(['mto-fisica'], { relativeTo: this.route.parent }); }
@@ -189,7 +191,8 @@ DatosMuestra(){this.Contador ++; if(this.Contador == 1){this.isCollapsed5 = ! th
     typeSuccess() { this.toastr.success('Finalizado con exito!!'); }
     Cancelar() {this.router.navigate(['list-clienteM'], { relativeTo: this.route.parent }); }
     Bloquear(){ this.disabled1 = !this.disabled1; this.disabled2 = !this.disabled2; this.disabled3 = !this.disabled3; this.disabled4 = !this.disabled4; this.disabled5 = !this.disabled5; this.disabled6 = !this.disabled6; this.disabled7 = !this.disabled7; this.disabled8 = !this.disabled8; this.disabled9 = !this.disabled9; this.disabled10 = !this.disabled10; this.disabled11 = !this.disabled11; this.disabled14 = !this.disabled14; this.disabled13 = !this.disabled13; this.disabled12 = !this.disabled12; this.isCollapsed8 = !this.isCollapsed8;}
-    Desabilitar(){ this.disabledGen1 = !this.disabledGen1; this.disabledGen2 = !this.disabledGen2; this.disabledGen3 = !this.disabledGen3; this.disabledGen4 = !this.disabledGen4; this.disabledGen5 = !this.disabledGen5; this.disabledGen6 = !this.disabledGen6; this.disabledGen7 = !this.disabledGen7; this.disabledGen8 = !this.disabledGen8; this.disabledGen9 = !this.disabledGen9; this.disabledGen10 = !this.disabledGen10; this.disabledGen11 = !this.disabledGen11; this.disabledGen14 = !this.disabledGen14; this.disabledGen13 = !this.disabledGen13; this.disabledGen12 = !this.disabledGen12; this.disabledGen15 = !this.disabledGen15; this.disabledGen16 = !this.disabledGen16; }
+    Desabilitar(){ this.disabledGen1 = !this.disabledGen1; this.disabledGen2 = !this.disabledGen2; this.disabledGen3 = !this.disabledGen3; this.disabledGen4 = !this.disabledGen4; this.disabledGen5 = !this.disabledGen5; this.disabledGen6 = !this.disabledGen6; this.disabledGen7 = !this.disabledGen7; this.disabledGen8 = !this.disabledGen8; this.disabledGen9 = !this.disabledGen9; this.disabledGen10 = !this.disabledGen10; this.disabledGen11 = !this.disabledGen11; this.disabledGen14 = !this.disabledGen14; this.disabledGen13 = !this.disabledGen13; 
+    this.disabledGen12 = !this.disabledGen12; this.disabledGen15 = !this.disabledGen15; this.disabledGen16 = !this.disabledGen16; this.disabledGen17 = !this.disabledGen17; this.disabledGen18 = !this.disabledGen18; this.disabledGen19 = !this.disabledGen19;this.disabledGen20 = !this.disabledGen20; this.disabledGen21 = !this.disabledGen21; }
     MostrarDom() { this.clienteService.mostrardom().subscribe(result => this.domicilio = result); }
     obtenerDomicilio() { this.clienteService.getDomicilio().subscribe(result => this.domicilio = result);}
 

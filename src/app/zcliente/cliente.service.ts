@@ -84,21 +84,19 @@ url = 'http://127.0.0.1/insert/';
           return this.http.post(`${this.url}DomiciliosConsulta.php`, JSON.stringify(domcon));
   }
 
-economicaconsultar(arreglob: any){
-          return this.http.post(`${this.url}ActividadEcoMostrar.php`, JSON.stringify(arreglob));
-  }
-personalesconsultar(arreglo2b: any){
-          return this.http.post(`${this.url}PersonalesMostrar.php`, JSON.stringify(arreglo2b));
-  }
-bancariasconsultar(arreglo5b: any){
-          return this.http.post(`${this.url}BancariasMostrar.php`, JSON.stringify(arreglo5b));
-  }
-comercialesconsultar(arreglo3b: any){
-          return this.http.post(`${this.url}ComercialesMostrar.php`, JSON.stringify(arreglo3b));
-  }
-proveedoresconsultar(arreglo4b: any){
-          return this.http.post(`${this.url}ProveedoresMostrar.php`, JSON.stringify(arreglo4b));
-  }
+  economicaconsultar(arreglob: any){ return this.http.post(`${this.url}ActividadEcoMostrar.php`, JSON.stringify(arreglob)); }
+  personalesconsultar(arreglo2b: any){ return this.http.post(`${this.url}PersonalesMostrar.php`, JSON.stringify(arreglo2b)); }
+  bancariasconsultar(arreglo5b: any){  return this.http.post(`${this.url}BancariasMostrar.php`, JSON.stringify(arreglo5b)); }
+  comercialesconsultar(arreglo3b: any){ return this.http.post(`${this.url}ComercialesMostrar.php`, JSON.stringify(arreglo3b)); }
+  proveedoresconsultar(arreglo4b: any){ return this.http.post(`${this.url}ProveedoresMostrar.php`, JSON.stringify(arreglo4b)); }
+
+  accioneconsultar(arreglo: any){ return this.http.post(`${this.url}AccionesMostrar.php`, JSON.stringify(arreglo)); }
+  cuentasbanconsultar(arreglo: any){ return this.http.post(`${this.url}CuentasBanMostrar.php`, JSON.stringify(arreglo)); }
+  relacionadasconsultar(arreglo: any){ return this.http.post(`${this.url}ParteRelacionalMostrar.php`, JSON.stringify(arreglo)); }
+  socioeconomicoconsultar(arreglo: any){ return this.http.post(`${this.url}GrupoSocieconomicoMostrar.php`, JSON.stringify(arreglo)); }
+  riesgocomunconsultar(arreglo: any){ return this.http.post(`${this.url}GrupoRiesgoComunMostrar.php`, JSON.stringify(arreglo)); }
+
+
   agregar(usuario: any){ return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario)); }
   agregar2(clienteM: any){ return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteM)); }
   agregar02(clienteMod: any){ return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteMod)); }

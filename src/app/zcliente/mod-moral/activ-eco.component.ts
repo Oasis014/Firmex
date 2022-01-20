@@ -50,61 +50,61 @@ Id: string = ''; Consecutivo: string = ''; NombreProvee: string = ''; LimiteCred
 
 //Arreglos de variables para obtener campos
 proveedores = {
-        Id: null, Consecutivo: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null,
         NombreProvee: null, LimiteCreditoProvee: null, SaldoCuentaProvee: null
 }
 proveedoresMod = {
-        Id: null, Consecutivo: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null,
         NombreProvee: null, LimiteCreditoProvee: null, SaldoCuentaProvee: null
 }
 proveedores2 = {
-        Id: null, Consecutivo: null
+        Id: localStorage.getItem("ID"), Consecutivo: null
         }
 bancarias = {
-        Id: null, Consecutivo: null, InstitucionRefBan: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null, InstitucionRefBan: null,
         AntiguedadRefBan: null, LimiteCreditoRefBan: null, SaldoCuentaRefBan: null
 }
 bancariasMod = {
-        Id: null, Consecutivo: null, InstitucionRefBan: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null, InstitucionRefBan: null,
         AntiguedadRefBan: null, LimiteCreditoRefBan: null, SaldoCuentaRefBan: null
 }
 bancarias2 = {
-        Id: null, Consecutivo: null
+        Id: localStorage.getItem("ID"), Consecutivo: null
 }
 personales = {
-        Id: null, Consecutivo: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null,
         NombreRefPer: null, TelefonoRefPer: null, TipoRelacionRefPer: null
 }
 personalesMod = {
-        Id: null, Consecutivo: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null,
         NombreRefPer: null, TelefonoRefPer: null, TipoRelacionRefPer: null
 }
 personales2 = {
-        Id: null, Consecutivo: null
+        Id: localStorage.getItem("ID"), Consecutivo: null
 }
 comerciales = {
-        Id: null, Consecutivo: null, NombreRefCom: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null, NombreRefCom: null,
         LimiteCreditoRefCom: null, SaldoCuentaRefCom: null
 }
 comercialesMod = {
-        Id: null, Consecutivo: null, NombreRefCom: null,
+        Id: localStorage.getItem("ID"), Consecutivo: null, NombreRefCom: null,
         LimiteCreditoRefCom: null, SaldoCuentaRefCom: null
 }
 comerciales2 = {
-        Id: null, Consecutivo: null
+        Id: localStorage.getItem("ID"), Consecutivo: null
 }
 eco = {
-        Id: null, ActividadEconomica: null,
+        Id: localStorage.getItem("ID"), ActividadEconomica: null,
         ActividadDetallada: null, IngresoMensual: null,
         OtroIngresoMensual: null, GastosMensuales: null, FlujoEfectivo: null
 }
 ecoMod = {
-        Id: null, ActividadEconomica: null,
+        Id: localStorage.getItem("ID"), ActividadEconomica: null,
         ActividadDetallada: null, IngresoMensual: null,
         OtroIngresoMensual: null, GastosMensuales: null, FlujoEfectivo: null
 }
 eco2 = {
-        Id: null, ActividadEconomica: null, ActividadDetallada: null
+        Id: localStorage.getItem("ID"), ActividadEconomica: null, ActividadDetallada: null
 }
 
 

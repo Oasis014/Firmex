@@ -12,6 +12,8 @@ const data: any = require('../../shared/data/prospectoF.json');
 })
 
 export class ListClienteFComponent  {
+    Bandera = { ban: null }
+
     rows = [];
     selected: any[] = [];
     temp = [];
@@ -68,5 +70,5 @@ export class ListClienteFComponent  {
                   }
 Total() {this.router.navigate(['list-cliente'], { relativeTo: this.route.parent }); }
 Moral() {this.router.navigate(['list-clienteM'], { relativeTo: this.route.parent }); }
-open() {this.router.navigate(['mod-cliente'], { relativeTo: this.route.parent }); }
+open() { this.Bandera.ban = 2,localStorage.setItem( "bandera", this.Bandera.ban ); this.router.navigate(['mod-moral'], { relativeTo: this.route.parent }); }
     }
