@@ -64,12 +64,19 @@
                               <div class="col-sm-6">
                                 <select class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal">
                                   <option selected>Seleccione la sucursal ...</option>
+                                  <option *ngFor="let cSuc of ctSucursal" [value]="cSuc.sucursal_id">{{cSuc.sucursal_nom}} 
+                                    </option>  
+                                </select>
+                              <!--
+                                <select class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal">
+                                  <option selected>Seleccione la sucursal ...</option>
                                   <option>Oficina Matriz</option>
                                   <option>Ciudad de México</option>
                                   <option>Queretaro</option>
                                   <option>Puebla</option>
                                   <option>Estado de México </option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
@@ -111,6 +118,12 @@
                               <div class="col-sm-6">
                                 <select class="form-control form-control-sm" name="ClavePromotor" id="ClavePromotor" required [(ngModel)]="general.ClavePromotor">
                                   <option selected>Seleccione al promotor ...</option>
+                                  <option *ngFor="let cProm of ctPromotor" [value]="cProm.Promotor_id">{{cProm.PromotorNombre}} 
+                                    </option>  
+                                </select>
+                                <!--
+                                <select class="form-control form-control-sm" name="ClavePromotor" id="ClavePromotor" required [(ngModel)]="general.ClavePromotor">
+                                  <option selected>Seleccione al promotor ...</option>
                                   <option>Director General</option>
                                   <option>Director Finanzas</option>
                                   <option>Director Promotor</option>
@@ -122,6 +135,7 @@
                                   <option>Subgerente Promoción </option>
                                   <option>Promotor </option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
@@ -202,11 +216,17 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Sexo </label>
                               <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="sexo" id="sexo" required [(ngModel)]="general.Sexo"> 
+                                  <option *ngFor="let ctsxo of ctSexo" [value]="ctsxo.catalogo_cve">{{ctsxo.desc_45}} 
+                                    </option>  
+                                </select>
+                                <!--
                                 <select class="form-control form-control-sm" name="sexo" id="sexo" required [(ngModel)]="general.Sexo">
                                   <option selected>Seleccione el tipo de sexo ...</option>
                                   <option>Hombre</option>
                                   <option>Mujer</option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
@@ -214,6 +234,11 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Estado Civil </label>
                               <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="edo_civil" id="edo_civil" required [(ngModel)]="general.EstadoCivil"> 
+                                  <option *ngFor="let edoC of ctEdociv" [value]="edoC.catalogo_cve">{{edoC.desc_45}} 
+                                    </option>  
+                                </select>
+                                <!--
                                 <select class="form-control form-control-sm" name="edo_civil" id="edo_civil" required [(ngModel)]="general.EstadoCivil">
                                   <option selected>Seleccione el estado civil ...</option>
                                   <option>Casado (Sociedad Conyuge)</option>
@@ -222,6 +247,7 @@
                                   <option>Viudo</option>
                                   <option>Union Libre</option>
                                 </select>
+                              -->
                               </div>
                             </div>
                           </div>
@@ -396,5 +422,649 @@
                   </div>
                 </div>
               </form>
+<<<<<<< HEAD
               
+=======
+              <button class="btn btn-sm btn-light" [disabled]="active === 2" (click)="nav3.select(2)">Siguiente Sección</button>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2" [disabled]="disabled"> <a ngbNavLink><i class="icon-home"></i>Domicilio</a>
+            <ng-template ngbNavContent>
+              <div class="modal fade" id="largesizemodal2">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header border-light-2">
+                      <h5 class="modal-title text-white">Información</h5>
+                    </div>
+                    <div class="modal-body">
+                      <div >
+                        <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
+                          <thead >
+                          <tr>
+                            <td>Clave de Error: </td>
+                            <td>Error: </td>
+                            <td>Descripcion de error: </td>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let retorno2 of cliente">
+                            <td>{{retorno2.errorClave}}</td>
+                            <td>{{retorno2.errorSp}}</td>
+                            <td>{{retorno2.errorDescripcion}}</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="modal-footer border-light-2">
+                      <button type="button" class="btn btn-link text-white" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <form action="#" >
+                <div class="row" >
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <h6 class="page-title">Domicilio</h6>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Tipo de Domicilio</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="tipo_domicilio" id="tipo_domicilio"  [(ngModel)]="dom.TipoDom">
+                                  <option *ngFor="let ctdom of ctTipdom" [value]="ctdom.catalogo_cve">{{ctdom.desc_45}} 
+                                    </option>  
+                                </select>
+                                <!--
+                                <select class="form-control form-control-sm" name="tipo_domicilio" id="tipo_domicilio"  [(ngModel)]="dom.TipoDom">
+                                  <option selected>Seleccione la tipo de comicilio ...</option>
+                                  <option>Político</option>
+                                  <option>Civil</option>
+                                  <option>Múltiple</option>
+                                  <option>Especiales</option>
+                                  <option>Procesal</option>
+                                  <option>Convencional o Contractual</option>
+                                  <option>General</option>
+                                  <option>Fiscal</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">País</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="Pais" id="pais"  [(ngModel)]="dom.Pais">
+                                  <option selected>Seleccione el Pais ...</option>
+                                  <option *ngFor="let cPs of cPaises" [value]="cPs.Pais_id">{{cPs.Pais_desc}} 
+                                  </option>  
+                                </select>
+                                <!--
+                                <select class="form-control form-control-sm" name="Pais" id="pais"  [(ngModel)]="dom.Pais">
+                                  <option selected>Seleccione el Pais ...</option>
+                                  <option>MP Islas Marianas</option>
+                                  <option>MQ Martinica</option>
+                                  <option>MR Mauritania</option>
+                                  <option>MS Monserrat</option>
+                                  <option>MT Malta</option>
+                                  <option>MU Mauricio</option>
+                                  <option>MV Maldivas</option>
+                                  <option>MW Malawi</option>
+                                  <option>MX México</option>
+                                  <option>MY Malaysia</option>
+                                  <option>MZ Monzambique</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Estado</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="edo" id="edo"  [(ngModel)]="dom.Estado" (change)="onChangeMunicipio($event.target.value)">
+                                  <option selected>Seleccione el Estado ...</option>
+                                  <option *ngFor="let cEdo of cEstado" [value]="cEdo.estado_id">{{cEdo.estado_desc}} 
+                                  </option>  
+                                </select>
+                                <!--
+                                <select class="form-control form-control-sm" name="edo" id="edo"  [(ngModel)]="dom.Estado">
+                                  <option selected>Seleccione el Estado ...</option>
+                                  <option>MX México</option>
+                                  <option>MN Michoacan de Ocampo</option>
+                                  <option>MS Morelos</option>
+                                  <option>NT Nayarit</option>
+                                  <option>NL Nuevo Leon</option>
+                                  <option>OC Oaxaca</option>
+                                  <option>PL Puebla</option>
+                                  <option>QT Queretaro de Areteaga</option>
+                                  <option>QR Quintana Roo</option>
+                                  <option>SP San Luis Potosi</option>
+                                  <option>SL Sinaloa</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-success">Delegación o Municipio</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="municipio" id="municipio"  [(ngModel)]="dom.Municipio" (change)="onChangeCodPostal($event.target.value)">
+                                  <option selected>Seleccione el Municipio ...</option>
+                                  <option *ngFor="let cm of cMpio" [value]="cm.municipio_id">{{cm.municipio_desc}} 
+                                  </option>  
+                                </select>                                
+                                <!--
+                                <select class="form-control form-control-sm" name="municipio" id="municipio"  [(ngModel)]="dom.Municipio">
+                                  <option selected>Seleccione el Municipio ...</option>
+                                  <option>Tepetitlan </option>
+                                  <option>Tetepango</option>
+                                  <option>Villa de Tezontepec</option>
+                                  <option>Tezontepec de Aldama</option>
+                                  <option>Tianguistengo</option>
+                                  <option>Tizayuca</option>
+                                  <option>Tlahuelilpan</option>
+                                  <option>Tlahuiltepa</option>
+                                  <option>Tlanalapa</option>
+                                  <option>Tlanchinol</option>
+                                  <option>Tlaxcoapan</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Código Postal</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="c_p" id="c_p"  [(ngModel)]="dom.CodPos" (change)="onChangeColonia($event.target.value)">
+                                  <option selected>Seleccione el C.P ...</option>
+                                  <option *ngFor="let cm of cCP" [value]="cm.cpostal">{{cm.cpostal}} 
+                                  </option>  
+                                </select> 
+                                <!--
+                                <select class="form-control form-control-sm" name="c_p" id="c_p"  [(ngModel)]="dom.CodPos">
+                                  <option selected>Seleccione el C.P ...</option>
+                                  <option> 08100 </option>
+                                  <option> 08200 </option>
+                                  <option> 08300 </option>
+                                  <option> 04500 </option>
+                                  <option> 05420 </option>
+                                  <option> 05600 </option>
+                                  <option> 05500 </option>
+                                  <option> 07890 </option>
+                                  <option> 08400 </option>
+                                  <option> 05600 </option>
+                                  <option> 13400 </option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Colonia</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="colonia" id="colonia"  [(ngModel)]="dom.Colonia">
+                                  <option selected>Seleccione la colonia ...</option>
+                                  <option *ngFor="let cm of cColonia" [value]="cm.asentamiento_desc">{{cm.asentamiento_desc}} 
+                                  </option>  
+                                </select> 
+                                <!--
+                                <select class="form-control form-control-sm" name="colonia" id="colonia"  [(ngModel)]="dom.Colonia">
+                                  <option selected>Seleccione la colonia ...</option>
+                                  <option>Lomas de San Jorge</option>
+                                  <option>Ciudad Satelite</option>
+                                  <option>Dolores</option>
+                                  <option>La Loma</option>
+                                  <option>Lomas del Ajedrez</option>
+                                  <option>Mujeres Ilustres</option>
+                                  <option>Periodistas</option>
+                                  <option>Fundadores</option>
+                                  <option>Los Negritos</option>
+                                  <option>Coyotes Norte</option>
+                                  <option>Sandovales</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Calle </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="calle" id="calle" placeholder="Nombre de la Calle"  [(ngModel)]="dom.Calle" >
+                                <span class="input-group-text"><i class="fa fa-road"></i></span>
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Número Exterior</label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="NoEx" id="NoEx" placeholder="Número Exterior"  [(ngModel)]="dom.NoEx" >
+                                <span class="input-group-text"><i class="fa fa-slack"></i></span>
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Número Interior</label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="NoIn" id="NoIn" placeholder="Número Interior" [(ngModel)]="dom.NoIn">
+                                <span class="input-group-text"><i class="fa fa-slack"></i></span>
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          
+                         
+                          
+                         
+                          <div class="col-1 col-lg-9 col-xl-9">
+                          </div>
+                          <div class="col-2 col-lg-3 col-xl-3">
+                        <button data-toggle="modal" data-target="#largesizemodal2"  (click)="Domicilio()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" type = "reset" >Guardar</button>
+                          </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <button class="btn btn-sm btn-light" [disabled]="active === 3" (click)="nav3.select(3)">Siguiente Sección</button>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3" [disabled]="disabled"> <a ngbNavLink><i class="icon-note"></i>Actividad y Referencia </a>
+            <ng-template ngbNavContent>
+              <form action="#" >
+                <div class="row" >
+                  <div class="col-12 col-lg-12">
+                    <h6 class="page-title">Datos Cliete</h6>
+                    <div class="row">
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <h6 class="page-title">Actividad Económica</h6>
+                        </div>
+                        <hr>
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-success">Actividad Económica </label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="ActividadEconomica" id="ActividadEconomica" required [(ngModel)]="economica.ActividadEconomica">                               
+                                  <option *ngFor="let ctAE of ctActeco" [value]="ctAE.catalogo_cve">{{ctAE.desc_45}} 
+                                    </option>  
+                                </select>
+                                <!--
+                                <select class="form-control form-control-sm" name="ActividadEconomica" id="ActividadEconomica" required [(ngModel)]="economica.ActividadEconomica">
+                                  <option selected>Seleccione la Actividad ...</option>
+                                  <option value="1">Agrupecuario y Ganadería</option>
+                                  <option value="2">Minería</option>
+                                  <option value="3">Pto. Alimenticios, bebidas, tabaco</option>
+                                  <option value="3">Industria, Textil y cuero</option>
+                                  <option value="4">Ind. de la madera y prod. de madera</option>
+                                  <option value="5">Pepel, prod, papel imprentas y edito</option>
+                                  <option value="6">Sust. Quim. Deriv. Petról. Cuacho. Plást-</option>
+                                  <option value="7">Prod. Min. no metál. Excp. Petról y Carb.</option>
+                                  <option value="8">Industrias Metálicas Básicas</option>
+                                  <option value="9">Prod.Metálicos Maquinaria y equipo</option>
+                                  <option value="10">Otras Industrias Manufactureras</option>
+                                  <option value="11">Construcción</option>
+                                  <option value="12">Electricidad, gas y agua</option>
+                                  <option value="13">Comercio</option>
+                                  <option value="14">Servicios</option>
+                                  <option value="15">Sector Publico</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-success">Actividad Detallada </label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="ActividadDetallada" id="ActividadDetallada" required [(ngModel)]="economica.ActividadDetallada">                               
+                                  <option *ngFor="let ctAED of ctActdet" [value]="ctAED.catalogo_cve">{{ctAED.desc_45}} 
+                                    </option>  
+                                </select>
+                                
+                                <!--
+                                <select class="form-control form-control-sm" name="ActividadDetallada" id="ActividadDetallada" required [(ngModel)]="economica.ActividadDetallada">
+                                  <option selected>Seleccione la actividad ...</option>
+                                  <option value="1">Otros Servicios Profesionales Cientificos y Técnivos</option>
+                                  <option value="2">Otros Servicios Profesionales Cientificos y Técnivos</option>
+                                  <option value="3">Otros Servicios Profesionales Cientificos y Técnivos</option>
+                                  <option value="4">Otros Servicios Profesionales Cientificos y Técnivos</option>
+                                  <option value="5">Otros Servicios Profesionales Cientificos y Técnivos</option>
+                                </select>
+                              -->
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Ingresos Mensuales </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="IngresoMensual" id="IngresoMensual" required [(ngModel)]="economica.IngresoMensual" placeholder=" 0.00 ">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Otros Ingresos  </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="OtroIngresoMensual" id="OtroIngresoMensual" required [(ngModel)]="economica.OtroIngresoMensual" placeholder=" 0.00 ">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Gastos Mensuales </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="GastosMensuales" id="GastosMensuales" required [(ngModel)]="economica.GastosMensuales" placeholder=" 0.00 ">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Flujo de Efectivo </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="FlujoEfectivo" id="FlujoEfectivo" required [(ngModel)]="economica.FlujoEfectivo" placeholder=" 0.00 ">
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <button  (click)="Domicilio()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6 class="page-title">Referencias Personales</h6>
+                        <hr>
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-success">Consecutivo</label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" name="Consecutivo" id="Consecutivo" required [(ngModel)]="personales.Consecutivo" placeholder="Apellido paterno" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Nombre</label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" name="NombreRefPer" id="NombreRefPer" required [(ngModel)]="personales.NombreRefPer" placeholder="Apellido materno" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Teléfono </label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" name="TelefonoRefPer" id="TelefonoRefPer" required [(ngModel)]="personales.TelefonoRefPer" placeholder="Primer Nombre" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-success">Tipo Relación  </label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm" name="TipoRelacionRefPer" id="TipoRelacionRefPer" required [(ngModel)]="personales.TipoRelacionRefPer" >
+                                  <option selected>Seleccione el opcion ...</option>
+                                  <option value="1">OPCION</option>
+                                  <option value="2">OPCION</option>
+                                  <option value="3">OPCION</option>
+                                  <option value="3">OPCION</option>
+                                  <option value="4">OPCION</option>
+                                  <option value="5">OPCION</option>
+                                  <option value="6">OPCION</option>
+                                  <option value="7">OPCION</option>
+                                  <option value="8">OPCION</option>
+                                  <option value="9">OPCION</option>
+                                  <option value="10">OPCION</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                          <button  (click)="Telefonos()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6 class="page-title">Referencias Comerciales</h6>
+                        <hr>
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Consecutivo</label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" name="Consecutivo" id="Consecutivo" required [(ngModel)]="comerciales.Consecutivo" placeholder="Nombre del Proveedor" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Nombre </label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" name="NombreRefCom" id="NombreRefCom" required [(ngModel)]="comerciales.NombreRefCom" placeholder="Nombre Completo" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Limite Crédito </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="LimiteCreditoRefCom" id="LimiteCreditoRefCom" required [(ngModel)]="comerciales.LimiteCreditoRefCom" placeholder=" 0.00 ">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Saldo de Cuenta </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="SaldoCuentaRefCom" id="SaldoCuentaRefCom" required [(ngModel)]="comerciales.SaldoCuentaRefCom" placeholder=" 0.00 ">
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <button  (click)="Telefonos()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6 class="page-title">Referencias Bancarias</h6>
+                        <hr>
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Consecutivo </label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" name="Consecutivo" id="Consecutivo" required [(ngModel)]="bancarias.Consecutivo" placeholder="000" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Nombre </label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" name="InstitucionRefBan" id="InstitucionRefBan" required [(ngModel)]="bancarias.InstitucionRefBan" placeholder="Nombre completo" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Antigüedad </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="AntiguedadRefBan" id="AntiguedadRefBan" required [(ngModel)]="bancarias.AntiguedadRefBan" placeholder="Nombre completo" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Limite crédito </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="LimiteCreditoRefBan" id="LimiteCreditoRefBan" required [(ngModel)]="bancarias.LimiteCreditoRefBan" placeholder="$ 0.00">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Saldo de la cuenta</label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" name="SaldoCuentaRefBan" id="SaldoCuentaRefBan" required [(ngModel)]="bancarias.SaldoCuentaRefBan" placeholder="$ 0.00">
+                              </div>
+                            </div>
+                          </div>
+
+                          <button  (click)="Telefonos()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6 class="page-title">Referencias Crediticias</h6>
+                        <hr>
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Institución </label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" id="cre_name_inst" placeholder="Nombre Institución" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Antigüedad </label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" id="cre_antiquity" placeholder="Antigüedad" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Limite Crédito </label>
+                              <div class="col-sm-6 input-group">
+                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                                <input type="text" class="form-control" id="cre_credit_limit" placeholder=" 0.00 ">
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Saldo de Cuenta </label>
+                              <div class="col-sm-6 input-group">
+                                <span class="input-group-text"><i class="fa fa-usd"></i></span>
+                                <input type="text" class="form-control" id="account_balance" placeholder=" 0.00 ">
+                                <div class="input-group-append">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <button  (click)="Telefonos()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+
+              <button class="btn btn-sm btn-light" [disabled]="active === 4" (click)="nav3.select(4)">Siguiente Sección</button>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4" [disabled]="disabled"> <a ngbNavLink><i class="fa fa-university"></i>Cuentas Bancarias </a>
+            <ng-template ngbNavContent>
+
+
+              <button class="btn btn-sm btn-light" [disabled]="active === 5" (click)="nav3.select(5)">Siguiente Sección</button>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="5" [disabled]="disabled"> <a ngbNavLink><i class="fa fa-users"></i>Beneficiarios</a>
+            <ng-template ngbNavContent>
+
+
+              <button class="btn btn-sm btn-light" [disabled]="active === 6" (click)="nav3.select(6)">Siguiente Sección</button>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="6" [disabled]="disabled"> <a ngbNavLink><i class="fa fa-folder-open-o"></i>Documentación</a>
+            <ng-template ngbNavContent>
+
+
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav3" class="mt-2"></div>
+        <div class="mb-3">
+
+        </div> <pre>Active: {{ active2 }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+>>>>>>> 57eccb49e6dda1494cb59eccf880cebca11fa0df
 

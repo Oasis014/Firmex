@@ -1,33 +1,55 @@
+<<<<<<< HEAD
 import { Component, OnInit, Input } from '@angular/core';
+=======
+import { Component, OnInit } from "@angular/core";
+>>>>>>> 57eccb49e6dda1494cb59eccf880cebca11fa0df
 import { Router, ActivatedRoute } from "@angular/router";
-import { ToastrService } from 'ngx-toastr';
-import { ClienteService } from '../cliente.service';
-import {NgForm} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-@Component({
-  selector: 'app-mod-moral',
-  templateUrl: './mod-moral.component.html',
-  styleUrls: ['./mod-moral.component.scss']
-})
-export class ModMoralComponent implements OnInit{
+import { ToastrService } from "ngx-toastr";
+import { ClienteService } from "../cliente.service";
+//import {NgForm} from '@angular/forms';
+//import {HttpClient} from '@angular/common/http';
+import { NgbNavChangeEvent } from "@ng-bootstrap/ng-bootstrap";
+interface Catalogo {
+  Catalogo_cve: number|string,
+  desc_45: string
+}
 
+export class Domicilio {
+  Id: string|number = null;
+  TipoDom: string|number = null;
+  Calle: string = null;
+  NoEx: string = null;
+  NoIn: string = null;
+  CodPos: string|number = null;
+  Colonia: string|number = null;
+  Municipio: string|number = null;
+  Estado: string|number = null;
+  Pais: string|number = null;
+}
+@Component({
+  selector: "app-mod-moral",
+  templateUrl: "./mod-moral.component.html",
+  styleUrls: ["./mod-moral.component.scss"],
+})
+export class ModMoralComponent implements OnInit {
   active = 1;
-  active1 = 'top';
+  active1 = "top";
   disabled = true;
   active3 = 3;
   active4 = 4;
   active5 = 5;
   active6 = 6;
+
   onNavChange(changeEvent: NgbNavChangeEvent) {
-    if (changeEvent.nextId === 2, 3, 4, 5, 6) {
+    if ((changeEvent.nextId === 2, 3, 4, 5, 6)) {
       changeEvent.preventDefault();
     }
   }
+
   toggleDisabled() {
     this.disabled = !this.disabled;
     if (this.disabled) {
-      this.active = 1, 2, 3, 4, 5, 6;
+      (this.active = 1), 2, 3, 4, 5, 6;
     }
   }
 
@@ -36,7 +58,7 @@ export class ModMoralComponent implements OnInit{
   active2;
 
   close(event: MouseEvent, toRemove: number) {
-    this.tabs = this.tabs.filter(id => id !== toRemove);
+    this.tabs = this.tabs.filter((id) => id !== toRemove);
     event.preventDefault();
     event.stopImmediatePropagation();
   }
@@ -45,6 +67,7 @@ export class ModMoralComponent implements OnInit{
     this.tabs.push(this.counter++);
     event.preventDefault();
   }
+<<<<<<< HEAD
   ban: string = '';
 //Declaracion Var LocalStorage Domicilio.
 Id: string = ''; Tipo: string = ''; Calle: string = ''; NoEx: string = ''; NoIn: string = ''; CodPos: string = ''; Colonia: string = ''; Municipio: string = ''; Estado: string = ''; Pais: string = '';
@@ -68,15 +91,202 @@ public isCollapsedPrueba1 = true;
 domicilio = null as any; catalogo = null as any; catalogo1 = null as any; cliente = null as any;
 domborrar = null as any; clienteM = null as any; clienteMod = null as any; domcon = null as any;
 telclien = null as any; telclienb = null as any; redclien = null as any; redclienb = null as any;
+=======
 
-//Objetos any Catalogos
-ctActdet = null as any; ctActeco = null as any; ctBancos = null as any; ctCatpue = null as any;
-ctCodId = null as any; ctEdociv = null as any; ctIdentif = null as any; ctPerjur = null as any;
-ctProfes = null as any; ctStscte  = null as any; ctTipded = null as any; ctTipdom = null as any;
-ctTipgse = null as any; ctTipman = null as any; ctTipred = null as any; ctTiprel = null as any;
-ctTiprpe = null as any; ctTiprrc = null as any;	 ctTiptel = null as any; ctnaCION = null as any;
-ctSexo = null as any;
+  isCollapsed = false;
+  isCollapsed2 = true;
+  isCollapsed4 = false;
+  isCollapsed5 = true;
 
+  isCollapsed6 = true;
+  isCollapsed7 = false;
+  isCollapsed8 = true;
+
+  //domicilio
+  disabled1 = true;
+  disabled2 = true;
+  disabled3 = true;
+  disabled4 = true;
+  disabled5 = true;
+  disabled6 = true;
+  disabled7 = true;
+  disabled8 = true;
+  disabled9 = true;
+  disabled10 = false;
+  disabled11 = true;
+  disabled12 = false;
+  disabled13 = false;
+  disabled14 = false;
+>>>>>>> 57eccb49e6dda1494cb59eccf880cebca11fa0df
+
+  //telefonos
+  isCollapsed1Tel = true;
+  isCollapsed2Tel = true;
+  isCollapsed3Tel = true;
+  disabled1Tel = true;
+  disabled2Tel = true;
+  disabled3Tel = true;
+  disabled4Tel = false;
+  disabled5Tel = false;
+  disabled6Tel = false;
+  //Social
+  isCollapsed1Red = true;
+  isCollapsed2Red = true;
+  isCollapsed3Red = true;
+  disabled1Red = true;
+  disabled2Red = true;
+  disabled3Red = false;
+  disabled4Red = false;
+  disabled5Red = false;
+
+  domicilio = null as any;
+  catalogo = null as any;
+  catalogo1 = null as any;
+  cliente = null as any;
+  domborrar = null as any;
+  clienteM = null as any;
+  clienteMod = null as any;
+  domcon = null as any;
+  telclien = null as any;
+  telclienb = null as any;
+  redclien = null as any;
+  redclienb = null as any;
+
+  EstatusClienteA: string = "Prospecto";
+  SucursalA: string = "";
+  ClavePromotorA: string = "";
+  RazonSocialA: string = "";
+
+  //Catalogos array
+  Tiprrc: Catalogo[];
+  Tiprpe: Catalogo[];
+  Tiprel: Catalogo[];
+  Tipred: Catalogo[];
+  Tipman: Catalogo[];
+  Tipgse: Catalogo[];
+  Tipdom: Catalogo[];
+  Tipded: Catalogo[];
+  Stscte: Catalogo[];
+  Sexo: Catalogo[];
+  Profes: Catalogo[];
+  Perjur: Catalogo[];
+  naCION: Catalogo[];
+  Identif: Catalogo[];
+  Edociv: Catalogo[];
+  CodId: Catalogo[];
+  Catpue: Catalogo[];
+  Bancos: Catalogo[];
+  Acteco: Catalogo[];
+  Actdet: Catalogo[];
+  catDocumentType: Catalogo[];
+  //Fin Catalogos
+
+  general = {
+    Id: null,
+    Sucursal: null,
+    ApellidoPaterno: null,
+    ApellidoMaterno: null,
+    PrimerNombre: null,
+    SegundoNombre: null,
+    RazonSocial: null,
+    ClavePromotor: null,
+    EstatusCliente: null,
+    FechaAlta: null,
+    PersonalidadJuridica: "0",
+    RFC: null,
+    Nacionalidad: null,
+    EmailPersonal: null,
+    EmailEmpresa: null,
+    ParteRelacionada: null,
+    GrupoConsejo: null,
+    GrupoRiesgoComun: null,
+    FechaNacimiento: null,
+    Sexo: null,
+    EstadoCivil: null,
+    CURP: null,
+    TipoIdentificacion: null,
+    NumeroIdentificacion: null,
+    ListaNegra: null,
+    Profesion: null,
+    NombreSociedad: null,
+    FechaConstitucion: null,
+    RepresentanteLegal: null,
+    PresidenteConsejo: null,
+    Consejero: null,
+  };
+
+  domMod: Domicilio = new Domicilio();
+  dom: Domicilio = new Domicilio();
+
+  proveedores = {
+    Id: null,
+    Consecutivo: null,
+    NombreProvee: null,
+    LimiteCreditoProvee: null,
+    SaldoCuentaProvee: null,
+  };
+
+  bancarias = {
+    Id: null,
+    Consecutivo: null,
+    InstitucionRefBan: null,
+    AntiguedadRefBan: null,
+    LimiteCreditoRefBan: null,
+    SaldoCuentaRefBan: null,
+  };
+
+  personales = {
+    Id: null,
+    Consecutivo: null,
+    NombreRefPer: null,
+    TelefonoRefPer: null,
+    TipoRelacionRefPer: null,
+  };
+
+  comerciales = {
+    Id: null,
+    Consecutivo: null,
+    NombreRefCom: null,
+    LimiteCreditoRefCom: null,
+    SaldoCuentaRefCom: null,
+  };
+
+  economica = {
+    Id: null,
+    ActividadEconomica: null,
+    ActividadDetallada: null,
+    IngresoMensual: null,
+    OtroIngresoMensual: null,
+    GastosMensuales: null,
+    FlujoEfectivo: null,
+  };
+
+  cuenta = {
+    Id: null,
+    Consecutivo: null,
+    NombreBank: null,
+    BancoCtaBan: null,
+    NumBan: null,
+    ClaveInter: null,
+  };
+
+  dom2 = {
+    Id: null,
+    TipoDom: null,
+  };
+  tel = {
+    Id: 0,
+    TipoTel: null,
+    telefono: null,
+    extencion: null,
+  };
+  red = {
+    Id: 0,
+    tipoRed: null,
+    social: null,
+  };
+
+<<<<<<< HEAD
 //Arreglos de variables para obtener campos
 proveedores = {
         Id: localStorage.getItem("ID"), Consecutivo: null,
@@ -137,28 +347,60 @@ general = { Id: null, Sucursal: null, ApellidoPaterno: null, ApellidoMaterno: nu
     ApellidoMaterno: null, RazonSocial: null,
     PersonalidadJuridica: null, RFC: null
     }
+=======
+  Val = {
+    Sucursal: null,
+    PrimerNombre: null,
+    SegundoNombre: null,
+    ApellidoPaterno: null,
+    ApellidoMaterno: null,
+    RazonSocial: null,
+    PersonalidadJuridica: "01",
+    RFC: null,
+  };
+
+>>>>>>> 57eccb49e6dda1494cb59eccf880cebca11fa0df
   retorno = {
-  noCliente: null, errorClave: null,
-  errorSp: null, errorDescripcion: null
-  }
+    noCliente: null,
+    errorClave: null,
+    errorSp: null,
+    errorDescripcion: null,
+  };
+
   retorno2 = {
-    errorClave: null, errorSp: null, errorDescripcion: null
-    }
+    errorClave: null,
+    errorSp: null,
+    errorDescripcion: null,
+  };
+
   retornoID = {
-    Sucursal: null, RazonSocial: null, ClavePromotor: null, EstatusCliente: null
-    }
-  listado = { CodPos: null, Colonia: null,
-        Municipio: null, Estado: null, Pais: null
-        }
-DatosMuestra(){this.Contador ++; if(this.Contador == 1){this.isCollapsed5 = ! this.isCollapsed5;} }
-  constructor(public toastr: ToastrService, private router: Router, private route: ActivatedRoute, private clienteService: ClienteService) { }
+    Sucursal: null,
+    RazonSocial: null,
+    ClavePromotor: null,
+    EstatusCliente: null,
+  };
 
-    Validate(){ this.clienteService.agregar9(this.Val).subscribe(result => this.cliente = result, datos =>{  }); }
+  listado = {
+    CodPos: null,
+    Colonia: null,
+    Municipio: null,
+    Estado: null,
+    Pais: null,
+  };
 
-    Domicilio(){this.dom.Id = this.general.Id; this.clienteService.agregar2(this.dom).subscribe((result: any) => { this.clienteM = result, this.domcon = null, this.domborrar = null, this.obtenerDomicilio(); }); }
+  constructor(
+    public toastr: ToastrService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly clienteService: ClienteService
+  ) { }
 
-    DomicilioMod(){ this.isCollapsed6 = !this.isCollapsed6; this.isCollapsed7 = !this.isCollapsed7; this.clienteService.agregar02(this.domMod).subscribe( (result: any) => { this.clienteM = result, this.domcon = null, this.domborrar = null, this.obtenerDomicilio(); }); }
+  ngOnInit() {
+    this.CatTipdom();
+    this.getDocumentTypeCat();
+  }
 
+<<<<<<< HEAD
     Consultar(dom: any){
     localStorage.setItem( "Tipo", dom.TipoDom ),this.Tipo = localStorage.getItem("Tipo"),
     localStorage.setItem( "Calle", dom.Calle ),this.Calle = localStorage.getItem("Calle"),
@@ -195,52 +437,336 @@ DatosMuestra(){this.Contador ++; if(this.Contador == 1){this.isCollapsed5 = ! th
     this.disabledGen12 = !this.disabledGen12; this.disabledGen15 = !this.disabledGen15; this.disabledGen16 = !this.disabledGen16; this.disabledGen17 = !this.disabledGen17; this.disabledGen18 = !this.disabledGen18; this.disabledGen19 = !this.disabledGen19;this.disabledGen20 = !this.disabledGen20; this.disabledGen21 = !this.disabledGen21; }
     MostrarDom() { this.clienteService.mostrardom().subscribe(result => this.domicilio = result); }
     obtenerDomicilio() { this.clienteService.getDomicilio().subscribe(result => this.domicilio = result);}
+=======
+  /**
+   * Primera Validacion RFC
+   */
+  Validate() {
+    this.clienteService.agregar9(this.Val).subscribe(
+      (result) => (this.cliente = result),
+      (datos) => { }
+    );
+  }
 
-//Funcion para obtener registros catalogos
+  /**
+   * Guarda Datos Generales
+   */
+  General() {
+    console.log(this.general);
+    this.general.Id = 0;
+    this.general.FechaAlta = '2021-12-29';
+    this.general.FechaNacimiento = '1987-11-10';
+    this.general.FechaConstitucion = "2010-11-10";
+>>>>>>> 57eccb49e6dda1494cb59eccf880cebca11fa0df
 
-  CatDet(){ this.clienteService.catActdet().subscribe( result => {this.ctActdet = result}); }
+    this.clienteService.agregar(this.general).subscribe(
+      (result: any) => {
+        this.cliente = result;
+        this.general.Id = result[0].noCliente;
+      },
+      (datos) => { }
+    );
+  }
 
-  CatEco(){ this.clienteService.catActeco().subscribe( result => {this.ctActeco = result}); }
+  /**
+   * Inserta domicilio
+   */
+  Domicilio() {
+    this.dom.Id = this.general.Id;
+    this.clienteService.agregar2(this.dom).subscribe(
+      (result: any) => {
+        this.clienteM = result;
+        this.obtenerDomicilio();
+      }
+      //(datos) => { }
+    );
+  }
 
-  CatBncs(){ this.clienteService.catBancos().subscribe( result => {this.ctBancos = result}); }
+  DomicilioMod() {
+    this.clienteService.agregar02(this.domMod).subscribe(
+      (result) => (this.clienteMod = result),
+      (datos) => { }
+    );
+  }
 
-  CatPue(){ this.clienteService.catCatpue().subscribe( result => {this.ctCatpue = result}); }
+  Consultar(dom: any) {
+    localStorage.setItem("Listado", JSON.stringify(dom)),
+      (this.dom2 = JSON.parse(localStorage.getItem("Listado"))),
+      this.clienteService.consultar(this.dom2).subscribe(
+        (result) => (this.domcon = result),
+        (datos) => { }
+      ),
+      (this.domborrar = null);
+  }
 
-  CodId(){ this.clienteService.catCodId().subscribe( result => {this.ctCodId = result}); }
+  RertornoCon() {
+    this.clienteService
+      .retornoCon()
+      .subscribe((result) => (this.domcon = result));
+  }
 
-  EdoCiv(){ this.clienteService.catEdociv().subscribe( result => {this.ctEdociv = result}); }
+  Retorno(retorno: any) {
+    this.clienteService
+      .retorno()
+      .subscribe((result) => (this.cliente = result)),
+      localStorage.setItem("ID", JSON.stringify(retorno));
+  }
 
-  Identif(){ this.clienteService.catIdentif().subscribe( result => {this.ctIdentif = result}); }
+  Retorno2() {
+    this.clienteService
+      .retorno2()
+      .subscribe((result) => (this.cliente = result));
+  }
 
-  Perjur(){ this.clienteService.catPerjur().subscribe( result => {this.ctPerjur = result}); }
+  Retorno3() {
+    this.clienteService
+      .retorno3()
+      .subscribe((result) => (this.clienteM = result));
+  }
 
-  Profes(){ this.clienteService.catProfes().subscribe( result => {this.ctProfes = result}); }
+  RetornoDomb() {
+    this.clienteService
+      .retornodomb()
+      .subscribe((result) => (this.domborrar = result));
+  }
 
-  ctSx(){ this.clienteService.catSexo().subscribe( result => {this.ctSexo = result}); }
+  DomBorrar(dom: any) {
+    localStorage.setItem("Listado", JSON.stringify(dom)),
+      (this.dom2 = JSON.parse(localStorage.getItem("Listado"))),
+      this.clienteService.domborrar(this.dom2).subscribe(
+        (result) => (this.domborrar = result),
+        (datos) => { }
+      ),
+      this.obtenerDomicilio(),
+      (this.clienteM = null),
+      (this.redclienb = null),
+      (this.telclien = null);
+  }
 
-  StsCte(){ this.clienteService.catStscte().subscribe( result => {this.ctStscte = result}); }
+  Cuenta() {
+    this.clienteService.agregar3(this.cuenta).subscribe((datos) => { });
+  }
 
-  Tipded(){ this.clienteService.catTipded().subscribe( result => {this.ctTipded = result}); }
+  Economica() {
+    this.clienteService.agregar4(this.economica).subscribe((datos) => { });
+  }
 
-  TipDom(){ this.clienteService.catTipdom().subscribe( result => {this.ctTipdom = result}); }
+  Comerciales() {
+    this.clienteService.agregar5(this.comerciales).subscribe((datos) => { });
+  }
 
-  Tipgse(){ this.clienteService.catTipgse().subscribe( result => {this.ctTipgse = result}); }
+  Personales() {
+    this.clienteService.agregar6(this.personales).subscribe((datos) => { });
+  }
 
-  Tipman(){ this.clienteService.catTipman().subscribe( result =>{this.ctTipman = result}); }
+  Bancarias() {
+    this.clienteService.agregar7(this.bancarias).subscribe((datos) => { });
+  }
 
-  Tipred(){ this.clienteService.catTipred().subscribe( result =>{this.ctTipred = result}); }
+  Proveedores() {
+    this.clienteService.agregar8(this.proveedores).subscribe((datos) => { });
+  }
 
-  TipRel(){ this.clienteService.catTiprel().subscribe( result =>{this.ctTiprel = result}); }
+  RetornoTel() {
+    /*this.clienteService
+      .retornotel()
+      .subscribe((result) => (this.telclien = result));*/
+  }
 
-  Tiprpe(){ this.clienteService.catTiprpe().subscribe( result =>{this.ctTiprpe = result}); }
+  AgregarTel() {
+    /*this.clienteService.agregartel(this.tel).subscribe(
+      (result) => (this.telclien = result),
+      (datos) => { }
+    );*/
+  }
 
-  Tiprrc(){ this.clienteService.catTiprrc().subscribe( result =>{this.ctTiprrc = result}); }
+  RetornoTelB() {
+    /*this.clienteService
+      .retornotelb()
+      .subscribe((result) => (this.telclien = result));*/
+  }
 
-  Tiptel(){ this.clienteService.catTiptel().subscribe( result =>{this.ctTiptel = result}); }
+  BorrarTel() {
+    /*this.clienteService.borrartel(this.tel).subscribe(
+      (result) => (this.telclien = result),
+      (datos) => { }
+    );
+    (this.domborrar = null), (this.redclienb = null);*/
+  }
 
-  cnaCION(){ this.clienteService.catnaCION().subscribe( result =>{this.ctnaCION = result}); }
+  RetornoRed() {
+    /*this.clienteService
+      .retornored()
+      .subscribe((result) => (this.redclien = result));*/
+  }
 
+  AgregarRed() {
+    /* this.clienteService.agregarred(this.red).subscribe(
+      (result) => (this.redclien = result),
+      (datos) => { }
+    ); */
+  }
+
+  RetornoRedB() {
+    /* this.clienteService
+      .retornoredb()
+      .subscribe((result) => (this.redclienb = result)); */
+  }
+
+  BorrarRed() {
+    /* this.clienteService.borrarred(this.red).subscribe(
+      (result) => (this.redclienb = result),
+      (datos) => { }
+    );
+    (this.domborrar = null), (this.telclien = null); */
+  }
+
+  CatTipdom() {
+    this.clienteService
+      .catTipdom()
+      .subscribe((result) => (this.catalogo1 = result));
+  }
+
+  list() {
+    this.router.navigate(["mto-fisica"], { relativeTo: this.route.parent });
+  }
+
+  open() {
+    this.router.navigate(["list-clienteM"], { relativeTo: this.route.parent });
+  }
+
+  typeSuccess() {
+    this.toastr.success("Finalizado con exito!!");
+  }
+
+  Cancelar() {
+    this.router.navigate(["list-clienteM"], { relativeTo: this.route.parent });
+  }
+
+  Bloquear() {
+    this.disabled1 = !this.disabled1;
+    this.disabled2 = !this.disabled2;
+    this.disabled3 = !this.disabled3;
+    this.disabled4 = !this.disabled4;
+    this.disabled5 = !this.disabled5;
+    this.disabled6 = !this.disabled6;
+    this.disabled7 = !this.disabled7;
+    this.disabled8 = !this.disabled8;
+    this.disabled9 = !this.disabled9;
+    this.disabled10 = !this.disabled10;
+    this.disabled11 = !this.disabled11;
+    this.disabled14 = !this.disabled14;
+    this.disabled13 = !this.disabled13;
+    this.disabled12 = !this.disabled12;
+    this.isCollapsed8 = !this.isCollapsed8;
+  }
+
+  BloqueRed() {
+    this.disabled1Red = !this.disabled1Red;
+    this.disabled2Red = !this.disabled2Red;
+    this.isCollapsed1Red = !this.isCollapsed1Red;
+    this.disabled3Red = !this.disabled3Red;
+    this.disabled4Red = !this.disabled4Red;
+    this.disabled5Red = !this.disabled5Red;
+  }
+
+  DesbloRed1() {
+    this.disabled1Red = !this.disabled1Red;
+    this.disabled2Red = !this.disabled2Red;
+    this.isCollapsed1Red = !this.isCollapsed1Red;
+    this.disabled3Red = !this.disabled3Red;
+    this.disabled4Red = !this.disabled4Red;
+    this.disabled5Red = !this.disabled5Red;
+  }
+
+  BloqueRedB() {
+    this.disabled1Red = !this.disabled1Red;
+    this.isCollapsed3Red = !this.isCollapsed3Red;
+    this.disabled3Red = !this.disabled3Red;
+    this.disabled4Red = !this.disabled4Red;
+    this.disabled5Red = !this.disabled5Red;
+  }
+
+  DesbloRedB1() {
+    this.disabled1Red = !this.disabled1Red;
+    this.isCollapsed3Red = !this.isCollapsed3Red;
+    this.disabled3Red = !this.disabled3Red;
+    this.disabled4Red = !this.disabled4Red;
+    this.disabled5Red = !this.disabled5Red;
+  }
+
+  BloqueTel() {
+    this.disabled1Tel = !this.disabled1Tel;
+    this.disabled2Tel = !this.disabled2Tel;
+    this.disabled4Tel = !this.disabled4Tel;
+    this.disabled3Tel = !this.disabled3Tel;
+    this.disabled5Tel = !this.disabled5Tel;
+    this.disabled6Tel = !this.disabled6Tel;
+    this.isCollapsed1Tel = !this.isCollapsed1Tel;
+  }
+
+  DesbloTel1() {
+    this.disabled1Tel = !this.disabled1Tel;
+    this.disabled2Tel = !this.disabled2Tel;
+    this.isCollapsed1Tel = !this.isCollapsed1Tel;
+    this.disabled3Tel = !this.disabled3Tel;
+    this.disabled4Tel = !this.disabled4Tel;
+    this.disabled5Tel = !this.disabled5Tel;
+    this.disabled6Tel = !this.disabled6Tel;
+  }
+
+  BloqueTelB() {
+    this.disabled1Tel = !this.disabled1Tel;
+    this.disabled4Tel = !this.disabled4Tel;
+    this.disabled5Tel = !this.disabled5Tel;
+    this.disabled6Tel = !this.disabled6Tel;
+    this.isCollapsed3Tel = !this.isCollapsed3Tel;
+  }
+
+  DesbloTelB1() {
+    this.disabled1Tel = !this.disabled1Tel;
+    this.isCollapsed3Tel = !this.isCollapsed3Tel;
+    this.disabled4Tel = !this.disabled4Tel;
+    this.disabled5Tel = !this.disabled5Tel;
+    this.disabled6Tel = !this.disabled6Tel;
+  }
+
+  MostrarDom() {
+    this.clienteService.mostrardom().subscribe(
+      (result: any) => (this.domicilio = result)
+    );
+  }
+  //Codigo nuevo
+
+  obtenerDomicilio() {
+    this.clienteService.getDomicilio().subscribe(
+      (result: any) => (this.domicilio = result)
+    );
+  }
+
+  getDocumentTypeCat() {
+    /* this.clienteService.catDocumentType() */
+    this.catDocumentType = [
+      {
+        Catalogo_cve: 1,
+        desc_45: 'Documento 1'
+      }, {
+        Catalogo_cve: 2,
+        desc_45: 'Documento 2'
+      }, {
+        Catalogo_cve: 3,
+        desc_45: 'Documento 3'
+      }, {
+        Catalogo_cve: 4,
+        desc_45: 'Documento 4'
+      }, {
+        Catalogo_cve: 5,
+        desc_45: 'Documento 5'
+      }, {
+        Catalogo_cve: 6,
+        desc_45: 'Documento 6'
+      }
+    ];
+  }
 
 }
-
-
