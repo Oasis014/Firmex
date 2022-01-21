@@ -5,7 +5,7 @@
 				<div class="input-group">
 					<div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
 					</div>
-					<input type="text" class="form-control" placeholder="Buscar por catalogos" (keyup)='updateFilter($event)' style='width:30%;'>
+					<input type="text" class="form-control" placeholder="Buscar por catalogos" style='width:30%;'>
 					<div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
 				</div>
 			</div>
@@ -34,17 +34,32 @@
 		</div>
 	</div>
 	<br>
-	<div class="col-sm-12 mb-4">
-		<ngx-datatable class='bootstrap selection-cell' *ngFor="let dom of domicilio;let i=index;" [selected]="selected" [rows]='rows' [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='cursor:pointer;' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" (dblclick) = "doubleClicked($event)">
-			<ngx-datatable-column name="ID"  >{{dom.Id}}</ngx-datatable-column>
-			<ngx-datatable-column name="Empresa" >{{dom.TipoDom}}</ngx-datatable-column>
-			<ngx-datatable-column name="Cliente" >{{dom.Calle}}</ngx-datatable-column>
-			<ngx-datatable-column name="RFC"  >{{dom.NoEx}}</ngx-datatable-column>
-			<ngx-datatable-column name="Empresa"  >{{dom.NoIn}}</ngx-datatable-column>
-			<ngx-datatable-column name="Estatus" >{{dom.CodPos}}</ngx-datatable-column>
-			<ngx-datatable-column name="Sucursal" >{{dom.Colonia}}</ngx-datatable-column>
-			<ngx-datatable-column name="No. Sucursal"  >{{dom.Municipio}}</ngx-datatable-column>
-		</ngx-datatable>
-	</div>
+	<div class="card">
+		<table class="table table-striped text-center " style="width:auto; height:5px;" >
+		  <thead >
+		  <th>Numero Cliente</th>
+		  <th>Sociedad</th>
+		  <th>Fecha de Constitucion</th>
+		  <th>Representante Legal</th>
+		  <th>Presidente de Consejo</th>
+		  <th>Consejero </th>
+		  <th>Secretario</th>
+		  </thead>
+		  <tbody>
+		  <tr *ngFor="let list of listado;let i=index;" >
+			<td scope="row" >{{list.Id}}</td>
+			<td scope="row" >{{list.NombreSociedad}}</td>
+			<td>{{list.FechaConstitucion}}</td>
+			<td>{{list.RepresentanteLegal}}</td>
+			<td>{{list.PresidenteConsejo}}</td>
+			<td>{{list.Consejero}}</td>
+			<td>{{list.Secretario}}</td>
+			<td>
+			  <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white"    ><i class="fa fa-pencil"></i></a>
+			  <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1"  ><i class="fa fa-trash"></i></a></td>
+		  </tr>
+		  </tbody>
+		</table>
+	  </div>
 <!-- Filter Datatable Options Ends -->
 </div>

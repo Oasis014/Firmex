@@ -3,10 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbProgressbarModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-<<<<<<< HEAD
-=======
-//import {DataSource} from '@angular/cdk/collections';
->>>>>>> 57eccb49e6dda1494cb59eccf880cebca11fa0df
 
 import { HttpClientModule } from '@angular/common/http';
 import { ClienteRoutingModule } from './zcliente-routing.module';
@@ -23,6 +19,8 @@ import { QryClienteMComponent } from './qry-clienteM/qry-clienteM.component';
 // Edición o Nuevo Prospecto Cliente Persona Fisica
 import { ModClienteComponent } from './mod-cliente/mod-cliente.component';
 import { ModMoralComponent } from './mod-moral/mod-moral.component';
+import { ActivEcoComponent } from './mod-moral/activ-eco.component';
+import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';
 //Pruebas
 import { PhpFuncionaComponent } from './php-funciona/php-funciona.component';
 import { PhpPruebaComponent } from './php-prueba/php-prueba.component';
@@ -43,7 +41,9 @@ import { PhpPruebaComponent } from './php-prueba/php-prueba.component';
     QryClienteMComponent,
 // Mantenimiento o Nuevo Persona Fisica
     ModClienteComponent,
-    ModMoralComponent
+    ModMoralComponent,
+    ActivEcoComponent,
+    CuentaBanComponent
 
 
 ],
