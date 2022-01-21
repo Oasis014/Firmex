@@ -15,6 +15,7 @@ const data: any = require('../../shared/data/prospectoM.json');
 export class ListClienteMComponent  implements OnInit{
     Bandera = { ban: null }
 listado = null as any;
+//listado moral
 list = { Id: null, NombreSociedad: null,
     FechaConstitucion: null, RepresentanteLegal: null,
     PresidenteConsejo: null, Consejero: null,
