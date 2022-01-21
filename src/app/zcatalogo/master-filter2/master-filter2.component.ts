@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 var url2 = 'EstadoCivil.json';
 
 declare var require: any;
-const data: any = require('../../shared/data/EstadoCivil.json');
+const data: any = require('../../shared/data/estadocivil.json');
 
 @Component({
     selector: 'app-master-filter2',
