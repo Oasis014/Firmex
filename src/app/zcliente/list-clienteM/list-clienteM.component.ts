@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit  } from '@angular/core';
-import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ClienteService } from '../cliente.service';
 
@@ -14,17 +13,29 @@ const data: any = require('../../shared/data/prospectoM.json');
 
 export class ListClienteMComponent  implements OnInit{
     Bandera = { ban: null }
+//Declaracion Var LocalStorage Economica.
+NumeroCLiente: string = ''; NombreSociedad: string = ''; FechaConstitucion: string = ''; RepresentanteLegal: string = ''; PresidenteConsejo: string = ''; Consejero: string = ''; Secretario: string = ''; 
+
 listado = null as any;
 //listado moral
-list = { Id: null, NombreSociedad: null,
+list = { NumeroCLiente: null, NombreSociedad: null,
     FechaConstitucion: null, RepresentanteLegal: null,
     PresidenteConsejo: null, Consejero: null,
     Secretario: null
 }
 obtenerListado() { this.clienteService.getListMoral().subscribe(result => this.listado = result);}
+DetallePerfil(list: any){
+    localStorage.setItem( "NumeroCLiente", list.NumeroCLiente ),this.NumeroCLiente = localStorage.getItem("NumeroCLiente"),
+    localStorage.setItem( "NombreSociedad", list.NombreSociedad ),this.NombreSociedad = localStorage.getItem("NombreSociedad"),
+    localStorage.setItem( "FechaConstitucion", list.FechaConstitucion ),this.FechaConstitucion = localStorage.getItem("FechaConstitucion"),
+    localStorage.setItem( "RepresentanteLegal", list.RepresentanteLegal ),this.RepresentanteLegal = localStorage.getItem("RepresentanteLegal"),
+    localStorage.setItem( "PresidenteConsejo", list.PresidenteConsejo ),this.PresidenteConsejo = localStorage.getItem("PresidenteConsejo"),
+    localStorage.setItem( "Consejero", list.Consejero ),this.Consejero = localStorage.getItem("Consejero"),
+    localStorage.setItem( "Secretario", list.Secretario ),this.Secretario = localStorage.getItem("Secretario"),
+    this.clienteService.mostrarmoral(this.list).subscribe(result => this.listado = result, datos =>{  }) }
  ngOnInit() { this.obtenerListado(); }
    
-    @ViewChild(DatatableComponent , { static: true }) table: DatatableComponent;
+    
 
 
     constructor(private router: Router,

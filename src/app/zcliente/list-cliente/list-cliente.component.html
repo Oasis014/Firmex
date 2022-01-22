@@ -3,15 +3,17 @@
   <!--<div class="card-header text-uppercase">Titulo</div>-->
   <div class="card-body">
     <div class="row">
-      <div class="col-12 col-lg-4 col-xl-4">
-        <div class="input-group">
-          <div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
-          </div>
-          <!-- <input type="text" class="form-control" placeholder="Ingrese datos a buscar"> -->
-          <input type="text" class="form-control" placeholder="Buscar por catalogos" (keyup)='updateFilter($event)' style='width:30%;'>
-          <div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
+      <!--<div class="col-12 col-lg-4 col-xl-4">
+				<div class="input-group">
+					<div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Buscar por catalogos" style='width:30%;'>
+					<div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
+				</div>
+			</div>-->
+			<div class="col-12 col-lg-4 col-xl-4">
+        <h3>Listado de Clientes</h3>
         </div>
-      </div>
       <div class="col-12 col-lg-4 col-xl-4">
       </div>
         
@@ -33,17 +35,36 @@
     </div>
   </div>
   <br>
-	<div class="col-sm-12 mb-4">
-		<ngx-datatable #table class='bootstrap selection-cell' [selected]="selected" [rows]='rows' [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='cursor:pointer;' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" (dblclick) = "doubleClicked($event)">
-      <ngx-datatable-column name="ID"  value="id"></ngx-datatable-column>
-      <ngx-datatable-column name="Empresa" value="empresa"></ngx-datatable-column>
-      <ngx-datatable-column name="Cliente" value="cliente"></ngx-datatable-column>
-      <ngx-datatable-column name="RFC"  value="rfc"></ngx-datatable-column>
-      <ngx-datatable-column name="Empresa"  value="empresa"></ngx-datatable-column>
-      <ngx-datatable-column name="Estatus" value="estatus"></ngx-datatable-column>
-      <ngx-datatable-column name="Sucursal" value="sucursal"></ngx-datatable-column>
-      <ngx-datatable-column name="No. Sucursal"  value="no_sucursal"></ngx-datatable-column>
-		</ngx-datatable>
+	<br>
+	<div class="card col-sm-12 mb-12">
+		<table class="table table-striped text-center " style="width:auto; height:5px;" >
+		  <thead >
+		  <th>Numero Cliente</th>
+		  <th>Sucursal</th>
+		  <th>Primer Nombre</th>
+		  <th>Primer Apellido</th>
+		  <th>Razon Social</th> 
+		  <th>RFC </th>
+		  <th>Personalidad Juridica</th>
+		  <th>Email Personal </th>
+		  <th>Celular</th>
+		  </thead>
+		  <tbody>
+		  <tr *ngFor="let list of listado;let i=index;" >
+			<td scope="row" >{{list.NumeroCLiente}}</td>
+			<td scope="row" >{{list.Sucursal}}</td>
+			<td>{{list.PrimerNombre}}</td>
+			<td>{{list.ApellidoPaterno}}</td>
+			<td>{{list.RazonSocial}}</td>
+			<td>{{list.RFC}}</td>
+			<td>{{list.PersonalidadJuridica}}</td>
+			<td>{{list.EmailPersonal}}</td>
+			<td>{{list.Celular}}</td>
+			<td>
+			  <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white"    ><i class="fa fa-pencil"></i></a>
+		  </tr>
+		  </tbody>
+		</table>
 	</div>
 <!-- Filter Datatable Options Ends -->
 </div>

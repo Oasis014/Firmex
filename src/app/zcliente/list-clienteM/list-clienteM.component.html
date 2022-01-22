@@ -1,13 +1,16 @@
 <div class="card">
 	<div class="card-body">
 		<div class="row">
-			<div class="col-12 col-lg-4 col-xl-4">
+			<!--<div class="col-12 col-lg-4 col-xl-4">
 				<div class="input-group">
 					<div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
 					</div>
 					<input type="text" class="form-control" placeholder="Buscar por catalogos" style='width:30%;'>
 					<div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
 				</div>
+			</div>-->
+			<div class="col-12 col-lg-4 col-xl-4">
+			<h3>Listado de Persona Moral</h3>
 			</div>
 			<div class="col-12 col-lg-4 col-xl-4">
 			</div>
@@ -19,6 +22,27 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="DetallePerfil">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+	  <div class="modal-content">
+		<div class="modal-header border-light-2">
+		  <h5 class="modal-title text-white">Detalle</h5>
+		</div>
+		<div class="modal-body">
+		  <label>{{NumeroCLiente}}</label>
+		  <label>{{NombreSociedad}}</label>
+		  <label>{{FechaConstitucion}}</label>
+		  <label>{{RepresentanteLegal}}</label>
+		  <label>{{PresidenteConsejo}}</label>
+		  <label>{{Consejero}}</label>
+		  <label>{{Secretario}}</label>
+		</div>
+		<div class="modal-footer border-light-2">
+		  <button type="button" class="btn btn-link text-white" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 <!-- ***** Encabezado ***** -->
 <div class="row">
 	<div class="col-sm-3">
@@ -34,7 +58,8 @@
 		</div>
 	</div>
 	<br>
-	<div class="card">
+	<br>
+	<div class="card col-sm-12 mb-12">
 		<table class="table table-striped text-center " style="width:auto; height:5px;" >
 		  <thead >
 		  <th>Numero Cliente</th>
@@ -47,7 +72,7 @@
 		  </thead>
 		  <tbody>
 		  <tr *ngFor="let list of listado;let i=index;" >
-			<td scope="row" >{{list.Id}}</td>
+			<td scope="row" >{{list.NumeroCLiente}}</td>
 			<td scope="row" >{{list.NombreSociedad}}</td>
 			<td>{{list.FechaConstitucion}}</td>
 			<td>{{list.RepresentanteLegal}}</td>
@@ -55,11 +80,11 @@
 			<td>{{list.Consejero}}</td>
 			<td>{{list.Secretario}}</td>
 			<td>
-			  <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white"    ><i class="fa fa-pencil"></i></a>
-			  <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1"  ><i class="fa fa-trash"></i></a></td>
+			  <a  class="btn btn-sm btn-info text-white" data-toggle="modal" data-target="#DetallePerfil" (click)= "DetallePerfil(list)"  ><i class="fa fa-pencil"></i></a>
 		  </tr>
 		  </tbody>
 		</table>
-	  </div>
+	</div>
+
 <!-- Filter Datatable Options Ends -->
 </div>

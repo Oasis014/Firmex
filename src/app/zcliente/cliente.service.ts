@@ -9,8 +9,9 @@ url = 'http://127.0.0.1/insert/';
 
 
   constructor(private http: HttpClient) { }
-
-  getListMoral(){return this.http.get(`${this.url}DomicilioMostrar.php`);}
+  getListCliente(){return this.http.get(`${this.url}ObtenerPerCliente.php`);}
+  getListFisica(){return this.http.get(`${this.url}ObtenerPerFisica.php`);}
+  getListMoral(){return this.http.get(`${this.url}ObtenerPerMoral.php`);}
   getDomicilio() { return this.http.get(`${this.url}DomicilioMostrar.php`); }
   getActiEco() { return this.http.get(`${this.url}ActividadEcoMostrar.php`); }
   getPersonales() { return this.http.get(`${this.url}PersonalesMostrar.php`); }
@@ -116,7 +117,7 @@ url = 'http://127.0.0.1/insert/';
   agregar14(usuario: any){ return this.http.post(`${this.url}GrupoRiesgoComun.php`, JSON.stringify(usuario)); }
 
 
-
+  mostrarmoral(listado: any){ return this.http.post(`${this.url}MostrarMoral.php`, JSON.stringify(listado)); }
 
          //Catalogo
 

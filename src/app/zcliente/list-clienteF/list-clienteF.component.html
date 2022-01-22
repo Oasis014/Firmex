@@ -1,14 +1,17 @@
 <div class="card">
 	<div class="card-body">
 		<div class="row">
-			<div class="col-12 col-lg-4 col-xl-4">
+			<!--<div class="col-12 col-lg-4 col-xl-4">
 				<div class="input-group">
 					<div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
 					</div>
-					<input type="text" class="form-control" placeholder="Buscar por catalogos" (keyup)='updateFilter($event)' style='width:30%;'>
+					<input type="text" class="form-control" placeholder="Buscar por catalogos" style='width:30%;'>
 					<div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
 				</div>
-			</div>
+			</div>-->
+			<div class="col-12 col-lg-4 col-xl-4">
+				<h3>Listado de Persona Fisica</h3>
+				</div>
 			<div class="col-12 col-lg-4 col-xl-4">
 			</div>
 			<div class="col-12 col-lg-4 col-xl-4">
@@ -49,18 +52,36 @@
 		</div>
 	</div>
 	<br>
-	<div class="col-sm-12 mb-4">
-		<ngx-datatable #table class='bootstrap selection-cell' [selected]="selected" [rows]='rows' [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='cursor:pointer;' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" (dblclick) = "doubleClicked($event)">
-			<ngx-datatable-column name="ID"  [frozenLeft]="true" prop="id"></ngx-datatable-column>
-			<ngx-datatable-column name="Empresa" prop="empresa"></ngx-datatable-column>
-			<ngx-datatable-column name="Cliente" prop="cliente"></ngx-datatable-column>
-			<ngx-datatable-column name="RFC"  prop="rfc"></ngx-datatable-column>
-			<ngx-datatable-column name="Empresa"  prop="empresa"></ngx-datatable-column>
-			<ngx-datatable-column name="Estatus" prop="estatus"></ngx-datatable-column>
-			<ngx-datatable-column name="Sucursal" prop="sucursal"></ngx-datatable-column>
-			<ngx-datatable-column name="No. Sucursal"  prop="no_sucursal"></ngx-datatable-column>
-		</ngx-datatable>
-
+	<br>
+	<div class="card col-sm-12 mb-12">
+		<table class="table table-striped text-center " style="width:auto; height:5px;" >
+		  <thead >
+		  <th>Numero Cliente</th>
+		  <th>Fecha de Nacimiento</th>
+		  <th>Genero</th>
+		  <th>Estado Civil</th>
+		  <th>CURP</th>
+		  <th>Identificacion </th>
+		  <th>No. Identificacion</th>
+		  <th>Lista negra </th>
+		  <th>Profesion</th>
+		  </thead>
+		  <tbody>
+		  <tr *ngFor="let list of listado;let i=index;" >
+			<td scope="row" >{{list.NumeroCLiente}}</td>
+			<td scope="row" >{{list.FechaNacimiento}}</td>
+			<td>{{list.Sexo}}</td>
+			<td>{{list.EstadoCivil}}</td>
+			<td>{{list.CURP}}</td>
+			<td>{{list.TipoIdentificacion}}</td>
+			<td>{{list.NumeroIdentificacion}}</td>
+			<td>{{list.ListaNegra}}</td>
+			<td>{{list.Profesion}}</td>
+			<td>
+			  <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white"    ><i class="fa fa-pencil"></i></a>
+		  </tr>
+		  </tbody>
+		</table>
 	</div>
 <!-- Filter Datatable Options Ends -->
 </div>
