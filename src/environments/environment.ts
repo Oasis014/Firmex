@@ -1,9 +1,35 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+const host = 'http://127.0.0.1/insert/'
 export const environment = {
-  production: false
+  production: false,
+  api: {
+    catalogos: {
+      catalogoActdet: `${host}CatalogoActdet.php`,
+      catalogoActeco: `${host}CatalogoActeco.php`,
+      catalogoBancos: `${host}CatalogoBancos.php`,
+      catalogoCatpue: `${host}CatalogoCatpue.php`,
+      catalogoCod_id: `${host}CatalogoCod_id.php`,
+      catalogoEdociv: `${host}CatalogoEdociv.php`,
+      catalogoIdentif: `${host}CatalogoIdentif.php`,
+      catalogoPerjur: `${host}CatalogoPerjur.php`,
+      catalogoProfes: `${host}CatalogoProfes.php`,
+      catalogoSexo: `${host}CatalogoSexo.php`,
+      catalogoStscte: `${host}CatalogoStscte.php`,
+      catalogoTipded: `${host}CatalogoTipded.php`,
+      catalogoTipdom: `${host}CatalogoTipdom.php`,
+      catalogoTipgse: `${host}CatalogoTipgse.php`,
+      catalogoTipman: `${host}CatalogoTipman.php`,
+      catalogoTipred: `${host}CatalogoTipred.php`,
+      catalogoTiprel: `${host}CatalogoTiprel.php`,
+      catalogoTiprpe: `${host}CatalogoTiprpe.php`,
+      catalogoTiprrc: `${host}CatalogoTiprrc.php`,
+      catalogoTiptel: `${host}CatalogoTiptel.php`,
+      catalogonaCION: `${host}CatalogonaCION.php`,
+      catalogoTipoDocumento: `${host}.php`,
+    }
+  }
 };
 
 /*
