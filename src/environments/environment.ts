@@ -5,6 +5,9 @@ const host = 'http://127.0.0.1/insert/'
 export const environment = {
   production: false,
   api: {
+    cliente: {
+      documentacion: `${host}documentacion.php`
+    },
     catalogos: {
       catalogoActdet: `${host}CatalogoActdet.php`,
       catalogoActeco: `${host}CatalogoActeco.php`,

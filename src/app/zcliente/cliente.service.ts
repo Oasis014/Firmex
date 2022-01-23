@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { HttpService } from 'src/app/core/services/http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +11,12 @@ export class ClienteService {
 
   private readonly url = 'http://127.0.0.1/insert/';
   private readonly catalogosUrl = environment.api.catalogos;
+  private readonly clienteUrl = environment.api.cliente;
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private readonly httpService: HttpService
   ) { }
 
   getListCliente() {
@@ -197,6 +201,20 @@ export class ClienteService {
 
   riesgocomunconsultar(arreglo: any) {
     return this.http.post(`${this.url}GrupoRiesgoComunMostrar.php`, JSON.stringify(arreglo));
+  }
+
+  guardarDocumento(file: File, data: object): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('data', JSON.stringify(data));
+    return this.httpService.postFile(this.clienteUrl.documentacion, formData);
+  }
+
+  obtenerDocumentos(id: number): Observable<HttpEvent<any>> {
+    let params = {
+      id: id
+    };
+    return this.httpService.get(this.clienteUrl.documentacion, params);
   }
 
 

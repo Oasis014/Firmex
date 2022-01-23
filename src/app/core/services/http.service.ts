@@ -58,6 +58,12 @@ export class HttpService {
     );
   }
 
+  postFile(url: string, data: any): Observable<any> {
+    return this.httpClient.post<any>(url, data).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse): Observable<any> {
     console.error(error);
     if ( error instanceof ErrorEvent ) {

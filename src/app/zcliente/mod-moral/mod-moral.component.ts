@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
@@ -13,6 +13,9 @@ import { Catalogos } from 'src/app/shared/models/catalogos';
   styleUrls: ['./mod-moral.component.scss']
 })
 export class ModMoralComponent implements OnInit {
+
+  @ViewChild('inputFile')
+  myInputFile: ElementRef;
 
   constructor(
     public toastr: ToastrService,
@@ -292,6 +295,8 @@ export class ModMoralComponent implements OnInit {
   }
 
   listadoDocumentos: Array<any>;
+  archivo: any;
+  tipoDocumento: number|string;
 
   ngOnInit() {
     this.ban = localStorage.getItem("bandera");
@@ -702,10 +707,32 @@ export class ModMoralComponent implements OnInit {
         status: 1
       },
     ];
+    /*this.clienteService.obtenerDocumentos(25).subscribe(
+      (res: any) => {
+        console.log(res);
+      }
+    );
+    */
   }
 
   guardarDocumento() {
-    alert("se guarda documento");
+    let param = {
+      id: this.tipoDocumento
+    };
+    this.clienteService.guardarDocumento(this.archivo, param).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.myInputFile.nativeElement.value = '';
+        this.getDocumentos();
+      }, (error: any) => {
+        console.log("ERROR:");
+        console.log(error);
+      }
+    )
+  }
+
+  fileEvent(fileInput: Event) {
+    this.archivo = (<HTMLInputElement>fileInput.target).files[0];
   }
 
 }
