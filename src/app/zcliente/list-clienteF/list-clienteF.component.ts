@@ -1,8 +1,8 @@
 import { Component, ViewChild, OnInit  } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ClienteService } from '../cliente.service';
-declare var require: any;
-const data: any = require('../../shared/data/prospectoF.json');
+import { PipeClienteComponent } from '../list-cliente/filter-pipe';
+
 
 @Component({
     selector: 'app-listclienteF',
@@ -13,17 +13,17 @@ const data: any = require('../../shared/data/prospectoF.json');
 export class ListClienteFComponent  {
     Bandera = { ban: null }
 
-    listado = null as any;
+    filterPost = '';
     //listado moral
-    list = { NumeroCLiente: null, FechaNacimiento: null,
+    list = [{ NumeroCLiente: null, FechaNacimiento: null,
         Sexo: null, EstadoCivil: null,
         CURP: null, TipoIdentificacion: null,
         NumeroIdentificacion: null, ListaNegra: null,
-        Profesion: null
-    }
+        Profesion: null 
+    }] as any;
     
     
-    obtenerListado() { this.clienteService.getListFisica().subscribe(result => this.listado = result);}
+    obtenerListado() { this.clienteService.getListFisica().subscribe(result => this.list = result);}
     ngOnInit() { this.obtenerListado(); }
 
 

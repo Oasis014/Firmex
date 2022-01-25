@@ -24,10 +24,12 @@ import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';
 //Pruebas
 import { PhpFuncionaComponent } from './php-funciona/php-funciona.component';
 import { PhpPruebaComponent } from './php-prueba/php-prueba.component';
+import { PipeClienteComponent } from './list-cliente/filter-pipe';
 
 @NgModule({
   declarations: [
 //Prueba
+PipeClienteComponent,
   PhpPruebaComponent,
   PhpFuncionaComponent,
 // Botones

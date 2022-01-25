@@ -28,7 +28,7 @@ export class ClienteService {
   }
 
   getListMoral() {
-    return this.http.get(`${this.url}DomicilioMostrar.php`);
+    return this.http.get(`${this.url}ObtenerPerMoral.php`);
   }
 
   getDomicilio() {

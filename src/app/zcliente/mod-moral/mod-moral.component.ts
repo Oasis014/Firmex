@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
@@ -12,6 +12,7 @@ import { Catalogos } from 'src/app/shared/models/catalogos';
   templateUrl: './mod-moral.component.html',
   styleUrls: ['./mod-moral.component.scss']
 })
+
 export class ModMoralComponent implements OnInit {
 
   @ViewChild('inputFile')

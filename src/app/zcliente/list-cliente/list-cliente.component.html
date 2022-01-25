@@ -16,7 +16,12 @@
         </div>
       <div class="col-12 col-lg-4 col-xl-4">
       </div>
-        
+	  <div class="col-12 col-lg-1 col-xl-1">
+		<label>Filtrar: </label>
+	</div>
+	  <div class="col-12 col-lg-3 col-xl-3">
+		<input type="text"	class="form-control" name="filterPost" placeholder="Buscar por Numero Cliente..." [(ngModel)]="filterPost"  />
+		</div>
     </div>
   </div>
 </div>
@@ -50,21 +55,21 @@
 		  <th>Celular</th>
 		  </thead>
 		  <tbody>
-		  <tr *ngFor="let list of listado;let i=index;" >
-			<td scope="row" >{{list.NumeroCLiente}}</td>
-			<td scope="row" >{{list.Sucursal}}</td>
-			<td>{{list.PrimerNombre}}</td>
-			<td>{{list.ApellidoPaterno}}</td>
-			<td>{{list.RazonSocial}}</td>
-			<td>{{list.RFC}}</td>
-			<td>{{list.PersonalidadJuridica}}</td>
-			<td>{{list.EmailPersonal}}</td>
-			<td>{{list.Celular}}</td>
-			<td>
-			  <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white"    ><i class="fa fa-pencil"></i></a>
+		  <tr *ngFor="let post of list | filter: filterPost" >
+			<td >{{post.NumeroCLiente}}</td>
+			<td >{{post.Sucursal}}</td>
+			<td>{{post.PrimerNombre}}</td>
+			<td>{{post.ApellidoPaterno}}</td>
+			<td>{{post.RazonSocial}}</td>
+			<td>{{post.RFC}}</td>
+			<td>{{post.PersonalidadJuridica}}</td>
+			<td>{{post.EmailPersonal}}</td>
+			<td>{{post.Celular}}</td>
 		  </tr>
 		  </tbody>
 		</table>
 	</div>
-<!-- Filter Datatable Options Ends -->
 </div>
+	
+<!-- Filter Datatable Options Ends -->
+
