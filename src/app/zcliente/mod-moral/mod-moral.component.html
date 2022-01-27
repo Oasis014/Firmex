@@ -99,11 +99,11 @@
                               <div class="col-sm-6">
                                 <select [disabled]="disabledGen1" [attr.aria-expanded]="disabledGen1 ? 'disabledGen1' : ''" class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal" [(ngModel)]="SucursalA" >
                                   <option selected>Seleccione la sucursal ...</option>
-                                  <option>Oficina Matriz</option>
-                                  <option>Ciudad de México</option>
-                                  <option>Queretaro</option>
-                                  <option>Puebla</option>
-                                  <option>Estado de México </option>
+                                  <option value="1">Oficina Matriz</option>
+                                  <option value="1">Ciudad de México</option>
+                                  <option value="1">Queretaro</option>
+                                  <option value="1">Puebla</option>
+                                  <option value="1">Estado de México </option>
                                 </select>
                               </div>
                             </div>
@@ -272,17 +272,17 @@
                               <label class="col-sm-5 col-form-success">Grupo de Riesgo Comun </label>
                               <div class="col-sm-6">
                                 <select [disabled]="disabledGen14" [attr.aria-expanded]="disabledGen14 ? 'disabledGen14' : ''" class="form-control form-control-sm" name="GrupoRiesgoComun" id="GrupoRiesgoComun"  [(ngModel)]="general.GrupoRiesgoComun">
-                                  <option selected>Seleccione al promotor ...</option>
-                                  <option>Sin Grupo</option>
-                                  <option>B</option>
-                                  <option>C</option>
-                                  <option>D</option>
-                                  <option>E</option>
-                                  <option>F </option>
-                                  <option>G</option>
-                                  <option>H</option>
-                                  <option>I</option>
-                                  <option>J </option>
+                                  <option value="1" selected>Seleccione al promotor ...</option>
+                                  <option value="1">Sin Grupo</option>
+                                  <option value="1">B</option>
+                                  <option value="1">C</option>
+                                  <option value="1">D</option>
+                                  <option value="1">E</option>
+                                  <option value="1">F </option>
+                                  <option value="1">G</option>
+                                  <option value="1">H</option>
+                                  <option value="1">I</option>
+                                  <option value="1">J </option>
                                 </select>
                               </div>
                             </div>
@@ -801,7 +801,7 @@
                           <div class="form-group row">
                             <label class="col-sm-5 col-form-success">Archivo</label>
                             <div class="col-sm-6">
-                              <input type="file" name="file" (change)="fileEvent($event)">
+                              <input #inputFile type="file" name="file" (change)="fileEvent($event)">
                             </div>
                           </div>
                         </div>
@@ -824,23 +824,21 @@
                     <th scope="col">#</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Fecha Alta</th>
-                    <th scope="col">Fecha vencimiento</th>
-                    <th scope="col">Estatus</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let doc of listadoDocumentos">
-                    <th scope="row">{{doc.id}}</th>
-                    <td>{{doc.tipo}}</td>
+                    <th scope="row">{{doc.consecutivo}}</th>
+                    <td>{{doc.tipoDocumento}}</td>
                     <td>{{doc.fechaAlta}}</td>
-                    <td>{{doc.fechaVencimiento}}</td>
-                    <td>
+                    <!--
+                      <td>
                       <a href="javascript:;" data-toggle="modal" data-target="#primarymodal">
                         <i aria-hidden="true" class="fa fa-print"></i> <span class="sr-only"></span>
                         <span *ngIf="!doc.status" class="badge badge-danger m-1">Vencido</span>
                         <span *ngIf="doc.status" class="badge badge-success m-1">Vigente</span>
                       </a>
-                    </td>
+                    </td>-->
                   </tr>
                   <!--
                   <tr>

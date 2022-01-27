@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
@@ -436,10 +436,16 @@ export class ModMoralComponent implements OnInit {
   }
 
   General() {
+    this.general.Id = 0;
+    this.general.FechaAlta = '2021-12-29';
+    this.general.FechaNacimiento = '1987-11-10';
+    this.general.FechaConstitucion = "2010-11-10";
+
     this.clienteService.agregar(this.general).subscribe(
       (result: any) => {
         this.cliente = result;
-        this.general.Id = result[0].noCliente, localStorage.setItem("ID", this.general.Id);
+        this.general.Id = result[0].noCliente;
+        localStorage.setItem("ID", this.general.Id);
       }
     );
   }
@@ -678,46 +684,27 @@ export class ModMoralComponent implements OnInit {
         desc_45: "Documento 3"
       }
     ];
-    this.clienteService.catDocumentos().subscribe(
+    /*this.clienteService.catDocumentos().subscribe(
       (result: any) => {
         this.ctDocumentos = result;
       }
-    );
+    );*/
   }
 
   getDocumentos() {
-    this.listadoDocumentos = [
-      {
-        id: 1,
-        tipo: 'Doc1',
-        fechaAlta: '05/Junio/2020',
-        fechaVencimiento: '05/Junio/2021',
-        status: 1
-      }, {
-        id: 2,
-        tipo: 'Doc3',
-        fechaAlta: '25/Agosto/2020',
-        fechaVencimiento: '25/Agosto/2021',
-        status: 0
-      }, {
-        id: 3,
-        tipo: 'Doc4',
-        fechaAlta: '10/Enero/2020',
-        fechaVencimiento: '10/Enero/2021',
-        status: 1
-      },
-    ];
-    /*this.clienteService.obtenerDocumentos(25).subscribe(
+    this.clienteService.obtenerDocumentos(1).subscribe(
       (res: any) => {
         console.log(res);
+        this.listadoDocumentos = res.data;
       }
     );
-    */
   }
 
   guardarDocumento() {
     let param = {
-      id: this.tipoDocumento
+      userId: 1,
+      idDoc: this.tipoDocumento,
+      consDoc: 1
     };
     this.clienteService.guardarDocumento(this.archivo, param).subscribe(
       (res: any) => {
@@ -728,7 +715,7 @@ export class ModMoralComponent implements OnInit {
         console.log("ERROR:");
         console.log(error);
       }
-    )
+    );
   }
 
   fileEvent(fileInput: Event) {
