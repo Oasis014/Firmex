@@ -10,7 +10,7 @@ import { ListClienteMComponent } from './list-clienteM/list-clienteM.component';
 import { QryClienteComponent } from './qry-cliente/qry-cliente.component';
 import { QryClienteMComponent } from './qry-clienteM/qry-clienteM.component';
 // Edición o Nuevo Prospecto Cliente Persona Fisica
-import { ModClienteComponent } from './mod-cliente/mod-cliente.component';
+import { ModClienteComponent } from './mod-moral/mod-cliente.component';
 import { ModMoralComponent } from './mod-moral/mod-moral.component';
 import { ActivEcoComponent } from './mod-moral/activ-eco.component';
 import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';

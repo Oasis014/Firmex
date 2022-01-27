@@ -2,7 +2,9 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <div class="modal fade" id="largesizemodal">
+
+    <!--Mensaje de Validacion-->
+    <div class="modal fade" id="Validacion">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header border-light-2">
@@ -19,10 +21,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let retorno2 of cliente">
-                  <td>{{retorno2.errorClave}}</td>
-                  <td>{{retorno2.errorSp}}</td>
-                  <td>{{retorno2.errorDescripcion}}</td>
+                <tr *ngFor="let post of retorno2">
+                  <td>{{post.errorClave}}</td>
+                  <td>{{post.errorSp}}</td>
+                  <td>{{post.errorDescripcion}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -34,6 +36,8 @@
         </div>
       </div>
     </div>
+    <!--Mensaje de Validacion TERMINA-->
+
               <form action="#">
                 <div class="row">
                   <div class="col-12 col-lg-12">
@@ -46,7 +50,8 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Número Cliente </label>
                               <div class="col-sm-6">
-                                <input type="text" class="form-control" name="NumeroCLiente" id="NumeroCLiente"   value="0" readonly [(ngModel)]="general.Id">
+                                <input type="text" class="form-control" name="NumeroCLienteF" id="NumeroCLienteF" *ngFor="let post of retorno" value="{{post.noCliente}}" readonly >
+                              <h4 name="N" *ngFor="let post of retorno"> {{post.noCliente}} </h4>
                               </div>
                             </div>
                           </div>
@@ -147,7 +152,7 @@
                           </div>
                           <div class="col-2 col-lg-1 col-xl-1">
                             <div [ngbCollapse]="isCollapsed" class="form-group row">
-                              <button (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2" data-toggle="modal" data-target="#largesizemodal" (click)="Validate()" type="submit" class="btn btn-light  btn-block" >Validar</button>
+                              <button (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2" data-toggle="modal" data-target="#Validacion" (click)="Validate()" type="submit" class="btn btn-light  btn-block" >Validar</button>
                             </div>
                           </div>
                         </div>
@@ -159,7 +164,8 @@
                 </div>
                 <div [ngbCollapse]="isCollapsed2" class="row">
                   <div class="col-12 col-lg-12">
-                    <div class="modal fade" id="largesizemodal1">
+                    <!-- Mensaje de Registro -->
+                    <div class="modal fade" id="largesizemodal1Moral">
                       <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header border-light-2">
@@ -177,11 +183,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let retorno of cliente">
-                                  <td>{{retorno.noCliente}}</td>
-                                  <td>{{retorno.errorClave}}</td>
-                                  <td>{{retorno.errorSp}}</td>
-                                  <td>{{retorno.errorDescripcion}}</td>
+                                <tr *ngFor="let post of retorno">
+                                  <td>{{post.noCliente}}</td>
+                                  <td>{{post.errorClave}}</td>
+                                  <td>{{post.errorSp}}</td>
+                                  <td>{{post.errorDescripcion}}</td>
                                 </tr>
                                 </tbody>
                               </table>
@@ -193,6 +199,7 @@
                         </div>
                       </div>
                     </div>
+                    <!-- Mensaje de Registro Termina -->
                     <div class="card">
                       <div class="card-body">
                         <h6 class="page-title">Datos Especificos</h6>
@@ -388,7 +395,7 @@
                             <button type="submit" class="btn btn-light  btn-block" (click) = "Cancelar()" >Cancelar</button>
                           </div>
                           <div [ngbCollapse]="isCollapsed3" class="col-2 col-lg-2 col-xl-2">
-                          <button (click)="isCollapsed3 = !isCollapsed3" [attr.aria-expanded]="!isCollapsed3" data-toggle="modal" data-target="#largesizemodal1"  (click)="General()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                          <button (click)="isCollapsed3 = !isCollapsed3" [attr.aria-expanded]="!isCollapsed3" data-toggle="modal" data-target="#largesizemodal1Moral"  (click)="General()" (click)= "typeSuccess()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
                           </div>
                         </div>
                       </div>

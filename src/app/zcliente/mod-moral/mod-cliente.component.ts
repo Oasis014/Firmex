@@ -53,73 +53,8 @@ public isCollapsed = false;
 public isCollapsed2 = true;
 public isCollapsed3 = false;
 public isCollapsed4 = false;
-cliente = null as any;
-proveedores = {
-        Id: null,
-        Consecutivo: null,
-        NombreProvee: null,
-        LimiteCreditoProvee: null,
-        SaldoCuentaProvee: null
-}
 
-bancarias = {
-        Id: null,
-        Consecutivo: null,
-        InstitucionRefBan: null,
-        AntiguedadRefBan: null,
-        LimiteCreditoRefBan: null,
-        SaldoCuentaRefBan: null
-}
-
-personales = {
-        Id: null,
-        Consecutivo: null,
-        NombreRefPer: null,
-        TelefonoRefPer: null,
-        TipoRelacionRefPer: null
-}
-
-comerciales = {
-        Id: null,
-        Consecutivo: null,
-        NombreRefCom: null,
-        LimiteCreditoRefCom: null,
-        SaldoCuentaRefCom: null
-}
-
-economica = {
-        Id: null,
-        ActividadEconomica: null,
-        ActividadDetallada: null,
-        IngresoMensual: null,
-        OtroIngresoMensual: null,
-        GastosMensuales: null,
-        FlujoEfectivo: null
-}
-
-cuenta = {
-        Id: null,
-        Consecutivo: null,
-        NombreBank: null,
-        BancoCtaBan: null,
-        NumBan: null,
-        ClaveInter: null
-}
-
-dom = {
-        Id: 4,
-        Calle: null,
-        NoEx: null,
-        NoIn: null,
-        CodPos: null,
-        Colonia: null,
-        Municipio: null,
-        Estado: null,
-        Pais: null,
-        TipoDom: null
-}
-
-general = {
+general = [{
     Id: 0,
     Sucursal: null,
     ApellidoPaterno: null,
@@ -128,7 +63,7 @@ general = {
     SegundoNombre: null,
     RazonSocial: null,
     ClavePromotor: null,
-    EstatusCliente: null,
+    EstatusCliente: "Prospecto",
     FechaAlta: null,
     PersonalidadJuridica: "01",
     RFC: null,
@@ -150,10 +85,10 @@ general = {
     FechaConstitucion: null,
     RepresentanteLegal: null,
     PresidenteConsejo: null,
-    Consejero: null
-  }
+    Consejero: null 
+  }]as any;
 
-  Val = {
+  Val = [{
   Sucursal: null,
   PrimerNombre: null,
   SegundoNombre: null,
@@ -162,43 +97,28 @@ general = {
   RazonSocial: null,
   PersonalidadJuridica: "01",
   RFC: null
-  }
-  retorno = {
+  }] as any;
+  retorno = [{
     noCliente: null,
     errorClave: null,
     errorSp: null,
-    errorDescripcion: null
-    }
-  retorno2 = {
+    errorDescripcion: null 
+    }]as any;
+  retorno2 = [{
       errorClave: null,
       errorSp: null,
-      errorDescripcion: null
-      }
+      errorDescripcion: null 
+      }]as any;
 
 open() {this.router.navigate(['list-clienteF'], { relativeTo: this.route.parent }); }
 
   constructor(public toastr: ToastrService, private router: Router, private route: ActivatedRoute, private clienteService: ClienteService) { }
 
-   Validate(){ this.clienteService.agregar9(this.Val).subscribe(result => this.cliente = result, datos =>{  }); }
+   Validate(){ this.clienteService.agregar9(this.Val).subscribe(result => this.Val = result, datos =>{  }); }
+      Retorno(){ this.clienteService.retorno().subscribe(result => this.retorno = result); }
+      Retorno2(){ this.clienteService.retorno2().subscribe(result => this.retorno2 = result); }
+      General(){ this.clienteService.agregar(this.general).subscribe(result => this.general = result, datos =>{  }); }
 
-   Domicilio(){ this.clienteService.agregar2(this.dom).subscribe(result => this.cliente = result, datos =>{  }); }
-
-      Retorno(){ this.clienteService.retorno().subscribe(result => this.cliente = result); }
-
-      Retorno2(){ this.clienteService.retorno2().subscribe(result => this.cliente = result); }
-
-      General(){ this.clienteService.agregar(this.general).subscribe(result => this.cliente = result, datos =>{  }); }
-
-      Cuenta(){ this.clienteService.agregar3(this.cuenta).subscribe(datos =>{ }); }
-
-      Comerciales(){ this.clienteService.agregar5(this.comerciales).subscribe(datos =>{ }); }
-
-      Personales(){ this.clienteService.agregar6(this.personales).subscribe(datos =>{ }); }
-
-      Bancarias(){ this.clienteService.agregar7(this.bancarias).subscribe(datos =>{ }); }
-
-      Proveedores(){ this.clienteService.agregar8(this.proveedores).subscribe(datos =>{ }); }
-      Telefonos(){}
   ngOnInit() {
   }
   list() {this.router.navigate(['mto-fisica'], { relativeTo: this.route.parent }); }
@@ -207,8 +127,4 @@ open() {this.router.navigate(['list-clienteF'], { relativeTo: this.route.parent 
         this.toastr.success('Modificado con Exito', 'Guardado');
     }
 
-    actionMethod($event: MouseEvent) {
-        ($event.target as HTMLButtonElement).disabled = true;
-        // Do actions.
-    }
 }

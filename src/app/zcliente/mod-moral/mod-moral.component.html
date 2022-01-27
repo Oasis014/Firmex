@@ -3,10 +3,8 @@
     <div class="row">
       <div class="col-4 col-lg-4 col-xl-4">
         <div class="form-group row">
-          <h4>ID: </h4>
-          <div class="col-sm-6">
-            <input class="form-control" type="number" name="Id" id="Id" *ngFor="let retorno of cliente" value="{{retorno.noCliente}}" [(ngModel)]="general.Id" readonly  >
-          </div>
+          <h4 type="number" name="Id" id="Id" *ngFor="let retorno of cliente">ID: {{retorno.noCliente}}</h4>
+          
         </div>
       </div>
       <div class="col-4 col-lg-4 col-xl-4">
@@ -81,7 +79,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Número Cliente </label>
                               <div class="col-sm-6">
-                                <input type="text" class="form-control" name="NumeroCLiente" id="NumeroCLiente"   *ngFor="let retorno of cliente" value="{{retorno.noCliente}}" readonly >
+                                <input type="text" class="form-control" name="NumeroCLiente" id="NumeroCLiente" *ngFor="let retorno of cliente" value="{{retorno.noCliente}}" readonly >
                               </div>
                             </div>
                           </div>
