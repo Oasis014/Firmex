@@ -95,7 +95,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Sucursal</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabledGen1" [attr.aria-expanded]="disabledGen1 ? 'disabledGen1' : ''" class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal" [(ngModel)]="SucursalA" >
+                                <select [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal" [(ngModel)]="SucursalA" >
                                   <option selected>Seleccione la sucursal ...</option>
                                   <option value="1">Oficina Matriz</option>
                                   <option value="1">Ciudad de México</option>
@@ -110,7 +110,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Promotor</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabledGen2" [attr.aria-expanded]="disabledGen2 ? 'disabledGen2' : ''" class="form-control form-control-sm" name="ClavePromotor" id="ClavePromotor"  [(ngModel)]="general.ClavePromotor" [(ngModel)]="ClavePromotorA" >
+                                <select [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" class="form-control form-control-sm" name="ClavePromotor" id="ClavePromotor"  [(ngModel)]="general.ClavePromotor" [(ngModel)]="ClavePromotorA" >
                                   <option *ngFor="let cPue of ctCatpue" [value]="cPue.catalogo_cve">{{cPue.desc_45}}
                                   </option>
                                 </select>
@@ -121,7 +121,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Razon Social</label>
                               <div class="col-sm-6">
-                                <input [disabled]="disabledGen3" [attr.aria-expanded]="disabledGen3 ? 'disabledGen3' : ''" type="text"  class="form-control" name="RazonSocial" id="RazonSocial"  [(ngModel)]="general.RazonSocial" [(ngModel)]="Val.RazonSocial" [(ngModel)]="RazonSocialA" placeholder="00000">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text"  class="form-control" name="RazonSocial" id="RazonSocial"  [(ngModel)]="general.RazonSocial" [(ngModel)]="Val.RazonSocial" [(ngModel)]="RazonSocialA" placeholder="00000">
                               </div>
                             </div>
                           </div>
@@ -129,7 +129,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Fecha de Constitución </label>
                               <div class="col-sm-6">
-                                <input [disabled]="disabledGen4" [attr.aria-expanded]="disabledGen4 ? 'disabledGen4' : ''" type="date" class="form-control" name="FechaConstitucion" id="FechaConstitucion"  [(ngModel)]="general.FechaConstitucion">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="date" class="form-control" name="FechaConstitucion" id="FechaConstitucion"  [(ngModel)]="general.FechaConstitucion">
                               </div>
                             </div>
                           </div>
@@ -137,7 +137,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">RFC</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen5" [attr.aria-expanded]="disabledGen5 ? 'disabledGen5' : ''" type="text" class="form-control" name="RFC" id="RFC" placeholder=" XXXX999999XXX "  [(ngModel)]="general.RFC" [(ngModel)]="Val.RFC">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="RFC" id="RFC" placeholder=" XXXX999999XXX "  [(ngModel)]="general.RFC" [(ngModel)]="Val.RFC">
                               </div>
                             </div>
                           </div>
@@ -202,7 +202,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Nombre de la sociedad </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen6" [attr.aria-expanded]="disabledGen6 ? 'disabledGen6' : ''" type="text" class="form-control" name="NombreSociedad" id="NombreSociedad" placeholder=" Nombre de la sociedad "  [(ngModel)]="general.NombreSociedad">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="NombreSociedad" id="NombreSociedad" placeholder=" Nombre de la sociedad "  [(ngModel)]="general.NombreSociedad">
                               </div>
                             </div>
                           </div>
@@ -210,7 +210,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Representante Legal</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen7" [attr.aria-expanded]="disabledGen7 ? 'disabledGen7' : ''" type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder="Representante legal"  [(ngModel)]="general.RepresentanteLegal">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder="Representante legal"  [(ngModel)]="general.RepresentanteLegal">
                               </div>
                             </div>
                           </div>
@@ -218,7 +218,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Presidente del consejo</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen8" [attr.aria-expanded]="disabledGen8 ? 'disabledGen8' : ''" type="text" class="form-control" name="PresidenteConsejo" id="PresidenteConsejo" placeholder="Nombre del presidente"  [(ngModel)]="general.PresidenteConsejo">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="PresidenteConsejo" id="PresidenteConsejo" placeholder="Nombre del presidente"  [(ngModel)]="general.PresidenteConsejo">
                               </div>
                             </div>
                           </div>
@@ -226,7 +226,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Consejero</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen9" [attr.aria-expanded]="disabledGen9 ? 'disabledGen9' : ''" type="text" class="form-control" name="Consejero" id="Consejero" placeholder="Nombre del consejero"  [(ngModel)]="general.Consejero">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="Consejero" id="Consejero" placeholder="Nombre del consejero"  [(ngModel)]="general.Consejero">
                               </div>
                             </div>
                           </div>
@@ -234,7 +234,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Email Personal</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen10" [attr.aria-expanded]="disabledGen10 ? 'disabledGen10' : ''" type="text" class="form-control" name="EmailPersonal" id="EmailPersonal" placeholder=" nombre@micorreo.com" [(ngModel)]="general.EmailPersonal">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="EmailPersonal" id="EmailPersonal" placeholder=" nombre@micorreo.com" [(ngModel)]="general.EmailPersonal">
                               </div>
                             </div>
                           </div>
@@ -242,7 +242,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Email Empresa </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen11" [attr.aria-expanded]="disabledGen11 ? 'disabledGen11' : ''" type="text" class="form-control" name="EmailEmpresa" id="EmailEmpresa" placeholder=" nombre@micorreo.com"  [(ngModel)]="general.EmailEmpresa">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="EmailEmpresa" id="EmailEmpresa" placeholder=" nombre@micorreo.com"  [(ngModel)]="general.EmailEmpresa">
                               </div>
                             </div>
                           </div>
@@ -250,7 +250,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Parte Relacionada </label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabledGen12" [attr.aria-expanded]="disabledGen12 ? 'disabledGen12' : ''" class="form-control form-control-sm" name="ParteRelacionada" id="ParteRelacionada"  [(ngModel)]="general.ParteRelacionada">
+                                <select [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" class="form-control form-control-sm" name="ParteRelacionada" id="ParteRelacionada"  [(ngModel)]="general.ParteRelacionada">
                                   <option *ngFor="let tRel of ctTiprel" [value]="tRel.catalogo_cve">{{tRel.desc_45}}
                                   </option>
                                 </select>
@@ -261,7 +261,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Grupo de Vinculo al Consejo </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen13" [attr.aria-expanded]="disabledGen13 ? 'disabledGen13' : ''" type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder="Nombre del Grupo"  [(ngModel)]="general.GrupoConsejo">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder="Nombre del Grupo"  [(ngModel)]="general.GrupoConsejo">
                               </div>
                             </div>
                           </div>
@@ -269,7 +269,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Grupo de Riesgo Comun </label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabledGen14" [attr.aria-expanded]="disabledGen14 ? 'disabledGen14' : ''" class="form-control form-control-sm" name="GrupoRiesgoComun" id="GrupoRiesgoComun"  [(ngModel)]="general.GrupoRiesgoComun">
+                                <select [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" class="form-control form-control-sm" name="GrupoRiesgoComun" id="GrupoRiesgoComun"  [(ngModel)]="general.GrupoRiesgoComun">
                                   <option value="1" selected>Seleccione al promotor ...</option>
                                   <option value="1">Sin Grupo</option>
                                   <option value="1">B</option>
@@ -289,7 +289,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Teléfono Oficina </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen17" [attr.aria-expanded]="disabledGen17 ? 'disabledGen17' : ''" type="text" class="form-control" name="TelefonoOficina" id="TelefonoOficina" placeholder="55-5555-55555"  [(ngModel)]="general.TelefonoOficina">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="TelefonoOficina" id="TelefonoOficina" placeholder="55-5555-55555"  [(ngModel)]="general.TelefonoOficina">
                               </div>
                             </div>
                           </div>
@@ -297,7 +297,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Extensión Oficina </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen18" [attr.aria-expanded]="disabledGen18 ? 'disabledGen18' : ''" type="text" class="form-control" name="ExtensionOficina" id="ExtensionOficina" placeholder="55-5555-55555"  [(ngModel)]="general.ExtensionOficina">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="ExtensionOficina" id="ExtensionOficina" placeholder="55-5555-55555"  [(ngModel)]="general.ExtensionOficina">
                               </div>
                             </div>
                           </div>
@@ -305,7 +305,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Celular </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen19" [attr.aria-expanded]="disabledGen19 ? 'disabledGen19' : ''" type="text" class="form-control" name="Celular" id="Celular" placeholder="55-5555-55555"  [(ngModel)]="general.Celular">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="Celular" id="Celular" placeholder="55-5555-55555"  [(ngModel)]="general.Celular">
                               </div>
                             </div>
                           </div>
@@ -313,7 +313,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">RedSocial 1 </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen20" [attr.aria-expanded]="disabledGen20 ? 'disabledGen20' : ''" type="text" class="form-control" name="RedSocial1" id="RedSocial1" placeholder=" "  [(ngModel)]="general.RedSocial1">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="RedSocial1" id="RedSocial1" placeholder=" "  [(ngModel)]="general.RedSocial1">
                               </div>
                             </div>
                           </div>
@@ -321,7 +321,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">RedSocial 2 </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabledGen21" [attr.aria-expanded]="disabledGen21 ? 'disabledGen21' : ''" type="text" class="form-control" name="RedSocial2" id="RedSocial2" placeholder=" "  [(ngModel)]="general.RedSocial2">
+                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="RedSocial2" id="RedSocial2" placeholder=" "  [(ngModel)]="general.RedSocial2">
                               </div>
                             </div>
                           </div>
@@ -332,10 +332,10 @@
                           <div class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div  class="col-2 col-lg-2 col-xl-2">
-                            <button [disabled]="disabledGen14" [attr.aria-expanded]="disabledGen15 ? 'disabledGen15' : ''" type="submit" class="btn btn-light  btn-block" (click) = "Cancelar()" >Cancelar</button>
+                            <button [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="submit" class="btn btn-light  btn-block" (click) = "Cancelar()" >Cancelar</button>
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <button [disabled]="disabledGen14" [attr.aria-expanded]="disabledGen16 ? 'disabledGen16' : ''" data-toggle="modal" data-target="#largesizemodal1" (click)="General()" (click)= "typeSuccess()" (click)="Desabilitar()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                            <button [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" data-toggle="modal" data-target="#largesizemodal1" (click)="guardaGeneral()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
                           </div>
                         </div>
                       </div>
@@ -406,7 +406,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Tipo de Domicilio</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabled1" [attr.aria-expanded]="disabled1 ? 'disabled1' : ''" class="form-control form-control-sm" name="tipo_domicilio" id="tipo_domicilio"  [(ngModel)]="dom.TipoDom">
+                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="tipo_domicilio" id="tipo_domicilio"  [(ngModel)]="dom.TipoDom">
                                   <option *ngFor="let ctdom of ctTipdom" [value]="ctdom.catalogo_cve">{{ctdom.desc_45}}
                                   </option>
                                 </select>
@@ -417,7 +417,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Calle </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabled2" [attr.aria-expanded]="disabled2 ? 'disabled2' : ''" type="text" class="form-control" name="calle"  placeholder="Nombre de la Calle"  [(ngModel)]="dom.Calle" >
+                                <input [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" type="text" class="form-control" name="calle"  placeholder="Nombre de la Calle"  [(ngModel)]="dom.Calle" >
                                 <div class="input-group-append">
                                 </div>
                               </div>
@@ -427,7 +427,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Número Exterior</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabled3" [attr.aria-expanded]="disabled3 ? 'disabled3' : ''" type="text" class="form-control" name="NoEx" id="NoEx" placeholder="Número Exterior"  [(ngModel)]="dom.NoEx"  >
+                                <input [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" type="text" class="form-control" name="NoEx" id="NoEx" placeholder="Número Exterior"  [(ngModel)]="dom.NoEx"  >
                                 <div class="input-group-append">
                                 </div>
                               </div>
@@ -437,7 +437,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Número Interior</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disabled4" [attr.aria-expanded]="disabled4 ? 'disabled4' : ''" type="text" class="form-control" name="NoIn" id="NoIn" placeholder="Número Interior" [(ngModel)]="dom.NoIn" >
+                                <input [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" type="text" class="form-control" name="NoIn" id="NoIn" placeholder="Número Interior" [(ngModel)]="dom.NoIn" >
                                 <div class="input-group-append">
                                 </div>
                               </div>
@@ -447,7 +447,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Código Postal</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabled5" [attr.aria-expanded]="disabled5 ? 'disabled5' : ''" class="form-control form-control-sm" name="c_p" id="c_p"  [(ngModel)]="dom.CodPos" >
+                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="c_p" id="c_p"  [(ngModel)]="dom.CodPos" >
                                   <option selected>Seleccione el C.P ...</option>
                                   <option> 08100 </option>
                                   <option> 08200 </option>
@@ -468,7 +468,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Colonia</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabled6" [attr.aria-expanded]="disabled6 ? 'disabled6' : ''" class="form-control form-control-sm" name="colonia" id="colonia"  [(ngModel)]="dom.Colonia" >
+                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="colonia" id="colonia"  [(ngModel)]="dom.Colonia" >
                                   <option selected>Seleccione la colonia ...</option>
                                   <option>Lomas de San Jorge</option>
                                   <option>Ciudad Satelite</option>
@@ -489,7 +489,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Delegación o Municipio</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabled7" [attr.aria-expanded]="disabled7 ? 'disabled7' : ''" class="form-control form-control-sm" name="municipio" id="municipio"  [(ngModel)]="dom.Municipio">
+                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="municipio" id="municipio"  [(ngModel)]="dom.Municipio">
                                   <option selected>Seleccione el Municipio ...</option>
                                   <option>Tepetitlan </option>
                                   <option>Tetepango</option>
@@ -510,7 +510,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Estado</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabled8" [attr.aria-expanded]="disabled8 ? 'disabled8' : ''" class="form-control form-control-sm" name="edo" id="edo"  [(ngModel)]="dom.Estado" >
+                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="edo" id="edo"  [(ngModel)]="dom.Estado" >
                                   <option selected>Seleccione el Estado ...</option>
                                   <option>MX México</option>
                                   <option>MN Michoacan de Ocampo</option>
@@ -531,7 +531,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">País</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disabled9" [attr.aria-expanded]="disabled9 ? 'disabled9' : ''" class="form-control form-control-sm" name="Pais" id="pais"  [(ngModel)]="dom.Pais">
+                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="Pais" id="pais"  [(ngModel)]="dom.Pais">
                                   <option selected>Seleccione el Pais ...</option>
                                   <option>MP Islas Marianas</option>
                                   <option>MQ Martinica</option>
@@ -553,11 +553,20 @@
                           <div  class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div  class="col-1 col-lg-1 col-xl-2">
-                            <button [disabled]="disabled10" [attr.aria-expanded]="disabled10 ? 'disabled10' : ''" (click)="disabled14 = !disabled14" (click)="disabled13 = !disabled13" (click)="disabled12 = !disabled12" (click)="disabled11 = !disabled11" (click)="disabled10 = !disabled10" (click)="disabled1 = !disabled1" (click)="disabled2 = !disabled2" (click)="disabled3 = !disabled3" (click)="disabled4 = !disabled4" (click)="disabled5 = !disabled5" (click)="disabled6 = !disabled6" (click)="disabled7 = !disabled7" (click)="disabled8 = !disabled8" (click)="disabled9 = !disabled9" (click)="isCollapsed8 = !isCollapsed8" type="submit" class="btn btn-light  btn-block" >Insertar</button>
+                            <button [disabled]="!disableDomicilio" 
+                              [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" 
+                              type="submit" 
+                              class="btn btn-light  btn-block"
+                              (click)="insertaDomicilio()">Insertar</button>
                           </div>
                           <!-- Botones de guardar -->
                           <div [ngbCollapse]="isCollapsed8" class="col-1 col-lg-1 col-xl-2">
-                            <button class="btn btn-light  btn-block" data-toggle="modal" data-target="#largesizemodal2" (click)= "Bloquear()" type="submit" (click)="Domicilio()" type = "reset" >Guardar</button>
+                            <button class="btn btn-light  btn-block" 
+                              data-toggle="modal"
+                              data-target="#largesizemodal2"
+                              type="submit"
+                              (click)="guardaDomicilio()"
+                              type="reset" >Guardar</button>
                           </div>
                         </div>
                       </div>

@@ -13,7 +13,7 @@ import { Catalogos } from 'src/app/shared/models/catalogos';
   styleUrls: ['./mod-moral.component.scss']
 })
 
-export class ModMoralComponent implements OnInit {
+export class ModMoralComponent implements OnInit { // 717
 
   @ViewChild('inputFile')
   myInputFile: ElementRef;
@@ -63,44 +63,12 @@ export class ModMoralComponent implements OnInit {
   isCollapsed5 = true;
   isCollapsed6 = true;
   isCollapsed7 = false;
-  isCollapsed8 = true;
+  isCollapsed8 = true; // boton guardar en seccion "domicilio"
 
   //Objetos Desabilitados Cliente
-  disabledGen1 = false;
-  disabledGen2 = false;
-  disabledGen3 = false;
-  disabledGen4 = false;
-  disabledGen5 = false;
-  disabledGen6 = false;
-  disabledGen7 = false;
-  disabledGen8 = false;
-  disabledGen9 = false;
-  disabledGen10 = false;
-  disabledGen11 = false;
-  disabledGen12 = false;
-  disabledGen13 = false;
-  disabledGen14 = false;
-  disabledGen15 = true;
-  disabledGen16 = true;
-  disabledGen17 = false;
-  disabledGen18 = false;
-  disabledGen19 = false;
-  disabledGen20 = false;
-  disabledGen21 = false;
-  disabled1 = true;
-  disabled2 = true;
-  disabled3 = true;
-  disabled4 = true;
-  disabled5 = true;
-  disabled6 = true;
-  disabled7 = true;
-  disabled8 = true;
-  disabled9 = true;
-  disabled10 = false;
-  disabled11 = true;
-  disabled12 = false;
-  disabled13 = false;
-  disabled14 = false;
+  disableDatosGenerales = false;
+  disableDomicilio = true;
+
   isCollapsedPrueba2 = true;
   isCollapsedPrueba1 = true;
 
@@ -196,23 +164,34 @@ export class ModMoralComponent implements OnInit {
   }
 
   domMod = {
-    Id: localStorage.getItem("ID"), TipoDom: null,
-    Calle: null, NoEx: null,
-    NoIn: null, CodPos: null,
-    Colonia: null, Municipio: null,
-    Estado: null, Pais: null
+    Id: localStorage.getItem("ID"),
+    TipoDom: null,
+    Calle: null,
+    NoEx: null,
+    NoIn: null,
+    CodPos: null,
+    Colonia: null,
+    Municipio: null,
+    Estado: null,
+    Pais: null
   }
 
   dom = {
-    Id: localStorage.getItem("ID"), TipoDom: null,
-    Calle: null, NoEx: null,
-    NoIn: null, CodPos: null,
-    Colonia: null, Municipio: null,
-    Estado: null, Pais: null
+    Id: localStorage.getItem("ID"),
+    TipoDom: null,
+    Calle: null,
+    NoEx: null,
+    NoIn: null,
+    CodPos: null,
+    Colonia: null,
+    Municipio: null,
+    Estado: null,
+    Pais: null
   }
 
   dom2 = {
-    Id: localStorage.getItem("ID"), TipoDom: null
+    Id: localStorage.getItem("ID"),
+    TipoDom: null
   }
 
   general = {
@@ -370,15 +349,6 @@ export class ModMoralComponent implements OnInit {
     );
   }
 
-  Domicilio() {
-    this.dom.Id = this.general.Id;
-    this.clienteService.agregar2(this.dom).subscribe(
-      (result: any) => {
-        this.clienteM = result, this.domcon = null, this.domborrar = null, this.obtenerDomicilio();
-      }
-    );
-  }
-
   DomicilioMod() {
     this.isCollapsed6 = !this.isCollapsed6;
     this.isCollapsed7 = !this.isCollapsed7;
@@ -433,10 +403,20 @@ export class ModMoralComponent implements OnInit {
   }
 
   DomBorrar(dom: any) {
-    localStorage.setItem("Listado", JSON.stringify(dom)), this.dom2 = JSON.parse(localStorage.getItem("Listado")), this.clienteService.domborrar(this.dom2).subscribe(result => this.domborrar = result, datos => { }), this.obtenerDomicilio(), this.clienteM = null, this.domcon = null
+    localStorage.setItem("Listado", JSON.stringify(dom));
+    this.dom2 = JSON.parse(localStorage.getItem("Listado"));
+    this.clienteService.domborrar(this.dom2).subscribe(
+      result => {
+        this.domborrar = result;
+        datos => { };
+      }
+    );
+    this.obtenerDomicilio();
+    this.clienteM = null;
+    this.domcon = null;
   }
 
-  General() {
+  guardaGeneral() {
     this.general.Id = 0;
     this.general.FechaAlta = '2021-12-29';
     this.general.FechaNacimiento = '1987-11-10';
@@ -447,6 +427,9 @@ export class ModMoralComponent implements OnInit {
         this.cliente = result;
         this.general.Id = result[0].noCliente;
         localStorage.setItem("ID", this.general.Id);
+
+        this.typeSuccess();
+        this.disableDatosGenerales = true;
       }
     );
   }
@@ -491,46 +474,23 @@ export class ModMoralComponent implements OnInit {
     this.router.navigate(['list-clienteM'], { relativeTo: this.route.parent });
   }
 
-  Bloquear() {
-    this.disabled1 = !this.disabled1;
-    this.disabled2 = !this.disabled2;
-    this.disabled3 = !this.disabled3;
-    this.disabled4 = !this.disabled4;
-    this.disabled5 = !this.disabled5;
-    this.disabled6 = !this.disabled6;
-    this.disabled7 = !this.disabled7;
-    this.disabled8 = !this.disabled8;
-    this.disabled9 = !this.disabled9;
-    this.disabled10 = !this.disabled10;
-    this.disabled11 = !this.disabled11;
-    this.disabled14 = !this.disabled14;
-    this.disabled13 = !this.disabled13;
-    this.disabled12 = !this.disabled12;
-    this.isCollapsed8 = !this.isCollapsed8;
+  insertaDomicilio() {
+    this.disableDomicilio = false;
+    this.isCollapsed8 = false;
   }
 
-  Desabilitar() {
-    this.disabledGen1 = !this.disabledGen1;
-    this.disabledGen2 = !this.disabledGen2;
-    this.disabledGen3 = !this.disabledGen3;
-    this.disabledGen4 = !this.disabledGen4;
-    this.disabledGen5 = !this.disabledGen5;
-    this.disabledGen6 = !this.disabledGen6;
-    this.disabledGen7 = !this.disabledGen7;
-    this.disabledGen8 = !this.disabledGen8;
-    this.disabledGen9 = !this.disabledGen9;
-    this.disabledGen10 = !this.disabledGen10;
-    this.disabledGen11 = !this.disabledGen11;
-    this.disabledGen14 = !this.disabledGen14;
-    this.disabledGen13 = !this.disabledGen13;
-    this.disabledGen12 = !this.disabledGen12;
-    this.disabledGen15 = !this.disabledGen15;
-    this.disabledGen16 = !this.disabledGen16;
-    this.disabledGen17 = !this.disabledGen17;
-    this.disabledGen18 = !this.disabledGen18;
-    this.disabledGen19 = !this.disabledGen19;
-    this.disabledGen20 = !this.disabledGen20;
-    this.disabledGen21 = !this.disabledGen21;
+  guardaDomicilio() {
+    this.dom.Id = this.general.Id;
+    this.clienteService.agregar2(this.dom).subscribe(
+      (result: any) => {
+        this.clienteM = result;
+        this.domcon = null;
+        this.domborrar = null;
+        this.obtenerDomicilio();
+        this.disableDomicilio = true;
+        this.isCollapsed8 = true;
+      }
+    );
   }
 
   MostrarDom() {
@@ -708,4 +668,4 @@ export class ModMoralComponent implements OnInit {
     this.archivo = (<HTMLInputElement>fileInput.target).files[0];
   }
 
-}
+} /* 737 */
