@@ -4,7 +4,7 @@
       <div class="col-4 col-lg-4 col-xl-4">
         <div class="form-group row">
           <h4 type="number" name="Id" id="Id" *ngFor="let retorno of cliente">ID: {{retorno.noCliente}}</h4>
-          
+
         </div>
       </div>
       <div class="col-4 col-lg-4 col-xl-4">
@@ -819,15 +819,15 @@
                 <table class="table">
                   <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <!--<th scope="col">#</th>-->
                     <th scope="col">Tipo</th>
                     <th scope="col">Fecha Alta</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let doc of listadoDocumentos">
-                    <th scope="row">{{doc.consecutivo}}</th>
-                    <td>{{doc.tipoDocumento}}</td>
+                    <th scope="row">{{doc.descCorta}}</th>
+                    <!--<td>{{doc.tipoDocumento}}</td>-->
                     <td>{{doc.fechaAlta}}</td>
                     <!--
                       <td>

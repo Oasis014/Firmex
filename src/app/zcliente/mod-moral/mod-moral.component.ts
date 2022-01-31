@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-=======
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
->>>>>>> 61a88457f89d8e974f138aa5246254866f206124
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
@@ -677,29 +673,16 @@ export class ModMoralComponent implements OnInit {
   }
 
   catDocumentos() {
-    this.ctDocumentos = [
-      {
-        catalogo_cve: 1,
-        desc_45: "Documento 1"
-      }, {
-        catalogo_cve: 2,
-        desc_45: "Documento 2"
-      }, {
-        catalogo_cve: 3,
-        desc_45: "Documento 3"
+    this.clienteService.catDocumentos().subscribe(
+      (result: {data: Array<any>, status: string, message: string}) => {
+        this.ctDocumentos = result.data;
       }
-    ];
-    /*this.clienteService.catDocumentos().subscribe(
-      (result: any) => {
-        this.ctDocumentos = result;
-      }
-    );*/
+    );
   }
 
   getDocumentos() {
     this.clienteService.obtenerDocumentos(1).subscribe(
-      (res: any) => {
-        console.log(res);
+      (res: {data: Array<any>, status: string, message: string}) => {
         this.listadoDocumentos = res.data;
       }
     );
@@ -709,11 +692,9 @@ export class ModMoralComponent implements OnInit {
     let param = {
       userId: 1,
       idDoc: this.tipoDocumento,
-      consDoc: 1
     };
     this.clienteService.guardarDocumento(this.archivo, param).subscribe(
       (res: any) => {
-        console.log(res);
         this.myInputFile.nativeElement.value = '';
         this.getDocumentos();
       }, (error: any) => {

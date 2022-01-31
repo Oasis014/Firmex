@@ -210,7 +210,7 @@ export class ClienteService {
     return this.httpService.postFile(this.clienteUrl.documentacion, formData);
   }
 
-  obtenerDocumentos(id: number): Observable<HttpEvent<any>> {
+  obtenerDocumentos(id: number): Observable<any> {
     let params = {
       id: id
     };
@@ -369,8 +369,11 @@ export class ClienteService {
     return this.http.get(this.catalogosUrl.catalogonaCION);
   }
 
-  catDocumentos() {
-    return this.http.get(this.catalogosUrl.catalogoTipoDocumento);
+  catDocumentos(): Observable<any> {
+    let params = {
+      catid: 'tipdoc'
+    };
+    return this.httpService.get(this.catalogosUrl.catalogos, params);
   }
 
 }

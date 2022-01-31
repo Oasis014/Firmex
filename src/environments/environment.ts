@@ -30,7 +30,7 @@ export const environment = {
       catalogoTiprrc: `${host}CatalogoTiprrc.php`,
       catalogoTiptel: `${host}CatalogoTiptel.php`,
       catalogonaCION: `${host}CatalogonaCION.php`,
-      catalogoTipoDocumento: `${host}.php`,
+      catalogos: `${host}catalogos.php`,
     }
   }
 };
