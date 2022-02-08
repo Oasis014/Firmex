@@ -3,7 +3,8 @@
     <div class="row">
       <div class="col-4 col-lg-4 col-xl-4">
         <div class="form-group row">
-          <h4 type="number" name="Id" id="Id" *ngFor="let retorno of cliente">ID: {{retorno.noCliente}}</h4>
+          <!--<h4 type="number" name="Id" id="Id" *ngFor="let retorno of cliente">ID: {{retorno.noCliente}}</h4>-->
+          <h4 type="number">ID: {{general.Id}}</h4>
 
         </div>
       </div>
@@ -32,7 +33,7 @@
           </div>
           <div class="modal-body">
             <div >
-              <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
+              <table border="0" span="0" class="table table-borderless table-striped" style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
                 <thead >
                 <tr>
                   <td>Clave de Error: </td>
@@ -41,10 +42,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let retorno2 of cliente">
-                  <td>{{retorno2.errorClave}}</td>
-                  <td>{{retorno2.errorSp}}</td>
-                  <td>{{retorno2.errorDescripcion}}</td>
+                <tr *ngFor="let item of responseSP">
+                  <td>{{item.errorClave}}</td>
+                  <td>{{item.errorSp}}</td>
+                  <td>{{item.errorDescripcion}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -58,16 +59,16 @@
     </div>
     <div class="card">
       <div class="col-12 col-lg-12" align="center" [ngbCollapse]="isCollapsed5" >
-                <label class="card-header text-uppercase" >Sucursal: {{SucursalA}} </label>
-              <label class="card-header text-uppercase" >Promotor: {{ClavePromotorA}}</label>
-              <label class="card-header text-uppercase" >Estatus de Cliente: {{EstatusClienteA}}</label>
-              <label class="card-header text-uppercase" >Razon Social: {{RazonSocialA}}</label>
+        <label class="card-header text-uppercase" >Sucursal: {{SucursalA}} </label>
+        <label class="card-header text-uppercase" >Promotor: {{ClavePromotorA}}</label>
+        <label class="card-header text-uppercase" >Estatus de Cliente: {{EstatusClienteA}}</label>
+        <label class="card-header text-uppercase" >Razon Social: {{RazonSocialA}}</label>
       </div>
       <div class="card-body">
         <ul ngbNav #nav3="ngbNav" [(activeId)]="active2" (navChange)="onNavChange($event)" class="nav-tabs nav-tabs-primary  nav-justified">
-          <li [ngbNavItem]="1"  > <a ngbNavLink><i class="fa fa-user-plus"></i>Datos Generales</a>
+          <li [ngbNavItem]="1" > <a ngbNavLink><i class="fa fa-user-plus"></i>Datos Generales</a>
             <ng-template ngbNavContent>
-              <form [ngbCollapse]="isCollapsedPrueba1" >
+              <form [ngbCollapse]="isCollapsedPrueba1" [formGroup]="datosGeneralesForm"> <!-- (ngSubmit)="" -->
                 <div class="row">
                   <div class="col-12 col-lg-12">
                     <div class="card">
@@ -79,7 +80,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Número Cliente </label>
                               <div class="col-sm-6">
-                                <input type="text" class="form-control" name="NumeroCLiente" id="NumeroCLiente" *ngFor="let retorno of cliente" value="{{retorno.noCliente}}" readonly >
+                                <input type="text" class="form-control" formControlName="numeroCliente" readonly >
                               </div>
                             </div>
                           </div>
@@ -87,7 +88,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Estatus del Cliente </label>
                               <div class="col-sm-6">
-                                <input type="text" class="form-control" name="EstatusCliente" id="EstatusCliente"  [(ngModel)]="general.EstatusCliente" placeholder="Prospecto" [(ngModel)]="EstatusClienteA" readonly >
+                                <input type="text" class="form-control" formControlName="estatusCliente" placeholder="Prospecto" readonly >
                               </div>
                             </div>
                           </div>
@@ -95,7 +96,11 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Sucursal</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" class="form-control form-control-sm" name="Sucursal" id="Sucursal" required [(ngModel)]="general.Sucursal" [(ngModel)]="Val.Sucursal" [(ngModel)]="SucursalA" >
+                                <select
+                                  class="form-control form-control-sm"
+                                  formControlName="sucursal"
+                                  required
+                                >
                                   <option selected>Seleccione la sucursal ...</option>
                                   <option value="1">Oficina Matriz</option>
                                   <option value="1">Ciudad de México</option>
@@ -110,8 +115,11 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Promotor</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" class="form-control form-control-sm" name="ClavePromotor" id="ClavePromotor"  [(ngModel)]="general.ClavePromotor" [(ngModel)]="ClavePromotorA" >
-                                  <option *ngFor="let cPue of ctCatpue" [value]="cPue.catalogo_cve">{{cPue.desc_45}}
+                                <select
+                                  class="form-control form-control-sm"
+                                  formControlName="promotor">
+                                  <option *ngFor="let cPue of ctCatpue" [value]="cPue.catalogo_cve">
+                                    {{cPue.desc_45}}
                                   </option>
                                 </select>
                               </div>
@@ -121,7 +129,12 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Razon Social</label>
                               <div class="col-sm-6">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text"  class="form-control" name="RazonSocial" id="RazonSocial"  [(ngModel)]="general.RazonSocial" [(ngModel)]="Val.RazonSocial" [(ngModel)]="RazonSocialA" placeholder="00000">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  formControlName="razonSocial"
+                                  placeholder="00000"
+                                >
                               </div>
                             </div>
                           </div>
@@ -129,7 +142,11 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Fecha de Constitución </label>
                               <div class="col-sm-6">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="date" class="form-control" name="FechaConstitucion" id="FechaConstitucion"  [(ngModel)]="general.FechaConstitucion">
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  formControlName="fechaConstitucion"
+                                >
                               </div>
                             </div>
                           </div>
@@ -137,7 +154,12 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">RFC</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="RFC" id="RFC" placeholder=" XXXX999999XXX "  [(ngModel)]="general.RFC" [(ngModel)]="Val.RFC">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  formControlName="rfc"
+                                  placeholder=" XXXX999999XXX "
+                                >
                               </div>
                             </div>
                           </div>
@@ -147,7 +169,14 @@
                           </div>
                           <div class="col-2 col-lg-1 col-xl-1">
                             <div [ngbCollapse]="isCollapsed" class="form-group row">
-                              <button (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2" data-toggle="modal" data-target="#largesizemodal" (click)="Validate()" type="submit" class="btn btn-light  btn-block" >Validar</button>
+                              <button
+                                [attr.aria-expanded]="!isCollapsed2"
+                                data-toggle="modal"
+                                data-target="#largesizemodal"
+                                (click)="validarDatosGenerales()"
+                                type="submit"
+                                class="btn btn-light  btn-block"
+                              >Validar</button>
                             </div>
                           </div>
                         </div>
@@ -181,11 +210,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr *ngFor="let retorno of cliente">
-                                      <td>{{retorno.noCliente}}</td>
-                                      <td>{{retorno.errorClave}}</td>
-                                      <td>{{retorno.errorSp}}</td>
-                                      <td>{{retorno.errorDescripcion}}</td>
+                                    <tr *ngFor="let item of responseSP">
+                                      <td>{{item.noCliente}}</td>
+                                      <td>{{item.errorClave}}</td>
+                                      <td>{{item.errorSp}}</td>
+                                      <td>{{item.errorDescripcion}}</td>
                                     </tr>
                                     </tbody>
                                   </table>
@@ -202,7 +231,13 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Nombre de la sociedad </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="NombreSociedad" id="NombreSociedad" placeholder=" Nombre de la sociedad "  [(ngModel)]="general.NombreSociedad">
+                                <input
+                                  type="text" class="form-control"
+                                  name="NombreSociedad"
+                                  id="NombreSociedad"
+                                  placeholder=" Nombre de la sociedad "
+                                  formControlName="nombreSociedad"
+                                  [(ngModel)]="general.NombreSociedad">
                               </div>
                             </div>
                           </div>
@@ -210,7 +245,11 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Representante Legal</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder="Representante legal"  [(ngModel)]="general.RepresentanteLegal">
+                                <input
+                                  type="text" class="form-control"
+                                  placeholder="Representante legal"
+                                  formControlName="representanteLegal"
+                                  [(ngModel)]="general.RepresentanteLegal">
                               </div>
                             </div>
                           </div>
@@ -218,7 +257,12 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Presidente del consejo</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="PresidenteConsejo" id="PresidenteConsejo" placeholder="Nombre del presidente"  [(ngModel)]="general.PresidenteConsejo">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Nombre del presidente"
+                                  formControlName="presidenteConsejo"
+                                  [(ngModel)]="general.PresidenteConsejo">
                               </div>
                             </div>
                           </div>
@@ -226,7 +270,12 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Consejero</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="Consejero" id="Consejero" placeholder="Nombre del consejero"  [(ngModel)]="general.Consejero">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Nombre del consejero"
+                                  formControlName="consejero"
+                                  [(ngModel)]="general.Consejero">
                               </div>
                             </div>
                           </div>
@@ -234,7 +283,12 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Email Personal</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="EmailPersonal" id="EmailPersonal" placeholder=" nombre@micorreo.com" [(ngModel)]="general.EmailPersonal">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder=" nombre@micorreo.com"
+                                  formControlName="emailPersonal"
+                                  [(ngModel)]="general.EmailPersonal">
                               </div>
                             </div>
                           </div>
@@ -242,7 +296,12 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Email Empresa </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="EmailEmpresa" id="EmailEmpresa" placeholder=" nombre@micorreo.com"  [(ngModel)]="general.EmailEmpresa">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder=" nombre@micorreo.com"
+                                  formControlName="emailEmpresa"
+                                  [(ngModel)]="general.EmailEmpresa">
                               </div>
                             </div>
                           </div>
@@ -250,8 +309,12 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Parte Relacionada </label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" class="form-control form-control-sm" name="ParteRelacionada" id="ParteRelacionada"  [(ngModel)]="general.ParteRelacionada">
-                                  <option *ngFor="let tRel of ctTiprel" [value]="tRel.catalogo_cve">{{tRel.desc_45}}
+                                <select
+                                  class="form-control form-control-sm"
+                                  formControlName="parteRelacionada"
+                                  [(ngModel)]="general.ParteRelacionada">
+                                  <option *ngFor="let tRel of ctTiprel" [value]="tRel.catalogo_cve">
+                                    {{tRel.desc_45}}
                                   </option>
                                 </select>
                               </div>
@@ -261,15 +324,24 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Grupo de Vinculo al Consejo </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder="Nombre del Grupo"  [(ngModel)]="general.GrupoConsejo">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Nombre del Grupo"
+                                  formControlName="grupoVinculoConsejo"
+                                  [(ngModel)]="general.GrupoConsejo">
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label class="col-sm-5 col-form-success">Grupo de Riesgo Comun </label>
+                              <label  class="col-sm-5 col-form-success">Grupo de Riesgo Comun </label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" class="form-control form-control-sm" name="GrupoRiesgoComun" id="GrupoRiesgoComun"  [(ngModel)]="general.GrupoRiesgoComun">
+                                <select
+                                  class="form-control form-control-sm"
+                                  formControlName="grupoRiesgoComun"
+                                  [(ngModel)]="general.GrupoRiesgoComun"
+                                >
                                   <option value="1" selected>Seleccione al promotor ...</option>
                                   <option value="1">Sin Grupo</option>
                                   <option value="1">B</option>
@@ -289,7 +361,13 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Teléfono Oficina </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="TelefonoOficina" id="TelefonoOficina" placeholder="55-5555-55555"  [(ngModel)]="general.TelefonoOficina">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="55-5555-55555"
+                                  formControlName="telefonoOficina"
+                                  [(ngModel)]="general.TelefonoOficina"
+                                  >
                               </div>
                             </div>
                           </div>
@@ -297,7 +375,13 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Extensión Oficina </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="ExtensionOficina" id="ExtensionOficina" placeholder="55-5555-55555"  [(ngModel)]="general.ExtensionOficina">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="55-5555-55555"
+                                  formControlName="extensionOficina"
+                                  [(ngModel)]="general.ExtensionOficina"
+                                  >
                               </div>
                             </div>
                           </div>
@@ -305,7 +389,13 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Celular </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="Celular" id="Celular" placeholder="55-5555-55555"  [(ngModel)]="general.Celular">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="55-5555-55555"
+                                  formControlName="celular"
+                                  [(ngModel)]="general.Celular"
+                                  >
                               </div>
                             </div>
                           </div>
@@ -313,7 +403,13 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">RedSocial 1 </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="RedSocial1" id="RedSocial1" placeholder=" "  [(ngModel)]="general.RedSocial1">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder=" "
+                                  formControlName="redSocial1"
+                                  [(ngModel)]="general.RedSocial1"
+                                  >
                               </div>
                             </div>
                           </div>
@@ -321,7 +417,13 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">RedSocial 2 </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="text" class="form-control" name="RedSocial2" id="RedSocial2" placeholder=" "  [(ngModel)]="general.RedSocial2">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder=" "
+                                  formControlName="redSocial2"
+                                  [(ngModel)]="general.RedSocial2"
+                                  >
                               </div>
                             </div>
                           </div>
@@ -332,10 +434,19 @@
                           <div class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div  class="col-2 col-lg-2 col-xl-2">
-                            <button [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" type="submit" class="btn btn-light  btn-block" (click) = "Cancelar()" >Cancelar</button>
+                            <button
+                              type="submit"
+                              class="btn btn-light btn-block"
+                              (click)="cancelar()">Cancelar</button>
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <button [disabled]="disableDatosGenerales" [attr.aria-expanded]="disableDatosGenerales ? 'disableDatosGenerales' : ''" data-toggle="modal" data-target="#largesizemodal1" (click)="guardaGeneral()" type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                            <button
+                              [disabled]="disBtnDatosGenerales"
+                              data-toggle="modal"
+                              data-target="#largesizemodal1"
+                              type="submit"
+                              class="btn btn-light btn-block"
+                              (click)="guardaGeneral()">Guardar</button>
                           </div>
                         </div>
                       </div>
@@ -553,15 +664,15 @@
                           <div  class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div  class="col-1 col-lg-1 col-xl-2">
-                            <button [disabled]="!disableDomicilio" 
-                              [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" 
-                              type="submit" 
+                            <button [disabled]="!disableDomicilio"
+                              [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''"
+                              type="submit"
                               class="btn btn-light  btn-block"
                               (click)="insertaDomicilio()">Insertar</button>
                           </div>
                           <!-- Botones de guardar -->
                           <div [ngbCollapse]="isCollapsed8" class="col-1 col-lg-1 col-xl-2">
-                            <button class="btn btn-light  btn-block" 
+                            <button class="btn btn-light  btn-block"
                               data-toggle="modal"
                               data-target="#largesizemodal2"
                               type="submit"

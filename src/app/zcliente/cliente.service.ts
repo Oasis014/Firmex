@@ -95,11 +95,11 @@ export class ClienteService {
     return this.http.post(`${this.url}SelecGenerales.php`, JSON.stringify(selec));
   }
 
-  retorno() {
+  retorno(): Observable<any> {
     return this.http.get(`${this.url}Generales.php`);
   }
 
-  retorno2() {
+  retorno2(): Observable<any> {
     return this.http.get(`${this.url}GeneralValidar.php`);
   }
 
@@ -255,7 +255,8 @@ export class ClienteService {
   }
 
   agregar9(usuario: any) {
-    return this.http.post(`${this.url}GeneralValidar.php`, JSON.stringify(usuario));
+    //return this.http.post(`${this.clienteUrl.generalValidar}`, JSON.stringify(usuario));
+    return this.httpService.post(this.clienteUrl.generalValidar, usuario);
   }
 
   agregar10(usuario: any) {

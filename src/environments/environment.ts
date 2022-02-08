@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   api: {
     cliente: {
-      documentacion: `${host}documentacion.php`
+      documentacion: `${host}documentacion.php`,
+      generalValidar: `${host}GeneralValidar.php`
     },
     catalogos: {
       catalogoActdet: `${host}CatalogoActdet.php`,

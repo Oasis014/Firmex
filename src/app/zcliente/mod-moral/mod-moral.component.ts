@@ -6,6 +6,9 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Catalogos } from 'src/app/shared/models/catalogos';
+import { DatosGenerales } from 'src/app/shared/models/datosGenerales';
+import { ResponseSP } from 'src/app/shared/models/responseSP';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-mod-moral',
@@ -19,11 +22,14 @@ export class ModMoralComponent implements OnInit { // 717
   myInputFile: ElementRef;
 
   constructor(
-    public toastr: ToastrService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private clienteService: ClienteService
+    public readonly toastr: ToastrService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly clienteService: ClienteService,
+    private readonly formBuilder: FormBuilder
   ) { }
+
+  datosGeneralesForm: FormGroup;
 
   active = 1;
   active1 = 'top';
@@ -66,7 +72,8 @@ export class ModMoralComponent implements OnInit { // 717
   isCollapsed8 = true; // boton guardar en seccion "domicilio"
 
   //Objetos Desabilitados Cliente
-  disableDatosGenerales = false;
+  //disableDatosGenerales = false;
+  disBtnDatosGenerales = false;
   disableDomicilio = true;
 
   isCollapsedPrueba2 = true;
@@ -76,7 +83,7 @@ export class ModMoralComponent implements OnInit { // 717
   domicilio = null as any;
   catalogo = null as any;
   catalogo1 = null as any;
-  cliente = null as any;
+  responseSP: ResponseSP[];
   domborrar = null as any;
   clienteM = null as any;
   clienteMod = null as any;
@@ -194,6 +201,9 @@ export class ModMoralComponent implements OnInit { // 717
     TipoDom: null
   }
 
+  general = new DatosGenerales();
+
+  /*
   general = {
     Id: null,
     Sucursal: null,
@@ -234,7 +244,10 @@ export class ModMoralComponent implements OnInit { // 717
     PresidenteConsejo: null,
     Consejero: null
   }
+  */
 
+
+  /*
   Val = {
     Sucursal: null,
     PrimerNombre: null,
@@ -245,19 +258,21 @@ export class ModMoralComponent implements OnInit { // 717
     PersonalidadJuridica: null,
     RFC: null
   }
+  */
 
+  /*
   retorno = {
     noCliente: null,
     errorClave: null,
     errorSp: null,
     errorDescripcion: null
-  }
+  }*/
 
-  retorno2 = {
+  /*retorno2 = {
     errorClave: null,
     errorSp: null,
     errorDescripcion: null
-  }
+  }*/
 
   retornoID = {
     Sucursal: null,
@@ -310,6 +325,32 @@ export class ModMoralComponent implements OnInit { // 717
     this.ctSx();
     this.catDocumentos();
     this.getDocumentos();
+
+    this.datosGeneralesForm = this.formBuilder.group({
+      // campos primer formulario ( el de validar )
+      numeroCliente: [''],                   // Numero Cliente
+      estatusCliente: [''],                  // Estatus Cliente
+      sucursal: ['', Validators.required],   // Sucursal
+      promotor: [],                          // Promotor // general.ClavePromotor
+      razonSocial: [],                       // Razon social // general.RazonSocial
+      fechaConstitucion: [],                 // fecha de constitucion // general.FechaConstitucion
+      rfc: [],                               // rfc //general.RFC
+      // campos segundo formulario ( datos generales )
+      nombreSociedad: [''],                  // Nombre de la sociedad
+      representanteLegal: [''],              // Representante Legal
+      presidenteConsejo: [''],               // Presidente del consejo
+      consejero: [''],                       // Consejero
+      emailPersonal: [''],                   // Email Personal
+      emailEmpresa: [''],                    // Email Empresa
+      parteRelacionada: [''],
+      grupoVinculoConsejo: [''],             // Grupo de Vinculo al Consejo
+      grupoRiesgoComun: [''],                // Grupo de Riesgo Comun
+      telefonoOficina: [''],                 // Teléfono Oficina
+      extensionOficina: [''],                // Extensión Oficina
+      celular: [''],                         // Celular
+      redSocial1: [''],                      // RedSocial 1
+      redSocial2: [''],                      // RedSocial 2
+    });
   }
 
   close(event: MouseEvent, toRemove: number) {
@@ -343,9 +384,17 @@ export class ModMoralComponent implements OnInit { // 717
     }
   }
 
-  Validate() {
-    this.clienteService.agregar9(this.Val).subscribe(
-      result => this.cliente = result, datos => { }
+  validarDatosGenerales() {
+    this.isCollapsed2 = !this.isCollapsed2;
+
+    let values = this.datosGeneralesForm.value;
+    this.general.setForm1(values)
+    console.log(this.general)
+
+    this.clienteService.agregar9(this.general).subscribe(
+      (result: ResponseSP[]) => {
+        this.responseSP = result;
+      }
     );
   }
 
@@ -387,11 +436,11 @@ export class ModMoralComponent implements OnInit { // 717
   }
 
   Retorno(retorno: any) {
-    this.clienteService.retorno().subscribe(result => this.cliente = result), localStorage.setItem("ID", JSON.stringify(retorno));
+    this.clienteService.retorno().subscribe(result => this.responseSP = result), localStorage.setItem("ID", JSON.stringify(retorno));
   }
 
   Retorno2() {
-    this.clienteService.retorno2().subscribe(result => this.cliente = result);
+    this.clienteService.retorno2().subscribe(result => this.responseSP = result);
   }
 
   Retorno3() {
@@ -417,19 +466,28 @@ export class ModMoralComponent implements OnInit { // 717
   }
 
   guardaGeneral() {
-    this.general.Id = 0;
+    let values = this.datosGeneralesForm.value;
+    this.general.setDatosGenerales(values)
+
+    // TODO settear la fecha actual
     this.general.FechaAlta = '2021-12-29';
+    // TODO poner una default, porque el sp la requiere
     this.general.FechaNacimiento = '1987-11-10';
-    this.general.FechaConstitucion = "2010-11-10";
+
 
     this.clienteService.agregar(this.general).subscribe(
-      (result: any) => {
-        this.cliente = result;
-        this.general.Id = result[0].noCliente;
-        localStorage.setItem("ID", this.general.Id);
+      (result: ResponseSP[]) => {
+        this.responseSP = result;
+        this.general.setId(+result[0].noCliente)
+        this.datosGeneralesForm.controls.numeroCliente.setValue(+result[0].noCliente);
+
+        // REMOVE ya no se va a necesitar
+        localStorage.setItem("ID", this.general.Id+'');
 
         this.typeSuccess();
-        this.disableDatosGenerales = true;
+        this.datosGeneralesForm.disable();
+        this.disBtnDatosGenerales = true;
+
       }
     );
   }
@@ -470,7 +528,7 @@ export class ModMoralComponent implements OnInit { // 717
     this.toastr.success('Finalizado con exito!!');
   }
 
-  Cancelar() {
+  cancelar() {
     this.router.navigate(['list-clienteM'], { relativeTo: this.route.parent });
   }
 
@@ -480,7 +538,7 @@ export class ModMoralComponent implements OnInit { // 717
   }
 
   guardaDomicilio() {
-    this.dom.Id = this.general.Id;
+    this.dom.Id = this.general.Id+'';
     this.clienteService.agregar2(this.dom).subscribe(
       (result: any) => {
         this.clienteM = result;
@@ -668,4 +726,4 @@ export class ModMoralComponent implements OnInit { // 717
     this.archivo = (<HTMLInputElement>fileInput.target).files[0];
   }
 
-} /* 737 */
+}
