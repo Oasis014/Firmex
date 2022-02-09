@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
+import { Domicilio } from '../shared/models/domicilio';
 
 @Injectable({
   providedIn: 'root'
@@ -222,8 +223,8 @@ export class ClienteService {
     return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario));
   }
 
-  agregar2(clienteM: any) {
-    return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteM));
+  agregarDomicilio(domicilio: Domicilio) {
+    return this.http.post(this.clienteUrl.guardarDomicilio, domicilio);
   }
 
   agregar02(clienteMod: any) {

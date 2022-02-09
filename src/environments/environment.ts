@@ -7,7 +7,8 @@ export const environment = {
   api: {
     cliente: {
       documentacion: `${host}documentacion.php`,
-      generalValidar: `${host}GeneralValidar.php`
+      generalValidar: `${host}GeneralValidar.php`,
+      guardarDomicilio: `${host}Domicilio.php`,
     },
     catalogos: {
       catalogoActdet: `${host}CatalogoActdet.php`,

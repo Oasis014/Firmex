@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
 import {NgForm} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import { Domicilio } from 'src/app/shared/models/domicilio';
 
 @Component({
   selector: 'app-php-funciona',
@@ -12,18 +13,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class PhpFuncionaComponent implements OnInit {
 cliente = null as any;
-dato = {
-    Id: null,
-    Calle: null,
-    NoEx: null,
-    NoIn: null,
-    CodPos: null,
-    Colonia: null,
-    Municipio: null,
-    Estado: null,
-    Pais: null,
-    TipoDom: null
-  }
+dato = new Domicilio;
 
 open() {this.router.navigate(['list-cliente'], { relativeTo: this.route.parent }); }
 
@@ -31,7 +21,7 @@ open() {this.router.navigate(['list-cliente'], { relativeTo: this.route.parent }
                                         private route: ActivatedRoute, private clienteService: ClienteService) { }
 
   Agregar(){
-      this.clienteService.agregar2(this.dato).subscribe(datos =>{
+      this.clienteService.agregarDomicilio(this.dato).subscribe(datos =>{
       });
     }
 

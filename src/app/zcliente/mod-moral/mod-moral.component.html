@@ -477,10 +477,10 @@
                           </tr>
                           </thead>
                           <tbody>
-                          <tr *ngFor="let retorno3 of clienteM">
-                            <td>{{retorno3.errorClave}}</td>
-                            <td>{{retorno3.errorSp}}</td>
-                            <td>{{retorno3.errorDescripcion}}</td>
+                          <tr *ngFor="let i of responseSP">
+                            <td>{{i.errorClave}}</td>
+                            <td>{{i.errorSp}}</td>
+                            <td>{{i.errorDescripcion}}</td>
                           </tr>
                           <tr *ngFor="let retornodomb of domborrar">
                               <td>{{retornodomb.errorClave}}</td>
@@ -503,7 +503,7 @@
                   </div>
                 </div>
               </div>
-              <form [ngbCollapse]="isCollapsed7" action="#" >
+              <form [ngbCollapse]="isCollapsed7" [formGroup]="domicilioForm">
                 <div class="row" >
                   <div class="col-12 col-lg-12">
                     <div class="card">
@@ -517,8 +517,9 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Tipo de Domicilio</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="tipo_domicilio" id="tipo_domicilio"  [(ngModel)]="dom.TipoDom">
-                                  <option *ngFor="let ctdom of ctTipdom" [value]="ctdom.catalogo_cve">{{ctdom.desc_45}}
+                                <select class="form-control form-control-sm" formControlName="tipoDom">
+                                  <option *ngFor="let ctdom of ctTipdom" [value]="ctdom.catalogo_cve">
+                                    {{ctdom.desc_45}}
                                   </option>
                                 </select>
                               </div>
@@ -528,7 +529,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Calle </label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" type="text" class="form-control" name="calle"  placeholder="Nombre de la Calle"  [(ngModel)]="dom.Calle" >
+                                <input type="text" class="form-control" placeholder="Nombre de la Calle" formControlName="calle" maxlength="80">
                                 <div class="input-group-append">
                                 </div>
                               </div>
@@ -538,7 +539,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Número Exterior</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" type="text" class="form-control" name="NoEx" id="NoEx" placeholder="Número Exterior"  [(ngModel)]="dom.NoEx"  >
+                                <input type="text" class="form-control" placeholder="Número Exterior" formControlName="noEx" maxlength="6">
                                 <div class="input-group-append">
                                 </div>
                               </div>
@@ -548,7 +549,7 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Número Interior</label>
                               <div class="col-sm-6 input-group">
-                                <input [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" type="text" class="form-control" name="NoIn" id="NoIn" placeholder="Número Interior" [(ngModel)]="dom.NoIn" >
+                                <input type="text" class="form-control" placeholder="Número Interior" formControlName="noIn" maxlength="6">
                                 <div class="input-group-append">
                                 </div>
                               </div>
@@ -558,19 +559,19 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Código Postal</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="c_p" id="c_p"  [(ngModel)]="dom.CodPos" >
-                                  <option selected>Seleccione el C.P ...</option>
-                                  <option> 08100 </option>
-                                  <option> 08200 </option>
-                                  <option> 08300 </option>
-                                  <option> 04500 </option>
-                                  <option> 05420 </option>
-                                  <option> 05600 </option>
-                                  <option> 05500 </option>
-                                  <option> 07890 </option>
-                                  <option> 08400 </option>
-                                  <option> 05600 </option>
-                                  <option> 13400 </option>
+                                <select class="form-control form-control-sm" formControlName="codPos" >
+                                  <option value="" selected>Seleccione el C.P ...</option>
+                                  <option value="08100"> 08100 </option>
+                                  <option value="08200"> 08200 </option>
+                                  <option value="08300"> 08300 </option>
+                                  <option value="04500"> 04500 </option>
+                                  <option value="05420"> 05420 </option>
+                                  <option value="05600"> 05600 </option>
+                                  <option value="05500"> 05500 </option>
+                                  <option value="07890"> 07890 </option>
+                                  <option value="08400"> 08400 </option>
+                                  <option value="05600"> 05600 </option>
+                                  <option value="13400"> 13400 </option>
                                 </select>
                               </div>
                             </div>
@@ -579,19 +580,19 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Colonia</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="colonia" id="colonia"  [(ngModel)]="dom.Colonia" >
-                                  <option selected>Seleccione la colonia ...</option>
-                                  <option>Lomas de San Jorge</option>
-                                  <option>Ciudad Satelite</option>
-                                  <option>Dolores</option>
-                                  <option>La Loma</option>
-                                  <option>Lomas del Ajedrez</option>
-                                  <option>Mujeres Ilustres</option>
-                                  <option>Periodistas</option>
-                                  <option>Fundadores</option>
-                                  <option>Los Negritos</option>
-                                  <option>Coyotes Norte</option>
-                                  <option>Sandovales</option>
+                                <select class="form-control form-control-sm" formControlName="colonia" >
+                                  <option value="" selected>Seleccione la colonia ...</option>
+                                  <option value="1">Lomas de San Jorge</option>
+                                  <option value="1">Ciudad Satelite</option>
+                                  <option value="1">Dolores</option>
+                                  <option value="1">La Loma</option>
+                                  <option value="1">Lomas del Ajedrez</option>
+                                  <option value="1">Mujeres Ilustres</option>
+                                  <option value="1">Periodistas</option>
+                                  <option value="1">Fundadores</option>
+                                  <option value="1">Los Negritos</option>
+                                  <option value="1">Coyotes Norte</option>
+                                  <option value="1">Sandovales</option>
                                 </select>
                               </div>
                             </div>
@@ -600,19 +601,19 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Delegación o Municipio</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="municipio" id="municipio"  [(ngModel)]="dom.Municipio">
-                                  <option selected>Seleccione el Municipio ...</option>
-                                  <option>Tepetitlan </option>
-                                  <option>Tetepango</option>
-                                  <option>Villa de Tezontepec</option>
-                                  <option>Tezontepec de Aldama</option>
-                                  <option>Tianguistengo</option>
-                                  <option>Tizayuca</option>
-                                  <option>Tlahuelilpan</option>
-                                  <option>Tlahuiltepa</option>
-                                  <option>Tlanalapa</option>
-                                  <option>Tlanchinol</option>
-                                  <option>Tlaxcoapan</option>
+                                <select class="form-control form-control-sm" formControlName="municipio">
+                                  <option value="" selected>Seleccione el Municipio ...</option>
+                                  <option value="1">Tepetitlan </option>
+                                  <option value="1">Tetepango</option>
+                                  <option value="1">Villa de Tezontepec</option>
+                                  <option value="1">Tezontepec de Aldama</option>
+                                  <option value="1">Tianguistengo</option>
+                                  <option value="1">Tizayuca</option>
+                                  <option value="1">Tlahuelilpan</option>
+                                  <option value="1">Tlahuiltepa</option>
+                                  <option value="1">Tlanalapa</option>
+                                  <option value="1">Tlanchinol</option>
+                                  <option value="1">Tlaxcoapan</option>
                                 </select>
                               </div>
                             </div>
@@ -621,19 +622,19 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Estado</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="edo" id="edo"  [(ngModel)]="dom.Estado" >
+                                <select class="form-control form-control-sm" formControlName="estado" >
                                   <option selected>Seleccione el Estado ...</option>
-                                  <option>MX México</option>
-                                  <option>MN Michoacan de Ocampo</option>
-                                  <option>MS Morelos</option>
-                                  <option>NT Nayarit</option>
-                                  <option>NL Nuevo Leon</option>
-                                  <option>OC Oaxaca</option>
-                                  <option>PL Puebla</option>
-                                  <option>QT Queretaro de Areteaga</option>
-                                  <option>QR Quintana Roo</option>
-                                  <option>SP San Luis Potosi</option>
-                                  <option>SL Sinaloa</option>
+                                  <option value="MX">MX México</option>
+                                  <option value="MN">MN Michoacan de Ocampo</option>
+                                  <option value="MS">MS Morelos</option>
+                                  <option value="NT">NT Nayarit</option>
+                                  <option value="NL">NL Nuevo Leon</option>
+                                  <option value="OC">OC Oaxaca</option>
+                                  <option value="PL">PL Puebla</option>
+                                  <option value="QT">QT Queretaro de Areteaga</option>
+                                  <option value="QR">QR Quintana Roo</option>
+                                  <option value="SP">SP San Luis Potosi</option>
+                                  <option value="SL">SL Sinaloa</option>
                                 </select>
                               </div>
                             </div>
@@ -642,19 +643,19 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">País</label>
                               <div class="col-sm-6">
-                                <select [disabled]="disableDomicilio" [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''" class="form-control form-control-sm" name="Pais" id="pais"  [(ngModel)]="dom.Pais">
+                                <select class="form-control form-control-sm" formControlName="pais">
                                   <option selected>Seleccione el Pais ...</option>
-                                  <option>MP Islas Marianas</option>
-                                  <option>MQ Martinica</option>
-                                  <option>MR Mauritania</option>
-                                  <option>MS Monserrat</option>
-                                  <option>MT Malta</option>
-                                  <option>MU Mauricio</option>
-                                  <option>MV Maldivas</option>
-                                  <option>MW Malawi</option>
-                                  <option>MX México</option>
-                                  <option>MY Malaysia</option>
-                                  <option>MZ Monzambique</option>
+                                  <option value="MP">MP Islas Marianas</option>
+                                  <option value="MQ">MQ Martinica</option>
+                                  <option value="MR">MR Mauritania</option>
+                                  <option value="MS">MS Monserrat</option>
+                                  <option value="MT">MT Malta</option>
+                                  <option value="MU">MU Mauricio</option>
+                                  <option value="MV">MV Maldivas</option>
+                                  <option value="MW">MW Malawi</option>
+                                  <option value="MX">MX México</option>
+                                  <option value="MY">MY Malaysia</option>
+                                  <option value="MZ">MZ Monzambique</option>
                                 </select>
                               </div>
                             </div>
@@ -664,15 +665,14 @@
                           <div  class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div  class="col-1 col-lg-1 col-xl-2">
-                            <button [disabled]="!disableDomicilio"
-                              [attr.aria-expanded]="disableDomicilio ? 'disableDomicilio' : ''"
+                            <button [disabled]="!isCollapsed8"
                               type="submit"
                               class="btn btn-light  btn-block"
                               (click)="insertaDomicilio()">Insertar</button>
                           </div>
                           <!-- Botones de guardar -->
                           <div [ngbCollapse]="isCollapsed8" class="col-1 col-lg-1 col-xl-2">
-                            <button class="btn btn-light  btn-block"
+                            <button class="btn btn-light btn-block"
                               data-toggle="modal"
                               data-target="#largesizemodal2"
                               type="submit"

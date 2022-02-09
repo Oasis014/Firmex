@@ -2,12 +2,11 @@ import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
-import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Catalogos } from 'src/app/shared/models/catalogos';
 import { DatosGenerales } from 'src/app/shared/models/datosGenerales';
 import { ResponseSP } from 'src/app/shared/models/responseSP';
+import { Domicilio } from 'src/app/shared/models/domicilio';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -30,6 +29,7 @@ export class ModMoralComponent implements OnInit { // 717
   ) { }
 
   datosGeneralesForm: FormGroup;
+  domicilioForm: FormGroup;
 
   active = 1;
   active1 = 'top';
@@ -72,9 +72,7 @@ export class ModMoralComponent implements OnInit { // 717
   isCollapsed8 = true; // boton guardar en seccion "domicilio"
 
   //Objetos Desabilitados Cliente
-  //disableDatosGenerales = false;
   disBtnDatosGenerales = false;
-  disableDomicilio = true;
 
   isCollapsedPrueba2 = true;
   isCollapsedPrueba1 = true;
@@ -183,18 +181,7 @@ export class ModMoralComponent implements OnInit { // 717
     Pais: null
   }
 
-  dom = {
-    Id: localStorage.getItem("ID"),
-    TipoDom: null,
-    Calle: null,
-    NoEx: null,
-    NoIn: null,
-    CodPos: null,
-    Colonia: null,
-    Municipio: null,
-    Estado: null,
-    Pais: null
-  }
+  dom = new Domicilio();
 
   dom2 = {
     Id: localStorage.getItem("ID"),
@@ -202,77 +189,6 @@ export class ModMoralComponent implements OnInit { // 717
   }
 
   general = new DatosGenerales();
-
-  /*
-  general = {
-    Id: null,
-    Sucursal: null,
-    ApellidoPaterno: null,
-    ApellidoMaterno: null,
-    PrimerNombre: null,
-    SegundoNombre: null,
-    RazonSocial: null,
-    ClavePromotor: null,
-    EstatusCliente: null,
-    FechaAlta: null,
-    PersonalidadJuridica: "0",
-    RFC: null,
-    Nacionalidad: null,
-    EmailPersonal: null,
-    EmailEmpresa: null,
-    TelefonoDomicilio: null,
-    ExtensionDomicilio: null,
-    TelefonoOficina: null,
-    ExtensionOficina: null,
-    Celular: null,
-    RedSocial1: null,
-    RedSocial2: null,
-    ParteRelacionada: null,
-    GrupoConsejo: null,
-    GrupoRiesgoComun: null,
-    FechaNacimiento: null,
-    Sexo: null,
-    EstadoCivil: null,
-    CURP: null,
-    TipoIdentificacion: null,
-    NumeroIdentificacion: null,
-    ListaNegra: null,
-    Profesion: null,
-    NombreSociedad: null,
-    FechaConstitucion: null,
-    RepresentanteLegal: null,
-    PresidenteConsejo: null,
-    Consejero: null
-  }
-  */
-
-
-  /*
-  Val = {
-    Sucursal: null,
-    PrimerNombre: null,
-    SegundoNombre: null,
-    ApellidoPaterno: null,
-    ApellidoMaterno: null,
-    RazonSocial: null,
-    PersonalidadJuridica: null,
-    RFC: null
-  }
-  */
-
-  /*
-  retorno = {
-    noCliente: null,
-    errorClave: null,
-    errorSp: null,
-    errorDescripcion: null
-  }*/
-
-  /*retorno2 = {
-    errorClave: null,
-    errorSp: null,
-    errorDescripcion: null
-  }*/
 
   retornoID = {
     Sucursal: null,
@@ -351,7 +267,65 @@ export class ModMoralComponent implements OnInit { // 717
       redSocial1: [''],                      // RedSocial 1
       redSocial2: [''],                      // RedSocial 2
     });
+
+    // TODO setear longitud a cada campo, asi como vlaores requeridos
+    /*
+    CREATE DEFINER=`root`@`localhost` PROCEDURE `mgsp_ClientesDatosGenerales`(IN `InNumeroCliente` INTEGER,
+    IN `InSucursal` CHAR(5),
+    IN `InApellidoPaterno` CHAR(30),
+    IN `InApellidoMaterno` CHAR(30),
+    IN `InPrimerNombre` CHAR(30),
+    IN `InSegundoNombre` CHAR(30),
+    IN `InRazonSocial` CHAR(120),
+    IN `InClavePromotor` CHAR(5),
+    IN `InEstatusCliente` CHAR(2),
+    IN `InFechaAlta` DATE,
+    IN `InPersonalidadJuridica` CHAR(2),
+    IN `InRFC` CHAR(13),
+    IN `InNacionalidad` CHAR(2),
+    IN `InEmailPersonal` CHAR(80),
+    IN `InEmailEmpresa` CHAR(80),
+    IN `InTelefonoDomicilio` CHAR(15),
+    IN `InExtensionDomicilio` CHAR(10),
+    IN `InTelefonoOficina` CHAR(15),
+    IN `InExtensionOficina` CHAR(10),
+    IN `InCelular` CHAR(15),
+    IN `InRedSocial1` CHAR(50),
+    IN `InRedSocial2` CHAR(50),
+    IN `InParteRelacionada` CHAR(5),
+    IN `InGrupoConsejo` CHAR(10),
+    IN `InGrupoRiesgoComun` CHAR(5),
+    IN `InFechaNacimiento` DATE,
+    IN `InSexo` CHAR(1),
+    IN `InEstadoCivil` CHAR(2),
+    IN `InCURP` CHAR(18),
+    IN `InTipoIdentificacion` CHAR(2),
+    IN `InNumeroIdentificacion` CHAR(20),
+    IN `InListaNegra` CHAR(30),
+    IN `InProfesión` CHAR(2),
+    IN `InNombreSociedad` CHAR(120),
+    IN `InFechaConstitucion` DATE,
+    IN `InRepresentanteLegal` CHAR(120),
+    IN `InPresidenteConsejo` CHAR(120),
+    IN `InConsejero` CHAR(120),
+    */
+    this.domicilioForm = this.formBuilder.group({
+      tipoDom: [''],    /* IN `InTipoDomicilio` CHAR(2),  */
+      calle: ['', [Validators.maxLength(80)]],      /* IN `InCalle` CHAR(80),  */
+      noEx: ['', [Validators.maxLength(6)]],       /* IN `InNumeroExterior` CHAR(6),  */
+      noIn: ['', [Validators.maxLength(6)]],       /* IN `InNumeroInterior` CHAR(6),  */
+      codPos: ['', [Validators.maxLength(5)]],     /* IN `InCodigoPostal` CHAR(5),  */
+      colonia: ['', [Validators.maxLength(100)]],    /* IN `InColonia` CHAR(100),  */
+      municipio: ['', [Validators.maxLength(3)]],  /* IN `InMunicipio` CHAR(3),  */
+      estado: ['', [Validators.maxLength(2)]],     /* IN `InEstado` CHAR(2),  */
+      pais: ['', [Validators.maxLength(2)]],       /* IN `InPais` CHAR(2), */
+    });
+
+    this.domicilioForm.disable();
+
   }
+
+
 
   close(event: MouseEvent, toRemove: number) {
     this.tabs = this.tabs.filter(id => id !== toRemove);
@@ -533,19 +507,25 @@ export class ModMoralComponent implements OnInit { // 717
   }
 
   insertaDomicilio() {
-    this.disableDomicilio = false;
+    this.domicilioForm.enable();
     this.isCollapsed8 = false;
   }
 
   guardaDomicilio() {
-    this.dom.Id = this.general.Id+'';
-    this.clienteService.agregar2(this.dom).subscribe(
+    let values = this.domicilioForm.value;
+    this.dom.setData(values);
+    this.dom.setId(this.general.Id);
+
+    this.clienteService.agregarDomicilio(this.dom).subscribe(
       (result: any) => {
+        console.log(result);
+        this.responseSP = result;
         this.clienteM = result;
         this.domcon = null;
         this.domborrar = null;
         this.obtenerDomicilio();
-        this.disableDomicilio = true;
+
+        this.domicilioForm.disable();
         this.isCollapsed8 = true;
       }
     );
