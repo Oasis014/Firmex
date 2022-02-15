@@ -12,8 +12,8 @@ import { QryClienteMComponent } from './qry-clienteM/qry-clienteM.component';
 // Edición o Nuevo Prospecto Cliente Persona Fisica
 import { ModClienteComponent } from './mod-moral/mod-cliente.component';
 import { ModMoralComponent } from './mod-moral/mod-moral.component';
-import { ActivEcoComponent } from './mod-moral/activ-eco.component';
-import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';
+/*import { ActivEcoComponent } from './mod-moral/activ-eco.component';
+import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';*/
 //Pruebas
 import { PhpFuncionaComponent } from './php-funciona/php-funciona.component';
 import { PhpPruebaComponent } from './php-prueba/php-prueba.component';
@@ -22,103 +22,101 @@ const routes: Routes = [
   {
     path: '',
     children: [
-    // Prueba
-    	 {
-                   path: 'php-funciona',
-                   component: PhpFuncionaComponent,
-                   data: {
-                     title: 'prueba'
-                     }
-                   },
-	 {
-               path: 'php-prueba',
-               component: PhpPruebaComponent,
-               data: {
-                 title: 'prueba'
-                 }
-               },
-// Botones
-	 {
-               path: 'btnlist',
-               component: BtnListComponent,
-               data: {
-                 title: 'lista'
-                 }
-               },
+      // Prueba
+      {
+        path: 'php-funciona',
+        component: PhpFuncionaComponent,
+        data: {
+          title: 'prueba'
+        }
+      },
+      {
+        path: 'php-prueba',
+        component: PhpPruebaComponent,
+        data: {
+          title: 'prueba'
+        }
+      },
+      // Botones
+      {
+        path: 'btnlist',
+        component: BtnListComponent,
+        data: {
+          title: 'lista'
+        }
+      },
 
-// Listados de Prospectos
-{
+      // Listados de Prospectos
+      {
 
-                path: 'list-cliente',
-                component: ListClienteComponent,
-                data: {
-                 title: 'listado de clientes'
-                 }
-                },
-{
+        path: 'list-cliente',
+        component: ListClienteComponent,
+        data: {
+          title: 'listado de clientes'
+        }
+      },
+      {
 
-                path: 'list-clienteF',
-                component: ListClienteFComponent,
-                data: {
-                 title: 'listado de clientes'
-                 }
-                },
-{
+        path: 'list-clienteF',
+        component: ListClienteFComponent,
+        data: {
+          title: 'listado de clientes'
+        }
+      },
+      {
 
-                path: 'list-clienteM',
-                component: ListClienteMComponent,
-                data: {
-                 title: 'listado de clientes'
-                 }
-                },
+        path: 'list-clienteM',
+        component: ListClienteMComponent,
+        data: {
+          title: 'listado de clientes'
+        }
+      },
 
-// Datos Persona Fisica
-{
-                path: 'qry-cliente',
-                component: QryClienteComponent,
-                data: {
-                  title: 'cliente'
-                }
-              },
-{
-                path: 'qry-clienteM',
-                component: QryClienteMComponent,
-                data: {
-                  title: 'cliente'
-                }
-              },
+      // Datos Persona Fisica
+      {
+        path: 'qry-cliente',
+        component: QryClienteComponent,
+        data: {
+          title: 'cliente'
+        }
+      },
+      {
+        path: 'qry-clienteM',
+        component: QryClienteMComponent,
+        data: {
+          title: 'cliente'
+        }
+      },
 
-// Mantenimiento o Nuevo Persona Fisica
-{
-                    path: 'mod-cliente',
-                    component: ModClienteComponent,
-                    data: {
-                      title: 'Cliente'
-                      }
-                    },
-{
-                    path: 'mod-moral',
-                    component: ModMoralComponent,
-                    data: {
-                      title: 'Cliente'
-                      }
-                    },
-{
-                    path: 'activ-eco',
-                    component: ActivEcoComponent,
-                    data: {
-                      title: 'Actividad Economica'
-                      }
-                    },
-{
-                    path: 'cuenta-bancaria',
-                    component: CuentaBanComponent,
-                    data: {
-                      title: 'Actividad Economica'
-                      }
-                    },
-
-
+      // Mantenimiento o Nuevo Persona Fisica
+      {
+        path: 'mod-cliente',
+        component: ModClienteComponent,
+        data: {
+          title: 'Cliente'
+        }
+      },
+      {
+        path: 'mod-moral',
+        component: ModMoralComponent,
+        data: {
+          title: 'Cliente'
+        }
+      },
+      /*{
+        path: 'activ-eco',
+        component: ActivEcoComponent,
+        data: {
+          title: 'Actividad Economica'
+        }
+      },
+      {
+        path: 'cuenta-bancaria',
+        component: CuentaBanComponent,
+        data: {
+          title: 'Actividad Economica'
+        }
+      },*/
     ]
   }
 ];
