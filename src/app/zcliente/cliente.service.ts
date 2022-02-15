@@ -20,6 +20,107 @@ export class ClienteService {
     private readonly httpService: HttpService
   ) { }
 
+  /* Servicios Domicilio */
+  agregarDomicilio(domicilio: Domicilio) {
+    return this.http.post(this.clienteUrl.guardarDomicilio, domicilio);
+  }
+
+  // todos los dimicilios de un cliente
+  getDomicilio(params: {userId: number}): Observable<any> {
+    return this.httpService.get(this.clienteUrl.domicilio, params);
+  }
+
+  // un domicilio de cliente
+  consultar(params: {userId: number, domId: string}) {
+    /*return this.http.post(this.clienteUrl.consultarDomicilio, JSON.stringify(domcon));*/
+    return this.httpService.get(this.clienteUrl.domicilio, params);
+  }
+
+  domborrar(params: any) {
+    /* return this.http.post(this.clienteUrl.borrarDomicilio, JSON.stringify(domborrar)); */
+    return this.httpService.delete(this.clienteUrl.domicilio, params);
+  }
+
+  /* Servicios Domicilio */
+
+
+  /** REFERENCIAS PERSONALES */
+  guardaReferenciaPersonal(referencia: any): Observable<any> {
+    return this.httpService.post(this.clienteUrl.personales, referencia);
+  }
+
+  getPersonales(id: number|string): Observable<any> {
+    return this.httpService.get(this.clienteUrl.personales, {'userId': id});
+  }
+
+  /** REFERENCIAS COMERCIALES */
+  guardaReferenciaComercial(usuario: any): Observable<any> {
+    return this.httpService.post(this.clienteUrl.comerciales, usuario);
+  }
+
+  getComerciales(id: number|string): Observable<any> {
+    return this.httpService.get(this.clienteUrl.comerciales, {'userId': id});
+  }
+
+  /** REFERENCIAS BANCARIAS */
+  guardaReferenciaBancaria(usuario: any): Observable<any> {
+    return this.httpService.post(this.clienteUrl.bancarias, usuario);
+  }
+
+  getBancarias(id: number|string): Observable<any> {
+    return this.httpService.get(this.clienteUrl.bancarias, {'userId': id});
+  }
+
+
+  /** seccion: CUENTAS BANCARIAS ... ACCIONES */
+  agregarAccion(accion: any): Observable<any> {
+    return this.httpService.post(this.clienteUrl.acciones, accion);
+  }
+
+  getAcciones(id: number|string) {
+    return this.httpService.get(this.clienteUrl.acciones, { userId: id });
+  }
+
+  /** seccion: CUENTAS BANCARIAS ... CUENTAS BANCARIAS */
+  agregarCuentaBancaria(cuenta: any): Observable<any> {
+    return this.httpService.post(this.clienteUrl.cuentasBancarias, cuenta);
+  }
+
+  getCuenta(id: number|string): Observable<any> {
+    return this.httpService.get(this.clienteUrl.cuentasBancarias, { userId: id});
+  }
+  
+  /** seccion: CUENTAS BANCARIAS ... PARTES RELACIONADAS */
+  agregarParteRelacionada(parte: any): Observable<any> {
+    return this.httpService.post(this.clienteUrl.partesRelacionadas, parte);
+  }
+
+  getRelacional(id: number|string): Observable<any> {
+    return this.httpService.get(this.clienteUrl.partesRelacionadas, {userId: id});
+  }
+  
+  /** seccion: CUENTAS BANCARIAS ... GRUPO SOCIECONOMICO */
+  agregarGrupoSocioeconomico(grupo: any): Observable<any> {
+    return this.httpService.post(this.clienteUrl.grupoSocioeconomico, grupo);
+  }
+
+  getSocioEco(id: number|string): Observable<any> {
+    return this.httpService.get(this.clienteUrl.grupoSocioeconomico, {userId: id});
+  }
+  
+  /** seccion: CUENTAS BANCARIAS ... GRUPO RIESGO COMUN */
+  agregarGrupoRiesgoComun(grupo: any) {
+    return this.httpService.post(this.clienteUrl.grupoRiesgoComun, grupo);
+  }
+
+  getRiesgoComun(id: number|string): Observable<any> {
+    return this.httpService.get(this.clienteUrl.grupoRiesgoComun, {userId: id});
+  }
+
+
+
+
+
   getListCliente() {
     return this.http.get(`${this.url}ObtenerPerCliente.php`);
   }
@@ -32,48 +133,13 @@ export class ClienteService {
     return this.http.get(`${this.url}ObtenerPerMoral.php`);
   }
 
-  getDomicilio() {
-    return this.http.get(`${this.url}DomicilioMostrar.php`);
-  }
 
-  getActiEco() {
-    return this.http.get(`${this.url}ActividadEcoMostrar.php`);
-  }
-
-  getPersonales() {
-    return this.http.get(`${this.url}PersonalesMostrar.php`);
-  }
-
-  getComerciales() {
-    return this.http.get(`${this.url}ComercialesMostrar.php`);
+  getActiEco(userId: number|string) {
+    return this.httpService.get(`${this.url}Economica.php`, {'userId': userId});
   }
 
   getProveedores() {
     return this.http.get(`${this.url}ProveedoresMostrar.php`);
-  }
-
-  getBancarias() {
-    return this.http.get(`${this.url}BancariasMostrar.php`);
-  }
-
-  getAcciones() {
-    return this.http.get(`${this.url}AccionesMostrar.php`);
-  }
-
-  getCuenta() {
-    return this.http.get(`${this.url}CuentasBanMostrar.php`);
-  }
-
-  getRelacional() {
-    return this.http.get(`${this.url}ParteRelacionalMostrar.php`);
-  }
-
-  getSocioEco() {
-    return this.http.get(`${this.url}GrupoSocieconomicoMostrar.php`);
-  }
-
-  getRiesgoComun() {
-    return this.http.get(`${this.url}GrupoRiesgoComunMostrar.php`);
   }
 
   deleteDomicilio(domicilio: any) {
@@ -84,10 +150,7 @@ export class ClienteService {
     return this.http.get(`${this.url}mostrarTodos.php`);
   }
 
-  mostrardom() {
-    return this.http.get(`${this.url}DomicilioMostrar.php`);
-  }
-
+  
   select() {
     return this.http.get(`${this.url}SelecGenerales.php`);
   }
@@ -109,11 +172,7 @@ export class ClienteService {
   }
 
   retornodomb() {
-    return this.http.get(`${this.url}DomicilioBorrar.php`);
-  }
-
-  domborrar(domborrar: any) {
-    return this.http.post(`${this.url}DomicilioBorrar.php`, JSON.stringify(domborrar));
+    return this.http.get(this.clienteUrl.borrarDomicilio);
   }
 
   ecoborrar(arreglob: any) {
@@ -157,12 +216,9 @@ export class ClienteService {
   }
 
   retornoCon() {
-    return this.http.get(`${this.url}DomiciliosConsulta.php`);
+    return this.http.get(this.clienteUrl.consultarDomicilio);
   }
 
-  consultar(domcon: any) {
-    return this.http.post(`${this.url}DomiciliosConsulta.php`, JSON.stringify(domcon));
-  }
 
   economicaconsultar(arreglob: any) {
     return this.http.post(`${this.url}ActividadEcoMostrar.php`, JSON.stringify(arreglob));
@@ -223,10 +279,6 @@ export class ClienteService {
     return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario));
   }
 
-  agregarDomicilio(domicilio: Domicilio) {
-    return this.http.post(this.clienteUrl.guardarDomicilio, domicilio);
-  }
-
   agregar02(clienteMod: any) {
     return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteMod));
   }
@@ -235,7 +287,7 @@ export class ClienteService {
     return this.http.post(`${this.url}CuentaBancaria.php`, JSON.stringify(usuario));
   }
 
-  agregar4(arreglo: any) {
+  agregar4(arreglo: any): Observable<any> {
     return this.http.post(`${this.url}Economica.php`, JSON.stringify(arreglo));
   }
 

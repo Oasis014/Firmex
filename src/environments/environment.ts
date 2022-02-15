@@ -8,7 +8,20 @@ export const environment = {
     cliente: {
       documentacion: `${host}documentacion.php`,
       generalValidar: `${host}GeneralValidar.php`,
+      domicilio:  `${host}Domicilio.php`,
       guardarDomicilio: `${host}Domicilio.php`,
+      borrarDomicilio: `${host}DomicilioBorrar.php`,
+      consultarDomicilio: `${host}DomiciliosConsulta.php`,
+      personales: `${host}Personales.php`,
+      comerciales: `${host}Comerciales.php`,
+      bancarias: `${host}Bancarias.php`,
+      economicas: `${host}Economica.php`,
+
+      acciones: `${host}Acciones.php`,
+      cuentasBancarias: `${host}CuentaBancaria.php`,
+      grupoSocioeconomico: `${host}GrupoSocioeconomico.php`,
+      grupoRiesgoComun: `${host}GrupoRiesgoComun.php`,
+      partesRelacionadas: `${host}PartesRelacionadas.php`,
     },
     catalogos: {
       catalogoActdet: `${host}CatalogoActdet.php`,

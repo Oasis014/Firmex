@@ -23,40 +23,77 @@
 </div>
 <!-- ***** Encabezado ***** -->
 
-<div class="row">
-  <div class="col-lg-12">
-    <div class="modal fade" id="largesizemodal">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-light-2">
-            <h5 class="modal-title text-white">Información</h5>
-          </div>
-          <div class="modal-body">
-            <div >
-              <table border="0" span="0" class="table table-borderless table-striped" style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
-                <thead >
-                <tr>
-                  <td>Clave de Error: </td>
-                  <td>Error: </td>
-                  <td>Descripcion de Error: </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let item of responseSP">
-                  <td>{{item.errorClave}}</td>
-                  <td>{{item.errorSp}}</td>
-                  <td>{{item.errorDescripcion}}</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="modal-footer border-light-2">
-            <button (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" type="button" class="btn btn-link text-white" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-          </div>
+<div class="modal fade" id="largesizemodal">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-light-2">
+        <h5 class="modal-title text-white">Información</h5>
+      </div>
+      <div class="modal-body">
+        <div >
+          <table border="0" span="0" class="table table-borderless table-striped" style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
+            <thead >
+            <tr>
+              <td>Clave de Error: </td>
+              <td>Error: </td>
+              <td>Descripcion de Error: </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of responseSP">
+              <td>{{item.errorClave}}</td>
+              <td>{{item.errorSp}}</td>
+              <td>{{item.errorDescripcion}}</td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+      <div class="modal-footer border-light-2">
+        <button (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" type="button" class="btn btn-link text-white" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+      </div>
     </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="largesizemodal1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-light-2">
+        <h5 class="modal-title text-white">Información</h5>
+      </div>
+      <div class="modal-body">
+        <div >
+          <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
+            <thead >
+            <tr>
+              <td>Numero de Cliente: </td>
+              <td>Clave de Error: </td>
+              <td>Error: </td>
+              <td>Descripcion de Error: </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of responseSP">
+              <td>{{item.noCliente}}</td>
+              <td>{{item.errorClave}}</td>
+              <td>{{item.errorSp}}</td>
+              <td>{{item.errorDescripcion}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer border-light-2">
+        <button type="button" class="btn btn-link text-white" data-dismiss="modal" ><i class="fa fa-times"></i> Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
     <div class="card">
       <div class="col-12 col-lg-12" align="center" [ngbCollapse]="isCollapsed5" >
         <label class="card-header text-uppercase" >Sucursal: {{SucursalA}} </label>
@@ -101,7 +138,7 @@
                                   formControlName="sucursal"
                                   required
                                 >
-                                  <option selected>Seleccione la sucursal ...</option>
+                                  <option value="">Seleccione la sucursal ...</option>
                                   <option value="1">Oficina Matriz</option>
                                   <option value="1">Ciudad de México</option>
                                   <option value="1">Queretaro</option>
@@ -134,6 +171,7 @@
                                   class="form-control"
                                   formControlName="razonSocial"
                                   placeholder="00000"
+                                  maxlength="120"
                                 >
                               </div>
                             </div>
@@ -146,6 +184,7 @@
                                   type="date"
                                   class="form-control"
                                   formControlName="fechaConstitucion"
+                                  maxlength="10"
                                 >
                               </div>
                             </div>
@@ -158,7 +197,8 @@
                                   type="text"
                                   class="form-control"
                                   formControlName="rfc"
-                                  placeholder=" XXXX999999XXX "
+                                  placeholder="XXXX999999XXX"
+                                  maxlength="13"
                                 >
                               </div>
                             </div>
@@ -171,11 +211,16 @@
                             <div [ngbCollapse]="isCollapsed" class="form-group row">
                               <button
                                 [attr.aria-expanded]="!isCollapsed2"
+                                [disabled]="datosGeneralesForm.controls.sucursal.invalid ||
+                                  datosGeneralesForm.controls.promotor.invalid ||
+                                  datosGeneralesForm.controls.razonSocial.invalid ||
+                                  datosGeneralesForm.controls.fechaConstitucion.invalid ||
+                                  datosGeneralesForm.controls.rfc.invalid"
                                 data-toggle="modal"
                                 data-target="#largesizemodal"
                                 (click)="validarDatosGenerales()"
                                 type="submit"
-                                class="btn btn-light  btn-block"
+                                class="btn btn-light btn-block"
                               >Validar</button>
                             </div>
                           </div>
@@ -192,52 +237,17 @@
                       <div class="card-body">
                         <h6 class="page-title">Datos Especificos</h6>
                         <hr>
-                        <div class="modal fade" id="largesizemodal1">
-                          <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header border-light-2">
-                                <h5 class="modal-title text-white">Información</h5>
-                              </div>
-                              <div class="modal-body">
-                                <div >
-                                  <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
-                                    <thead >
-                                    <tr>
-                                      <td>Numero de Cliente: </td>
-                                      <td>Clave de Error: </td>
-                                      <td>Error: </td>
-                                      <td>Descripcion de Error: </td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr *ngFor="let item of responseSP">
-                                      <td>{{item.noCliente}}</td>
-                                      <td>{{item.errorClave}}</td>
-                                      <td>{{item.errorSp}}</td>
-                                      <td>{{item.errorDescripcion}}</td>
-                                    </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                              <div class="modal-footer border-light-2">
-                                <button type="button" class="btn btn-link text-white" data-dismiss="modal" ><i class="fa fa-times"></i> Close</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                         <div class="row">
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Nombre de la sociedad </label>
                               <div class="col-sm-6 input-group">
                                 <input
-                                  type="text" class="form-control"
-                                  name="NombreSociedad"
-                                  id="NombreSociedad"
+                                  type="text"
+                                  class="form-control"
                                   placeholder=" Nombre de la sociedad "
                                   formControlName="nombreSociedad"
-                                  [(ngModel)]="general.NombreSociedad">
+                                  maxlength="120">
                               </div>
                             </div>
                           </div>
@@ -246,10 +256,11 @@
                               <label  class="col-sm-5 col-form-label">Representante Legal</label>
                               <div class="col-sm-6 input-group">
                                 <input
-                                  type="text" class="form-control"
+                                  type="text"
+                                  class="form-control"
                                   placeholder="Representante legal"
                                   formControlName="representanteLegal"
-                                  [(ngModel)]="general.RepresentanteLegal">
+                                  maxlength="120">
                               </div>
                             </div>
                           </div>
@@ -262,7 +273,7 @@
                                   class="form-control"
                                   placeholder="Nombre del presidente"
                                   formControlName="presidenteConsejo"
-                                  [(ngModel)]="general.PresidenteConsejo">
+                                  maxlength="120">
                               </div>
                             </div>
                           </div>
@@ -275,7 +286,7 @@
                                   class="form-control"
                                   placeholder="Nombre del consejero"
                                   formControlName="consejero"
-                                  [(ngModel)]="general.Consejero">
+                                  maxlength="120">
                               </div>
                             </div>
                           </div>
@@ -288,7 +299,7 @@
                                   class="form-control"
                                   placeholder=" nombre@micorreo.com"
                                   formControlName="emailPersonal"
-                                  [(ngModel)]="general.EmailPersonal">
+                                  maxlength="80">
                               </div>
                             </div>
                           </div>
@@ -301,7 +312,7 @@
                                   class="form-control"
                                   placeholder=" nombre@micorreo.com"
                                   formControlName="emailEmpresa"
-                                  [(ngModel)]="general.EmailEmpresa">
+                                  maxlength="80">
                               </div>
                             </div>
                           </div>
@@ -311,8 +322,7 @@
                               <div class="col-sm-6">
                                 <select
                                   class="form-control form-control-sm"
-                                  formControlName="parteRelacionada"
-                                  [(ngModel)]="general.ParteRelacionada">
+                                  formControlName="parteRelacionada">
                                   <option *ngFor="let tRel of ctTiprel" [value]="tRel.catalogo_cve">
                                     {{tRel.desc_45}}
                                   </option>
@@ -329,7 +339,7 @@
                                   class="form-control"
                                   placeholder="Nombre del Grupo"
                                   formControlName="grupoVinculoConsejo"
-                                  [(ngModel)]="general.GrupoConsejo">
+                                  maxlength="10">
                               </div>
                             </div>
                           </div>
@@ -339,10 +349,8 @@
                               <div class="col-sm-6">
                                 <select
                                   class="form-control form-control-sm"
-                                  formControlName="grupoRiesgoComun"
-                                  [(ngModel)]="general.GrupoRiesgoComun"
-                                >
-                                  <option value="1" selected>Seleccione al promotor ...</option>
+                                  formControlName="grupoRiesgoComun">
+                                  <option value="">Seleccione al promotor ...</option>
                                   <option value="1">Sin Grupo</option>
                                   <option value="1">B</option>
                                   <option value="1">C</option>
@@ -366,7 +374,7 @@
                                   class="form-control"
                                   placeholder="55-5555-55555"
                                   formControlName="telefonoOficina"
-                                  [(ngModel)]="general.TelefonoOficina"
+                                  maxlength="15"
                                   >
                               </div>
                             </div>
@@ -380,7 +388,7 @@
                                   class="form-control"
                                   placeholder="55-5555-55555"
                                   formControlName="extensionOficina"
-                                  [(ngModel)]="general.ExtensionOficina"
+                                  maxlength="10"
                                   >
                               </div>
                             </div>
@@ -394,7 +402,7 @@
                                   class="form-control"
                                   placeholder="55-5555-55555"
                                   formControlName="celular"
-                                  [(ngModel)]="general.Celular"
+                                  maxlength="15"
                                   >
                               </div>
                             </div>
@@ -406,9 +414,8 @@
                                 <input
                                   type="text"
                                   class="form-control"
-                                  placeholder=" "
                                   formControlName="redSocial1"
-                                  [(ngModel)]="general.RedSocial1"
+                                  maxlength="50"
                                   >
                               </div>
                             </div>
@@ -420,9 +427,8 @@
                                 <input
                                   type="text"
                                   class="form-control"
-                                  placeholder=" "
                                   formControlName="redSocial2"
-                                  [(ngModel)]="general.RedSocial2"
+                                  maxlength="50"
                                   >
                               </div>
                             </div>
@@ -435,18 +441,22 @@
                           </div>
                           <div  class="col-2 col-lg-2 col-xl-2">
                             <button
-                              type="submit"
+                              type="button"
                               class="btn btn-light btn-block"
+                              [disabled]="disBtnDatosGenerales"
                               (click)="cancelar()">Cancelar</button>
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
                             <button
-                              [disabled]="disBtnDatosGenerales"
+                              [disabled]="disBtnDatosGenerales || datosGeneralesForm.invalid"
                               data-toggle="modal"
                               data-target="#largesizemodal1"
                               type="submit"
                               class="btn btn-light btn-block"
-                              (click)="guardaGeneral()">Guardar</button>
+                              (click)="guardaGeneral()"
+                            >
+                              Guardar</button>
+
                           </div>
                         </div>
                       </div>
@@ -455,54 +465,18 @@
                 </div>
               </form>
               <app-mod-cliente [ngbCollapse]="isCollapsedPrueba2"></app-mod-cliente>
-              <button (click)="DatosMuestra()" class="btn btn-sm btn-light" [disabled]="active === 2" (click)="nav3.select(2)" type="submit" >Siguiente Sección</button>
+              <!-- [disabled]="active === 2"  -->
+              <!-- (click)="DatosMuestra()" -->
+              <button
+                class="btn btn-sm btn-light"
+                [disabled]="disNextSection_1"
+                (click)="nav3.select(2)"
+                type="submit">
+              Siguiente Sección</button>
             </ng-template>
           </li>
           <li [ngbNavItem]="2"> <a ngbNavLink><i class="icon-home"></i>Domicilio</a>
             <ng-template ngbNavContent>
-              <div class="modal fade" id="largesizemodal2">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header border-light-2">
-                      <h5 class="modal-title text-white">Información</h5>
-                    </div>
-                    <div class="modal-body">
-                      <div >
-                        <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
-                          <thead >
-                          <tr>
-                            <td>Clave de Error: </td>
-                            <td>Error: </td>
-                            <td>Descripcion de error: </td>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr *ngFor="let i of responseSP">
-                            <td>{{i.errorClave}}</td>
-                            <td>{{i.errorSp}}</td>
-                            <td>{{i.errorDescripcion}}</td>
-                          </tr>
-                          <tr *ngFor="let retornodomb of domborrar">
-                              <td>{{retornodomb.errorClave}}</td>
-                              <td>{{retornodomb.errorSp}}</td>
-                              <td>{{retornodomb.errorDescripcion}}</td>
-                          </tr>
-                          <tr *ngFor="let retornoCon of domcon">
-                            <td>{{retornoCon.errorClave}}</td>
-                            <td>{{retornoCon.errorSp}}</td>
-                            <td>{{retornoCon.errorDescripcion}}</td>
-                          </tr>
-                          </tbody>
-                        </table>
-
-                      </div>
-                    </div>
-                    <div class="modal-footer border-light-2">
-                      <button type="button" class="btn btn-link text-white" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <form [ngbCollapse]="isCollapsed7" [formGroup]="domicilioForm">
                 <div class="row" >
                   <div class="col-12 col-lg-12">
@@ -674,10 +648,11 @@
                           <div [ngbCollapse]="isCollapsed8" class="col-1 col-lg-1 col-xl-2">
                             <button class="btn btn-light btn-block"
                               data-toggle="modal"
-                              data-target="#largesizemodal2"
+                              data-target="#largesizemodal"
                               type="submit"
+                              [disabled]="domicilioForm.invalid"
                               (click)="guardaDomicilio()"
-                              type="reset" >Guardar</button>
+                            >Guardar</button>
                           </div>
                         </div>
                       </div>
@@ -685,210 +660,1414 @@
                   </div>
                 </div>
               </form>
-              <!-- CONSULTA-->
-              <form >
-                <div class="row" [ngbCollapse]="isCollapsed6" >
-                  <div class="col-12 col-lg-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="row">
-                          <h6 class="page-title">Domicilio</h6>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-5 col-lg-4 col-xl-4">
-                              <div class="form-group row">
-                                <label class="col-sm-5 col-form-label">Tipo de Domicilio</label>
-                                <div class="col-sm-6">
-                                  <select  class="form-control form-control-sm" name="tipo_domicilio" [(ngModel)]="domMod.TipoDom" >
-                                    <option value="{{Tipo}}">{{Tipo}}
-                                    </option>
-                                    <option *ngFor="let catTipdom of catalogo1" [value]="catTipdom.catalogo_cve">{{catTipdom.desc_45}}
-                                    </option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Calle </label>
-                              <div class="col-sm-6 input-group form-group ">
-                                <input type="text" class="form-control" name = "CalleMod" value = "{{Calle}}" [(ngModel)]="domMod.Calle" />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Número Exterior</label>
-                              <div class="col-sm-6 input-group form-group">
-                                <input type="text" class="form-control" name = "NoExMod" value = "{{NoEx}}" [(ngModel)]="domMod.NoEx" />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Número Interior</label>
-                              <div class="col-sm-6 input-group form-group" >
-                                <input type="text" class="form-control" name = "NoInMod" value = "{{NoIn}}" [(ngModel)]="domMod.NoIn" />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Código Postal</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="c_p" [(ngModel)]="domMod.CodPos" >
-                                  <option >{{CodPos}}</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Colonia</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="colonia"  [(ngModel)]="domMod.Colonia" >
-                                  <option  >{{Colonia}}</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-success">Delegación o Municipio</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="municipio" [(ngModel)]="domMod.Municipio" >
-                                  <option >{{Municipio}}</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Estado</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="edo" [(ngModel)]="domMod.Estado" >
-                                  <option >{{Estado}}</option>
 
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">País</label>
-                              <div class="col-sm-6">
-                                <select class="form-control form-control-sm" name="Pais" [(ngModel)]="domMod.Pais" >
-                                  <option >{{Pais}}</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div  class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div  class="col-1 col-lg-1 col-xl-2">
-                          </div>
-                          <!-- Botones de guardar -->
-                          <div  class="col-1 col-lg-1 col-xl-2">
-                            <button type="submit" class="btn btn-light  btn-block"  (click)="DomicilioMod()" (click)="obtenerDomicilio()" >Guardar</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <!-- FIN CONSULTA-->
-              <div class="modal fade" id="largesizemodal3">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header border-light-2">
-                      <h5 class="modal-title text-white">Información</h5>
-                    </div>
-                    <div class="modal-body">
-                      <div >
-                        <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
-                          <thead >
-                          <tr>
-                            <td>Clave de Error: </td>
-                            <td>Error: </td>
-                            <td>Descripcion de error: </td>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr *ngFor="let retornoCon of domcon">
-                            <td>{{retornoCon.errorClave}}</td>
-                            <td>{{retornoCon.errorSp}}</td>
-                            <td>{{retornoCon.errorDescripcion}}</td>
-                          </tr>
-                          </tbody>
-                        </table>
-
-                      </div>
-                    </div>
-                    <div class="modal-footer border-light-2">
-                      <button type="button" class="btn btn-link text-white" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <!-- TODO verificar si es util este boton , ya que se actualizan los domicilios al guardar -->
+              <!--
               <div  class="col-1 col-lg-1 col-xl-2">
                 <button type="submit" class="btn btn-light  btn-block" (click)="obtenerDomicilio()" >Actualizar</button>
               </div>
-              <div class="card">
-                  <table class="table table-striped text-center " style="width:auto; height:5px;" >
+              -->
+              <div class="card" *ngIf="domicilioList.length">
+                <table class="table table-striped text-center" style="width:auto; height:5px;" >
                   <thead >
-                  <th>Numero Cliente</th>
-                  <th>Tipo de Domicilio</th>
-                  <th>Calle</th>
-                  <th>Numero Exterior</th>
-                  <th>Numero Interior</th>
-                  <th>Codigo Postal</th>
-                  <th>Colonia</th>
-                  <th>Municipio</th>
-                  <th>Estado</th>
-                  <th>Pais</th>
+                    <th>Tipo de Domicilio</th>
+                    <th>Calle</th>
+                    <th>Numero Exterior</th>
+                    <th>Numero Interior</th>
+                    <th>Codigo Postal</th>
+                    <th>Colonia</th>
+                    <th>Municipio</th>
+                    <th>Estado</th>
+                    <th>Pais</th>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let dom of domicilio;let i=index;" >
-                    <td scope="row" >{{dom.Id}}</td>
-                    <td scope="row" >{{dom.TipoDom}}</td>
-                    <td>{{dom.Calle}}</td>
-                    <td>{{dom.NoEx}}</td>
-                    <td>{{dom.NoIn}}</td>
-                    <td>{{dom.CodPos}}</td>
-                    <td>{{dom.Colonia}}</td>
-                    <td>{{dom.Municipio}}</td>
-                    <td>{{dom.Estado}}</td>
-                    <td>{{dom.Pais}}</td>
-                    <td>
-                      <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsed6 = !isCollapsed6" (click)= "isCollapsed7 = !isCollapsed7" (click)= "Consultar(dom)" ><i class="fa fa-pencil"></i></a>
-                      <a data-toggle="modal" data-target="#largesizemodal2" class="btn btn-sm btn-danger text-white ml-1" (click)="DomBorrar(dom)" ><i class="fa fa-trash"></i></a></td>
-                  </tr>
+                    <tr *ngFor="let dom of domicilioList;let i=index;" >
+                      <td scope="row" >{{dom.tipoDomicilio}}</td>
+                      <td>{{ dom.calle }}</td>
+                      <td>{{ dom.numeroExterior }}</td>
+                      <td>{{ dom.numeroInterior }}</td>
+                      <td>{{ dom.codigoPostal }}</td>
+                      <td>{{ dom.colonia }}</td>
+                      <td>{{ dom.municipio }}</td>
+                      <td>{{ dom.estado }}</td>
+                      <td>{{ dom.pais }}</td>
+                      <td>
+                        <!--
+                          (click)= "isCollapsed6 = !isCollapsed6"
+                          (click)= "isCollapsed7 = !isCollapsed7"
+                        -->
+                        <a data-toggle="modal" data-target="#largesizemodal" class="btn btn-sm btn-info text-white"
+                          (click)= "consultarDomicilio(dom)"
+                        >
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                        <a data-toggle="modal" data-target="#largesizemodal" class="btn btn-sm btn-danger text-white ml-1"
+                          (click)="DomBorrar(dom)" >
+                          <i class="fa fa-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
               <!--TELEFONOS-->
 
-              <button class="btn btn-sm btn-light"  (click)="nav3.select(1)">Anterior</button>
-              <button class="btn btn-sm btn-light"  (click)="nav3.select(3)">Siguiente Sección</button>
+              <button class="btn btn-sm btn-light btnSeccion" (click)="nav3.select(1)">Anterior</button>
+              <button class="btn btn-sm btn-light" (click)="nav3.select(3)">Siguiente Sección</button>
 
             </ng-template>
           </li>
           <li [ngbNavItem]="3" > <a ngbNavLink><i class="icon-note"></i>Actividad y Referencia</a>
             <ng-template ngbNavContent>
-              <app-activ-eco></app-activ-eco>
-              <button class="btn btn-sm btn-light"  (click)="nav3.select(2)">Anterior</button>
-              <button class="btn btn-sm btn-light"  (click)="nav3.select(4)">Siguiente Sección</button>
+              <!-- <app-activ-eco></app-activ-eco> -->
+              <!-- [ngbCollapse]="isCollapsedEco3" -->
+
+
+
+
+
+
+
+
+              <div class="row" >
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Actividad Económica</h6>
+                      <hr>
+                      <form [formGroup]="actividadEconomicaForm">
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Actividad Económica</label>
+                            <div class="col-sm-6">
+                              <select class="form-control form-control-sm" formControlName="ActividadEconomica">
+                                <option *ngFor="let ctAE of ctActeco" [value]="ctAE.catalogo_cve">
+                                  {{ctAE.desc_45}}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Actividad Detallada </label>
+                            <div class="col-sm-6">
+                              <select class="form-control form-control-sm" formControlName="ActividadDetallada">
+                                <option value="" >Seleccione la actividad ...</option>
+                                <option value="1">Otros Servicios Profesionales </option>
+                                <option value="1">Otros Servicios Profesionales </option>
+                                <option value="1">Otros Servicios Profesionales </option>
+                                <option value="1">Otros Servicios Profesionales </option>
+                                <option value="1">Otros Servicios Profesionales </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Ingresos Mensuales </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                placeholder=" 0.00"
+                                formControlName="IngresoMensual"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-success">Otros Ingresos Mensuales  </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                placeholder=" 0.00"
+                                formControlName="OtroIngresoMensual"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Gastos Mensuales </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                placeholder=" 0.00"
+                                formControlName="GastosMensuales"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Flujo de Efectivo </label>
+                            <div class="col-sm-6">
+                              <input type="text"
+                                class="form-control"
+                                placeholder=" 0.00"
+                                formControlName="FlujoEfectivo"
+                                maxlength="15">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            [disabled]="disBtnInsertActivEconom"
+                            (click)="insertActividadEconomica()"
+                            type="submit"
+                            class="btn btn-light  btn-block">
+                              Insertar
+                          </button>
+                        </div>
+                        <div *ngIf="disBtnInsertActivEconom" class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            class="btn btn-light  btn-block"
+                            data-toggle="modal"
+                            data-target="#largesizemodal"
+                            type="submit"
+                            [disabled]="!actividadEconomicaForm.valid"
+                            (click)="guardarActividadEconomica()"
+                          >Guardar</button>
+                          </div>
+                        </div>
+                     </form>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="actividadEconomicaList.length">
+                    <!--
+                  <div  class="col-2 col-lg-2 col-xl-2">
+                    <button type="submit" class="btn btn-light  btn-block" (click)="obtenerActividadEco()" >Actualizar</button>
+                  </div>
+                -->
+                    <div  class="col-6 col-lg-6 col-xl-6"></div>
+                    <div  class="col-4 col-lg-4 col-xl-4">
+                      <label>Listado de Actividad economica</label>
+                    </div>
+                  </div>
+                  <div class="card" *ngIf="actividadEconomicaList.length">
+                    <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                      <thead >
+                      <th>Numero Cliente</th>
+                      <th>Actividad Economica</th>
+                      <th>Actividad Detallada</th>
+                      <th>Ingreso Mensual</th>
+                      <th>Otro Ingreso Mensual</th>
+                      <th>Gastos Mensuales</th>
+                      <th>Flujo de Efectivo</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let eco of actividadEconomicaList;let i=index;" >
+                        <td scope="row" >{{eco.NumeroCliente}}</td>
+                        <td scope="row" >{{eco.ActividadEconomica}}</td>
+                        <td>{{eco.ActividadDetallada}}</td>
+                        <td>{{eco.IngresoMensual}}</td>
+                        <td>{{eco.OtroIngresoMensual}}</td>
+                        <td>{{eco.GastosMensuales}}</td>
+                        <td>{{eco.FlujoEfectivo}}</td>
+                        <td>
+                          <!--
+                            (click)= "isCollapsedEco2 = !isCollapsedEco2"
+                            (click)= "isCollapsedEco3 = !isCollapsedEco3"
+                            (click)= "EconomicaConsultar(eco)"
+                          -->
+                          <a
+                            data-toggle="modal"
+                            data-target="#largesizemodal3"
+                            class="btn btn-sm btn-info text-white"
+                            >
+                              <i class="fa fa-pencil"></i>
+                          </a>
+                          <!--
+                            (click)= "EconomicaBorrar(eco)"
+                          -->
+                          <a
+                            data-toggle="modal"
+                            data-target="#largesizemodal1"
+                            class="btn btn-sm btn-danger text-white ml-1">
+                              <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Referencias Personales</h6>
+                      <hr>
+                      <form [formGroup]="referenciasPersonalesForm">
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Nombre Completo</label>
+                            <div class="col-sm-6">
+                              <input type="text"
+                                class="form-control"
+                                placeholder="Nombre"
+                                formControlName="NombreRefPer"
+                                maxlength="120">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-success">Tipo Relación</label>
+                            <div class="col-sm-6">
+                              <select
+                                class="form-control form-control-sm"
+                                formControlName="TipoRelacionRefPer">
+                                <option value="">Seleccione el tipo ..</option>
+                                <option value="1">Option 1</option>
+                                <option value="1">Option 2</option>
+                                <option value="1">Option 3</option>
+                                <option value="1">Option 4</option>
+                                <option value="1">Option 5</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Teléfono(s) </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                placeholder="55.5555.5555"
+                                formControlName="TelefonoRefPer"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            [disabled]="disBtnInsertRefPer"
+                            (click)="insertaReferenciaPersonal()"
+                            type="submit"
+                            class="btn btn-light btn-block">Insertar</button>
+                        </div>
+                        <div *ngIf="disBtnInsertRefPer" class="col-1 col-lg-1 col-xl-2">
+                          <button data-toggle="modal"
+                            data-target="#largesizemodal"
+                            type="submit"
+                            class="btn btn-light btn-block"
+                            [disabled]="!referenciasPersonalesForm.valid"
+                            (click)="guardaReferenciasPersonales()">Guardar</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="referenciasPersonalesList.length">
+                    <!--
+                    <div  class="col-2 col-lg-2 col-xl-2">
+                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerPersonales()" >Actualizar</button>
+                    </div>
+                    -->
+                    <div  class="col-6 col-lg-6 col-xl-6">
+                    </div>
+                    <div  class="col-4 col-lg-4 col-xl-4">
+                      <label>Listado de Referencias Personales</label>
+                    </div>
+                  </div>
+                  <div class="card" *ngIf="referenciasPersonalesList.length">
+                    <table class="table table-striped text-center " style="width:auto; height:5px;">
+                      <thead >
+                      <th>Consecutivo</th>
+                      <th>Nombre Completo</th>
+                      <th>Telefono</th>
+                      <th>Tipo de Relacion</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let personales of referenciasPersonalesList ;let i=index;" >
+                        <td scope="row">{{personales.Consecutivo}}</td>
+                        <td>{{personales.NombreRefPer}}</td>
+                        <td>{{personales.TelefonoRefPer}}</td>
+                        <td>{{personales.TipoRelacionRefPer}}</td>
+                        <td>
+                          <!--
+                          <a data-toggle="modal"
+                            data-target="#largesizemodal"
+                            class="btn btn-sm btn-info text-white"
+                            (click)= "isCollapsedPer2 = !isCollapsedPer2"
+                            (click)= "isCollapsedPer3 = !isCollapsedPer3"
+                            (click)= "PersonalesConsultar(personales)"><i class="fa fa-pencil"></i></a>
+                          <a data-toggle="modal"
+                            data-target="#largesizemodal"
+                            class="btn btn-sm btn-danger text-white ml-1"
+                            (click)= "PersonalesBorrar(personales)"><i class="fa fa-trash"></i></a></td>
+                          -->
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Referencias Comerciales</h6>
+                      <hr>
+                      <form [formGroup]="referenciasComercialesForm">
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Nombre del Proveedor</label>
+                            <div class="col-sm-6">
+                              <input type="text"
+                                class="form-control"
+                                placeholder="Nombre del Proveedor"
+                                formControlName="NombreRefCom"
+                                maxlength="120">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Limite Crédito</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                placeholder="0.00"
+                                formControlName="LimiteCreditoRefCom"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Saldo de Cuenta</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                placeholder=" 0.00 "
+                                formControlName="SaldoCuentaRefCom"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            [disabled]="disBtnInsertRefCom"
+                            (click)="insertaReferenciasComerciales()"
+                            type="submit"
+                            class="btn btn-light btn-block">Insertar</button>
+                        </div>
+                        <div *ngIf="disBtnInsertRefCom" class="col-1 col-lg-1 col-xl-2">
+                          <button data-toggle="modal"
+                            data-target="#largesizemodal"
+                            type="submit"
+                            class="btn btn-light btn-block"
+                            [disabled]="!referenciasComercialesForm.valid"
+                            (click)="guardarReferenciasComerciales()">Guardar</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="referenciasComercialesList.length">
+                    <!--
+                    <div  class="col-2 col-lg-2 col-xl-2">
+                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerComerciales()" >Actualizar</button>
+                    </div>
+                    -->
+                    <div  class="col-6 col-lg-6 col-xl-6">
+                    </div>
+                    <div  class="col-4 col-lg-4 col-xl-4">
+                      <label>Listado de Referencias Comerciales</label>
+                    </div>
+                  </div>
+                  <div class="card" *ngIf="referenciasComercialesList.length">
+                    <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                      <thead >
+                      <!-- <th>Consecutivo</th> -->
+                      <th>Nombre Completo</th>
+                      <th>Limite de Credito</th>
+                      <th>Saldo de Cuenta</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let comerciales of referenciasComercialesList;let i=index;" >
+                        <!-- <td scope="row" >{{comerciales.Consecutivo}}</td> -->
+                        <td>{{comerciales.NombreRefCom}}</td>
+                        <td>{{comerciales.LimiteCreditoRefCom}}</td>
+                        <td>{{comerciales.SaldoCuentaRefCom}}</td>
+                        <td>
+                          <!--
+                          <a data-toggle="modal"
+                            data-target="#largesizemodal3"
+                            class="btn btn-sm btn-info text-white"
+                            (click)= "isCollapsedCom2 = !isCollapsedCom2"
+                            (click)= "isCollapsedCom3 = !isCollapsedCom3"
+                            (click)= "ComercialesConsultar(comerciales)">
+                              <i class="fa fa-pencil"></i></a>
+                          <a data-toggle="modal"
+                            data-target="#largesizemodal1"
+                            class="btn btn-sm btn-danger text-white ml-1"
+                            (click)= "ComercialesBorrar(comerciales)">
+                              <i class="fa fa-trash"></i></a></td>
+                          -->
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Referencias Bancarias</h6>
+                      <hr>
+                      <form [formGroup]="referenciasBancariasForm">
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Institución</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="InstitucionRefBan"
+                                maxlength="120">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Saldo Crédito</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                placeholder="0.00"
+                                formControlName="SaldoCuentaRefBan"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Límite Crédito</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                placeholder=" 0.00"
+                                formControlName="LimiteCreditoRefBan"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Antigüedad</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="AntiguedadRefBan"
+                                maxlength="5">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            [disabled]="disBtnInsertRefBan"
+                            (click)="insertaReferenciasBancarias()"
+                            type="submit"
+                            class="btn btn-light btn-block" >Insertar</button>
+                        </div>
+                        <div *ngIf="disBtnInsertRefBan" class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            data-toggle="modal"
+                            data-target="#largesizemodal"
+                            type="submit"
+                            class="btn btn-light btn-block"
+                            [disabled]="!referenciasBancariasForm.valid"
+                            (click)="guardarReferenciasBancarias()">Guardar</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="referenciasBancariasList.length">
+                <!--
+                <div  class="col-2 col-lg-2 col-xl-2" [ngbCollapse]="isCollapsedBan3">
+                  <button type="submit" class="btn btn-light  btn-block" (click)="obtenerBancarias()" >Actualizar</button>
+                </div>
+                -->
+                <div  class="col-6 col-lg-6 col-xl-6"></div>
+                <div  class="col-4 col-lg-4 col-xl-4">
+                    <label>Listado de Referencias Bancarias</label>
+                </div>
+              </div>
+              <div class="card" *ngIf="referenciasBancariasList.length">
+                <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                  <thead >
+                      <th>Consecutivo</th>
+                      <th>Nombre Completo</th>
+                      <th>Antigüedad</th>
+                      <th>Limite de Credito</th>
+                      <th>Saldo de Cuenta</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let bancarias of referenciasBancariasList;let i=index;" >
+                      <td scope="row">{{bancarias.Consecutivo}}</td>
+                      <td>{{bancarias.InstitucionRefBan}}</td>
+                      <td>{{bancarias.AntiguedadRefBan}}</td>
+                      <td>{{bancarias.LimiteCreditoRefBan}}</td>
+                      <td>{{bancarias.SaldoCuentaRefBan}}</td>
+                      <td>
+                      <!--
+                      <a data-toggle="modal"
+                        data-target="#largesizemodal3"
+                        class="btn btn-sm btn-info text-white"
+                        (click)= "isCollapsedBan2 = !isCollapsedBan2"
+                        (click)= "isCollapsedBan3 = !isCollapsedBan3"
+                        (click)= "BancariasConsultar(bancarias)">
+                          <i class="fa fa-pencil"></i></a>
+                      <a data-toggle="modal"
+                        data-target="#largesizemodal1"
+                        class="btn btn-sm btn-danger text-white ml-1"
+                        (click)= "BancariasBorrar(bancarias)">
+                          <i class="fa fa-trash"></i></a></td>
+                      -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <button class="btn btn-sm btn-light btnSeccion" (click)="nav3.select(2)">Anterior</button>
+              <button class="btn btn-sm btn-light" (click)="nav3.select(4)">Siguiente Sección</button>
             </ng-template>
           </li>
           <li [ngbNavItem]="4"> <a ngbNavLink><i class="fa fa-university"></i>Cuentas Bancarias </a>
             <ng-template ngbNavContent>
-              <app-cuenta-bancaria></app-cuenta-bancaria>
-              <button class="btn btn-sm btn-light"  (click)="nav3.select(3)">Anterior</button>
-              <button class="btn btn-sm btn-light"  (click)="nav3.select(6)">Siguiente Sección</button>
+              <!-- <app-cuenta-bancaria></app-cuenta-bancaria> -->
+
+
+
+
+
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Acciones</h6>
+                      <hr>
+                      <form [formGroup]="accionesForm">
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Fecha de Primera Compra Acción</label>
+                            <div class="col-sm-6">
+                              <input type="date"
+                                class="form-control"
+                                formControlName="FechaCompra1aAccion"
+                                maxlength="10">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Parte Inicial Social</label>
+                            <div class="col-sm-6">
+                              <input type="number"
+                                class="form-control"
+                                formControlName="ParteInicialSocial"
+                                maxlength="15">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Fecha de Pago</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="date"
+                                class="form-control"
+                                formControlName="FechaPago"
+                                maxlength="10">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-success">Parte Social Actual</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="number"
+                                class="form-control"
+                                formControlName="ParteSocialActual"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Costo de las Acciones</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="number"
+                                class="form-control"
+                                formControlName="CostoAcciones"
+                                maxlength="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Forma de Pago de las Acciones </label>
+                            <div class="col-sm-6">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="FormaPagoAcciones"
+                                maxlength="50">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Retirables A </label>
+                            <div class="col-sm-6">
+                              <input type="number"
+                                class="form-control"
+                                formControlName="RetirablesA"
+                                maxlength="15">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Retirables B</label>
+                            <div class="col-sm-6">
+                              <input type="number"
+                                class="form-control"
+                                formControlName="RetirablesB"
+                                maxlength="15">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Total de Acciones</label>
+                            <div class="col-sm-6">
+                              <input type="number"
+                                class="form-control"
+                                formControlName="TotalAcciones"
+                                maxlength="15">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            [disabled]="disBtnInsertAcc"
+                            (click)="insertAcciones()"
+                            type="submit"
+                            class="btn btn-light  btn-block" >Insertar</button>
+                        </div>
+                        <div *ngIf="disBtnInsertAcc" class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            data-toggle="modal"
+                            data-target="#largesizemodal"
+                            type="submit"
+                            class="btn btn-light btn-block"
+                            [disabled]="!accionesForm.valid"
+                            (click)="guardarAcciones()">Guardar</button>
+                        </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="accionesList.length">
+                    <!--
+                    <div  class="col-2 col-lg-2 col-xl-2">
+                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerAcciones()" >Actualizar</button>
+                    </div>
+                    -->
+                      <div  class="col-6 col-lg-6 col-xl-6">
+                      </div>
+                    <div  class="col-4 col-lg-4 col-xl-4">
+                      <label>Listado de Acciones</label>
+                    </div>
+                  </div>
+                  <div class="card" *ngIf="accionesList.length">
+                    <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                      <thead >
+                        <th>Consecutivo</th>
+                        <th>Fecha primera acción</th>
+                        <th>Parte Inicial</th>
+                        <th>Fecha de Pago</th>
+                        <th>Parte Social Actual</th>
+                        <th>Costo Acciones</th>
+                        <th>Forma de Pago</th>
+                        <th>Total Acciones</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let acc of accionesList;let i=index;" >
+                        <td scope="row">{{acc.Consecutivo}}</td>
+                        <td>{{acc.FechaCompra1aAccion}}</td>
+                        <td>{{acc.ParteInicialSocial}}</td>
+                        <td>{{acc.FechaPago}}</td>
+                        <td>{{acc.ParteSocialActual}}</td>
+                        <td>{{acc.CostoAcciones}}</td>
+                        <td>{{acc.FormaPagoAcciones}}</td>
+                        <!--<td>{{acc.RetirablesA}}</td>
+                        <td>{{acc.RetirablesB}}</td>-->
+                        <td>{{acc.TotalAcciones}}</td>
+
+                        <td>
+                          <!--
+                          <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedAcc2 = !isCollapsedAcc2" (click)= "isCollapsedAcc3 = !isCollapsedAcc3" (click)= "AccionesConsultar(acc)" ><i class="fa fa-pencil"></i></a>
+                          <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "AccionesBorrar(acc)" ><i class="fa fa-trash"></i></a></td>
+                          -->
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Cuentas Bancarias</h6>
+                      <hr>
+                      <form [formGroup]="cuentasBancariasForm">
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">cuenta bancaria</label>
+                            <div class="col-sm-6">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="NombreCuentaBancariaCtaBan"
+                                maxlegth="120">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-success">Banco</label>
+                            <div class="col-sm-6">
+                                <select class="form-control form-control-sm"
+                                  formControlName="BancoCtaBan">
+                                  <option *ngFor="let CatBncs of ctBancos" [value]="CatBncs.catalogo_cve">
+                                    {{CatBncs.desc_45}}
+                                  </option>
+                                </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Numero de Cuenta </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="number"
+                                class="form-control"
+                                formControlName="NumeroCuentaCtaBan"
+                                maxlegth="15">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Clabe Interbancaria </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="ClaveInterbancariaCtaBan"
+                                maxlegth="18">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            [disabled]="disBtnInsertCueBan"
+                            (click)="insertCuentasBancarias()"
+                            type="submit"
+                            class="btn btn-light  btn-block" >Insertar</button>
+                        </div>
+                        <div *ngIf="disBtnInsertCueBan" class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            data-toggle="modal"
+                            data-target="#largesizemodal1"
+                            type="submit"
+                            class="btn btn-light btn-block"
+                            [disabled]="!cuentasBancariasForm.valid"
+                            (click)="guardarCuentasBancarias()">Guardar</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="cuentasBancariasList.length">
+                    <!--
+                    <div  class="col-2 col-lg-2 col-xl-2">
+                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerCuenta()" >Actualizar</button>
+                    </div>
+                    -->
+                    <div  class="col-6 col-lg-6 col-xl-6">
+                    </div>
+                    <div  class="col-4 col-lg-4 col-xl-4">
+                      <label>Listado de Cuentas Bancarias</label>
+                    </div>
+                  </div>
+                  <div class="card" *ngIf="cuentasBancariasList.length" >
+                    <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                      <thead >
+                      <th>Numero Cliente</th>
+                      <th>Consecutivo</th>
+                      <th>Nombre cuenta bancaria</th>
+                      <th>Banco</th>
+                      <th>Número de Cuenta</th>
+                      <th>Clabe Interbancaria</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let cuen of cuentasBancariasList;let i=index;" >
+                        <td scope="row" >{{cuen.NumeroCliente}}</td>
+                        <td scope="row" >{{cuen.Consecutivo}}</td>
+                        <td>{{cuen.NombreCuentaBancariaCtaBan}}</td>
+                        <td>{{cuen.BancoCtaBan}}</td>
+                        <td>{{cuen.NumeroCuentaCtaBan}}</td>
+                        <td>{{cuen.ClaveInterbancariaCtaBan}}</td>
+                        <td>
+                          <!--
+                          <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedCue2 = !isCollapsedCue2" (click)= "isCollapsedCue3 = !isCollapsedCue3" (click)= "CuentasBanConsultar(cuen)" ><i class="fa fa-pencil"></i></a>
+                          <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "CuentaBorrar(cuen)" ><i class="fa fa-trash"></i></a></td>
+                          -->
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Partes Relacionadas</h6>
+                      <hr>
+                      <form [formGroup]="partesRelacionadasForm">
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Parte Relacionada</label>
+                            <div class="col-sm-6">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="ParteRelacionadaParRel"
+                                maxlength="2">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Nombre completo</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="NombreParRel"
+                                maxlength="120">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">RFC</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="RFCParRel"
+                                maxlength="13">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Dirección</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="DireccionParRel"
+                                maxlength="120">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            [disabled]="disBtnInsertParRel"
+                            (click)="insertPartesRelacionadas()"
+                            type="submit"
+                            class="btn btn-light  btn-block" >Insertar</button>
+                        </div>
+                        <div *ngIf="disBtnInsertParRel" class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            data-toggle="modal"
+                            data-target="#largesizemodal"
+                            type="submit"
+                            class="btn btn-light btn-block"
+                            (click)="guardarPartesRelacionadas()">Guardar</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="partesRelacionadasList.length">
+                    <!--
+                    <div  class="col-2 col-lg-2 col-xl-2">
+                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerRelacional()" >Actualizar</button>
+                    </div>
+                    -->
+                    <div  class="col-6 col-lg-6 col-xl-6">
+                    </div>
+                    <div  class="col-4 col-lg-4 col-xl-4">
+                      <label>Listado de Parte Relacionada</label>
+                    </div>
+                  </div>
+                  <div class="card" *ngIf="partesRelacionadasList.length">
+                    <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                      <thead >
+                      <th>Numero Cliente</th>
+                      <th>Consecutivo</th>
+                      <th>Parte Relacionada</th>
+                      <th>Nombre completo</th>
+                      <th>RFC</th>
+                      <th>Dirección</th>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let rel of partesRelacionadasList;let i=index;" >
+                        <td scope="row" >{{rel.Id}}</td>
+                        <td scope="row" >{{rel.Consecutivo}}</td>
+                        <td>{{rel.ParteRelacionadaParRel}}</td>
+                        <td>{{rel.NombreParRel}}</td>
+                        <td>{{rel.RFCParRel}}</td>
+                        <td>{{rel.DireccionParRel}}</td>
+                        <td>
+                          <!--
+                          <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedRel2 = !isCollapsedRel2" (click)= "isCollapsedRel3 = !isCollapsedRel3" (click)= "RelacionadasConsultar(rel)" ><i class="fa fa-pencil"></i></a>
+                          <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "RelacionalBorrar(rel)" ><i class="fa fa-trash"></i></a></td>
+                          -->
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Grupo Socieconomico</h6>
+                      <hr>
+                      <form [formGroup]="grupoSocioeconomicoForm">
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Grupo Socieconomico</label>
+                            <div class="col-sm-6">
+                              <select class="form-control form-control-sm"
+                                formControlName="GrupoSocioeconomicoGpoSoc">
+                                <option *ngFor="let CatEco of ctActeco" [value]="CatEco.catalogo_cve">
+                                  {{CatEco.desc_45}}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Nombre Completo</label>
+                            <div class="col-sm-6">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="NombreGpoSoc"
+                                maxlength="120">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">RFC </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="RFCGpoSoc"
+                                maxlength="13">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Dirección </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="DireccionGpoSoc"
+                                maxlength="120">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            [disabled]="disBtnInsertGruSoc"
+                            (click)="insertGrupoSocioeconomico()"
+                            type="submit"
+                            class="btn btn-light btn-block" >Insertar</button>
+                        </div>
+                        <div *ngIf="disBtnInsertGruSoc" class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            data-toggle="modal"
+                            data-target="#largesizemodal"
+                            type="submit"
+                            class="btn btn-light btn-block"
+                            [disabled]="!grupoSocioeconomicoForm.valid"
+                            (click)="SocioEco()">Guardar</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="grupoSocioeconomicoList.length">
+                <!--
+                <div  class="col-2 col-lg-2 col-xl-2">
+                  <button type="submit" class="btn btn-light  btn-block" (click)="obtenerSocioEco()" >Actualizar</button>
+                </div>
+                -->
+                <div  class="col-6 col-lg-6 col-xl-6">
+                </div>
+                <div  class="col-4 col-lg-4 col-xl-4">
+                  <label>Listado de Grupo Socieconimico</label>
+                </div>
+              </div>
+              <div class="card" *ngIf="grupoSocioeconomicoList.length">
+                <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                  <thead >
+                  <th>Numero Cliente</th>
+                  <th>Consecutivo</th>
+                  <th>Grupo Socieconomico</th>
+                  <th>Nombre Completo</th>
+                  <th>RFC</th>
+                  <th>Dirección</th>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let soc of grupoSocioeconomicoList;let i=index;" >
+                    <td scope="row" >{{soc.Id}}</td>
+                    <td scope="row" >{{soc.Consecutivo}}</td>
+                    <td>{{soc.GrupoSocioeconomicoGpoSoc}}</td>
+                    <td>{{soc.NombreGpoSoc}}</td>
+                    <td>{{soc.RFCGpoSoc}}</td>
+                    <td>{{soc.DireccionGpoSoc}}</td>
+                    <td>
+                      <!--
+                      <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedSoc2 = !isCollapsedSoc2" (click)= "isCollapsedSoc3 = !isCollapsedSoc3" (click)= "SocioEconomicoConsultar(soc)" ><i class="fa fa-pencil"></i></a>
+                      <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "SocioEcoBorrar(soc)" ><i class="fa fa-trash"></i></a></td>
+                      -->
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+
+
+
+
+
+
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Grupo de Riesgo Común</h6>
+                      <hr>
+                      <form [formGroup]="grupoRiesgoComunForm">
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Grupo de Riesgo Común </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="GrupoRiesgoComunRgoCom"
+                                maxlength="1000">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Nombre Completo </label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="NombreRgoCom"
+                                maxlength="150">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">RFC</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="RFCRgoCom"
+                                maxlength="13">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label  class="col-sm-5 col-form-label">Dirección</label>
+                            <div class="col-sm-6 input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="DireccionRgoCom"
+                                maxlength="150">
+                              <div class="input-group-append">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4">
+                        </div>
+                        <div  class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            [disabled]="disBtnInsertGruRies"
+                            (click)="insertRiesgoComun()"
+                            type="submit"
+                            class="btn btn-light btn-block">Insertar</button>
+                        </div>
+                        <div *ngIf="disBtnInsertGruRies" class="col-1 col-lg-1 col-xl-2">
+                          <button
+                            data-toggle="modal"
+                            data-target="#largesizemodal"
+                            type="submit"
+                            class="btn btn-light btn-block"
+                            (click)="guardarRiesgoComun()">Guardar</button>
+                        </div>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="grupoRiesgoComunList.length">
+                <!--
+                <div  class="col-2 col-lg-2 col-xl-2">
+                  <button type="submit" class="btn btn-light  btn-block" (click)="obtenerRiesgoComun()" >Actualizar</button>
+                </div>
+                -->
+                <div class="col-6 col-lg-6 col-xl-6"></div>
+                <div  class="col-4 col-lg-4 col-xl-4">
+                  <label>Listado de Grupo de Riesgo comun</label>
+                </div>
+              </div>
+              <div class="card" *ngIf="grupoRiesgoComunList.length">
+                <table class="table table-striped text-center " style="width:auto; height:5px;">
+                  <thead >
+                      <th>Numero Cliente</th>
+                      <th>Consecutivo</th>
+                      <th>Grupo de Riesgo Común</th>
+                      <th>Nombre Completo</th>
+                      <th>RFC</th>
+                      <th>Dirección</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let com of grupoRiesgoComunList;let i=index;" >
+                      <td scope="row" >{{com.Id}}</td>
+                      <td scope="row" >{{com.Consecutivo}}</td>
+                      <td>{{com.GrupoRiesgoComunRgoCom}}</td>
+                      <td>{{com.NombreRgoCom}}</td>
+                      <td>{{com.RFCRgoCom}}</td>
+                      <td>{{com.DireccionRgoCom}}</td>
+                      <td>
+                      <!--
+                      <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedCom2 = !isCollapsedCom2" (click)= "isCollapsedCom3 = !isCollapsedCom3" (click)= "RiesgoComunConsultar(com)" ><i class="fa fa-pencil"></i></a>
+                      <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "RiesgoComunBorrar(com)" ><i class="fa fa-trash"></i></a></td>
+                      -->
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <button class="btn btn-sm btn-light btnSeccion" (click)="nav3.select(3)">Anterior</button>
+              <button class="btn btn-sm btn-light" (click)="nav3.select(6)">Siguiente Sección</button>
             </ng-template>
           </li>
           <li [ngbNavItem]="6" > <a ngbNavLink><i class="fa fa-folder-open-o"></i>Documentación</a>
