@@ -64,6 +64,22 @@ export class HttpService {
     );
   }
 
+  delete(url: string, params = null): Observable<any> {
+    if ( null === params ) {
+      this.httpOptions.params = null;
+    } else {
+      let httpParams = new HttpParams();
+      for ( const item in params ) {
+        httpParams = httpParams.append(item, params[item]);
+      }
+      this.httpOptions.params = httpParams;
+    }
+
+    return this.httpClient.delete<any>(url, this.httpOptions).pipe(
+      catchError(this.handleError)
+    )
+  }
+
   private handleError(error: HttpErrorResponse): Observable<any> {
     console.error(error);
     if ( error instanceof ErrorEvent ) {
