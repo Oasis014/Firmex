@@ -10,7 +10,7 @@ import { Domicilio } from '../shared/models/domicilio';
 })
 export class ClienteService {
 
-  private readonly url = 'http://127.0.0.1/insert/';
+  private readonly url = 'http://firmex-back.local/';
   private readonly catalogosUrl = environment.api.catalogos;
   private readonly clienteUrl = environment.api.cliente;
 
@@ -19,6 +19,15 @@ export class ClienteService {
     private http: HttpClient,
     private readonly httpService: HttpService
   ) { }
+
+  /** DATOS GENERALES */
+  agregar9(usuario: any) {
+    return this.httpService.post(this.clienteUrl.generalValidar, usuario);
+  }
+
+  agregar(usuario: any) {
+    return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario));
+  }
 
   /* Servicios Domicilio */
   agregarDomicilio(domicilio: Domicilio): Observable<any> {
@@ -127,6 +136,10 @@ export class ClienteService {
 
 
 
+  /*****************************************************************************
+   * ***************************************************************************
+   * ***************************************************************************
+   */
 
   getListCliente() {
     return this.http.get(`${this.url}ObtenerPerCliente.php`);
@@ -280,10 +293,6 @@ export class ClienteService {
   }
 
 
-  agregar(usuario: any) {
-    return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario));
-  }
-
   agregar02(clienteMod: any) {
     return this.http.post(`${this.url}Domicilio.php`, JSON.stringify(clienteMod));
   }
@@ -310,10 +319,6 @@ export class ClienteService {
     return this.http.post(`${this.url}Proveedores.php`, JSON.stringify(usuario));
   }
 
-  agregar9(usuario: any) {
-    //return this.http.post(`${this.clienteUrl.generalValidar}`, JSON.stringify(usuario));
-    return this.httpService.post(this.clienteUrl.generalValidar, usuario);
-  }
 
   agregar10(usuario: any) {
     return this.http.post(`${this.url}Acciones.php`, JSON.stringify(usuario));
