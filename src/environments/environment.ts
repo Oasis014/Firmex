@@ -1,7 +1,7 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-const host = 'http://127.0.0.1/insert/'
+const host = 'http://firmex-back.local/'
 export const environment = {
   production: false,
   api: {
@@ -45,6 +45,13 @@ export const environment = {
       catalogoTiprrc: `${host}CatalogoTiprrc.php`,
       catalogoTiptel: `${host}CatalogoTiptel.php`,
       catalogonaCION: `${host}CatalogonaCION.php`,
+
+      catalogoSucursales: `${host}CatalogoSucursales.php`,
+      catEstado: `${host}CatalogoEstado.php`,
+      catMunicipio: `${host}CatalogoMunicipio.php`,
+      catColonia: `${host}CatalogoColonia.php`,
+      catalogoCodPostal: `${host}CatalogoCodPostal.php`,
+      catPromotor: `${host}CatalogoPromotor.php`,
       catalogos: `${host}catalogos.php`,
     }
   }

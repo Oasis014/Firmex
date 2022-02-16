@@ -10,7 +10,7 @@ import { Domicilio } from '../shared/models/domicilio';
 })
 export class ClienteService {
 
-  private readonly url = 'http://firmex-back.local/';
+  private readonly url = 'http://127.0.0.1/insert/';
   private readonly catalogosUrl = environment.api.catalogos;
   private readonly clienteUrl = environment.api.cliente;
 
@@ -132,6 +132,48 @@ export class ClienteService {
   getRiesgoComun(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.grupoRiesgoComun, {userId: id});
   }
+
+
+
+
+
+
+  catSucursales(): Observable<any> {
+    return this.httpService.get(this.catalogosUrl.catalogoSucursales);
+  }
+
+  catPromotor(): Observable<any> {
+    return this.httpService.get(this.catalogosUrl.catPromotor);
+  }
+
+  catEstado(): Observable<any> {
+    return this.httpService.get(this.catalogosUrl.catEstado);
+  }
+
+  catMunicipio(estadoId: number|string): Observable<any> {
+    let params = {
+      estadoId: estadoId,
+    };
+    return this.httpService.get(this.catalogosUrl.catMunicipio, params);
+  }
+
+  catCol(estadoId: number|string, municipioId: number|string): Observable<any> {
+    let params = {
+      estadoId: estadoId,
+      municipioId: municipioId
+    };
+    return this.httpService.get(this.catalogosUrl.catColonia, params);
+  }
+
+  catCP(estadoId: number|string, municipioId: number|string): Observable<any> {
+    let params = {
+      estadoId: estadoId,
+      municipioId: municipioId
+    };
+    return this.httpService.get(this.catalogosUrl.catalogoCodPostal, params);
+  }
+
+
 
 
 
