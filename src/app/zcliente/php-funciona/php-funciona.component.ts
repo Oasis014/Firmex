@@ -13,7 +13,7 @@ import { Domicilio } from 'src/app/shared/models/domicilio';
 })
 export class PhpFuncionaComponent implements OnInit {
 cliente = null as any;
-dato = new Domicilio;
+dato: any;
 
 open() {this.router.navigate(['list-cliente'], { relativeTo: this.route.parent }); }
 

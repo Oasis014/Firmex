@@ -21,30 +21,37 @@ export class ClienteService {
   ) { }
 
   /* Servicios Domicilio */
-  agregarDomicilio(domicilio: Domicilio) {
+  agregarDomicilio(domicilio: Domicilio): Observable<any> {
     return this.http.post(this.clienteUrl.guardarDomicilio, domicilio);
   }
 
-  // todos los dimicilios de un cliente
+  // domicilios de un cliente
   getDomicilio(params: {userId: number}): Observable<any> {
     return this.httpService.get(this.clienteUrl.domicilio, params);
   }
 
   // un domicilio de cliente
-  consultar(params: {userId: number, domId: string}) {
-    /*return this.http.post(this.clienteUrl.consultarDomicilio, JSON.stringify(domcon));*/
+  consultar(params: {userId: number, domId: string}): Observable<any> {
     return this.httpService.get(this.clienteUrl.domicilio, params);
   }
 
-  domborrar(params: any) {
-    /* return this.http.post(this.clienteUrl.borrarDomicilio, JSON.stringify(domborrar)); */
+  domborrar(params: any): Observable<any> {
     return this.httpService.delete(this.clienteUrl.domicilio, params);
   }
 
   /* Servicios Domicilio */
 
 
-  /** REFERENCIAS PERSONALES */
+  /** seccion: ACTIVIDAD Y REFRENCIA ... Actividad Economica */
+  agregar4(arreglo: any): Observable<any> {
+    return this.http.post(`${this.url}Economica.php`, JSON.stringify(arreglo));
+  }
+
+  getActiEco(userId: number|string) {
+    return this.httpService.get(`${this.url}Economica.php`, {'userId': userId});
+  }
+
+  /** seccion: ACTIVIDAD Y REFRENCIA ... Referencias Personales */
   guardaReferenciaPersonal(referencia: any): Observable<any> {
     return this.httpService.post(this.clienteUrl.personales, referencia);
   }
@@ -53,7 +60,7 @@ export class ClienteService {
     return this.httpService.get(this.clienteUrl.personales, {'userId': id});
   }
 
-  /** REFERENCIAS COMERCIALES */
+  /** seccion: ACTIVIDAD Y REFRENCIA ... Referencias Comerciales  */
   guardaReferenciaComercial(usuario: any): Observable<any> {
     return this.httpService.post(this.clienteUrl.comerciales, usuario);
   }
@@ -62,7 +69,7 @@ export class ClienteService {
     return this.httpService.get(this.clienteUrl.comerciales, {'userId': id});
   }
 
-  /** REFERENCIAS BANCARIAS */
+  /** seccion: ACTIVIDAD Y REFRENCIA ... Referencias BAncarias */
   guardaReferenciaBancaria(usuario: any): Observable<any> {
     return this.httpService.post(this.clienteUrl.bancarias, usuario);
   }
@@ -89,7 +96,7 @@ export class ClienteService {
   getCuenta(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.cuentasBancarias, { userId: id});
   }
-  
+
   /** seccion: CUENTAS BANCARIAS ... PARTES RELACIONADAS */
   agregarParteRelacionada(parte: any): Observable<any> {
     return this.httpService.post(this.clienteUrl.partesRelacionadas, parte);
@@ -98,7 +105,7 @@ export class ClienteService {
   getRelacional(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.partesRelacionadas, {userId: id});
   }
-  
+
   /** seccion: CUENTAS BANCARIAS ... GRUPO SOCIECONOMICO */
   agregarGrupoSocioeconomico(grupo: any): Observable<any> {
     return this.httpService.post(this.clienteUrl.grupoSocioeconomico, grupo);
@@ -107,7 +114,7 @@ export class ClienteService {
   getSocioEco(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.grupoSocioeconomico, {userId: id});
   }
-  
+
   /** seccion: CUENTAS BANCARIAS ... GRUPO RIESGO COMUN */
   agregarGrupoRiesgoComun(grupo: any) {
     return this.httpService.post(this.clienteUrl.grupoRiesgoComun, grupo);
@@ -134,9 +141,7 @@ export class ClienteService {
   }
 
 
-  getActiEco(userId: number|string) {
-    return this.httpService.get(`${this.url}Economica.php`, {'userId': userId});
-  }
+
 
   getProveedores() {
     return this.http.get(`${this.url}ProveedoresMostrar.php`);
@@ -150,7 +155,7 @@ export class ClienteService {
     return this.http.get(`${this.url}mostrarTodos.php`);
   }
 
-  
+
   select() {
     return this.http.get(`${this.url}SelecGenerales.php`);
   }
@@ -287,9 +292,7 @@ export class ClienteService {
     return this.http.post(`${this.url}CuentaBancaria.php`, JSON.stringify(usuario));
   }
 
-  agregar4(arreglo: any): Observable<any> {
-    return this.http.post(`${this.url}Economica.php`, JSON.stringify(arreglo));
-  }
+
 
   agregar5(usuario: any) {
     return this.http.post(`${this.url}Comerciales.php`, JSON.stringify(usuario));

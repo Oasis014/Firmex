@@ -1,23 +1,23 @@
 export class Domicilio {
 
-  Id: number;
-  TipoDom: string;
+  NumeroCliente: number;
+  TipoDomicilio: string;
   Calle: string;
-  NoEx: string;
-  NoIn: string;
-  CodPos: string;
+  NumeroExterior: string;
+  NumeroInterior: string;
+  CodigoPostal: string;
   Colonia: string;
   Municipio: string;
   Estado: string;
   Pais: string;
 
   constructor() {
-    this.Id = 0;
-    this.TipoDom = '';
+    this.NumeroCliente = 0;
+    this.TipoDomicilio = '';
     this.Calle = '';
-    this.NoEx = '';
-    this.NoIn = '';
-    this.CodPos = '';
+    this.NumeroExterior = '';
+    this.NumeroInterior = '';
+    this.CodigoPostal = '';
     this.Colonia = '';
     this.Municipio = '';
     this.Estado = '';
@@ -32,20 +32,8 @@ export class Domicilio {
     }
   }
 
-  setData(obj: any): void {
-    this.TipoDom =  obj.tipoDom;
-    this.Calle =  obj.calle;
-    this.NoEx =  obj.noEx;
-    this.NoIn =  obj.noIn;
-    this.CodPos =  obj.codPos;
-    this.Colonia =  obj.colonia;
-    this.Municipio =  obj.municipio;
-    this.Estado =  obj.estado;
-    this.Pais =  obj.pais;
-  }
-
-  setId(id: number): void {
-    this.Id = id;
+  setClienteId(id: number): void {
+    this.NumeroCliente = id;
   }
 
 }

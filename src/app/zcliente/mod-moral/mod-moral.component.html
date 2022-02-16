@@ -105,7 +105,7 @@
         <ul ngbNav #nav3="ngbNav" [(activeId)]="active2" (navChange)="onNavChange($event)" class="nav-tabs nav-tabs-primary  nav-justified">
           <li [ngbNavItem]="1" > <a ngbNavLink><i class="fa fa-user-plus"></i>Datos Generales</a>
             <ng-template ngbNavContent>
-              <form [ngbCollapse]="isCollapsedPrueba1" [formGroup]="datosGeneralesForm"> <!-- (ngSubmit)="" -->
+              <form [ngbCollapse]="isCollapsedPrueba1" [formGroup]="datosGeneralesForm">
                 <div class="row">
                   <div class="col-12 col-lg-12">
                     <div class="card">
@@ -464,9 +464,9 @@
                   </div>
                 </div>
               </form>
+
               <app-mod-cliente [ngbCollapse]="isCollapsedPrueba2"></app-mod-cliente>
-              <!-- [disabled]="active === 2"  -->
-              <!-- (click)="DatosMuestra()" -->
+
               <button
                 class="btn btn-sm btn-light"
                 [disabled]="disNextSection_1"
@@ -491,7 +491,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Tipo de Domicilio</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" formControlName="tipoDom">
+                                <select class="form-control form-control-sm" formControlName="TipoDomicilio">
                                   <option *ngFor="let ctdom of ctTipdom" [value]="ctdom.catalogo_cve">
                                     {{ctdom.desc_45}}
                                   </option>
@@ -503,9 +503,12 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Calle </label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de la Calle" formControlName="calle" maxlength="80">
-                                <div class="input-group-append">
-                                </div>
+                                <input type="text"
+                                  class="form-control"
+                                  placeholder="Nombre de la Calle"
+                                  formControlName="Calle"
+                                  maxlength="80">
+                                <div class="input-group-append"></div>
                               </div>
                             </div>
                           </div>
@@ -513,9 +516,12 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Número Exterior</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" placeholder="Número Exterior" formControlName="noEx" maxlength="6">
-                                <div class="input-group-append">
-                                </div>
+                                <input type="text"
+                                  class="form-control"
+                                  placeholder="Número Exterior"
+                                  formControlName="NumeroExterior"
+                                  maxlength="6">
+                                <div class="input-group-append"></div>
                               </div>
                             </div>
                           </div>
@@ -523,9 +529,12 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Número Interior</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" placeholder="Número Interior" formControlName="noIn" maxlength="6">
-                                <div class="input-group-append">
-                                </div>
+                                <input type="text"
+                                  class="form-control"
+                                  placeholder="Número Interior"
+                                  formControlName="NumeroInterior"
+                                  maxlength="6">
+                                <div class="input-group-append"></div>
                               </div>
                             </div>
                           </div>
@@ -533,7 +542,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Código Postal</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" formControlName="codPos" >
+                                <select class="form-control form-control-sm" formControlName="CodigoPostal" >
                                   <option value="" selected>Seleccione el C.P ...</option>
                                   <option value="08100"> 08100 </option>
                                   <option value="08200"> 08200 </option>
@@ -554,7 +563,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Colonia</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" formControlName="colonia" >
+                                <select class="form-control form-control-sm" formControlName="Colonia" >
                                   <option value="" selected>Seleccione la colonia ...</option>
                                   <option value="1">Lomas de San Jorge</option>
                                   <option value="1">Ciudad Satelite</option>
@@ -575,7 +584,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-success">Delegación o Municipio</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" formControlName="municipio">
+                                <select class="form-control form-control-sm" formControlName="Municipio">
                                   <option value="" selected>Seleccione el Municipio ...</option>
                                   <option value="1">Tepetitlan </option>
                                   <option value="1">Tetepango</option>
@@ -596,7 +605,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Estado</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" formControlName="estado" >
+                                <select class="form-control form-control-sm" formControlName="Estado" >
                                   <option selected>Seleccione el Estado ...</option>
                                   <option value="MX">MX México</option>
                                   <option value="MN">MN Michoacan de Ocampo</option>
@@ -617,7 +626,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">País</label>
                               <div class="col-sm-6">
-                                <select class="form-control form-control-sm" formControlName="pais">
+                                <select class="form-control form-control-sm" formControlName="Pais">
                                   <option selected>Seleccione el Pais ...</option>
                                   <option value="MP">MP Islas Marianas</option>
                                   <option value="MQ">MQ Martinica</option>
@@ -634,25 +643,27 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div  class="col-1 col-lg-4 col-xl-4">
-                          </div>
+                          <div class="col-1 col-lg-4 col-xl-4"></div>
+                          <div  class="col-1 col-lg-4 col-xl-4"></div>
                           <div  class="col-1 col-lg-1 col-xl-2">
-                            <button [disabled]="!isCollapsed8"
+                            <button *ngIf="isCollapsed8"
                               type="submit"
                               class="btn btn-light  btn-block"
                               (click)="insertaDomicilio()">Insertar</button>
+
+                            <button *ngIf="!isCollapsed8"
+                              class="btn btn-light btn-block"
+                              (click)="cancelarActualizacion('domicilio')">Cancelar</button>
                           </div>
+
                           <!-- Botones de guardar -->
-                          <div [ngbCollapse]="isCollapsed8" class="col-1 col-lg-1 col-xl-2">
+                          <div *ngIf="!isCollapsed8" class="col-1 col-lg-1 col-xl-2">
                             <button class="btn btn-light btn-block"
                               data-toggle="modal"
                               data-target="#largesizemodal"
                               type="submit"
                               [disabled]="domicilioForm.invalid"
-                              (click)="guardaDomicilio()"
-                            >Guardar</button>
+                              (click)="guardaDomicilio()">{{ domicilioBtnText }}</button>
                           </div>
                         </div>
                       </div>
@@ -661,12 +672,6 @@
                 </div>
               </form>
 
-              <!-- TODO verificar si es util este boton , ya que se actualizan los domicilios al guardar -->
-              <!--
-              <div  class="col-1 col-lg-1 col-xl-2">
-                <button type="submit" class="btn btn-light  btn-block" (click)="obtenerDomicilio()" >Actualizar</button>
-              </div>
-              -->
               <div class="card" *ngIf="domicilioList.length">
                 <table class="table table-striped text-center" style="width:auto; height:5px;" >
                   <thead >
@@ -682,20 +687,16 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let dom of domicilioList;let i=index;" >
-                      <td scope="row" >{{dom.tipoDomicilio}}</td>
-                      <td>{{ dom.calle }}</td>
-                      <td>{{ dom.numeroExterior }}</td>
-                      <td>{{ dom.numeroInterior }}</td>
-                      <td>{{ dom.codigoPostal }}</td>
-                      <td>{{ dom.colonia }}</td>
-                      <td>{{ dom.municipio }}</td>
-                      <td>{{ dom.estado }}</td>
-                      <td>{{ dom.pais }}</td>
+                      <td scope="row" >{{dom.TipoDomicilio}}</td>
+                      <td>{{ dom.Calle }}</td>
+                      <td>{{ dom.NumeroExterior }}</td>
+                      <td>{{ dom.NumeroInterior }}</td>
+                      <td>{{ dom.CodigoPostal }}</td>
+                      <td>{{ dom.Colonia }}</td>
+                      <td>{{ dom.Municipio }}</td>
+                      <td>{{ dom.Estado }}</td>
+                      <td>{{ dom.Pais }}</td>
                       <td>
-                        <!--
-                          (click)= "isCollapsed6 = !isCollapsed6"
-                          (click)= "isCollapsed7 = !isCollapsed7"
-                        -->
                         <a data-toggle="modal" data-target="#largesizemodal" class="btn btn-sm btn-info text-white"
                           (click)= "consultarDomicilio(dom)"
                         >
@@ -710,7 +711,6 @@
                   </tbody>
                 </table>
               </div>
-              <!--TELEFONOS-->
 
               <button class="btn btn-sm btn-light btnSeccion" (click)="nav3.select(1)">Anterior</button>
               <button class="btn btn-sm btn-light" (click)="nav3.select(3)">Siguiente Sección</button>
@@ -719,10 +719,6 @@
           </li>
           <li [ngbNavItem]="3" > <a ngbNavLink><i class="icon-note"></i>Actividad y Referencia</a>
             <ng-template ngbNavContent>
-              <!-- <app-activ-eco></app-activ-eco> -->
-              <!-- [ngbCollapse]="isCollapsedEco3" -->
-
-
 
 
 
@@ -773,8 +769,7 @@
                                 placeholder=" 0.00"
                                 formControlName="IngresoMensual"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -787,8 +782,7 @@
                                 placeholder=" 0.00"
                                 formControlName="OtroIngresoMensual"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -801,8 +795,7 @@
                                 placeholder=" 0.00"
                                 formControlName="GastosMensuales"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -846,11 +839,6 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="actividadEconomicaList.length">
-                    <!--
-                  <div  class="col-2 col-lg-2 col-xl-2">
-                    <button type="submit" class="btn btn-light  btn-block" (click)="obtenerActividadEco()" >Actualizar</button>
-                  </div>
-                -->
                     <div  class="col-6 col-lg-6 col-xl-6"></div>
                     <div  class="col-4 col-lg-4 col-xl-4">
                       <label>Listado de Actividad economica</label>
@@ -878,8 +866,6 @@
                         <td>{{eco.FlujoEfectivo}}</td>
                         <td>
                           <!--
-                            (click)= "isCollapsedEco2 = !isCollapsedEco2"
-                            (click)= "isCollapsedEco3 = !isCollapsedEco3"
                             (click)= "EconomicaConsultar(eco)"
                           -->
                           <a
@@ -958,8 +944,7 @@
                                 placeholder="55.5555.5555"
                                 formControlName="TelefonoRefPer"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -987,11 +972,6 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="referenciasPersonalesList.length">
-                    <!--
-                    <div  class="col-2 col-lg-2 col-xl-2">
-                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerPersonales()" >Actualizar</button>
-                    </div>
-                    -->
                     <div  class="col-6 col-lg-6 col-xl-6">
                     </div>
                     <div  class="col-4 col-lg-4 col-xl-4">
@@ -1073,8 +1053,7 @@
                                 placeholder="0.00"
                                 formControlName="LimiteCreditoRefCom"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1087,8 +1066,7 @@
                                 placeholder=" 0.00 "
                                 formControlName="SaldoCuentaRefCom"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1116,11 +1094,6 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="referenciasComercialesList.length">
-                    <!--
-                    <div  class="col-2 col-lg-2 col-xl-2">
-                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerComerciales()" >Actualizar</button>
-                    </div>
-                    -->
                     <div  class="col-6 col-lg-6 col-xl-6">
                     </div>
                     <div  class="col-4 col-lg-4 col-xl-4">
@@ -1130,14 +1103,12 @@
                   <div class="card" *ngIf="referenciasComercialesList.length">
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
                       <thead >
-                      <!-- <th>Consecutivo</th> -->
                       <th>Nombre Completo</th>
                       <th>Limite de Credito</th>
                       <th>Saldo de Cuenta</th>
                       </thead>
                       <tbody>
                       <tr *ngFor="let comerciales of referenciasComercialesList;let i=index;" >
-                        <!-- <td scope="row" >{{comerciales.Consecutivo}}</td> -->
                         <td>{{comerciales.NombreRefCom}}</td>
                         <td>{{comerciales.LimiteCreditoRefCom}}</td>
                         <td>{{comerciales.SaldoCuentaRefCom}}</td>
@@ -1209,8 +1180,7 @@
                                 placeholder="0.00"
                                 formControlName="SaldoCuentaRefBan"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1223,8 +1193,7 @@
                                 placeholder=" 0.00"
                                 formControlName="LimiteCreditoRefBan"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1236,8 +1205,7 @@
                                 class="form-control"
                                 formControlName="AntiguedadRefBan"
                                 maxlength="5">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1266,11 +1234,6 @@
                 </div>
               </div>
               <div class="row" *ngIf="referenciasBancariasList.length">
-                <!--
-                <div  class="col-2 col-lg-2 col-xl-2" [ngbCollapse]="isCollapsedBan3">
-                  <button type="submit" class="btn btn-light  btn-block" (click)="obtenerBancarias()" >Actualizar</button>
-                </div>
-                -->
                 <div  class="col-6 col-lg-6 col-xl-6"></div>
                 <div  class="col-4 col-lg-4 col-xl-4">
                     <label>Listado de Referencias Bancarias</label>
@@ -1331,7 +1294,6 @@
           </li>
           <li [ngbNavItem]="4"> <a ngbNavLink><i class="fa fa-university"></i>Cuentas Bancarias </a>
             <ng-template ngbNavContent>
-              <!-- <app-cuenta-bancaria></app-cuenta-bancaria> -->
 
 
 
@@ -1376,8 +1338,7 @@
                                 class="form-control"
                                 formControlName="FechaPago"
                                 maxlength="10">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1389,8 +1350,7 @@
                                 class="form-control"
                                 formControlName="ParteSocialActual"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1402,8 +1362,7 @@
                                 class="form-control"
                                 formControlName="CostoAcciones"
                                 maxlength="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1476,11 +1435,6 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="accionesList.length">
-                    <!--
-                    <div  class="col-2 col-lg-2 col-xl-2">
-                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerAcciones()" >Actualizar</button>
-                    </div>
-                    -->
                       <div  class="col-6 col-lg-6 col-xl-6">
                       </div>
                     <div  class="col-4 col-lg-4 col-xl-4">
@@ -1573,8 +1527,7 @@
                                 class="form-control"
                                 formControlName="NumeroCuentaCtaBan"
                                 maxlegth="15">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1586,8 +1539,7 @@
                                 class="form-control"
                                 formControlName="ClaveInterbancariaCtaBan"
                                 maxlegth="18">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1614,11 +1566,6 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="cuentasBancariasList.length">
-                    <!--
-                    <div  class="col-2 col-lg-2 col-xl-2">
-                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerCuenta()" >Actualizar</button>
-                    </div>
-                    -->
                     <div  class="col-6 col-lg-6 col-xl-6">
                     </div>
                     <div  class="col-4 col-lg-4 col-xl-4">
@@ -1687,8 +1634,7 @@
                                 class="form-control"
                                 formControlName="NombreParRel"
                                 maxlength="120">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1700,8 +1646,7 @@
                                 class="form-control"
                                 formControlName="RFCParRel"
                                 maxlength="13">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1713,8 +1658,7 @@
                                 class="form-control"
                                 formControlName="DireccionParRel"
                                 maxlength="120">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1740,11 +1684,6 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="partesRelacionadasList.length">
-                    <!--
-                    <div  class="col-2 col-lg-2 col-xl-2">
-                      <button type="submit" class="btn btn-light  btn-block" (click)="obtenerRelacional()" >Actualizar</button>
-                    </div>
-                    -->
                     <div  class="col-6 col-lg-6 col-xl-6">
                     </div>
                     <div  class="col-4 col-lg-4 col-xl-4">
@@ -1826,8 +1765,7 @@
                                 class="form-control"
                                 formControlName="RFCGpoSoc"
                                 maxlength="13">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1839,8 +1777,7 @@
                                 class="form-control"
                                 formControlName="DireccionGpoSoc"
                                 maxlength="120">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1869,11 +1806,6 @@
                 </div>
               </div>
               <div class="row" *ngIf="grupoSocioeconomicoList.length">
-                <!--
-                <div  class="col-2 col-lg-2 col-xl-2">
-                  <button type="submit" class="btn btn-light  btn-block" (click)="obtenerSocioEco()" >Actualizar</button>
-                </div>
-                -->
                 <div  class="col-6 col-lg-6 col-xl-6">
                 </div>
                 <div  class="col-4 col-lg-4 col-xl-4">
@@ -1932,8 +1864,7 @@
                                 class="form-control"
                                 formControlName="GrupoRiesgoComunRgoCom"
                                 maxlength="1000">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1945,8 +1876,7 @@
                                 class="form-control"
                                 formControlName="NombreRgoCom"
                                 maxlength="150">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1958,8 +1888,7 @@
                                 class="form-control"
                                 formControlName="RFCRgoCom"
                                 maxlength="13">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1971,8 +1900,7 @@
                                 class="form-control"
                                 formControlName="DireccionRgoCom"
                                 maxlength="150">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -2000,11 +1928,6 @@
                 </div>
               </div>
               <div class="row" *ngIf="grupoRiesgoComunList.length">
-                <!--
-                <div  class="col-2 col-lg-2 col-xl-2">
-                  <button type="submit" class="btn btn-light  btn-block" (click)="obtenerRiesgoComun()" >Actualizar</button>
-                </div>
-                -->
                 <div class="col-6 col-lg-6 col-xl-6"></div>
                 <div  class="col-4 col-lg-4 col-xl-4">
                   <label>Listado de Grupo de Riesgo comun</label>

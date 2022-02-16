@@ -68,6 +68,8 @@ export class ModMoralComponent implements OnInit { // 717
   disBtnInsertGruSoc = false;
   disBtnInsertGruRies = false;
 
+  domicilioBtnText = 'Guardar';
+
   //Declaracion Var General
   EstatusClienteA: string = 'Prospecto';
   SucursalA: string = '';
@@ -103,6 +105,9 @@ export class ModMoralComponent implements OnInit { // 717
   grupoSocioeconomicoList = [];
   grupoRiesgoComunList = [];
 
+  domicilio = new Domicilio();
+  general = new DatosGenerales();
+
   catalogo = null as any;
   catalogo1 = null as any;
   responseSP: ResponseSP[];
@@ -116,113 +121,28 @@ export class ModMoralComponent implements OnInit { // 717
   redclienb = null as any;
 
   //Objetos any Catalogos
-  ctActdet = null as any;
-  ctActeco = null as any;
-  ctBancos = null as any;
-  ctCatpue = null as any;
-  ctCodId = null as any;
-  ctEdociv = null as any;
-  ctIdentif = null as any;
-  ctPerjur = null as any;
-  ctProfes = null as any;
-  ctStscte = null as any;
-  ctTipded = null as any;
-  ctTipdom = null as any;
-  ctTipgse = null as any;
-  ctTipman = null as any;
-  ctTipred = null as any;
-  ctTiprel = null as any;
-  ctTiprpe = null as any;
-  ctTiprrc = null as any;
-  ctTiptel = null as any;
-  ctnaCION = null as any;
-  ctSexo = null as any;
+  ctActdet: Catalogos[];
+  ctActeco: Catalogos[];
+  ctBancos: Catalogos[];
+  ctCatpue: Catalogos[];
+  ctCodId: Catalogos[];
+  ctEdociv: Catalogos[];
+  ctIdentif: Catalogos[];
+  ctPerjur: Catalogos[];
+  ctProfes: Catalogos[];
+  ctStscte: Catalogos[];
+  ctTipded: Catalogos[];
+  ctTipdom: Catalogos[];
+  ctTipgse: Catalogos[];
+  ctTipman: Catalogos[];
+  ctTipred: Catalogos[];
+  ctTiprel: Catalogos[];
+  ctTiprpe: Catalogos[];
+  ctTiprrc: Catalogos[];
+  ctTiptel: Catalogos[];
+  ctnaCION: Catalogos[];
+  ctSexo: Catalogos[];
   ctDocumentos: Catalogos[];
-
-  //Arreglos de variables para obtener campos
-  /*proveedores = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    NombreProvee: null,
-    LimiteCreditoProvee: null,
-    SaldoCuentaProvee: null
-  }*/
-
-  /*bancarias = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    InstitucionRefBan: null,
-    AntiguedadRefBan: null,
-    LimiteCreditoRefBan: null,
-    SaldoCuentaRefBan: null
-  }*/
-
-  /*personales = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    NombreRefPer: null,
-    TelefonoRefPer: null,
-    TipoRelacionRefPer: null
-  }*/
-
-  /*comerciales = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    NombreRefCom: null,
-    LimiteCreditoRefCom: null,
-    SaldoCuentaRefCom: null
-  }*/
-
-  /*economica = {
-    Id: localStorage.getItem("ID"),
-    ActividadEconomica: null,
-    ActividadDetallada: null,
-    IngresoMensual: null,
-    OtroIngresoMensual: null,
-    GastosMensuales: null,
-    FlujoEfectivo: null
-  }*/
-
-  /*cuenta = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    NombreBank: null,
-    BancoCtaBan: null,
-    NumBan: null,
-    ClaveInter: null
-  }*/
-
-  domMod = {
-    Id: localStorage.getItem("ID"),
-    TipoDom: null,
-    Calle: null,
-    NoEx: null,
-    NoIn: null,
-    CodPos: null,
-    Colonia: null,
-    Municipio: null,
-    Estado: null,
-    Pais: null
-  }
-
-  dom = new Domicilio();
-
-  general = new DatosGenerales();
-
-  retornoID = {
-    Sucursal: null,
-    RazonSocial: null,
-    ClavePromotor: null,
-    EstatusCliente: null
-  }
-
-  listado = {
-    CodPos: null,
-    Colonia: null,
-    Municipio: null,
-    Estado: null,
-    Pais: null
-  }
 
   listadoDocumentos: Array<any>;
   archivo: any;
@@ -263,50 +183,50 @@ export class ModMoralComponent implements OnInit { // 717
 
     this.datosGeneralesForm = this.formBuilder.group({
       // campos primer formulario ( el de validar )
-      numeroCliente:       [''],                                                    // Numero Cliente
-      estatusCliente:      [''],                                                    // Estatus Cliente
-      sucursal:            ['', [Validators.required, Validators.maxLength(5)]],    // Sucursal
-      promotor:            ['', [Validators.required, Validators.maxLength(5)]],    // Promotor  // general.ClavePromotor
-      razonSocial:         ['', [Validators.required, Validators.maxLength(120)]],  // Razon social  // general.RazonSocial
-      fechaConstitucion:   ['', [Validators.required]],                             // fecha de constitucion  // general.FechaConstitucion
-      rfc:                 ['', [Validators.required, Validators.maxLength(13)]],   // rfc  //general.RFC
+      numeroCliente:       [''],
+      estatusCliente:      [''],
+      sucursal:            ['1', [Validators.required, Validators.maxLength(5)]],
+      promotor:            ['10003', [Validators.required, Validators.maxLength(5)]],
+      razonSocial:         ['Razon_SOcial', [Validators.required, Validators.maxLength(120)]],
+      fechaConstitucion:   ['', [Validators.required]],
+      rfc:                 ['', [Validators.required, Validators.maxLength(13)]],
 
-      nombreSociedad:      ['', [Validators.required, Validators.maxLength(120)]],  // Nombre de la sociedad
-      representanteLegal:  ['', [Validators.required, Validators.maxLength(120)]],  // Representante Legal
-      presidenteConsejo:   ['', [Validators.required, Validators.maxLength(120)]],  // Presidente del consejo
-      consejero:           ['', [Validators.required, Validators.maxLength(120)]],  // Consejero
-      emailPersonal:       ['', [Validators.required, Validators.maxLength(80)]],   // Email Personal
-      emailEmpresa:        ['', [Validators.required, Validators.maxLength(80)]],   // Email Empresa
-      parteRelacionada:    ['', [Validators.required, Validators.maxLength(5)]],
-      grupoVinculoConsejo: ['', [Validators.required, Validators.maxLength(10)]],   // Grupo de Vinculo al Consejo
-      grupoRiesgoComun:    ['', [Validators.required, Validators.maxLength(5)]],    // Grupo de Riesgo Comun
-      telefonoOficina:     ['', [Validators.maxLength(15)]],                        // Teléfono Oficina
-      extensionOficina:    ['', [Validators.maxLength(10)]],                        // Extensión Oficina
-      celular:             ['', [Validators.maxLength(15)]],                        // Celular
-      redSocial1:          ['', [Validators.maxLength(50)]],                        // RedSocial 1
-      redSocial2:          ['', [Validators.maxLength(50)]],                        // RedSocial 2
+      nombreSociedad:      ['Nombre_Sociedad', [Validators.required, Validators.maxLength(120)]],
+      representanteLegal:  ['Representante_Legal', [Validators.required, Validators.maxLength(120)]],
+      presidenteConsejo:   ['Presidente_Del_Consejo', [Validators.required, Validators.maxLength(120)]],
+      consejero:           ['Consejero', [Validators.required, Validators.maxLength(120)]],
+      emailPersonal:       ['mail@mail.com', [Validators.required, Validators.maxLength(80)]],
+      emailEmpresa:        ['empresa@mail.com', [Validators.required, Validators.maxLength(80)]],
+      parteRelacionada:    ['02', [Validators.required, Validators.maxLength(5)]],
+      grupoVinculoConsejo: ['consejo', [Validators.required, Validators.maxLength(10)]],
+      grupoRiesgoComun:    ['1', [Validators.required, Validators.maxLength(5)]],
+      telefonoOficina:     ['', [Validators.maxLength(15)]],
+      extensionOficina:    ['', [Validators.maxLength(10)]],
+      celular:             ['', [Validators.maxLength(15)]],
+      redSocial1:          ['', [Validators.maxLength(50)]],
+      redSocial2:          ['', [Validators.maxLength(50)]],
     });
 
     this.domicilioForm = this.formBuilder.group({
-      tipoDom: ['', [Validators.required, Validators.maxLength(2)]],    /* IN `InTipoDomicilio` CHAR(2),  */
-      calle: ['', [Validators.required, Validators.maxLength(80)]],      /* IN `InCalle` CHAR(80),  */
-      noEx: ['', [Validators.required, Validators.maxLength(6)]],       /* IN `InNumeroExterior` CHAR(6),  */
-      noIn: ['', [Validators.maxLength(6)]],       /* IN `InNumeroInterior` CHAR(6),  */
-      codPos: ['', [Validators.required, Validators.maxLength(5)]],     /* IN `InCodigoPostal` CHAR(5),  */
-      colonia: ['', [Validators.required, Validators.maxLength(100)]],    /* IN `InColonia` CHAR(100),  */
-      municipio: ['', [Validators.required, Validators.maxLength(3)]],  /* IN `InMunicipio` CHAR(3),  */
-      estado: ['', [Validators.required, Validators.maxLength(2)]],     /* IN `InEstado` CHAR(2),  */
-      pais: ['', [Validators.required, Validators.maxLength(2)]],       /* IN `InPais` CHAR(2), */
+      TipoDomicilio: ['', [Validators.required, Validators.maxLength(2)]],
+      Calle: ['', [Validators.required, Validators.maxLength(80)]],
+      NumeroExterior: ['', [Validators.required, Validators.maxLength(6)]],
+      NumeroInterior: ['', [Validators.maxLength(6)]],
+      CodigoPostal: ['', [Validators.required, Validators.maxLength(5)]],
+      Colonia: ['', [Validators.required, Validators.maxLength(100)]],
+      Municipio: ['', [Validators.required, Validators.maxLength(3)]],
+      Estado: ['', [Validators.required, Validators.maxLength(2)]],
+      Pais: ['', [Validators.required, Validators.maxLength(2)]],
     });
     this.domicilioForm.disable();
 
     this.actividadEconomicaForm = this.formBuilder.group({
-      ActividadEconomica: ['', [Validators.required, Validators.maxLength(4)]],   // IN `InActividadEconomica` CHAR(4),
-      ActividadDetallada: ['', [Validators.required, Validators.maxLength(5)]],   // IN `InActividadDetallada` CHAR(5),
-      IngresoMensual: ['', [Validators.required, Validators.maxLength(15)]],       // IN `InIngresoMensual` DECIMAL(15,2),
-      OtroIngresoMensual: ['', [Validators.required, Validators.maxLength(15)]],   // IN `InOtroIngresoMensual` DECIMAL(15,2),
-      GastosMensuales: ['', [Validators.required, Validators.maxLength(15)]],      // IN `InGastosMensuales` DECIMAL(15,2),
-      FlujoEfectivo: ['', [Validators.required, Validators.maxLength(15)]],        // IN `InFlujoEfectivo` DECIMAL(15,2),
+      ActividadEconomica: ['', [Validators.required, Validators.maxLength(4)]],
+      ActividadDetallada: ['', [Validators.required, Validators.maxLength(5)]],
+      IngresoMensual: ['', [Validators.required, Validators.maxLength(15)]],
+      OtroIngresoMensual: ['', [Validators.required, Validators.maxLength(15)]],
+      GastosMensuales: ['', [Validators.required, Validators.maxLength(15)]],
+      FlujoEfectivo: ['', [Validators.required, Validators.maxLength(15)]],
     });
     this.actividadEconomicaForm.disable();
 
@@ -325,10 +245,10 @@ export class ModMoralComponent implements OnInit { // 717
     this.referenciasComercialesForm.disable();
 
     this.referenciasBancariasForm = this.formBuilder.group({
-      InstitucionRefBan: ['', [Validators.required, Validators.maxLength(120)]],   /* IN `InInstitucionRefBan` CHAR(120),  */
-      SaldoCuentaRefBan: ['', [Validators.required, Validators.maxLength(15)]],    /* IN `InSaldoCuentaRefBan` DECIMAL(15,2), */
-      LimiteCreditoRefBan: ['', [Validators.required, Validators.maxLength(15)]],  /* IN `InLimiteCreditoRefBan` DECIMAL(15,2),  */
-      AntiguedadRefBan: ['', [Validators.required, Validators.maxLength(5)]],      /* IN `InAntiguedadRefBan` DECIMAL(5),  */
+      InstitucionRefBan: ['', [Validators.required, Validators.maxLength(120)]],
+      SaldoCuentaRefBan: ['', [Validators.required, Validators.maxLength(15)]],
+      LimiteCreditoRefBan: ['', [Validators.required, Validators.maxLength(15)]],
+      AntiguedadRefBan: ['', [Validators.required, Validators.maxLength(5)]],
     });
     this.referenciasBancariasForm.disable();
 
@@ -336,47 +256,47 @@ export class ModMoralComponent implements OnInit { // 717
 
 
     this.accionesForm = this.formBuilder.group({
-      FechaCompra1aAccion: ['', [Validators.required, Validators.maxLength(10)]], // IN `InFechaCompra1aAccion` DATE,
-      ParteInicialSocial: ['', [Validators.required, Validators.maxLength(15)]],  // IN `InParteInicialSocial` DECIMAL(15),
-      FechaPago: ['', [Validators.required, Validators.maxLength(10)]],           // IN `InFechaPago` DATE,
-      ParteSocialActual: ['', [Validators.required, Validators.maxLength(15)]],   // IN `InParteSocialActual` DECIMAL(15),
-      CostoAcciones: ['', [Validators.required, Validators.maxLength(15)]],       // IN `InCostoAcciones` DECIMAL(15,2),
-      FormaPagoAcciones: ['', [Validators.required, Validators.maxLength(50)]],   // IN `InFormaPagoAcciones` CHAR(50),
-      RetirablesA: ['', [Validators.required, Validators.maxLength(15)]],         // IN `InRetirablesA` DECIMAL(15),
-      RetirablesB: ['', [Validators.required, Validators.maxLength(15)]],         // IN `InRetirablesB` DECIMAL(15),
-      TotalAcciones: ['', [Validators.required, Validators.maxLength(15)]],       // IN `InTotalAcciones` DECIMAL(15),
+      FechaCompra1aAccion: ['', [Validators.required, Validators.maxLength(10)]],
+      ParteInicialSocial: ['', [Validators.required, Validators.maxLength(15)]],
+      FechaPago: ['', [Validators.required, Validators.maxLength(10)]],
+      ParteSocialActual: ['', [Validators.required, Validators.maxLength(15)]],
+      CostoAcciones: ['', [Validators.required, Validators.maxLength(15)]],
+      FormaPagoAcciones: ['', [Validators.required, Validators.maxLength(50)]],
+      RetirablesA: ['', [Validators.required, Validators.maxLength(15)]],
+      RetirablesB: ['', [Validators.required, Validators.maxLength(15)]],
+      TotalAcciones: ['', [Validators.required, Validators.maxLength(15)]],
     });
     this.accionesForm.disable();
 
     this.cuentasBancariasForm = this.formBuilder.group({
-      NombreCuentaBancariaCtaBan: ['', [Validators.required, Validators.maxLength(120)]],  // IN `InNombreCuentaBancariaCtaBan` CHAR(120),
-      BancoCtaBan: ['', [Validators.required, Validators.maxLength(5)]],                 // IN `InBancoCtaBan` CHAR(5),
-      NumeroCuentaCtaBan: ['', [Validators.required, Validators.maxLength(15)]],          // IN `InNumeroCuentaCtaBan` DECIMAL(15),
-      ClaveInterbancariaCtaBan: ['', [Validators.required, Validators.maxLength(18)]],    // IN `InClaveInterbancariaCtaBan` DECIMAL(18),
+      NombreCuentaBancariaCtaBan: ['', [Validators.required, Validators.maxLength(120)]],
+      BancoCtaBan: ['', [Validators.required, Validators.maxLength(5)]],
+      NumeroCuentaCtaBan: ['', [Validators.required, Validators.maxLength(15)]],
+      ClaveInterbancariaCtaBan: ['', [Validators.required, Validators.maxLength(18)]],
     });
     this.cuentasBancariasForm.disable();
 
     this.partesRelacionadasForm = this.formBuilder.group({
-      ParteRelacionadaParRel: ['', [Validators.required, Validators.maxLength(2)]],  // N `InParteRelacionadaParRel` CHAR(2),               
-      NombreParRel: ['', [Validators.required, Validators.maxLength(120)]],            // IN `InNombreParRel` CHAR(120),     
-      RFCParRel: ['', [Validators.required, Validators.maxLength(13)]],               // IN `InRFCParRel` CHAR(13),  
-      DireccionParRel: ['', [Validators.required, Validators.maxLength(120)]],         // IN `InDireccionParRel` CHAR(120),              
+      ParteRelacionadaParRel: ['', [Validators.required, Validators.maxLength(2)]],
+      NombreParRel: ['', [Validators.required, Validators.maxLength(120)]],
+      RFCParRel: ['', [Validators.required, Validators.maxLength(13)]],
+      DireccionParRel: ['', [Validators.required, Validators.maxLength(120)]],
     });
     this.partesRelacionadasForm.disable();
 
     this.grupoSocioeconomicoForm = this.formBuilder.group({
-      GrupoSocioeconomicoGpoSoc: ['', [Validators.required, Validators.maxLength(2)]],  // IN `InGrupoSocioeconomicoGpoSoc` CHAR(2),
-      NombreGpoSoc: ['', [Validators.required, Validators.maxLength(120)]],               // IN `InNombreGpoSoc` CHAR(120),
-      RFCGpoSoc: ['', [Validators.required, Validators.maxLength(13)]],                  // IN `InRFCGpoSoc` CHAR(13),
-      DireccionGpoSoc: ['', [Validators.required, Validators.maxLength(120)]],            // IN `InDireccionGpoSoc` CHAR(120),
+      GrupoSocioeconomicoGpoSoc: ['', [Validators.required, Validators.maxLength(2)]],
+      NombreGpoSoc: ['', [Validators.required, Validators.maxLength(120)]],
+      RFCGpoSoc: ['', [Validators.required, Validators.maxLength(13)]],
+      DireccionGpoSoc: ['', [Validators.required, Validators.maxLength(120)]],
     });
     this.grupoSocioeconomicoForm.disable();
 
     this.grupoRiesgoComunForm = this.formBuilder.group({
-      GrupoRiesgoComunRgoCom: ['', [Validators.required, Validators.maxLength(2)]], // IN `InGrupoRiesgoComunRgoCom` CHAR(2),
-      NombreRgoCom: ['', [Validators.required, Validators.maxLength(150)]],           // IN `InNombreRgoCom` CHAR(150),
-      RFCRgoCom: ['', [Validators.required, Validators.maxLength(13)]],              // IN `InRFCRgoCom` CHAR(13),
-      DireccionRgoCom: ['', [Validators.required, Validators.maxLength(150)]],        // IN `InDireccionRgoCom` CHAR(150),
+      GrupoRiesgoComunRgoCom: ['', [Validators.required, Validators.maxLength(2)]],
+      NombreRgoCom: ['', [Validators.required, Validators.maxLength(150)]],
+      RFCRgoCom: ['', [Validators.required, Validators.maxLength(13)]],
+      DireccionRgoCom: ['', [Validators.required, Validators.maxLength(150)]],
     });
     this.grupoRiesgoComunForm.disable();
 
@@ -392,6 +312,12 @@ export class ModMoralComponent implements OnInit { // 717
     let values = this.datosGeneralesForm.value;
     this.general.setForm1(values)
     console.log(this.general)
+
+    this.datosGeneralesForm.controls.sucursal.disable();
+    this.datosGeneralesForm.controls.promotor.disable();
+    this.datosGeneralesForm.controls.razonSocial.disable();
+    this.datosGeneralesForm.controls.fechaConstitucion.disable();
+    this.datosGeneralesForm.controls.rfc.disable();
 
     this.clienteService.agregar9(this.general).subscribe(
       (result: ResponseSP[]) => {
@@ -433,6 +359,15 @@ export class ModMoralComponent implements OnInit { // 717
   }
   // FIN DATOS GENERALES
 
+  cancelarActualizacion(seccion: string): void {
+    if ( 'domicilio' == seccion ) {
+      this.domicilioBtnText = 'Guardar';
+      this.isCollapsed8 = true;
+      this.domicilioForm.reset();
+      this.domicilioForm.disable();
+    }
+  }
+
 
   /**
    * METODOS DOMICILIO
@@ -441,8 +376,8 @@ export class ModMoralComponent implements OnInit { // 717
 
     console.log(dom);
     let params = {
-      userId: dom.numeroCliente,
-      domId: dom.tipoDomicilio
+      userId:this.general.Id,
+      domId: dom.TipoDomicilio
     }
     this.clienteService.consultar(params).subscribe(
       (result: any) => {
@@ -452,29 +387,21 @@ export class ModMoralComponent implements OnInit { // 717
 
         this.domicilioForm.enable();
         this.updateDomicilio = true;
+        this.domicilioBtnText = 'Actualizar';
+        this.isCollapsed8 = false;
 
-
-        //this.domicilioForm.controls.id.setValue(result.Id);
-        this.domicilioForm.controls.tipoDom.setValue(result[0].tipoDomicilio);
-        this.domicilioForm.controls.calle.setValue(result[0].calle);
-        this.domicilioForm.controls.noEx.setValue(result[0].numeroExterior);
-        this.domicilioForm.controls.noIn.setValue(result[0].numeroInterior);
-        this.domicilioForm.controls.codPos.setValue(result[0].codigoPostal);
-        this.domicilioForm.controls.colonia.setValue(result[0].colonia);
-        this.domicilioForm.controls.municipio.setValue(result[0].municipio);
-        this.domicilioForm.controls.estado.setValue(result[0].estado);
-        this.domicilioForm.controls.pais.setValue(result[0].pais);
+        this.domicilioForm.patchValue(result[0])
+        this.domicilioForm.controls.TipoDomicilio.disable();
 
       }
     );
   }
 
   DomBorrar(dom: any) {
-    localStorage.setItem("Listado", JSON.stringify(dom));
 
     let params = {
-      userId: dom.numeroCliente,
-      domId: dom.tipoDomicilio
+      userId: this.general.Id,
+      domId: dom.TipoDomicilio
     };
 
     this.clienteService.domborrar(params).subscribe(
@@ -485,9 +412,6 @@ export class ModMoralComponent implements OnInit { // 717
       }
     );
 
-    /*this.obtenerDomicilio();
-    this.clienteM = null;
-    this.domcon = null;*/
   }
 
   insertaDomicilio() {
@@ -496,11 +420,10 @@ export class ModMoralComponent implements OnInit { // 717
   }
 
   guardaDomicilio() {
-    let values = this.domicilioForm.value;
-    this.dom.setData(values);
-    this.dom.setId(this.general.Id);
+    this.domicilio.updateFromForm(this.domicilioForm.value);
+    this.domicilio.setClienteId(this.general.Id);
 
-    this.clienteService.agregarDomicilio(this.dom).subscribe(
+    this.clienteService.agregarDomicilio(this.domicilio).subscribe(
       (result: any) => {
         console.log(result);
         this.responseSP = result;
@@ -512,6 +435,7 @@ export class ModMoralComponent implements OnInit { // 717
         this.domicilioForm.reset();
         this.domicilioForm.disable();
         this.isCollapsed8 = true;
+        this.domicilioBtnText = 'Guardar';
       }
     );
   }
@@ -906,60 +830,6 @@ export class ModMoralComponent implements OnInit { // 717
     }
   }
 
-  /*DomicilioMod() {
-    this.isCollapsed6 = !this.isCollapsed6;
-    this.isCollapsed7 = !this.isCollapsed7;
-    this.clienteService.agregar02(this.domMod).subscribe(
-      (result: any) => {
-        this.clienteM = result, this.domcon = null, this.domborrar = null, this.obtenerDomicilio();
-      });
-  }*/
-
-  /*RertornoCon() {
-    this.clienteService.retornoCon().subscribe(result => this.domcon = result);
-  }*/
-
-  /*Retorno(retorno: any) {
-    this.clienteService.retorno().subscribe(result => this.responseSP = result), localStorage.setItem("ID", JSON.stringify(retorno));
-  }
-
-  Retorno2() {
-    this.clienteService.retorno2().subscribe(result => this.responseSP = result);
-  }
-
-  Retorno3() {
-    this.clienteService.retorno3().subscribe(result => this.clienteM = result);
-  }*/
-
-  /*
-  RetornoDomb() {
-    this.clienteService.retornodomb().subscribe(result => this.domborrar = result);
-  }
-  */
-
-
-
-  /*
-  Cuenta() {
-    this.clienteService.agregar3(this.cuenta).subscribe(datos => { });
-  }
-  */
-
-  /*Comerciales() {
-    this.clienteService.agregar5(this.comerciales).subscribe(datos => { });
-  }*/
-
-  /*Personales() {
-    this.clienteService.agregar6(this.personales).subscribe(datos => { });
-  }*/
-
-  /*Bancarias() {
-    this.clienteService.agregar7(this.bancarias).subscribe(datos => { });
-  }*/
-
-  /*Proveedores() {
-    this.clienteService.agregar8(this.proveedores).subscribe(datos => { });
-  }*/
 
   CatTipdom() {
     this.clienteService.catTipdom().subscribe(result => this.catalogo1 = result);
@@ -980,127 +850,127 @@ export class ModMoralComponent implements OnInit { // 717
   //Funcion para obtener registros catalogos
   CatDet() {
     this.clienteService.catActdet().subscribe(
-      result => { this.ctActdet = result }
+      (result: Catalogos[]) => { this.ctActdet = result }
     );
   }
 
   CatEco() {
     this.clienteService.catActeco().subscribe(
-      result => { this.ctActeco = result }
+      (result: Catalogos[]) => { this.ctActeco = result }
     );
   }
 
   CatBncs() {
     this.clienteService.catBancos().subscribe(
-      result => { this.ctBancos = result }
+      (result: Catalogos[]) => { this.ctBancos = result }
     );
   }
 
   CatPue() {
     this.clienteService.catCatpue().subscribe(
-      result => { this.ctCatpue = result }
+      (result: Catalogos[]) => { this.ctCatpue = result }
     );
   }
 
   CodId() {
     this.clienteService.catCodId().subscribe(
-      result => { this.ctCodId = result }
+      (result: Catalogos[]) => { this.ctCodId = result }
     );
   }
 
   EdoCiv() {
     this.clienteService.catEdociv().subscribe(
-      result => { this.ctEdociv = result }
+      (result: Catalogos[]) => { this.ctEdociv = result }
     );
   }
 
   Identif() {
     this.clienteService.catIdentif().subscribe(
-      result => { this.ctIdentif = result }
+      (result: Catalogos[]) => { this.ctIdentif = result }
     );
   }
 
   Perjur() {
     this.clienteService.catPerjur().subscribe(
-      result => { this.ctPerjur = result }
+      (result: Catalogos[]) => { this.ctPerjur = result }
     );
   }
 
   Profes() {
     this.clienteService.catProfes().subscribe(
-      result => { this.ctProfes = result }
+      (result: Catalogos[]) => { this.ctProfes = result }
     );
   }
 
   ctSx() {
     this.clienteService.catSexo().subscribe(
-      result => { this.ctSexo = result }
+      (result: Catalogos[]) => { this.ctSexo = result }
     );
   }
 
   StsCte() {
     this.clienteService.catStscte().subscribe(
-      result => { this.ctStscte = result }
+      (result: Catalogos[]) => { this.ctStscte = result }
     );
   }
 
   Tipded() {
     this.clienteService.catTipded().subscribe(
-      result => { this.ctTipded = result }
+      (result: Catalogos[]) => { this.ctTipded = result }
     );
   }
 
   TipDom() {
     this.clienteService.catTipdom().subscribe(
-      result => { this.ctTipdom = result }
+      (result: Catalogos[]) => { this.ctTipdom = result }
     );
   }
 
   Tipgse() {
     this.clienteService.catTipgse().subscribe(
-      result => { this.ctTipgse = result }
+      (result: Catalogos[]) => { this.ctTipgse = result }
     );
   }
 
   Tipman() {
     this.clienteService.catTipman().subscribe(
-      result => { this.ctTipman = result }
+      (result: Catalogos[]) => { this.ctTipman = result }
     );
   }
 
   Tipred() {
     this.clienteService.catTipred().subscribe(
-      result => { this.ctTipred = result }
+      (result: Catalogos[]) => { this.ctTipred = result }
     );
   }
 
   TipRel() {
     this.clienteService.catTiprel().subscribe(
-      result => { this.ctTiprel = result }
+      (result: Catalogos[]) => { this.ctTiprel = result }
     );
   }
 
   Tiprpe() {
     this.clienteService.catTiprpe().subscribe(
-      result => { this.ctTiprpe = result }
+      (result: Catalogos[]) => { this.ctTiprpe = result }
     );
   }
 
   Tiprrc() {
     this.clienteService.catTiprrc().subscribe(
-      result => { this.ctTiprrc = result }
+      (result: Catalogos[]) => { this.ctTiprrc = result }
     );
   }
 
   Tiptel() {
     this.clienteService.catTiptel().subscribe(
-      result => { this.ctTiptel = result }
+      (result: Catalogos[]) => { this.ctTiptel = result }
     );
   }
 
   cnaCION() {
     this.clienteService.catnaCION().subscribe(
-      result => { this.ctnaCION = result }
+      (result: Catalogos[]) => { this.ctnaCION = result }
     );
   }
 
