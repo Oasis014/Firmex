@@ -1996,15 +1996,14 @@
                 <table class="table">
                   <thead>
                   <tr>
-                    <!--<th scope="col">#</th>-->
                     <th scope="col">Tipo</th>
                     <th scope="col">Fecha Alta</th>
+                    <th> </th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let doc of listadoDocumentos">
                     <th scope="row">{{doc.descCorta}}</th>
-                    <!--<td>{{doc.tipoDocumento}}</td>-->
                     <td>{{doc.fechaAlta}}</td>
                     <!--
                       <td>
@@ -2014,6 +2013,17 @@
                         <span *ngIf="doc.status" class="badge badge-success m-1">Vigente</span>
                       </a>
                     </td>-->
+                    <td>
+                      <a href="{{doc.nombreDocumento}}" target="_blank"
+                        class="btn btn-sm btn-info text-white">
+                          <i class="fa fa-pencil"></i>
+                      </a>
+                      <a data-toggle="modal" data-target="#largesizemodal" 
+                        class="btn btn-sm btn-danger text-white ml-1" 
+                        (click)= "borrarDocumento(doc)">
+                          <i class="fa fa-trash"></i>
+                      </a>
+                    </td>
                   </tr>
                   <!--
                   <tr>

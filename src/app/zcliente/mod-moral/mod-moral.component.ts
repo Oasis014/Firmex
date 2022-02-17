@@ -8,6 +8,7 @@ import { DatosGenerales } from "src/app/shared/models/datosGenerales";
 import { ResponseSP } from 'src/app/shared/models/responseSP';
 import { Domicilio } from 'src/app/shared/models/domicilio';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-mod-moral',
@@ -111,7 +112,7 @@ export class ModMoralComponent implements OnInit { // 717
   catalogo = null as any;
   catalogo1 = null as any;
   responseSP: ResponseSP[];
-  domborrar = null as any;
+  //domborrar = null as any;
   clienteM = null as any;
   clienteMod = null as any;
   domcon = null as any;
@@ -193,7 +194,6 @@ export class ModMoralComponent implements OnInit { // 717
     this.cEdo();
 
     this.datosGeneralesForm = this.formBuilder.group({
-      // campos primer formulario ( el de validar )
       numeroCliente:       [''],
       estatusCliente:      [''],
       sucursal:            ['', [Validators.required, Validators.maxLength(5)]],
@@ -263,9 +263,6 @@ export class ModMoralComponent implements OnInit { // 717
     });
     this.referenciasBancariasForm.disable();
 
-
-
-
     this.accionesForm = this.formBuilder.group({
       FechaCompra1aAccion: ['', [Validators.required, Validators.maxLength(10)]],
       ParteInicialSocial:  ['', [Validators.required, Validators.maxLength(15)]],
@@ -310,6 +307,7 @@ export class ModMoralComponent implements OnInit { // 717
       DireccionRgoCom:        ['', [Validators.required, Validators.maxLength(150)]],
     });
     this.grupoRiesgoComunForm.disable();
+
 
     this.onChanges();
 
@@ -382,11 +380,9 @@ export class ModMoralComponent implements OnInit { // 717
     let values = this.datosGeneralesForm.value;
     this.general.setDatosGenerales(values)
 
-    // TODO settear la fecha actual
     const date = new Date();
     this.general.FechaAlta = date.toISOString().substring(0, 10);
-    // TODO poner una default, porque el sp la requiere
-    this.general.FechaNacimiento = '1987-11-10';
+    this.general.FechaNacimiento = '1970-01-01';
 
 
     this.clienteService.agregar(this.general).subscribe(
@@ -460,7 +456,7 @@ export class ModMoralComponent implements OnInit { // 717
     this.clienteService.domborrar(params).subscribe(
       (result: any) => {
         console.log(result);
-        this.domborrar = result;
+        //this.domborrar = result;
         this.obtenerDomicilio();
       }
     );
@@ -487,7 +483,7 @@ export class ModMoralComponent implements OnInit { // 717
         this.responseSP = result;
         this.clienteM = result;
         this.domcon = null;
-        this.domborrar = null;
+        //this.domborrar = null;
         this.obtenerDomicilio();
 
         this.domicilioForm.reset();
@@ -809,20 +805,28 @@ export class ModMoralComponent implements OnInit { // 717
 
   /** METODOS DOCUMENTOS */
   getDocumentos() {
-    this.clienteService.obtenerDocumentos(1).subscribe(
+    this.clienteService.obtenerDocumentos(this.general.Id).subscribe(
       (res: {data: Array<any>, status: string, message: string}) => {
         this.listadoDocumentos = res.data;
+
+        for (let doc of this.listadoDocumentos) {
+          doc.nombreDocumento = `${environment.api.archivos}${this.general.Id}/${doc.nombreDocumento}`;
+        }
+
       }
     );
   }
 
   guardarDocumento() {
     let param = {
-      userId: 1,
+      userId: this.general.Id,
       idDoc: this.tipoDocumento,
     };
     this.clienteService.guardarDocumento(this.archivo, param).subscribe(
       (res: any) => {
+        console.log(res);
+        this.responseSP = res.data;
+        this.tipoDocumento = "";
         this.myInputFile.nativeElement.value = '';
         this.getDocumentos();
       }, (error: any) => {
@@ -830,6 +834,27 @@ export class ModMoralComponent implements OnInit { // 717
         console.log(error);
       }
     );
+  }
+
+  borrarDocumento(doc: any): void {
+    console.log(doc);
+
+    let params = {
+      userId: this.general.Id,
+      tipoId: doc.tipoDocumento,
+      nomDoc: doc.nombreDocumento
+    };
+
+    this.clienteService.borrarDocumento(params).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result.data;
+        this.getDocumentos();
+      }, (error: any) => {
+        console.log("ERROR: borrarDocumento(doc: any)");
+        console.log(error);
+      });
+
   }
 
   fileEvent(fileInput: Event) {
