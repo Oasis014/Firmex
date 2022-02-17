@@ -2,10 +2,12 @@ import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
-import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Catalogos } from 'src/app/shared/models/catalogos';
+import { DatosGenerales } from "src/app/shared/models/datosGenerales";
+import { ResponseSP } from 'src/app/shared/models/responseSP';
+import { Domicilio } from 'src/app/shared/models/domicilio';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-mod-moral',
@@ -13,17 +15,34 @@ import { Catalogos } from 'src/app/shared/models/catalogos';
   styleUrls: ['./mod-moral.component.scss']
 })
 
-export class ModMoralComponent implements OnInit {
+export class ModMoralComponent implements OnInit { // 717
 
   @ViewChild('inputFile')
   myInputFile: ElementRef;
 
   constructor(
-    public toastr: ToastrService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private clienteService: ClienteService
+    public readonly toastr: ToastrService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly clienteService: ClienteService,
+    private readonly formBuilder: FormBuilder
   ) { }
+
+  datosGeneralesForm: FormGroup;
+  domicilioForm: FormGroup;
+  actividadEconomicaForm: FormGroup;
+  referenciasPersonalesForm: FormGroup;
+  referenciasComercialesForm: FormGroup;
+  referenciasBancariasForm: FormGroup;
+
+  accionesForm: FormGroup;
+  cuentasBancariasForm: FormGroup;
+  partesRelacionadasForm: FormGroup;
+  grupoSocioeconomicoForm: FormGroup;
+  grupoRiesgoComunForm: FormGroup;
+
+  disNextSection_1 = true;
+  updateDomicilio = false;
 
   active = 1;
   active1 = 'top';
@@ -37,17 +56,19 @@ export class ModMoralComponent implements OnInit {
   counter = this.tabs.length + 1;
   active2: any;
   ban: string = '';
-  //Declaracion Var LocalStorage Domicilio.
-  Id: string = '';
-  Tipo: string = '';
-  Calle: string = '';
-  NoEx: string = '';
-  NoIn: string = '';
-  CodPos: string = '';
-  Colonia: string = '';
-  Municipio: string = '';
-  Estado: string = '';
-  Pais: string = '';
+
+  disBtnInsertActivEconom = false;
+  disBtnInsertRefPer = false;
+  disBtnInsertRefCom = false;
+  disBtnInsertRefBan = false;
+
+  disBtnInsertAcc = false;
+  disBtnInsertCueBan = false;
+  disBtnInsertParRel = false;
+  disBtnInsertGruSoc = false;
+  disBtnInsertGruRies = false;
+
+  domicilioBtnText = 'Guardar';
 
   //Declaracion Var General
   EstatusClienteA: string = 'Prospecto';
@@ -63,52 +84,33 @@ export class ModMoralComponent implements OnInit {
   isCollapsed5 = true;
   isCollapsed6 = true;
   isCollapsed7 = false;
-  isCollapsed8 = true;
+  isCollapsed8 = true; // boton guardar en seccion "domicilio"
 
   //Objetos Desabilitados Cliente
-  disabledGen1 = false;
-  disabledGen2 = false;
-  disabledGen3 = false;
-  disabledGen4 = false;
-  disabledGen5 = false;
-  disabledGen6 = false;
-  disabledGen7 = false;
-  disabledGen8 = false;
-  disabledGen9 = false;
-  disabledGen10 = false;
-  disabledGen11 = false;
-  disabledGen12 = false;
-  disabledGen13 = false;
-  disabledGen14 = false;
-  disabledGen15 = true;
-  disabledGen16 = true;
-  disabledGen17 = false;
-  disabledGen18 = false;
-  disabledGen19 = false;
-  disabledGen20 = false;
-  disabledGen21 = false;
-  disabled1 = true;
-  disabled2 = true;
-  disabled3 = true;
-  disabled4 = true;
-  disabled5 = true;
-  disabled6 = true;
-  disabled7 = true;
-  disabled8 = true;
-  disabled9 = true;
-  disabled10 = false;
-  disabled11 = true;
-  disabled12 = false;
-  disabled13 = false;
-  disabled14 = false;
+  disBtnDatosGenerales = false;
+
   isCollapsedPrueba2 = true;
   isCollapsedPrueba1 = true;
 
   //objetos any Service
-  domicilio = null as any;
+  domicilioList = [];
+  actividadEconomicaList = [];
+  referenciasPersonalesList = [];
+  referenciasComercialesList = [];
+  referenciasBancariasList = [];
+
+  accionesList = [];
+  cuentasBancariasList = [];
+  partesRelacionadasList = [];
+  grupoSocioeconomicoList = [];
+  grupoRiesgoComunList = [];
+
+  domicilio = new Domicilio();
+  general = new DatosGenerales();
+
   catalogo = null as any;
   catalogo1 = null as any;
-  cliente = null as any;
+  responseSP: ResponseSP[];
   domborrar = null as any;
   clienteM = null as any;
   clienteMod = null as any;
@@ -119,181 +121,36 @@ export class ModMoralComponent implements OnInit {
   redclienb = null as any;
 
   //Objetos any Catalogos
-  ctActdet = null as any;
-  ctActeco = null as any;
-  ctBancos = null as any;
-  ctCatpue = null as any;
-  ctCodId = null as any;
-  ctEdociv = null as any;
-  ctIdentif = null as any;
-  ctPerjur = null as any;
-  ctProfes = null as any;
-  ctStscte = null as any;
-  ctTipded = null as any;
-  ctTipdom = null as any;
-  ctTipgse = null as any;
-  ctTipman = null as any;
-  ctTipred = null as any;
-  ctTiprel = null as any;
-  ctTiprpe = null as any;
-  ctTiprrc = null as any;
-  ctTiptel = null as any;
-  ctnaCION = null as any;
-  ctSexo = null as any;
+  ctActdet: Catalogos[];
+  ctActeco: Catalogos[];
+  ctBancos: Catalogos[];
+  ctCatpue: Catalogos[];
+  ctCodId: Catalogos[];
+  ctEdociv: Catalogos[];
+  ctIdentif: Catalogos[];
+  ctPerjur: Catalogos[];
+  ctProfes: Catalogos[];
+  ctStscte: Catalogos[];
+  ctTipded: Catalogos[];
+  ctTipdom: Catalogos[];
+  ctTipgse: Catalogos[];
+  ctTipman: Catalogos[];
+  ctTipred: Catalogos[];
+  ctTiprel: Catalogos[];
+  ctTiprpe: Catalogos[];
+  ctTiprrc: Catalogos[];
+  ctTiptel: Catalogos[];
+  ctnaCION: Catalogos[];
+  ctSexo: Catalogos[];
   ctDocumentos: Catalogos[];
 
-  //Arreglos de variables para obtener campos
-  proveedores = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    NombreProvee: null,
-    LimiteCreditoProvee: null,
-    SaldoCuentaProvee: null
-  }
-
-  bancarias = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    InstitucionRefBan: null,
-    AntiguedadRefBan: null,
-    LimiteCreditoRefBan: null,
-    SaldoCuentaRefBan: null
-  }
-
-  personales = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    NombreRefPer: null,
-    TelefonoRefPer: null,
-    TipoRelacionRefPer: null
-  }
-
-  comerciales = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    NombreRefCom: null,
-    LimiteCreditoRefCom: null,
-    SaldoCuentaRefCom: null
-  }
-
-  economica = {
-    Id: localStorage.getItem("ID"),
-    ActividadEconomica: null,
-    ActividadDetallada: null,
-    IngresoMensual: null,
-    OtroIngresoMensual: null,
-    GastosMensuales: null,
-    FlujoEfectivo: null
-  }
-
-  cuenta = {
-    Id: localStorage.getItem("ID"),
-    Consecutivo: null,
-    NombreBank: null,
-    BancoCtaBan: null,
-    NumBan: null,
-    ClaveInter: null
-  }
-
-  domMod = {
-    Id: localStorage.getItem("ID"), TipoDom: null,
-    Calle: null, NoEx: null,
-    NoIn: null, CodPos: null,
-    Colonia: null, Municipio: null,
-    Estado: null, Pais: null
-  }
-
-  dom = {
-    Id: localStorage.getItem("ID"), TipoDom: null,
-    Calle: null, NoEx: null,
-    NoIn: null, CodPos: null,
-    Colonia: null, Municipio: null,
-    Estado: null, Pais: null
-  }
-
-  dom2 = {
-    Id: localStorage.getItem("ID"), TipoDom: null
-  }
-
-  general = {
-    Id: null,
-    Sucursal: null,
-    ApellidoPaterno: null,
-    ApellidoMaterno: null,
-    PrimerNombre: null,
-    SegundoNombre: null,
-    RazonSocial: null,
-    ClavePromotor: null,
-    EstatusCliente: null,
-    FechaAlta: null,
-    PersonalidadJuridica: "0",
-    RFC: null,
-    Nacionalidad: null,
-    EmailPersonal: null,
-    EmailEmpresa: null,
-    TelefonoDomicilio: null,
-    ExtensionDomicilio: null,
-    TelefonoOficina: null,
-    ExtensionOficina: null,
-    Celular: null,
-    RedSocial1: null,
-    RedSocial2: null,
-    ParteRelacionada: null,
-    GrupoConsejo: null,
-    GrupoRiesgoComun: null,
-    FechaNacimiento: null,
-    Sexo: null,
-    EstadoCivil: null,
-    CURP: null,
-    TipoIdentificacion: null,
-    NumeroIdentificacion: null,
-    ListaNegra: null,
-    Profesion: null,
-    NombreSociedad: null,
-    FechaConstitucion: null,
-    RepresentanteLegal: null,
-    PresidenteConsejo: null,
-    Consejero: null
-  }
-
-  Val = {
-    Sucursal: null,
-    PrimerNombre: null,
-    SegundoNombre: null,
-    ApellidoPaterno: null,
-    ApellidoMaterno: null,
-    RazonSocial: null,
-    PersonalidadJuridica: null,
-    RFC: null
-  }
-
-  retorno = {
-    noCliente: null,
-    errorClave: null,
-    errorSp: null,
-    errorDescripcion: null
-  }
-
-  retorno2 = {
-    errorClave: null,
-    errorSp: null,
-    errorDescripcion: null
-  }
-
-  retornoID = {
-    Sucursal: null,
-    RazonSocial: null,
-    ClavePromotor: null,
-    EstatusCliente: null
-  }
-
-  listado = {
-    CodPos: null,
-    Colonia: null,
-    Municipio: null,
-    Estado: null,
-    Pais: null
-  }
+  ctSucursal = null as any;
+  ctPromotor = null as any;
+  cPaises = null as any;
+  cEstado = null as any;
+  cMpio = null as any;
+  cCP = null as any;
+  cColonia = null as any;
 
   listadoDocumentos: Array<any>;
   archivo: any;
@@ -331,7 +188,674 @@ export class ModMoralComponent implements OnInit {
     this.ctSx();
     this.catDocumentos();
     this.getDocumentos();
+    this.cPromotor();
+    this.cSucursal();
+    this.cEdo();
+
+    this.datosGeneralesForm = this.formBuilder.group({
+      // campos primer formulario ( el de validar )
+      numeroCliente:       [''],
+      estatusCliente:      [''],
+      sucursal:            ['', [Validators.required, Validators.maxLength(5)]],
+      promotor:            ['', [Validators.required, Validators.maxLength(5)]],
+      razonSocial:         ['', [Validators.required, Validators.maxLength(120)]],
+      fechaConstitucion:   ['', [Validators.required]],
+      rfc:                 ['', [Validators.required, Validators.maxLength(13)]],
+
+      nombreSociedad:      ['', [Validators.required, Validators.maxLength(120)]],
+      representanteLegal:  ['', [Validators.required, Validators.maxLength(120)]],
+      presidenteConsejo:   ['', [Validators.required, Validators.maxLength(120)]],
+      consejero:           ['', [Validators.required, Validators.maxLength(120)]],
+      emailPersonal:       ['', [Validators.required, Validators.maxLength(80)]],
+      emailEmpresa:        ['', [Validators.required, Validators.maxLength(80)]],
+      parteRelacionada:    ['', [Validators.required, Validators.maxLength(5)]],
+      grupoVinculoConsejo: ['', [Validators.required, Validators.maxLength(10)]],
+      grupoRiesgoComun:    ['', [Validators.required, Validators.maxLength(5)]],
+      telefonoOficina:     ['', [Validators.maxLength(15)]],
+      extensionOficina:    ['', [Validators.maxLength(10)]],
+      celular:             ['', [Validators.maxLength(15)]],
+      redSocial1:          ['', [Validators.maxLength(50)]],
+      redSocial2:          ['', [Validators.maxLength(50)]],
+    });
+
+    this.domicilioForm = this.formBuilder.group({
+      TipoDomicilio:  ['', [Validators.required, Validators.maxLength(2)]],
+      Calle:          ['', [Validators.required, Validators.maxLength(80)]],
+      NumeroExterior: ['', [Validators.required, Validators.maxLength(6)]],
+      NumeroInterior: ['', [Validators.maxLength(6)]],
+      CodigoPostal:   ['', [Validators.required, Validators.maxLength(5)]],
+      Colonia:        ['', [Validators.required, Validators.maxLength(100)]],
+      Municipio:      ['', [Validators.required, Validators.maxLength(3)]],
+      Estado:         ['', [Validators.required, Validators.maxLength(2)]],
+      Pais:           ['', [Validators.required, Validators.maxLength(2)]],
+    });
+    this.domicilioForm.disable();
+
+    this.actividadEconomicaForm = this.formBuilder.group({
+      ActividadEconomica: ['', [Validators.required, Validators.maxLength(4)]],
+      ActividadDetallada: ['', [Validators.required, Validators.maxLength(5)]],
+      IngresoMensual:     ['', [Validators.required, Validators.maxLength(15)]],
+      OtroIngresoMensual: ['', [Validators.required, Validators.maxLength(15)]],
+      GastosMensuales:    ['', [Validators.required, Validators.maxLength(15)]],
+      FlujoEfectivo:      ['', [Validators.required, Validators.maxLength(15)]],
+    });
+    this.actividadEconomicaForm.disable();
+
+    this.referenciasPersonalesForm = this.formBuilder.group({
+      NombreRefPer:       ['', [Validators.required, Validators.maxLength(120)]],
+      TipoRelacionRefPer: ['', [Validators.required, Validators.maxLength(2)]],
+      TelefonoRefPer:     ['', [Validators.required, Validators.maxLength(15)]],
+    });
+    this.referenciasPersonalesForm.disable();
+
+    this.referenciasComercialesForm = this.formBuilder.group({
+      NombreRefCom:        ['', [Validators.required, Validators.maxLength(120)]],
+      LimiteCreditoRefCom: ['', [Validators.required, Validators.maxLength(15)]],
+      SaldoCuentaRefCom:   ['', [Validators.required, Validators.maxLength(15)]],
+    });
+    this.referenciasComercialesForm.disable();
+
+    this.referenciasBancariasForm = this.formBuilder.group({
+      InstitucionRefBan:   ['', [Validators.required, Validators.maxLength(120)]],
+      SaldoCuentaRefBan:   ['', [Validators.required, Validators.maxLength(15)]],
+      LimiteCreditoRefBan: ['', [Validators.required, Validators.maxLength(15)]],
+      AntiguedadRefBan:    ['', [Validators.required, Validators.maxLength(5)]],
+    });
+    this.referenciasBancariasForm.disable();
+
+
+
+
+    this.accionesForm = this.formBuilder.group({
+      FechaCompra1aAccion: ['', [Validators.required, Validators.maxLength(10)]],
+      ParteInicialSocial:  ['', [Validators.required, Validators.maxLength(15)]],
+      FechaPago:           ['', [Validators.required, Validators.maxLength(10)]],
+      ParteSocialActual:   ['', [Validators.required, Validators.maxLength(15)]],
+      CostoAcciones:       ['', [Validators.required, Validators.maxLength(15)]],
+      FormaPagoAcciones:   ['', [Validators.required, Validators.maxLength(50)]],
+      RetirablesA:         ['', [Validators.required, Validators.maxLength(15)]],
+      RetirablesB:         ['', [Validators.required, Validators.maxLength(15)]],
+      TotalAcciones:       ['', [Validators.required, Validators.maxLength(15)]],
+    });
+    this.accionesForm.disable();
+
+    this.cuentasBancariasForm = this.formBuilder.group({
+      NombreCuentaBancariaCtaBan: ['', [Validators.required, Validators.maxLength(120)]],
+      BancoCtaBan:                ['', [Validators.required, Validators.maxLength(5)]],
+      NumeroCuentaCtaBan:         ['', [Validators.required, Validators.maxLength(15)]],
+      ClaveInterbancariaCtaBan:   ['', [Validators.required, Validators.maxLength(18)]],
+    });
+    this.cuentasBancariasForm.disable();
+
+    this.partesRelacionadasForm = this.formBuilder.group({
+      ParteRelacionadaParRel: ['', [Validators.required, Validators.maxLength(2)]],
+      NombreParRel:           ['', [Validators.required, Validators.maxLength(120)]],
+      RFCParRel:              ['', [Validators.required, Validators.maxLength(13)]],
+      DireccionParRel:        ['', [Validators.required, Validators.maxLength(120)]],
+    });
+    this.partesRelacionadasForm.disable();
+
+    this.grupoSocioeconomicoForm = this.formBuilder.group({
+      GrupoSocioeconomicoGpoSoc: ['', [Validators.required, Validators.maxLength(2)]],
+      NombreGpoSoc:              ['', [Validators.required, Validators.maxLength(120)]],
+      RFCGpoSoc:                 ['', [Validators.required, Validators.maxLength(13)]],
+      DireccionGpoSoc:           ['', [Validators.required, Validators.maxLength(120)]],
+    });
+    this.grupoSocioeconomicoForm.disable();
+
+    this.grupoRiesgoComunForm = this.formBuilder.group({
+      GrupoRiesgoComunRgoCom: ['', [Validators.required, Validators.maxLength(2)]],
+      NombreRgoCom:           ['', [Validators.required, Validators.maxLength(150)]],
+      RFCRgoCom:              ['', [Validators.required, Validators.maxLength(13)]],
+      DireccionRgoCom:        ['', [Validators.required, Validators.maxLength(150)]],
+    });
+    this.grupoRiesgoComunForm.disable();
+
+    this.onChanges();
+
   }
+
+  onChanges(): void {
+
+    this.domicilioForm.get('Estado').valueChanges.subscribe(id => {
+      console.log(id);
+      if ( id != "" ) {
+        this.cColonia = [];
+        this.cCP = [];
+        this.clienteService.catMunicipio(id).subscribe(
+          (result: any) =>{
+            this.cMpio = result;
+        });
+      }
+    });
+
+    this.domicilioForm.get('Municipio').valueChanges.subscribe(id => {
+      console.log(id);
+      if ( id != "" ) {
+        this.cCP = [];
+        this.clienteService.catCol(id, this.domicilioForm.controls.Estado.value).subscribe(
+          (result: any) =>{
+            this.cColonia = result;
+        });
+      }
+    });
+
+    this.domicilioForm.get('Colonia').valueChanges.subscribe(val => {
+      console.log(val);
+      if ( val != "" ) {
+        this.clienteService.catCP(
+          this.domicilioForm.controls.Estado.value,
+          this.domicilioForm.controls.Municipio.value
+        ).subscribe(
+          (result: any) => {
+            this.cCP = result;
+        });
+      }
+    });
+
+  }
+
+  /**
+   * METODOS DATOS GENERALES
+   */
+   validarDatosGenerales() {
+    this.isCollapsed2 = !this.isCollapsed2;
+
+    let values = this.datosGeneralesForm.value;
+    this.general.setForm1(values)
+    console.log(this.general)
+
+    this.datosGeneralesForm.controls.sucursal.disable();
+    this.datosGeneralesForm.controls.promotor.disable();
+    this.datosGeneralesForm.controls.razonSocial.disable();
+    this.datosGeneralesForm.controls.fechaConstitucion.disable();
+    this.datosGeneralesForm.controls.rfc.disable();
+
+    this.clienteService.agregar9(this.general).subscribe(
+      (result: ResponseSP[]) => {
+        this.responseSP = result;
+      }
+    );
+  }
+
+  guardaGeneral() {
+    let values = this.datosGeneralesForm.value;
+    this.general.setDatosGenerales(values)
+
+    // TODO settear la fecha actual
+    const date = new Date();
+    this.general.FechaAlta = date.toISOString().substring(0, 10);
+    // TODO poner una default, porque el sp la requiere
+    this.general.FechaNacimiento = '1987-11-10';
+
+
+    this.clienteService.agregar(this.general).subscribe(
+      (result: ResponseSP[]) => {
+        this.responseSP = result;
+        this.general.setId(+result[0].noCliente)
+        this.datosGeneralesForm.controls.numeroCliente.setValue(+result[0].noCliente);
+
+        this.typeSuccess();
+        this.datosGeneralesForm.disable();
+        this.disBtnDatosGenerales = true;
+        this.disNextSection_1 = false;
+
+      }
+    );
+  }
+
+  cancelar() {
+    this.router.navigate(['list-clienteM'], { relativeTo: this.route.parent });
+  }
+  // FIN DATOS GENERALES
+
+  cancelarActualizacion(seccion: string): void {
+    if ( 'domicilio' == seccion ) {
+      this.domicilioBtnText = 'Guardar';
+      this.isCollapsed8 = true;
+      this.domicilioForm.reset();
+      this.domicilioForm.disable();
+      this.cMpio = [];
+      this.cColonia = [];
+      this.cCP = [];
+    }
+  }
+
+
+  /**
+   * METODOS DOMICILIO
+   **/
+  consultarDomicilio(dom: any) {
+
+    console.log(dom);
+    let params = {
+      userId:this.general.Id,
+      domId: dom.TipoDomicilio
+    }
+    this.clienteService.consultar(params).subscribe(
+      (result: any) => {
+        //this.domcon = result;
+        //this.domicilioForm.setValue(result);
+        console.log(result);
+
+        this.domicilioForm.enable();
+        this.updateDomicilio = true;
+        this.domicilioBtnText = 'Actualizar';
+        this.isCollapsed8 = false;
+
+        this.domicilioForm.patchValue(result[0])
+        this.domicilioForm.controls.TipoDomicilio.disable();
+
+      }
+    );
+  }
+
+  DomBorrar(dom: any) {
+
+    let params = {
+      userId: this.general.Id,
+      domId: dom.TipoDomicilio
+    };
+
+    this.clienteService.domborrar(params).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.domborrar = result;
+        this.obtenerDomicilio();
+      }
+    );
+
+  }
+
+  insertaDomicilio() {
+    this.domicilioForm.enable();
+    this.isCollapsed8 = false;
+  }
+
+  cancelarDomicilioTest() {
+    console.log(this.domicilioForm.valid);
+    console.log(this.domicilioForm.value);
+  }
+
+  guardaDomicilio() {
+    this.domicilio.updateFromForm(this.domicilioForm.value);
+    this.domicilio.setClienteId(this.general.Id);
+
+    this.clienteService.agregarDomicilio(this.domicilio).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+        this.clienteM = result;
+        this.domcon = null;
+        this.domborrar = null;
+        this.obtenerDomicilio();
+
+        this.domicilioForm.reset();
+        this.domicilioForm.disable();
+        this.isCollapsed8 = true;
+        this.domicilioBtnText = 'Guardar';
+      }
+    );
+  }
+
+  /* obtiene todos los domicilios de un cliente */
+  obtenerDomicilio() {
+    let params = {
+      userId: this.general.Id
+    };
+    this.clienteService.getDomicilio(params).subscribe(
+      (result: any) => {
+        this.domicilioList = result;
+      }
+    );
+  }
+
+  // FIN DOMICILIO
+
+
+  /********************
+   * METODOS ACTIVIDAD Y REFERENCIA
+   * ********************************/
+  insertActividadEconomica() {
+    this.actividadEconomicaForm.enable();
+    this.disBtnInsertActivEconom = true;
+  }
+
+  guardarActividadEconomica() {
+    let params = this.actividadEconomicaForm.value;
+    params.Id  =this.general.Id;
+    this.clienteService.agregar4(params).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+
+        this.actividadEconomicaForm.reset();
+        this.actividadEconomicaForm.disable();
+        this.obtenerListadoActividadEconomica();
+        this.disBtnInsertActivEconom = false;
+    });
+  }
+
+  obtenerListadoActividadEconomica() {
+    this.clienteService.getActiEco(this.general.Id).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.actividadEconomicaList = result
+      });
+  }
+
+  // -------------------------------------------------------------------------
+
+  insertaReferenciaPersonal() {
+    this.referenciasPersonalesForm.enable();
+    this.disBtnInsertRefPer = true;
+  }
+
+  guardaReferenciasPersonales() {
+    let form = this.referenciasPersonalesForm.value;
+    form.Id = this.general.Id;
+    form.Consecutivo = this.referenciasPersonalesList.length + 1;
+
+    this.clienteService.guardaReferenciaPersonal(form).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+
+        this.referenciasPersonalesForm.reset();
+        this.referenciasPersonalesForm.disable();
+        this.obtenerReferenciasPersonales();
+        this.disBtnInsertRefPer = false;
+    });
+  }
+
+  obtenerReferenciasPersonales() {
+    this.clienteService.getPersonales(this.general.Id).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.referenciasPersonalesList = result;
+    });
+  }
+
+  // -------------------------------------------------------------------------
+
+  insertaReferenciasComerciales() {
+    this.referenciasComercialesForm.enable();
+    this.disBtnInsertRefCom = true;
+  }
+
+  guardarReferenciasComerciales() {
+    let form = this.referenciasComercialesForm.value;
+    form.Id = this.general.Id;
+    form.Consecutivo = this.referenciasComercialesList.length + 1;
+
+    this.clienteService.guardaReferenciaComercial(form).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+
+        this.referenciasComercialesForm.reset();
+        this.referenciasComercialesForm.disable();
+        this.obtenerReferenciasComerciales();
+        this.disBtnInsertRefCom = false;
+      });
+  }
+
+  obtenerReferenciasComerciales() {
+    this.clienteService.getComerciales(this.general.Id).subscribe(
+      (result: any) => {
+        this.referenciasComercialesList = result;
+    });
+  }
+
+  // -------------------------------------------------------------------------
+
+  insertaReferenciasBancarias() {
+    this.referenciasBancariasForm.enable();
+    this.disBtnInsertRefBan = true;
+  }
+
+  guardarReferenciasBancarias() {
+    let refBan = this.referenciasBancariasForm.value;
+    refBan.Id = this.general.Id;
+    refBan.Consecutivo = this.referenciasBancariasList.length + 1;
+
+    this.clienteService.guardaReferenciaBancaria(refBan).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+
+        this.referenciasBancariasForm.reset();
+        this.referenciasBancariasForm.disable();
+        this.obtenerReferenciasBancarias();
+        this.disBtnInsertRefBan = false;
+      });
+  }
+
+  obtenerReferenciasBancarias() {
+    this.clienteService.getBancarias(this.general.Id).subscribe(
+      (result: any) => {
+        this.referenciasBancariasList = result;
+      });
+  }
+
+  /* FIN ACTIVIDAD Y REFERENCIA*/
+
+  /********************
+   * METODOS CUENTAS BANCARIAS
+   * ********************************/
+
+   insertAcciones() {
+    this.accionesForm.enable();
+    this.disBtnInsertAcc = true;
+   }
+
+   guardarAcciones() {
+     let form = this.accionesForm.value;
+     form.NumeroCliente = this.general.Id;
+     form.Consecutivo = this.accionesList.length + 1;
+
+     this.clienteService.agregarAccion(form).subscribe(
+      (result: any) => {
+        console.log(result)
+        this.responseSP = result;
+
+        this.accionesForm.reset();
+        this.accionesForm.disable();
+        this.obtenerAcciones();
+        this.disBtnInsertAcc = false;
+      });
+  }
+
+  obtenerAcciones() {
+    this.clienteService.getAcciones(this.general.Id).subscribe(
+      (result: any) => {
+        this.accionesList = result;
+    });
+  }
+
+  // -------------------------------------------------------------------------
+
+  insertCuentasBancarias() {
+    this.cuentasBancariasForm.enable();
+    this.disBtnInsertCueBan = true;
+  }
+
+  guardarCuentasBancarias() {
+    let form = this.cuentasBancariasForm.value;
+    form.NumeroCliente = this.general.Id;
+    form.Consecutivo = this.cuentasBancariasList.length + 1;
+
+    this.clienteService.agregarCuentaBancaria(form).subscribe(
+      (result: any) => {
+        this.responseSP = result;
+
+        this.cuentasBancariasForm.reset();
+        this.cuentasBancariasForm.disable();
+        this.obtenerCuentasBancarias();
+        this.disBtnInsertAcc = false;
+    });
+  }
+
+  obtenerCuentasBancarias() {
+    this.clienteService.getCuenta(this.general.Id).subscribe(
+      (result: any) => {
+        this.cuentasBancariasList = result;
+      });
+  }
+
+
+  // -------------------------------------------------------------------------
+
+  insertPartesRelacionadas() {
+    this.partesRelacionadasForm.enable();
+    this.disBtnInsertParRel = true;
+  }
+
+  guardarPartesRelacionadas() {
+    let form = this.partesRelacionadasForm.value;
+    form.NumeroCliente = this.general.Id;
+    form.Consecutivo = this.partesRelacionadasList.length + 1;
+
+    this.clienteService.agregarParteRelacionada(form).subscribe(
+      (result: any) => {
+        this.responseSP = result;
+
+        this.partesRelacionadasForm.reset();
+        this.partesRelacionadasForm.disable();
+        this.obtenerPartesRelacionadas();
+        this.disBtnInsertParRel = false;
+    });
+  }
+
+  obtenerPartesRelacionadas() {
+    this.clienteService.getRelacional(this.general.Id).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.partesRelacionadasList = result;
+    });
+  }
+
+
+  // -------------------------------------------------------------------------
+
+  insertGrupoSocioeconomico() {
+    this.grupoSocioeconomicoForm.enable();
+    this.disBtnInsertGruSoc = true;
+  }
+
+  SocioEco() {
+    let form = this.grupoSocioeconomicoForm.value;
+    form.NumeroCliente = this.general.Id;
+    form.Consecutivo = this.grupoSocioeconomicoList.length + 1;
+
+    this.clienteService.agregarGrupoSocioeconomico(form).subscribe(
+      (result: ResponseSP[]) => {
+        this.responseSP = result;
+
+        this.grupoSocioeconomicoForm.reset();
+        this.grupoSocioeconomicoForm.disable();
+        this.obtenerSocioEco();
+        this.disBtnInsertGruSoc = false;
+
+      }
+    );
+  }
+
+  obtenerSocioEco() {
+    this.clienteService.getSocioEco(this.general.Id).subscribe(
+      (result: any) => {
+        this.grupoSocioeconomicoList = result;
+    });
+  }
+
+
+  // -------------------------------------------------------------------------
+
+  insertRiesgoComun() {
+    this.grupoRiesgoComunForm.enable();
+    this.disBtnInsertGruRies = true;
+  }
+
+  guardarRiesgoComun() {
+    let form = this.grupoRiesgoComunForm.value;
+    form.Id = this.general.Id;
+
+    this.clienteService.agregarGrupoRiesgoComun(form).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+
+        this.grupoRiesgoComunForm.reset();
+        this.grupoRiesgoComunForm.disable();
+        this.obtenerRiesgoComun();
+        this.disBtnInsertGruRies = false;
+
+    });
+  }
+
+  obtenerRiesgoComun() {
+    this.clienteService.getRiesgoComun(this.general.Id).subscribe(
+      (result: any) => {
+        this.grupoRiesgoComunList = result;
+    });
+  }
+
+
+
+  /* FIN CUENTAS BANCARIAS*/
+
+
+
+
+  /** METODOS DOCUMENTOS */
+  getDocumentos() {
+    this.clienteService.obtenerDocumentos(1).subscribe(
+      (res: {data: Array<any>, status: string, message: string}) => {
+        this.listadoDocumentos = res.data;
+      }
+    );
+  }
+
+  guardarDocumento() {
+    let param = {
+      userId: 1,
+      idDoc: this.tipoDocumento,
+    };
+    this.clienteService.guardarDocumento(this.archivo, param).subscribe(
+      (res: any) => {
+        this.myInputFile.nativeElement.value = '';
+        this.getDocumentos();
+      }, (error: any) => {
+        console.log("ERROR:");
+        console.log(error);
+      }
+    );
+  }
+
+  fileEvent(fileInput: Event) {
+    this.archivo = (<HTMLInputElement>fileInput.target).files[0];
+  }
+  // FIN METODOS DOCUMENTOS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   close(event: MouseEvent, toRemove: number) {
     this.tabs = this.tabs.filter(id => id !== toRemove);
@@ -364,112 +888,6 @@ export class ModMoralComponent implements OnInit {
     }
   }
 
-  Validate() {
-    this.clienteService.agregar9(this.Val).subscribe(
-      result => this.cliente = result, datos => { }
-    );
-  }
-
-  Domicilio() {
-    this.dom.Id = this.general.Id;
-    this.clienteService.agregar2(this.dom).subscribe(
-      (result: any) => {
-        this.clienteM = result, this.domcon = null, this.domborrar = null, this.obtenerDomicilio();
-      }
-    );
-  }
-
-  DomicilioMod() {
-    this.isCollapsed6 = !this.isCollapsed6;
-    this.isCollapsed7 = !this.isCollapsed7;
-    this.clienteService.agregar02(this.domMod).subscribe(
-      (result: any) => {
-        this.clienteM = result, this.domcon = null, this.domborrar = null, this.obtenerDomicilio();
-      });
-  }
-
-  Consultar(dom: any) {
-    localStorage.setItem("Tipo", dom.TipoDom),
-    this.Tipo = localStorage.getItem("Tipo"),
-    localStorage.setItem("Calle", dom.Calle),
-    this.Calle = localStorage.getItem("Calle"),
-    localStorage.setItem("NoEx", dom.NoEx),
-    this.NoEx = localStorage.getItem("NoEx"),
-    localStorage.setItem("NoIn", dom.NoIn),
-    this.NoIn = localStorage.getItem("NoIn"),
-    localStorage.setItem("CodPos", dom.CodPos),
-    this.CodPos = localStorage.getItem("CodPos"),
-    localStorage.setItem("Colonia", dom.Colonia),
-    this.Colonia = localStorage.getItem("Colonia"),
-    localStorage.setItem("Municipio", dom.Municipio),
-    this.Municipio = localStorage.getItem("Municipio"),
-    localStorage.setItem("Estado", dom.Estado),
-    this.Estado = localStorage.getItem("Estado"),
-    localStorage.setItem("Pais", dom.Pais),
-    this.Pais = localStorage.getItem("Pais"),
-    this.clienteService.consultar(this.dom2).subscribe(
-      result => this.domcon = result, datos => { }
-    );
-  }
-
-  RertornoCon() {
-    this.clienteService.retornoCon().subscribe(result => this.domcon = result);
-  }
-
-  Retorno(retorno: any) {
-    this.clienteService.retorno().subscribe(result => this.cliente = result), localStorage.setItem("ID", JSON.stringify(retorno));
-  }
-
-  Retorno2() {
-    this.clienteService.retorno2().subscribe(result => this.cliente = result);
-  }
-
-  Retorno3() {
-    this.clienteService.retorno3().subscribe(result => this.clienteM = result);
-  }
-
-  RetornoDomb() {
-    this.clienteService.retornodomb().subscribe(result => this.domborrar = result);
-  }
-
-  DomBorrar(dom: any) {
-    localStorage.setItem("Listado", JSON.stringify(dom)), this.dom2 = JSON.parse(localStorage.getItem("Listado")), this.clienteService.domborrar(this.dom2).subscribe(result => this.domborrar = result, datos => { }), this.obtenerDomicilio(), this.clienteM = null, this.domcon = null
-  }
-
-  General() {
-    this.general.Id = 0;
-    this.general.FechaAlta = '2021-12-29';
-    this.general.FechaNacimiento = '1987-11-10';
-    this.general.FechaConstitucion = "2010-11-10";
-
-    this.clienteService.agregar(this.general).subscribe(
-      (result: any) => {
-        this.cliente = result;
-        this.general.Id = result[0].noCliente;
-        localStorage.setItem("ID", this.general.Id);
-      }
-    );
-  }
-
-  Cuenta() {
-    this.clienteService.agregar3(this.cuenta).subscribe(datos => { });
-  }
-
-  Comerciales() {
-    this.clienteService.agregar5(this.comerciales).subscribe(datos => { });
-  }
-
-  Personales() {
-    this.clienteService.agregar6(this.personales).subscribe(datos => { });
-  }
-
-  Bancarias() {
-    this.clienteService.agregar7(this.bancarias).subscribe(datos => { });
-  }
-
-  Proveedores() {
-    this.clienteService.agregar8(this.proveedores).subscribe(datos => { });
-  }
 
   CatTipdom() {
     this.clienteService.catTipdom().subscribe(result => this.catalogo1 = result);
@@ -487,240 +905,157 @@ export class ModMoralComponent implements OnInit {
     this.toastr.success('Finalizado con exito!!');
   }
 
-  Cancelar() {
-    this.router.navigate(['list-clienteM'], { relativeTo: this.route.parent });
-  }
-
-  Bloquear() {
-    this.disabled1 = !this.disabled1;
-    this.disabled2 = !this.disabled2;
-    this.disabled3 = !this.disabled3;
-    this.disabled4 = !this.disabled4;
-    this.disabled5 = !this.disabled5;
-    this.disabled6 = !this.disabled6;
-    this.disabled7 = !this.disabled7;
-    this.disabled8 = !this.disabled8;
-    this.disabled9 = !this.disabled9;
-    this.disabled10 = !this.disabled10;
-    this.disabled11 = !this.disabled11;
-    this.disabled14 = !this.disabled14;
-    this.disabled13 = !this.disabled13;
-    this.disabled12 = !this.disabled12;
-    this.isCollapsed8 = !this.isCollapsed8;
-  }
-
-  Desabilitar() {
-    this.disabledGen1 = !this.disabledGen1;
-    this.disabledGen2 = !this.disabledGen2;
-    this.disabledGen3 = !this.disabledGen3;
-    this.disabledGen4 = !this.disabledGen4;
-    this.disabledGen5 = !this.disabledGen5;
-    this.disabledGen6 = !this.disabledGen6;
-    this.disabledGen7 = !this.disabledGen7;
-    this.disabledGen8 = !this.disabledGen8;
-    this.disabledGen9 = !this.disabledGen9;
-    this.disabledGen10 = !this.disabledGen10;
-    this.disabledGen11 = !this.disabledGen11;
-    this.disabledGen14 = !this.disabledGen14;
-    this.disabledGen13 = !this.disabledGen13;
-    this.disabledGen12 = !this.disabledGen12;
-    this.disabledGen15 = !this.disabledGen15;
-    this.disabledGen16 = !this.disabledGen16;
-    this.disabledGen17 = !this.disabledGen17;
-    this.disabledGen18 = !this.disabledGen18;
-    this.disabledGen19 = !this.disabledGen19;
-    this.disabledGen20 = !this.disabledGen20;
-    this.disabledGen21 = !this.disabledGen21;
-  }
-
-  MostrarDom() {
-    this.clienteService.mostrardom().subscribe(
-      result => this.domicilio = result
-    );
-  }
-
-  obtenerDomicilio() {
-    this.clienteService.getDomicilio().subscribe(
-      result => this.domicilio = result
-    );
-  }
-
   //Funcion para obtener registros catalogos
   CatDet() {
     this.clienteService.catActdet().subscribe(
-      result => { this.ctActdet = result }
+      (result: Catalogos[]) => { this.ctActdet = result }
     );
   }
 
   CatEco() {
     this.clienteService.catActeco().subscribe(
-      result => { this.ctActeco = result }
+      (result: Catalogos[]) => { this.ctActeco = result }
     );
   }
 
   CatBncs() {
     this.clienteService.catBancos().subscribe(
-      result => { this.ctBancos = result }
+      (result: Catalogos[]) => { this.ctBancos = result }
     );
   }
 
   CatPue() {
     this.clienteService.catCatpue().subscribe(
-      result => { this.ctCatpue = result }
+      (result: Catalogos[]) => { this.ctCatpue = result }
     );
   }
 
   CodId() {
     this.clienteService.catCodId().subscribe(
-      result => { this.ctCodId = result }
+      (result: Catalogos[]) => { this.ctCodId = result }
     );
   }
 
   EdoCiv() {
     this.clienteService.catEdociv().subscribe(
-      result => { this.ctEdociv = result }
+      (result: Catalogos[]) => { this.ctEdociv = result }
     );
   }
 
   Identif() {
     this.clienteService.catIdentif().subscribe(
-      result => { this.ctIdentif = result }
+      (result: Catalogos[]) => { this.ctIdentif = result }
     );
   }
 
   Perjur() {
     this.clienteService.catPerjur().subscribe(
-      result => { this.ctPerjur = result }
+      (result: Catalogos[]) => { this.ctPerjur = result }
     );
   }
 
   Profes() {
     this.clienteService.catProfes().subscribe(
-      result => { this.ctProfes = result }
+      (result: Catalogos[]) => { this.ctProfes = result }
     );
   }
 
   ctSx() {
     this.clienteService.catSexo().subscribe(
-      result => { this.ctSexo = result }
+      (result: Catalogos[]) => { this.ctSexo = result }
     );
   }
 
   StsCte() {
     this.clienteService.catStscte().subscribe(
-      result => { this.ctStscte = result }
+      (result: Catalogos[]) => { this.ctStscte = result }
     );
   }
 
   Tipded() {
     this.clienteService.catTipded().subscribe(
-      result => { this.ctTipded = result }
+      (result: Catalogos[]) => { this.ctTipded = result }
     );
   }
 
   TipDom() {
     this.clienteService.catTipdom().subscribe(
-      result => { this.ctTipdom = result }
+      (result: Catalogos[]) => { this.ctTipdom = result }
     );
   }
 
   Tipgse() {
     this.clienteService.catTipgse().subscribe(
-      result => { this.ctTipgse = result }
+      (result: Catalogos[]) => { this.ctTipgse = result }
     );
   }
 
   Tipman() {
     this.clienteService.catTipman().subscribe(
-      result => { this.ctTipman = result }
+      (result: Catalogos[]) => { this.ctTipman = result }
     );
   }
 
   Tipred() {
     this.clienteService.catTipred().subscribe(
-      result => { this.ctTipred = result }
+      (result: Catalogos[]) => { this.ctTipred = result }
     );
   }
 
   TipRel() {
     this.clienteService.catTiprel().subscribe(
-      result => { this.ctTiprel = result }
+      (result: Catalogos[]) => { this.ctTiprel = result }
     );
   }
 
   Tiprpe() {
     this.clienteService.catTiprpe().subscribe(
-      result => { this.ctTiprpe = result }
+      (result: Catalogos[]) => { this.ctTiprpe = result }
     );
   }
 
   Tiprrc() {
     this.clienteService.catTiprrc().subscribe(
-      result => { this.ctTiprrc = result }
+      (result: Catalogos[]) => { this.ctTiprrc = result }
     );
   }
 
   Tiptel() {
     this.clienteService.catTiptel().subscribe(
-      result => { this.ctTiptel = result }
+      (result: Catalogos[]) => { this.ctTiptel = result }
     );
   }
 
   cnaCION() {
     this.clienteService.catnaCION().subscribe(
-      result => { this.ctnaCION = result }
+      (result: Catalogos[]) => { this.ctnaCION = result }
     );
   }
 
   catDocumentos() {
-    this.ctDocumentos = [
-      {
-        catalogo_cve: 1,
-        desc_45: "Documento 1"
-      }, {
-        catalogo_cve: 2,
-        desc_45: "Documento 2"
-      }, {
-        catalogo_cve: 3,
-        desc_45: "Documento 3"
-      }
-    ];
-    /*this.clienteService.catDocumentos().subscribe(
-      (result: any) => {
-        this.ctDocumentos = result;
-      }
-    );*/
-  }
-
-  getDocumentos() {
-    this.clienteService.obtenerDocumentos(1).subscribe(
-      (res: any) => {
-        console.log(res);
-        this.listadoDocumentos = res.data;
+    this.clienteService.catDocumentos().subscribe(
+      (result: {data: Array<any>, status: string, message: string}) => {
+        this.ctDocumentos = result.data;
       }
     );
   }
 
-  guardarDocumento() {
-    let param = {
-      userId: 1,
-      idDoc: this.tipoDocumento,
-      consDoc: 1
-    };
-    this.clienteService.guardarDocumento(this.archivo, param).subscribe(
-      (res: any) => {
-        console.log(res);
-        this.myInputFile.nativeElement.value = '';
-        this.getDocumentos();
-      }, (error: any) => {
-        console.log("ERROR:");
-        console.log(error);
-      }
+  cPromotor(){
+    this.clienteService.catPromotor().subscribe(
+     (result: Catalogos[]) => { this.ctPromotor = result }
     );
   }
 
-  fileEvent(fileInput: Event) {
-    this.archivo = (<HTMLInputElement>fileInput.target).files[0];
+  cSucursal(){
+    this.clienteService.catSucursales().subscribe(
+     (result: Catalogos[]) => { this.ctSucursal = result }
+    );
+  }
+
+  cEdo(){
+    this.clienteService.catEstado().subscribe(
+     (result: Catalogos[]) => { this.cEstado = result }
+    );
   }
 
 }

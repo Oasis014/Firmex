@@ -19,8 +19,8 @@ import { QryClienteMComponent } from './qry-clienteM/qry-clienteM.component';
 // Edición o Nuevo Prospecto Cliente Persona Fisica
 import { ModClienteComponent } from './mod-moral/mod-cliente.component';
 import { ModMoralComponent } from './mod-moral/mod-moral.component';
-import { ActivEcoComponent } from './mod-moral/activ-eco.component';
-import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';
+/*import { ActivEcoComponent } from './mod-moral/activ-eco.component';*/
+/*import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';*/
 //Pruebas
 import { PhpFuncionaComponent } from './php-funciona/php-funciona.component';
 import { PhpPruebaComponent } from './php-prueba/php-prueba.component';
@@ -28,24 +28,24 @@ import { PipeClienteComponent } from './list-cliente/filter-pipe';
 
 @NgModule({
   declarations: [
-//Prueba
-PipeClienteComponent,
-  PhpPruebaComponent,
-  PhpFuncionaComponent,
-// Botones
+    //Prueba
+    PipeClienteComponent,
+    PhpPruebaComponent,
+    PhpFuncionaComponent,
+    // Botones
     BtnListComponent,
-// Listados
+    // Listados
     ListClienteComponent,
     ListClienteFComponent,
     ListClienteMComponent,
-// Datos Persona Fisica
+    // Datos Persona Fisica
     QryClienteComponent,
     QryClienteMComponent,
-// Mantenimiento o Nuevo Persona Fisica
+    // Mantenimiento o Nuevo Persona Fisica
     ModClienteComponent,
     ModMoralComponent,
-    ActivEcoComponent,
-    CuentaBanComponent
+    /*ActivEcoComponent,*/
+    /*CuentaBanComponent*/
 
 
 ],
