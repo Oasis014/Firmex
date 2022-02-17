@@ -1,18 +1,53 @@
-<app-btnlist></app-btnlist>
-<!-- Filter Datatable Options Begin -->
-<div class="row">
-	<div class="col-sm-12 mb-4">
-		<ngx-datatable #table class='bootstrap selection-cell' [selected]="selected" [rows]='rows' [columnMode]="'force'" [columns]="columns" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='cursor:pointer;' [selectionType]="'cell'" (select)="onSelect($event)" (activate)="onActivate($event)" (dblclick) = "doubleClicked($event)">
-	      <ngx-datatable-column name="No. Cliente" [frozenLeft]="true" [width]="20" prop="id"></ngx-datatable-column>
-		  <ngx-datatable-column name="Nombre del Cliente" [width]="10" prop="nombre"></ngx-datatable-column>
-		  <ngx-datatable-column name="Tipo de Crédito" [width]="10" prop="tipo"></ngx-datatable-column>
-		  <ngx-datatable-column name="Producto de Credito" [width]="80" prop="producto"></ngx-datatable-column>
-		  <ngx-datatable-column name="Programa de Fondeo" [width]="10" prop="programa"></ngx-datatable-column>
-		  <ngx-datatable-column name="Revolvente" [width]="10" prop="revolvente"></ngx-datatable-column>
-		</ngx-datatable>
-
-
+<div class="card">
+	<div class="card-body">
+		<div class="row">
+			<!--<div class="col-12 col-lg-4 col-xl-4">
+				<div class="input-group">
+					<div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Buscar por catalogos" style='width:30%;'>
+					<div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
+				</div>
+			</div>-->
+			<div class="col-12 col-lg-8 col-xl-8">
+				<h3>Listado de Activacón</h3>
+				</div>
+				<div class="col-12 col-lg-2 col-xl-2">
+					<label>Filtrar: </label>
+				</div>
+				  <div class="col-12 col-lg-2 col-xl-2">
+					<input type="text"	class="form-control" name="filterPost" placeholder="Buscar por Numero Cliente..." [(ngModel)]="filterPost"  />
+					</div>
+		</div>
 	</div>
 </div>
+<!-- Filter Datatable Options Begin -->
+<div class="card col-sm-12 mb-12">
+		<table class="table table-striped text-center " style="width:auto; height:5px;" >
+		  <thead >
+		  <th>Numero Cliente</th>
+		  <th>Nombre </th>
+		  <th>Razon Social</th> 
+		  <th>RFC </th>
+		  </thead>
+		  <tbody>
+		  <tr *ngFor="let post of list | filter: filterPost" >
+			<td >{{post.NumeroCLiente}}</td>
+			<td>{{post.PrimerNombre}}</td>
+			<td>{{post.RazonSocial}}</td>
+			<td>{{post.RFC}}</td>
+			<td>
+				<a class="btn btn-sm btn-info text-white" ><i class="fa fa-pencil"></i></a>
+			</td>
+			<td>
+				<a class="btn btn-sm btn-info text-white" ><i class="fa fa-pencil"></i></a>
+			</td>
+			<td>
+				<a class="btn btn-sm btn-info text-white" ><i class="fa fa-pencil"></i></a>
+			</td>
+		  </tr>
+		  </tbody>
+		</table>
+	</div>
 <!-- Filter Datatable Options Ends -->
 

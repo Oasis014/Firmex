@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-=======
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
->>>>>>> 61a88457f89d8e974f138aa5246254866f206124
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';

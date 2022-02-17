@@ -16,11 +16,12 @@ import { ModCrediComponent } from './mod-credi/mod-credi.component';
 // Datos Depositos o retiros
 import { QryNocrediComponent } from './qry-nocredi/qry-nocredi.component';
 // Depositos o retiros
-
+import { PipeClienteComponent } from './list-revol/filter-pipe';
 
 
 @NgModule({
   declarations: [
+    PipeClienteComponent,
        ListNorevComponent,
        ListRevolComponent,
        QryCrediComponent,
