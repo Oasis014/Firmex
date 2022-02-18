@@ -30,6 +30,8 @@ export class ModMoralComponent implements OnInit { // 717
   ) { }
 
   datosGeneralesForm: FormGroup;
+  datosGeneralesFisicaForm: FormGroup;
+
   domicilioForm: FormGroup;
   actividadEconomicaForm: FormGroup;
   referenciasPersonalesForm: FormGroup;
@@ -69,14 +71,17 @@ export class ModMoralComponent implements OnInit { // 717
   disBtnInsertGruSoc = false;
   disBtnInsertGruRies = false;
 
+  disBtnDatosGeneralesMoral = false;
+  disBtnDatosGeneralesFisica = false;
+
   domicilioBtnText = 'Guardar';
 
   //Declaracion Var General
-  EstatusClienteA: string = 'Prospecto';
-  SucursalA: string = '';
-  ClavePromotorA: string = '';
-  RazonSocialA: string = '';
-  Contador: number = 0;
+  //EstatusClienteA: string = 'Prospecto';
+  //SucursalA: string = '';
+  //ClavePromotorA: string = '';
+  //RazonSocialA: string = '';
+  //Contador: number = 0;
 
   // Objetos Ocultos Cliente
   isCollapsed = false;
@@ -86,12 +91,25 @@ export class ModMoralComponent implements OnInit { // 717
   isCollapsed6 = true;
   isCollapsed7 = false;
   isCollapsed8 = true; // boton guardar en seccion "domicilio"
+  showEspecificosMoral = false;
+  showEspecificosFisica = false;
+  showBtnValidar = true;
 
   //Objetos Desabilitados Cliente
-  disBtnDatosGenerales = false;
 
-  isCollapsedPrueba2 = true;
-  isCollapsedPrueba1 = true;
+
+  //isCollapsedPrueba1 = true;
+  //isCollapsedPrueba2 = true;
+
+  showMoral = true;
+  showFisica = false;
+
+  infoGeneral = {
+    sucursal: '',
+    promotor: '',
+    estatus: '',
+    razonSocial: ''
+  };
 
   //objetos any Service
   domicilioList = [];
@@ -159,12 +177,71 @@ export class ModMoralComponent implements OnInit { // 717
 
   ngOnInit() {
     this.ban = localStorage.getItem("bandera");
+
     if (this.ban == "1") {
-      this.isCollapsedPrueba1 = !this.isCollapsedPrueba1;
+      //this.isCollapsedPrueba1 = !this.isCollapsedPrueba1;
+      this.general.setMoral();
+      this.showMoral = true;
+      this.showFisica = false;
+
+      this.datosGeneralesForm = this.formBuilder.group({
+        numeroCliente:       ['0'],
+        estatusCliente:      ['Prospecto'],
+        sucursal:            ['', [Validators.required, Validators.maxLength(5)]],
+        promotor:            ['', [Validators.required, Validators.maxLength(5)]],
+        razonSocial:         ['', [Validators.required, Validators.maxLength(120)]],
+        fechaConstitucion:   ['', [Validators.required]],
+        rfc:                 ['', [Validators.required, Validators.maxLength(13)]],
+
+        nombreSociedad:      ['', [Validators.required, Validators.maxLength(120)]],
+        representanteLegal:  ['', [Validators.required, Validators.maxLength(120)]],
+        presidenteConsejo:   ['', [Validators.required, Validators.maxLength(120)]],
+        consejero:           ['', [Validators.required, Validators.maxLength(120)]],
+        emailPersonal:       ['', [Validators.required, Validators.maxLength(80)]],
+        emailEmpresa:        ['', [Validators.required, Validators.maxLength(80)]],
+        parteRelacionada:    ['', [Validators.required, Validators.maxLength(5)]],
+        grupoVinculoConsejo: ['', [Validators.required, Validators.maxLength(10)]],
+        grupoRiesgoComun:    ['', [Validators.required, Validators.maxLength(5)]],
+        telefonoOficina:     ['', [Validators.maxLength(15)]],
+        extensionOficina:    ['', [Validators.maxLength(10)]],
+        celular:             ['', [Validators.maxLength(15)]],
+        redSocial1:          ['', [Validators.maxLength(50)]],
+        redSocial2:          ['', [Validators.maxLength(50)]],
+      });
     }
 
     if (this.ban == "2") {
-      this.isCollapsedPrueba2 = !this.isCollapsedPrueba2;
+      //this.isCollapsedPrueba2 = !this.isCollapsedPrueba2;
+      this.general.setFisica();
+      this.showMoral = false;
+      this.showFisica = true;
+
+      this.datosGeneralesFisicaForm = this.formBuilder.group({
+        numeroCliente:   ['0'],
+        estatusCliente:  ['Prospecto'],
+        sucursal:        ['', [Validators.required, Validators.maxLength(5)]],
+        primerNombre:    ['', [Validators.required, Validators.maxLength(30)]], // 30
+        segundoNombre:   ['', [Validators.required, Validators.maxLength(30)]], // 30
+        apellidoPaterno: ['', [Validators.required, Validators.maxLength(30)]],
+        apellidoMaterno: ['', [Validators.required, Validators.maxLength(30)]],
+        promotor:        ['', [Validators.required, Validators.maxLength(5)]],
+        fechaNacimiento: ['', [Validators.required, Validators.maxLength(10)]],
+        rfc:             ['', [Validators.required, Validators.maxLength(13)]],
+
+        sexo:                 ['', [Validators.required, Validators.maxLength(1)]],
+        estadoCivil:          ['', [Validators.required, Validators.maxLength(2)]],
+        curp:                 ['', [Validators.required, Validators.maxLength(18)]],
+        tipoIdentificacion:   ['', [Validators.required, Validators.maxLength(2)]],
+        numeroIdentificacion: ['', [Validators.required, Validators.maxLength(20)]],
+        listaNegra:           ['', [Validators.required, Validators.maxLength(30)]],
+        profesion:            ['', [Validators.required, Validators.maxLength(2)]],
+        nacionalidad:         ['', [Validators.required, Validators.maxLength(2)]],
+        emailPersonal:        ['', [Validators.required, Validators.maxLength(80)]],
+        emailEmpresa:         ['', [Validators.required, Validators.maxLength(80)]],
+        parteRelacionada:     ['', [Validators.required, Validators.maxLength(5)]],
+        grupoVinculoConsejo:  ['', [Validators.required, Validators.maxLength(10)]],
+        grupoRiesgoComun:     ['', [Validators.required, Validators.maxLength(5)]],
+      });
     }
     this.CatDet();
     this.CatEco();
@@ -192,31 +269,6 @@ export class ModMoralComponent implements OnInit { // 717
     this.cPromotor();
     this.cSucursal();
     this.cEdo();
-
-    this.datosGeneralesForm = this.formBuilder.group({
-      numeroCliente:       [''],
-      estatusCliente:      [''],
-      sucursal:            ['', [Validators.required, Validators.maxLength(5)]],
-      promotor:            ['', [Validators.required, Validators.maxLength(5)]],
-      razonSocial:         ['', [Validators.required, Validators.maxLength(120)]],
-      fechaConstitucion:   ['', [Validators.required]],
-      rfc:                 ['', [Validators.required, Validators.maxLength(13)]],
-
-      nombreSociedad:      ['', [Validators.required, Validators.maxLength(120)]],
-      representanteLegal:  ['', [Validators.required, Validators.maxLength(120)]],
-      presidenteConsejo:   ['', [Validators.required, Validators.maxLength(120)]],
-      consejero:           ['', [Validators.required, Validators.maxLength(120)]],
-      emailPersonal:       ['', [Validators.required, Validators.maxLength(80)]],
-      emailEmpresa:        ['', [Validators.required, Validators.maxLength(80)]],
-      parteRelacionada:    ['', [Validators.required, Validators.maxLength(5)]],
-      grupoVinculoConsejo: ['', [Validators.required, Validators.maxLength(10)]],
-      grupoRiesgoComun:    ['', [Validators.required, Validators.maxLength(5)]],
-      telefonoOficina:     ['', [Validators.maxLength(15)]],
-      extensionOficina:    ['', [Validators.maxLength(10)]],
-      celular:             ['', [Validators.maxLength(15)]],
-      redSocial1:          ['', [Validators.maxLength(50)]],
-      redSocial2:          ['', [Validators.maxLength(50)]],
-    });
 
     this.domicilioForm = this.formBuilder.group({
       TipoDomicilio:  ['', [Validators.required, Validators.maxLength(2)]],
@@ -316,88 +368,147 @@ export class ModMoralComponent implements OnInit { // 717
   onChanges(): void {
 
     this.domicilioForm.get('Estado').valueChanges.subscribe(id => {
-      console.log(id);
-      if ( id != "" ) {
-        this.cColonia = [];
-        this.cCP = [];
-        this.clienteService.catMunicipio(id).subscribe(
-          (result: any) =>{
-            this.cMpio = result;
-        });
+      if ( id != null && id != '' ) {
+        console.log(id);
+        this.changeEstado(id);
       }
     });
 
     this.domicilioForm.get('Municipio').valueChanges.subscribe(id => {
-      console.log(id);
-      if ( id != "" ) {
-        this.cCP = [];
-        this.clienteService.catCol(id, this.domicilioForm.controls.Estado.value).subscribe(
-          (result: any) =>{
-            this.cColonia = result;
-        });
+      if ( id != null && id != '' ) {
+        console.log(id);
+        this.changeMunicipio(id);
       }
     });
 
     this.domicilioForm.get('Colonia').valueChanges.subscribe(val => {
-      console.log(val);
-      if ( val != "" ) {
-        this.clienteService.catCP(
-          this.domicilioForm.controls.Estado.value,
-          this.domicilioForm.controls.Municipio.value
-        ).subscribe(
-          (result: any) => {
-            this.cCP = result;
-        });
+      if ( val != null && val != '' ) {
+        console.log(val);
+        this.changeColonia(val);
       }
     });
 
+  }
+
+  changeEstado(id, set = false): void {
+    this.cColonia = [];
+    this.cCP = [];
+    this.clienteService.catMunicipio(id).subscribe(
+      (result: any) => {
+        this.cMpio = result;
+    });
+  }
+
+  changeMunicipio(id, set = false): void {
+    this.cCP = [];
+    this.clienteService.catCol(this.domicilioForm.controls.Estado.value, id).subscribe(
+      (result: any) => {
+        this.cColonia = result;
+    });
+  }
+
+  changeColonia(id, set = false): void {
+    this.clienteService.catCP(
+      this.domicilioForm.controls.Estado.value,
+      this.domicilioForm.controls.Municipio.value
+    ).subscribe(
+      (result: any) => {
+        this.cCP = result;
+    });
   }
 
   /**
    * METODOS DATOS GENERALES
    */
    validarDatosGenerales() {
-    this.isCollapsed2 = !this.isCollapsed2;
 
-    let values = this.datosGeneralesForm.value;
-    this.general.setForm1(values)
-    console.log(this.general)
+    if ( "1" == this.ban ) {
+      console.log("validar moral");
+      this.showEspecificosMoral = true;
+      this.general.setFormMoral(this.datosGeneralesForm.value);
+      console.log(this.general);
 
-    this.datosGeneralesForm.controls.sucursal.disable();
-    this.datosGeneralesForm.controls.promotor.disable();
-    this.datosGeneralesForm.controls.razonSocial.disable();
-    this.datosGeneralesForm.controls.fechaConstitucion.disable();
-    this.datosGeneralesForm.controls.rfc.disable();
+      this.datosGeneralesForm.controls.sucursal.disable();
+      this.datosGeneralesForm.controls.promotor.disable();
+      this.datosGeneralesForm.controls.razonSocial.disable();
+      this.datosGeneralesForm.controls.fechaConstitucion.disable();
+      this.datosGeneralesForm.controls.rfc.disable();
+
+    } else if ( "2" == this.ban ) {
+      console.log("validar fisica");
+      this.showEspecificosFisica = true;
+      this.general.setFormFisica(this.datosGeneralesFisicaForm.value);
+      console.log(this.general)
+
+      this.datosGeneralesFisicaForm.controls.sucursal.disable();
+      this.datosGeneralesFisicaForm.controls.primerNombre.disable();
+      this.datosGeneralesFisicaForm.controls.segundoNombre.disable();
+      this.datosGeneralesFisicaForm.controls.apellidoPaterno.disable();
+      this.datosGeneralesFisicaForm.controls.apellidoMaterno.disable();
+      this.datosGeneralesFisicaForm.controls.promotor.disable();
+      this.datosGeneralesFisicaForm.controls.fechaNacimiento.disable();
+      this.datosGeneralesFisicaForm.controls.rfc.disable();
+
+    }
+
+    this.general.EstatusCliente = '0';
 
     this.clienteService.agregar9(this.general).subscribe(
       (result: ResponseSP[]) => {
         this.responseSP = result;
+        this.showBtnValidar = false;
       }
     );
   }
 
   guardaGeneral() {
-    let values = this.datosGeneralesForm.value;
-    this.general.setDatosGenerales(values)
 
-    const date = new Date();
-    this.general.FechaAlta = date.toISOString().substring(0, 10);
-    this.general.FechaNacimiento = '1970-01-01';
+    if ( "1" == this.ban ) {
+      this.general.setDatosGenerales(this.datosGeneralesForm.value);
 
+    } else if ( "2" == this.ban ) {
+      this.general.setDatosGeneralesFisica(this.datosGeneralesFisicaForm.value);
+    }
+
+    this.updateInfoGeneral();
 
     this.clienteService.agregar(this.general).subscribe(
       (result: ResponseSP[]) => {
         this.responseSP = result;
         this.general.setId(+result[0].noCliente)
-        this.datosGeneralesForm.controls.numeroCliente.setValue(+result[0].noCliente);
 
         this.typeSuccess();
-        this.datosGeneralesForm.disable();
-        this.disBtnDatosGenerales = true;
         this.disNextSection_1 = false;
+
+        if ( "1" == this.ban ) {
+          this.datosGeneralesForm.disable();
+          this.disBtnDatosGeneralesMoral = true;
+          this.datosGeneralesForm.controls.numeroCliente.setValue(+result[0].noCliente);
+        } else if ( "2" == this.ban ) {
+          this.datosGeneralesFisicaForm.disable();
+          this.disBtnDatosGeneralesFisica = true;
+          this.datosGeneralesFisicaForm.controls.numeroCliente.setValue(+result[0].noCliente);
+        }
 
       }
     );
+  }
+
+  updateInfoGeneral(): void {
+    for ( let item of this.ctSucursal ) {
+      if ( item.catalogo_cve == this.general.Sucursal ) {
+        this.infoGeneral.sucursal = item.desc_45;
+      }
+    }
+
+    for ( let item of this.ctPromotor ) {
+      if ( item.catalogo_cve == this.general.ClavePromotor ) {
+        this.infoGeneral.promotor = item.desc_45;
+      }
+    }
+
+    this.infoGeneral.estatus = 'Prospecto';
+    this.infoGeneral.razonSocial = this.general.RazonSocial;
   }
 
   cancelar() {
@@ -428,6 +539,7 @@ export class ModMoralComponent implements OnInit { // 717
       userId:this.general.Id,
       domId: dom.TipoDomicilio
     }
+    this.updateDomicilio = true;
     this.clienteService.consultar(params).subscribe(
       (result: any) => {
         //this.domcon = result;
@@ -435,15 +547,56 @@ export class ModMoralComponent implements OnInit { // 717
         console.log(result);
 
         this.domicilioForm.enable();
-        this.updateDomicilio = true;
         this.domicilioBtnText = 'Actualizar';
         this.isCollapsed8 = false;
 
-        this.domicilioForm.patchValue(result[0])
+        this.patchLocation(
+          result[0].Estado,
+          result[0].Municipio,
+          result[0].Colonia,
+          result[0].CodigoPostal
+        );
+
+        this.domicilioForm.controls.TipoDomicilio.setValue(result[0].TipoDomicilio);
         this.domicilioForm.controls.TipoDomicilio.disable();
+        this.domicilioForm.controls.Pais.setValue(result[0].Pais);
+        this.domicilioForm.controls.Calle.setValue(result[0].Calle);
+        this.domicilioForm.controls.NumeroExterior.setValue(result[0].NumeroExterior);
+        this.domicilioForm.controls.NumeroInterior.setValue(result[0].NumeroInterior);
 
       }
     );
+  }
+
+  patchLocation(estadoId, municipioId, coloniaId, cp): void {
+    this.domicilioForm.controls.Estado.setValue(estadoId);
+
+    /*
+    this.clienteService.catMunicipio(municipioId).subscribe(
+      (result: any) =>{
+        this.cMpio = result;
+
+        this.domicilioForm.controls.Municipio.setValue(municipioId);
+
+        this.clienteService.catCol(estadoId, municipioId).subscribe(
+          (result: any) =>{
+            this.cColonia = result;
+
+            this.domicilioForm.controls.Colonia.setValue(coloniaId);
+
+            this.clienteService.catCP(estadoId, municipioId).subscribe(
+              (result: any) => {
+                this.cCP = result;
+
+                this.domicilioForm.controls.CodigoPostal.setValue(cp);
+
+            });
+
+        });
+
+    });
+    */
+
   }
 
   DomBorrar(dom: any) {
@@ -471,6 +624,7 @@ export class ModMoralComponent implements OnInit { // 717
   cancelarDomicilioTest() {
     console.log(this.domicilioForm.valid);
     console.log(this.domicilioForm.value);
+    this.updateDomicilio = false;
   }
 
   guardaDomicilio() {
@@ -490,6 +644,7 @@ export class ModMoralComponent implements OnInit { // 717
         this.domicilioForm.disable();
         this.isCollapsed8 = true;
         this.domicilioBtnText = 'Guardar';
+        this.updateDomicilio = false;
       }
     );
   }
@@ -893,12 +1048,12 @@ export class ModMoralComponent implements OnInit { // 717
     event.preventDefault();
   }
 
-  DatosMuestra() {
+  /*DatosMuestra() {
     this.Contador++;
     if (this.Contador == 1) {
       this.isCollapsed5 = !this.isCollapsed5;
     }
-  }
+  }*/
 
   onNavChange(changeEvent: NgbNavChangeEvent) {
     if (changeEvent.nextId === 2, 3, 4, 5, 6) {
