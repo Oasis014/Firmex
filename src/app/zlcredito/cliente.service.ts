@@ -369,8 +369,5 @@ export class ClienteService {
     return this.http.get(this.catalogosUrl.catalogonaCION);
   }
 
-  catDocumentos() {
-    return this.http.get(this.catalogosUrl.catalogoTipoDocumento);
-  }
 
 }
