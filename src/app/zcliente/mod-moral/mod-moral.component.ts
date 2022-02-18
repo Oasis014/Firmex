@@ -76,13 +76,6 @@ export class ModMoralComponent implements OnInit { // 717
 
   domicilioBtnText = 'Guardar';
 
-  //Declaracion Var General
-  //EstatusClienteA: string = 'Prospecto';
-  //SucursalA: string = '';
-  //ClavePromotorA: string = '';
-  //RazonSocialA: string = '';
-  //Contador: number = 0;
-
   // Objetos Ocultos Cliente
   isCollapsed = false;
   isCollapsed2 = true;
@@ -95,12 +88,6 @@ export class ModMoralComponent implements OnInit { // 717
   showEspecificosFisica = false;
   showBtnValidar = true;
 
-  //Objetos Desabilitados Cliente
-
-
-  //isCollapsedPrueba1 = true;
-  //isCollapsedPrueba2 = true;
-
   showMoral = true;
   showFisica = false;
 
@@ -110,6 +97,12 @@ export class ModMoralComponent implements OnInit { // 717
     estatus: '',
     razonSocial: ''
   };
+
+  isPatchLocation = false;
+  locationToUpdate: Domicilio;
+  readyMun = false;
+  readyCol = false;
+  readyCp = false;
 
   //objetos any Service
   domicilioList = [];
@@ -179,7 +172,6 @@ export class ModMoralComponent implements OnInit { // 717
     this.ban = localStorage.getItem("bandera");
 
     if (this.ban == "1") {
-      //this.isCollapsedPrueba1 = !this.isCollapsedPrueba1;
       this.general.setMoral();
       this.showMoral = true;
       this.showFisica = false;
@@ -211,7 +203,6 @@ export class ModMoralComponent implements OnInit { // 717
     }
 
     if (this.ban == "2") {
-      //this.isCollapsedPrueba2 = !this.isCollapsedPrueba2;
       this.general.setFisica();
       this.showMoral = false;
       this.showFisica = true;
@@ -368,54 +359,91 @@ export class ModMoralComponent implements OnInit { // 717
   onChanges(): void {
 
     this.domicilioForm.get('Estado').valueChanges.subscribe(id => {
-      if ( id != null && id != '' ) {
+      if ( id != null && id != '' && this.isPatchLocation == false ) {
         console.log(id);
-        this.changeEstado(id);
+        this.cColonia = [];
+        this.cCP = [];
+        this.clienteService.catMunicipio(id).subscribe(
+          (result: any) => {
+            this.cMpio = result;
+        });
       }
     });
 
     this.domicilioForm.get('Municipio').valueChanges.subscribe(id => {
-      if ( id != null && id != '' ) {
+      if ( id != null && id != '' && this.isPatchLocation == false ) {
         console.log(id);
-        this.changeMunicipio(id);
+        this.cCP = [];
+        this.clienteService.catCol(this.domicilioForm.controls.Estado.value, id).subscribe(
+          (result: any) => {
+            this.cColonia = result;
+        });
       }
     });
 
     this.domicilioForm.get('Colonia').valueChanges.subscribe(val => {
-      if ( val != null && val != '' ) {
+      if ( val != null && val != '' && this.isPatchLocation == false ) {
         console.log(val);
-        this.changeColonia(val);
+        this.clienteService.catCP(
+          this.domicilioForm.controls.Estado.value,
+          this.domicilioForm.controls.Municipio.value
+        ).subscribe(
+          (result: any) => {
+            this.cCP = result;
+        });
       }
     });
 
   }
 
-  changeEstado(id, set = false): void {
-    this.cColonia = [];
-    this.cCP = [];
-    this.clienteService.catMunicipio(id).subscribe(
+  loadLocationLists() {
+    this.clienteService.catMunicipio(this.locationToUpdate.Estado).subscribe(
       (result: any) => {
         this.cMpio = result;
-    });
-  }
 
-  changeMunicipio(id, set = false): void {
-    this.cCP = [];
-    this.clienteService.catCol(this.domicilioForm.controls.Estado.value, id).subscribe(
+        if ( this.isPatchLocation == true ) {
+          this.readyMun = true;
+          this.fullLoad();
+        }
+    });
+
+    this.clienteService.catCol(this.locationToUpdate.Estado, this.locationToUpdate.Municipio).subscribe(
       (result: any) => {
         this.cColonia = result;
-    });
-  }
 
-  changeColonia(id, set = false): void {
-    this.clienteService.catCP(
-      this.domicilioForm.controls.Estado.value,
-      this.domicilioForm.controls.Municipio.value
-    ).subscribe(
+        if ( this.isPatchLocation == true ) {
+          this.readyCol = true;
+          this.fullLoad();
+        }
+    });
+
+    this.clienteService.catCP(this.locationToUpdate.Estado, this.locationToUpdate.Municipio).subscribe(
       (result: any) => {
         this.cCP = result;
+
+        if ( this.isPatchLocation == true ) {
+          this.readyCp = true;
+          this.fullLoad();
+        }
     });
+
   }
+
+  fullLoad() {
+    if ( this.readyMun && this.readyCol && this.readyCp ) {
+      this.domicilioForm.controls.Estado.setValue(this.locationToUpdate.Estado);
+      this.domicilioForm.controls.Municipio.setValue(this.locationToUpdate.Municipio);
+      this.domicilioForm.controls.Colonia.setValue(this.locationToUpdate.Colonia);
+      this.domicilioForm.controls.CodigoPostal.setValue(this.locationToUpdate.CodigoPostal);
+
+      this.isPatchLocation = false;
+      this.readyMun = false;
+      this.readyCol = false;
+      this.readyCp = false;
+    }
+
+  }
+
 
   /**
    * METODOS DATOS GENERALES
@@ -535,6 +563,7 @@ export class ModMoralComponent implements OnInit { // 717
   consultarDomicilio(dom: any) {
 
     console.log(dom);
+    this.cancelarActualizacion('domicilio');
     let params = {
       userId:this.general.Id,
       domId: dom.TipoDomicilio
@@ -542,20 +571,15 @@ export class ModMoralComponent implements OnInit { // 717
     this.updateDomicilio = true;
     this.clienteService.consultar(params).subscribe(
       (result: any) => {
-        //this.domcon = result;
-        //this.domicilioForm.setValue(result);
-        console.log(result);
 
         this.domicilioForm.enable();
         this.domicilioBtnText = 'Actualizar';
         this.isCollapsed8 = false;
 
-        this.patchLocation(
-          result[0].Estado,
-          result[0].Municipio,
-          result[0].Colonia,
-          result[0].CodigoPostal
-        );
+        this.isPatchLocation = true;
+        this.locationToUpdate = result[0];
+
+        this.loadLocationLists();
 
         this.domicilioForm.controls.TipoDomicilio.setValue(result[0].TipoDomicilio);
         this.domicilioForm.controls.TipoDomicilio.disable();
@@ -563,40 +587,8 @@ export class ModMoralComponent implements OnInit { // 717
         this.domicilioForm.controls.Calle.setValue(result[0].Calle);
         this.domicilioForm.controls.NumeroExterior.setValue(result[0].NumeroExterior);
         this.domicilioForm.controls.NumeroInterior.setValue(result[0].NumeroInterior);
-
       }
     );
-  }
-
-  patchLocation(estadoId, municipioId, coloniaId, cp): void {
-    this.domicilioForm.controls.Estado.setValue(estadoId);
-
-    /*
-    this.clienteService.catMunicipio(municipioId).subscribe(
-      (result: any) =>{
-        this.cMpio = result;
-
-        this.domicilioForm.controls.Municipio.setValue(municipioId);
-
-        this.clienteService.catCol(estadoId, municipioId).subscribe(
-          (result: any) =>{
-            this.cColonia = result;
-
-            this.domicilioForm.controls.Colonia.setValue(coloniaId);
-
-            this.clienteService.catCP(estadoId, municipioId).subscribe(
-              (result: any) => {
-                this.cCP = result;
-
-                this.domicilioForm.controls.CodigoPostal.setValue(cp);
-
-            });
-
-        });
-
-    });
-    */
-
   }
 
   DomBorrar(dom: any) {
@@ -609,7 +601,6 @@ export class ModMoralComponent implements OnInit { // 717
     this.clienteService.domborrar(params).subscribe(
       (result: any) => {
         console.log(result);
-        //this.domborrar = result;
         this.obtenerDomicilio();
       }
     );
@@ -637,7 +628,6 @@ export class ModMoralComponent implements OnInit { // 717
         this.responseSP = result;
         this.clienteM = result;
         this.domcon = null;
-        //this.domborrar = null;
         this.obtenerDomicilio();
 
         this.domicilioForm.reset();
