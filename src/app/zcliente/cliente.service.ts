@@ -10,7 +10,7 @@ import { Domicilio } from '../shared/models/domicilio';
 })
 export class ClienteService {
 
-  private readonly url = 'http://127.0.0.1/insert/';
+  private readonly url = 'http://firmex-back.local/';
   private readonly catalogosUrl = environment.api.catalogos;
   private readonly clienteUrl = environment.api.cliente;
 
@@ -45,8 +45,8 @@ export class ClienteService {
   }
 
   domborrar(params: any): Observable<any> {
-    return this.httpService.delete(this.clienteUrl.domicilio, params);
-  }
+      return this.httpService.delete(this.clienteUrl.domicilio, params);
+    }
 
   /* Servicios Domicilio */
 
@@ -131,6 +131,26 @@ export class ClienteService {
 
   getRiesgoComun(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.grupoRiesgoComun, {userId: id});
+  }
+
+
+  /** DOCUMENTOS */
+  guardarDocumento(file: File, data: object): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('data', JSON.stringify(data));
+    return this.httpService.postFile(this.clienteUrl.documentacion, formData);
+  }
+
+  obtenerDocumentos(id: number): Observable<any> {
+    let params = {
+      id: id
+    };
+    return this.httpService.get(this.clienteUrl.documentacion, params);
+  }
+
+  borrarDocumento(params: any): Observable<any> {
+    return this.httpService.delete(this.clienteUrl.documentacion, params);
   }
 
 
@@ -318,20 +338,6 @@ export class ClienteService {
 
   riesgocomunconsultar(arreglo: any) {
     return this.http.post(`${this.url}GrupoRiesgoComunMostrar.php`, JSON.stringify(arreglo));
-  }
-
-  guardarDocumento(file: File, data: object): Observable<HttpEvent<any>> {
-    const formData: FormData = new FormData();
-    formData.append('file', file);
-    formData.append('data', JSON.stringify(data));
-    return this.httpService.postFile(this.clienteUrl.documentacion, formData);
-  }
-
-  obtenerDocumentos(id: number): Observable<any> {
-    let params = {
-      id: id
-    };
-    return this.httpService.get(this.clienteUrl.documentacion, params);
   }
 
 

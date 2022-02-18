@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-4 col-lg-4 col-xl-4">
         <div class="form-group row">
-          <!--<h4 type="number" name="Id" id="Id" *ngFor="let retorno of cliente">ID: {{retorno.noCliente}}</h4>-->
           <h4 type="number">ID: {{general.Id}}</h4>
 
         </div>
@@ -95,17 +94,17 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="col-12 col-lg-12" align="center" [ngbCollapse]="isCollapsed5" >
-        <label class="card-header text-uppercase" >Sucursal: {{SucursalA}} </label>
-        <label class="card-header text-uppercase" >Promotor: {{ClavePromotorA}}</label>
-        <label class="card-header text-uppercase" >Estatus de Cliente: {{EstatusClienteA}}</label>
-        <label class="card-header text-uppercase" >Razon Social: {{RazonSocialA}}</label>
+      <div class="col-12 col-lg-12" align="center" *ngIf="!disNextSection_1" >
+        <label class="card-header text-uppercase" >Sucursal: {{infoGeneral.sucursal}} </label>
+        <label class="card-header text-uppercase" >Promotor: {{infoGeneral.promotor}}</label>
+        <label class="card-header text-uppercase" >Estatus de Cliente: {{infoGeneral.estatus}}</label>
+        <label class="card-header text-uppercase" >Razon Social: {{infoGeneral.razonSocial}}</label>
       </div>
       <div class="card-body">
         <ul ngbNav #nav3="ngbNav" [(activeId)]="active2" (navChange)="onNavChange($event)" class="nav-tabs nav-tabs-primary  nav-justified">
           <li [ngbNavItem]="1" > <a ngbNavLink><i class="fa fa-user-plus"></i>Datos Generales</a>
             <ng-template ngbNavContent>
-              <form [ngbCollapse]="isCollapsedPrueba1" [formGroup]="datosGeneralesForm">
+              <form *ngIf="showMoral" [formGroup]="datosGeneralesForm">
                 <div class="row">
                   <div class="col-12 col-lg-12">
                     <div class="card">
@@ -205,9 +204,8 @@
                           <div class="col-1 col-lg-2 col-xl-2">
                           </div>
                           <div class="col-2 col-lg-1 col-xl-1">
-                            <div [ngbCollapse]="isCollapsed" class="form-group row">
+                            <div *ngIf="showBtnValidar" class="form-group row">
                               <button
-                                [attr.aria-expanded]="!isCollapsed2"
                                 [disabled]="datosGeneralesForm.controls.sucursal.invalid ||
                                   datosGeneralesForm.controls.promotor.invalid ||
                                   datosGeneralesForm.controls.razonSocial.invalid ||
@@ -217,8 +215,7 @@
                                 data-target="#largesizemodal"
                                 (click)="validarDatosGenerales()"
                                 type="submit"
-                                class="btn btn-light btn-block"
-                              >Validar</button>
+                                class="btn btn-light btn-block">Validar</button>
                             </div>
                           </div>
                         </div>
@@ -228,7 +225,7 @@
                 </div>
                 <div class="row">
                 </div>
-                <div [ngbCollapse]="isCollapsed2" class="row">
+                <div *ngIf="showEspecificosMoral" class="row">
                   <div class="col-12 col-lg-12">
                     <div class="card">
                       <div class="card-body">
@@ -430,28 +427,24 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div  class="col-2 col-lg-2 col-xl-2">
+                          <div class="col-1 col-lg-4 col-xl-4"></div>
+                          <div class="col-1 col-lg-4 col-xl-4"></div>
+                          <div class="col-1 col-lg-4 col-xl-4"></div>
+                          <div class="col-2 col-lg-2 col-xl-2">
                             <button
                               type="button"
                               class="btn btn-light btn-block"
-                              [disabled]="disBtnDatosGenerales"
+                              [disabled]="disBtnDatosGeneralesMoral"
                               (click)="cancelar()">Cancelar</button>
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
                             <button
-                              [disabled]="disBtnDatosGenerales || datosGeneralesForm.invalid"
+                              [disabled]="disBtnDatosGeneralesMoral || datosGeneralesForm.invalid"
                               data-toggle="modal"
                               data-target="#largesizemodal1"
                               type="submit"
                               class="btn btn-light btn-block"
-                              (click)="guardaGeneral()"
-                            >
+                              (click)="guardaGeneral()">
                               Guardar</button>
 
                           </div>
@@ -462,7 +455,395 @@
                 </div>
               </form>
 
-              <app-mod-cliente [ngbCollapse]="isCollapsedPrueba2"></app-mod-cliente>
+
+              <form *ngIf="showFisica" [formGroup]="datosGeneralesFisicaForm">
+                <div class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6 class="page-title">Datos Generales</h6>
+                        <hr>
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Número Cliente </label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="numeroCliente" readonly >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Estatus del Cliente </label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" formControlName="estatusCliente" placeholder="Prospecto" readonly >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Sucursal</label>
+                              <div class="col-sm-6">
+                                <select
+                                  class="form-control form-control-sm"
+                                  formControlName="sucursal">
+                                  <option value="">Seleccione sucursal...</option>
+                                  <option *ngFor="let csuc of ctSucursal" [value]="csuc.catalogo_cve">
+                                    {{csuc.desc_45}}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Primer Nombre</label>
+                              <div class="col-sm-6">
+                                <input type="text"
+                                  class="form-control"
+                                  formControlName="primerNombre"
+                                  maxlength="30"
+                                  placeholder="Primer Nombre">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Segundo Nombre</label>
+                              <div class="col-sm-6">
+                                <input type="text"
+                                  class="form-control"
+                                  formControlName="segundoNombre"
+                                  maxlength="30"
+                                  placeholder="Segundo Nombre" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Apellido Paterno</label>
+                              <div class="col-sm-6">
+                                <input type="text"
+                                  class="form-control"
+                                  formControlName="apellidoPaterno"
+                                  maxlength="30"
+                                  placeholder="Apellido Paterno" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Apellido Materno</label>
+                              <div class="col-sm-6">
+                                <input type="text"
+                                  class="form-control"
+                                  formControlName="apellidoMaterno"
+                                  maxlength="30"
+                                  placeholder="Apellido Materno">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Promotor</label>
+                              <div class="col-sm-6">
+                                <select
+                                  class="form-control form-control-sm"
+                                  formControlName="promotor">
+                                    <option value="">Seleccione al promotor...</option>
+                                    <option *ngFor="let cProm of ctPromotor" [value]="cProm.catalogo_cve">
+                                      {{cProm.desc_45}}
+                                    </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Fecha de Nacimiento</label>
+                              <div class="col-sm-6">
+                                <input type="date"
+                                  class="form-control"
+                                  maxlength="10"
+                                  formControlName="fechaNacimiento" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">RFC</label>
+                              <div class="col-sm-6">
+                                <input type="text"
+                                  class="form-control"
+                                  formControlName="rfc"
+                                  placeholder="XXXX0000XXX00"
+                                  maxlength="13">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-1 col-lg-2 col-xl-2"></div>
+                          <div class="col-1 col-lg-2 col-xl-2"></div>
+                          <div class="col-2 col-lg-1 col-xl-1">
+                            <div *ngIf="showBtnValidar" class="form-group row">
+                              <button
+                                [disabled]="datosGeneralesFisicaForm.controls.sucursal.invalid ||
+                                  datosGeneralesFisicaForm.controls.primerNombre.invalid ||
+                                  datosGeneralesFisicaForm.controls.segundoNombre.invalid ||
+                                  datosGeneralesFisicaForm.controls.apellidoPaterno.invalid ||
+                                  datosGeneralesFisicaForm.controls.apellidoMaterno.invalid ||
+                                  datosGeneralesFisicaForm.controls.promotor.invalid ||
+                                  datosGeneralesFisicaForm.controls.fechaNacimiento.invalid ||
+                                  datosGeneralesFisicaForm.controls.rfc.invalid"
+                                data-toggle="modal"
+                                data-target="#largesizemodal"
+                                (click)="validarDatosGenerales()"
+                                type="submit"
+                                class="btn btn-light  btn-block">Validar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                </div>
+                <div *ngIf="showEspecificosFisica" class="row">
+                  <div class="col-12 col-lg-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h6 class="page-title">Datos Especificos</h6>
+                        <hr>
+                        <div class="row">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Sexo </label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm"
+                                  formControlName="sexo">
+                                  <option value="">Seleccione el tipo de sexo ...</option>
+                                  <option value="h">Hombre</option>
+                                  <option value="m">Mujer</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Estado Civil </label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm"
+                                  formControlName="estadoCivil">
+                                  <option value="">Seleccione el estado civil ...</option>
+                                  <option value="1">Casado (Sociedad Conyuge)</option>
+                                  <option value="2">Casado (Separación de Bienes)</option>
+                                  <option value="3">Soltero</option>
+                                  <option value="4">Viudo</option>
+                                  <option value="5">Union Libre</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">CURP </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text"
+                                  class="form-control"
+                                  placeholder="XXXX999999XXX99999"
+                                  formControlName="curp"
+                                  maxlength="18">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                <div class="input-group-append"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Tipo Identificación </label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm"
+                                  formControlName="tipoIdentificacion">
+                                  <option value="">Seleccione el tipo identificación ...</option>
+                                  <option value="1">Credencial para Votar</option>
+                                  <option value="2">Pasaporte Nacional</option>
+                                  <option value="3">Cédula Profesional</option>
+                                  <option value="4">Cartilla Servicio Militar</option>
+                                  <option value="5">Cartilla de Identificación Militar</option>
+                                  <option value="6">Tarjeta de Identidad Militar</option>
+                                  <option value="7">Tarj. Afili. Inst. Nac. Pers. Mayore</option>
+                                  <option value="8">Credencial/Carnet del Seguro Social</option>
+                                  <option value="9">Licencia de Conductor</option>
+                                  <option value="10">Certificado de Matricula Consular</option>
+                                  <option value="11">Cred. Emitida por entidad Fed/Estat</option>
+                                  <option value="12">Pasaporte Emitido por otro Pais</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Número Identificación </label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text"
+                                  class="form-control"
+                                  placeholder="Número Identificación"
+                                  formControlName="numeroIdentificacion"
+                                  maxlength="20">
+                                <div class="input-group-append"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Listas Negras</label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text"
+                                  class="form-control"
+                                  placeholder="Buscar Listas Negras"
+                                  formControlName="listaNegra"
+                                  maxlength="30">
+                                <div class="input-group-append">
+                                  <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-success">Profesión o Actividad</label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm"
+                                  formControlName="profesion">
+                                  <option value="">Seleccione la Actividad ...</option>
+                                  <option value="1">Asalariado</option>
+                                  <option value="2">Inversionista</option>
+                                  <option value="3">Por Rentas</option>
+                                  <option value="4">Comisionista</option>
+                                  <option value="5">Servicios Profesionales</option>
+                                  <option value="6">Negocio Propio</option>
+                                  <option value="7">Económia Informal</option>
+                                  <option value="8">Otro</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Nacionalidad </label>
+                              <div class="col-sm-6">
+                                <select class="form-control form-control-sm"
+                                  formControlName="nacionalidad">
+                                  <option value="">Seleccione la nacionalidad ...</option>
+                                  <option value="1">México</option>
+                                  <option value="2">USA</option>
+                                  <option value="3">China</option>
+                                  <option value="4">Puerto Rico</option>
+                                  <option value="5">Japon</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Email Personal</label>
+                              <div class="col-sm-6 input-group">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder=" nombre@micorreo.com"
+                                  formControlName="emailPersonal"
+                                  maxlength="80">
+                                <div class="input-group-append"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label">Email Empresa </label>
+                              <div class="col-sm-6 input-group">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder=" nombre@micorreo.com"
+                                  formControlName="emailEmpresa"
+                                  maxlength="80">
+                                <div class="input-group-append"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Parte Relacionada </label>
+                              <div class="col-sm-6">
+                                <select
+                                  class="form-control form-control-sm"
+                                  formControlName="parteRelacionada">
+                                  <option *ngFor="let tRel of ctTiprel" [value]="tRel.catalogo_cve">
+                                    {{tRel.desc_45}}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-success">Grupo de Vinculo al Consejo </label>
+                              <div class="col-sm-6 input-group">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="Nombre del Grupo"
+                                  formControlName="grupoVinculoConsejo"
+                                  maxlength="10">
+                                <div class="input-group-append"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-success">Grupo de Riesgo Comun </label>
+                              <div class="col-sm-6">
+                                <select
+                                  class="form-control form-control-sm"
+                                  formControlName="grupoRiesgoComun">
+                                  <option value="">Seleccione al promotor ...</option>
+                                  <option value="1">Sin Grupo</option>
+                                  <option value="1">B</option>
+                                  <option value="1">C</option>
+                                  <option value="1">D</option>
+                                  <option value="1">E</option>
+                                  <option value="1">F </option>
+                                  <option value="1">G</option>
+                                  <option value="1">H</option>
+                                  <option value="1">I</option>
+                                  <option value="1">J </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-1 col-lg-2 col-xl-2"></div>
+                          <div class="col-1 col-lg-2 col-xl-2"></div>
+                          <div class="col-2 col-lg-2 col-xl-2">
+                            <button type="submit"
+                              class="btn btn-light btn-block"
+                              [disabled]="disBtnDatosGeneralesFisica"
+                              (click)="cancelar()">Cancelar</button>
+                          </div>
+                          <div class="col-2 col-lg-2 col-xl-2">
+                            <button type="submit"
+                              [disabled]="disBtnDatosGeneralesFisica || datosGeneralesFisicaForm.invalid"
+                              class="btn btn-light  btn-block"
+                              data-toggle="modal"
+                              data-target="#largesizemodal1"
+                              (click)="guardaGeneral()">Guardar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
 
               <button
                 class="btn btn-sm btn-light"
@@ -501,7 +882,7 @@
                               <label class="col-sm-5 col-form-label">País</label>
                               <div class="col-sm-6">
                                 <select class="form-control form-control-sm" formControlName="Pais">
-                                  <option value="MX" selected>MX México</option>
+                                  <option value="MX" selected="selected">MX México</option>
                                 </select>
                               </div>
                             </div>
@@ -608,10 +989,8 @@
                             <button *ngIf="!isCollapsed8"
                               class="btn btn-light btn-block"
                               (click)="cancelarActualizacion('domicilio')">Cancelar</button>
-                              <!-- cancelarDomicilioTest() -->
                           </div>
 
-                          <!-- Botones de guardar -->
                           <div *ngIf="!isCollapsed8" class="col-1 col-lg-1 col-xl-2">
                             <button class="btn btn-light btn-block"
                               data-toggle="modal"
@@ -766,10 +1145,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-1 col-lg-4 col-xl-4">
-                        </div>
-                        <div  class="col-1 col-lg-4 col-xl-4">
-                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4"></div>
+                        <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
                             [disabled]="disBtnInsertActivEconom"
@@ -786,8 +1163,7 @@
                             data-target="#largesizemodal"
                             type="submit"
                             [disabled]="!actividadEconomicaForm.valid"
-                            (click)="guardarActividadEconomica()"
-                          >Guardar</button>
+                            (click)="guardarActividadEconomica()">Guardar</button>
                           </div>
                         </div>
                      </form>
@@ -801,7 +1177,7 @@
                   </div>
                   <div class="card" *ngIf="actividadEconomicaList.length">
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                      <thead >
+                      <thead>
                       <th>Numero Cliente</th>
                       <th>Actividad Economica</th>
                       <th>Actividad Detallada</th>
@@ -903,10 +1279,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-1 col-lg-4 col-xl-4">
-                        </div>
-                        <div  class="col-1 col-lg-4 col-xl-4">
-                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4"></div>
+                        <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
                             [disabled]="disBtnInsertRefPer"
@@ -927,8 +1301,7 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="referenciasPersonalesList.length">
-                    <div  class="col-6 col-lg-6 col-xl-6">
-                    </div>
+                    <div  class="col-6 col-lg-6 col-xl-6"></div>
                     <div  class="col-4 col-lg-4 col-xl-4">
                       <label>Listado de Referencias Personales</label>
                     </div>
@@ -1025,10 +1398,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-1 col-lg-4 col-xl-4">
-                        </div>
-                        <div  class="col-1 col-lg-4 col-xl-4">
-                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4"></div>
+                        <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
                             [disabled]="disBtnInsertRefCom"
@@ -1049,8 +1420,7 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="referenciasComercialesList.length">
-                    <div  class="col-6 col-lg-6 col-xl-6">
-                    </div>
+                    <div  class="col-6 col-lg-6 col-xl-6"></div>
                     <div  class="col-4 col-lg-4 col-xl-4">
                       <label>Listado de Referencias Comerciales</label>
                     </div>
@@ -1121,8 +1491,7 @@
                                 class="form-control"
                                 formControlName="InstitucionRefBan"
                                 maxlength="120">
-                              <div class="input-group-append">
-                              </div>
+                              <div class="input-group-append"></div>
                             </div>
                           </div>
                         </div>
@@ -1164,8 +1533,7 @@
                             </div>
                           </div>
                         </div>
-                        <div  class="col-1 col-lg-4 col-xl-4">
-                        </div>
+                        <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
                             [disabled]="disBtnInsertRefBan"
@@ -1365,10 +1733,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-1 col-lg-4 col-xl-4">
-                        </div>
-                        <div  class="col-1 col-lg-4 col-xl-4">
-                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4"></div>
+                        <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
                             [disabled]="disBtnInsertAcc"
@@ -1390,8 +1756,7 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="accionesList.length">
-                      <div  class="col-6 col-lg-6 col-xl-6">
-                      </div>
+                      <div  class="col-6 col-lg-6 col-xl-6"></div>
                     <div  class="col-4 col-lg-4 col-xl-4">
                       <label>Listado de Acciones</label>
                     </div>
@@ -1417,8 +1782,6 @@
                         <td>{{acc.ParteSocialActual}}</td>
                         <td>{{acc.CostoAcciones}}</td>
                         <td>{{acc.FormaPagoAcciones}}</td>
-                        <!--<td>{{acc.RetirablesA}}</td>
-                        <td>{{acc.RetirablesB}}</td>-->
                         <td>{{acc.TotalAcciones}}</td>
 
                         <td>
@@ -1498,8 +1861,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-1 col-lg-4 col-xl-4">
-                        </div>
+                        <div class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
                             [disabled]="disBtnInsertCueBan"
@@ -1521,8 +1883,7 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="cuentasBancariasList.length">
-                    <div  class="col-6 col-lg-6 col-xl-6">
-                    </div>
+                    <div  class="col-6 col-lg-6 col-xl-6"></div>
                     <div  class="col-4 col-lg-4 col-xl-4">
                       <label>Listado de Cuentas Bancarias</label>
                     </div>
@@ -1639,8 +2000,7 @@
                     </div>
                   </div>
                   <div class="row" *ngIf="partesRelacionadasList.length">
-                    <div  class="col-6 col-lg-6 col-xl-6">
-                    </div>
+                    <div  class="col-6 col-lg-6 col-xl-6"></div>
                     <div  class="col-4 col-lg-4 col-xl-4">
                       <label>Listado de Parte Relacionada</label>
                     </div>
@@ -1761,8 +2121,7 @@
                 </div>
               </div>
               <div class="row" *ngIf="grupoSocioeconomicoList.length">
-                <div  class="col-6 col-lg-6 col-xl-6">
-                </div>
+                <div  class="col-6 col-lg-6 col-xl-6"></div>
                 <div  class="col-4 col-lg-4 col-xl-4">
                   <label>Listado de Grupo Socieconimico</label>
                 </div>
@@ -1981,7 +2340,6 @@
                           </div>
                         </div>
 
-                        <!-- Botones de guardar -->
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button type="submit" class="btn btn-light  btn-block" (click)= "guardarDocumento()">Guardar</button>
                         </div>
@@ -1996,15 +2354,14 @@
                 <table class="table">
                   <thead>
                   <tr>
-                    <!--<th scope="col">#</th>-->
                     <th scope="col">Tipo</th>
                     <th scope="col">Fecha Alta</th>
+                    <th> </th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let doc of listadoDocumentos">
                     <th scope="row">{{doc.descCorta}}</th>
-                    <!--<td>{{doc.tipoDocumento}}</td>-->
                     <td>{{doc.fechaAlta}}</td>
                     <!--
                       <td>
@@ -2014,6 +2371,17 @@
                         <span *ngIf="doc.status" class="badge badge-success m-1">Vigente</span>
                       </a>
                     </td>-->
+                    <td>
+                      <a href="{{doc.nombreDocumento}}" target="_blank"
+                        class="btn btn-sm btn-info text-white">
+                          <i class="fa fa-pencil"></i>
+                      </a>
+                      <a data-toggle="modal" data-target="#largesizemodal"
+                        class="btn btn-sm btn-danger text-white ml-1"
+                        (click)= "borrarDocumento(doc)">
+                          <i class="fa fa-trash"></i>
+                      </a>
+                    </td>
                   </tr>
                   <!--
                   <tr>

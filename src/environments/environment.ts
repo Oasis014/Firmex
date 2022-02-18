@@ -53,7 +53,8 @@ export const environment = {
       catalogoCodPostal: `${host}CatalogoCodPostal.php`,
       catPromotor: `${host}CatalogoPromotor.php`,
       catalogos: `${host}catalogos.php`,
-    }
+    },
+    archivos: `${host}documentacion/user_`,
   }
 };
 

@@ -49,7 +49,7 @@ export class DatosGenerales {
     this.ClavePromotor = '';
     this.EstatusCliente = '';
     this.FechaAlta = '';
-    this.PersonalidadJuridica = "0";
+    this.PersonalidadJuridica = "01";
     this.RFC = '';
     this.Nacionalidad = '';
     this.EmailPersonal = '';
@@ -87,22 +87,25 @@ export class DatosGenerales {
     }
   }
 
-  setForm1(obj: any): void {
-    /*let params = {
-      'Sucursal'             : values.sucursal,
-      'ApellidoPaterno'      : '',
-      'ApellidoMaterno'      : '',
-      'PrimerNombre'         : '',
-      'SegundoNombre'        : '',
-      'RazonSocial'          : values.razonSocial,
-      'PersonalidadJuridica' : '0',
-      'RFC'                  : values.rfc,
-    }*/
+  setFormMoral(obj: any): void {
     this.Sucursal = obj.sucursal;
     this.RazonSocial = obj.razonSocial;
     this.RFC = obj.rfc;
     this.FechaConstitucion = obj.fechaConstitucion;
     this.ClavePromotor = obj.promotor;
+  }
+
+  setFormFisica(obj: any): void {
+    this.Id = obj.numeroCliente;
+    this.EstatusCliente = obj.estatusCliente;
+    this.Sucursal = obj.sucursal;
+    this.PrimerNombre = obj.primerNombre;
+    this.SegundoNombre = obj.segundoNombre;
+    this.ApellidoPaterno = obj.apellidoPaterno;
+    this.ApellidoMaterno = obj.apellidoMaterno;
+    this.ClavePromotor = obj.promotor;
+    this.FechaNacimiento = obj.fechaNacimiento;
+    this.RFC = obj.rfc;
   }
 
   setDatosGenerales(obj: any): void {
@@ -120,6 +123,26 @@ export class DatosGenerales {
     this.Celular = obj.celular;
     this.RedSocial1 = obj.redSocial1;
     this.RedSocial2 = obj.redSocial2;
+  }
+
+  setDatosGeneralesFisica(obj: any): any {
+
+  }
+
+  setFisica(): void {
+    this.PersonalidadJuridica = "02";
+    this.FechaConstitucion = '1970-01-01';
+    const date = new Date();
+    this.FechaAlta = date.toISOString().substring(0, 10);
+    this.EstatusCliente = "0";
+  }
+
+  setMoral(): void {
+    this.PersonalidadJuridica = "01";
+    this.FechaNacimiento = '1970-01-01';
+    const date = new Date();
+    this.FechaAlta = date.toISOString().substring(0, 10);
+    this.EstatusCliente = "0";
   }
 
   setId(id: number): void {
