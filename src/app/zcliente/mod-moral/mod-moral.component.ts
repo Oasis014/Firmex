@@ -60,10 +60,10 @@ export class ModMoralComponent implements OnInit { // 717
   active2: any;
   ban: string = '';
 
-  disBtnInsertActivEconom = false;
-  disBtnInsertRefPer = false;
-  disBtnInsertRefCom = false;
-  disBtnInsertRefBan = false;
+  actividadEconomicaDisBtnInsert = false;
+  referenciasPersonalesDisBtnInsert = false;
+  referenciasComercialesDisBtnInsert = false;
+  referenciasBancariasDisBtnInsert = false;
 
   disBtnInsertAcc = false;
   disBtnInsertCueBan = false;
@@ -553,6 +553,8 @@ export class ModMoralComponent implements OnInit { // 717
       this.cMpio = [];
       this.cColonia = [];
       this.cCP = [];
+    } else if ('actividadEconomica' == seccion ) {
+      
     }
   }
 
@@ -657,10 +659,15 @@ export class ModMoralComponent implements OnInit { // 717
   /********************
    * METODOS ACTIVIDAD Y REFERENCIA
    * ********************************/
-  insertActividadEconomica() {
+  btnInsert(seccion): void {
+    this[seccion+'Form'].enable();
+    this[seccion+'disBtnInsert'] = true;
+  }
+
+  /*insertActividadEconomica() {
     this.actividadEconomicaForm.enable();
     this.disBtnInsertActivEconom = true;
-  }
+  }*/
 
   guardarActividadEconomica() {
     let params = this.actividadEconomicaForm.value;
@@ -673,7 +680,7 @@ export class ModMoralComponent implements OnInit { // 717
         this.actividadEconomicaForm.reset();
         this.actividadEconomicaForm.disable();
         this.obtenerListadoActividadEconomica();
-        this.disBtnInsertActivEconom = false;
+        this.actividadEconomicaDisBtnInsert = false;
     });
   }
 
@@ -687,10 +694,10 @@ export class ModMoralComponent implements OnInit { // 717
 
   // -------------------------------------------------------------------------
 
-  insertaReferenciaPersonal() {
+  /* insertaReferenciaPersonal() {
     this.referenciasPersonalesForm.enable();
     this.disBtnInsertRefPer = true;
-  }
+  } */
 
   guardaReferenciasPersonales() {
     let form = this.referenciasPersonalesForm.value;
@@ -705,7 +712,7 @@ export class ModMoralComponent implements OnInit { // 717
         this.referenciasPersonalesForm.reset();
         this.referenciasPersonalesForm.disable();
         this.obtenerReferenciasPersonales();
-        this.disBtnInsertRefPer = false;
+        this.referenciasPersonalesDisBtnInsert = false;
     });
   }
 
@@ -719,10 +726,10 @@ export class ModMoralComponent implements OnInit { // 717
 
   // -------------------------------------------------------------------------
 
-  insertaReferenciasComerciales() {
+  /* insertaReferenciasComerciales() {
     this.referenciasComercialesForm.enable();
     this.disBtnInsertRefCom = true;
-  }
+  } */
 
   guardarReferenciasComerciales() {
     let form = this.referenciasComercialesForm.value;
@@ -737,7 +744,7 @@ export class ModMoralComponent implements OnInit { // 717
         this.referenciasComercialesForm.reset();
         this.referenciasComercialesForm.disable();
         this.obtenerReferenciasComerciales();
-        this.disBtnInsertRefCom = false;
+        this.referenciasComercialesDisBtnInsert = false;
       });
   }
 
@@ -750,10 +757,10 @@ export class ModMoralComponent implements OnInit { // 717
 
   // -------------------------------------------------------------------------
 
-  insertaReferenciasBancarias() {
+  /* insertaReferenciasBancarias() {
     this.referenciasBancariasForm.enable();
     this.disBtnInsertRefBan = true;
-  }
+  } */
 
   guardarReferenciasBancarias() {
     let refBan = this.referenciasBancariasForm.value;
@@ -768,7 +775,7 @@ export class ModMoralComponent implements OnInit { // 717
         this.referenciasBancariasForm.reset();
         this.referenciasBancariasForm.disable();
         this.obtenerReferenciasBancarias();
-        this.disBtnInsertRefBan = false;
+        this.referenciasBancariasDisBtnInsert = false;
       });
   }
 

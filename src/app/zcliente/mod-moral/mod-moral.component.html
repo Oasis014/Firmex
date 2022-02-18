@@ -1179,14 +1179,14 @@
                         <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="disBtnInsertActivEconom"
-                            (click)="insertActividadEconomica()"
+                            [disabled]="actividadEconomicaDisBtnInsert"
+                            (click)="btnInsert('actividadEconomica')"
                             type="submit"
                             class="btn btn-light  btn-block">
                               Insertar
                           </button>
                         </div>
-                        <div *ngIf="disBtnInsertActivEconom" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="actividadEconomicaDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             class="btn btn-light  btn-block"
                             data-toggle="modal"
@@ -1318,12 +1318,12 @@
                         <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="disBtnInsertRefPer"
-                            (click)="insertaReferenciaPersonal()"
+                            [disabled]="referenciasPersonalesDisBtnInsert"
+                            (click)="btnInsert('referenciasPersonales')"
                             type="submit"
                             class="btn btn-light btn-block">Insertar</button>
                         </div>
-                        <div *ngIf="disBtnInsertRefPer" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="referenciasPersonalesDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
@@ -1437,12 +1437,12 @@
                         <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="disBtnInsertRefCom"
-                            (click)="insertaReferenciasComerciales()"
+                            [disabled]="referenciasComercialesDisBtnInsert"
+                            (click)="btnInsert('referenciasComerciales')"
                             type="submit"
                             class="btn btn-light btn-block">Insertar</button>
                         </div>
-                        <div *ngIf="disBtnInsertRefCom" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="referenciasComercialesDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
@@ -1571,12 +1571,12 @@
                         <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="disBtnInsertRefBan"
-                            (click)="insertaReferenciasBancarias()"
+                            [disabled]="referenciasBancariasDisBtnInsert"
+                            (click)="btnInsert('referenciasBancarias')"
                             type="submit"
                             class="btn btn-light btn-block" >Insertar</button>
                         </div>
-                        <div *ngIf="disBtnInsertRefBan" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="referenciasBancariasDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             data-toggle="modal"
                             data-target="#largesizemodal"
