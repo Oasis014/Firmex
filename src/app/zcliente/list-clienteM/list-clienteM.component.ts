@@ -2,7 +2,6 @@ import { Component, ViewChild, OnInit  } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ClienteService } from '../cliente.service';
 import { PipeClienteComponent } from '../list-cliente/filter-pipe';
-
 @Component({
     selector: 'app-listclienteM',
     templateUrl: './list-clienteM.component.html',
@@ -29,7 +28,7 @@ obtenerListado() { this.clienteService.getListMoral().subscribe(result => this.l
         
     }
 
-   
+  
     onReadOnly() {
 
      }

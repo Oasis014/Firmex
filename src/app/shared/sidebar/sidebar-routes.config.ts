@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
         {
             path: '', title: 'Solicitudes', icon: 'fa fa-money', class: 'sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
                 { path: '/zlcredito/list-revol', title: 'Linea de Credito', icon: 'zmdi zmdi-dot-circle-alt', class: 'sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
-                  {  path: '/zlcredito/list-revol', title: 'Captura', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
+                  {  path: 'javascript:;', title: 'Captura', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
                   {  path: '/zlcredito/list-revol', title: 'Terminada', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
                   {  path: '/zlcredito/list-revol', title: 'Aperturada', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
                   {  path: '/zlcredito/list-revol', title: 'Cancelada', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []}

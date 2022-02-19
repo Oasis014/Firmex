@@ -10,7 +10,7 @@ import { Domicilio } from '../shared/models/domicilio';
 })
 export class ClienteService {
 
-  private readonly url = 'http://firmex-back.local/';
+  private readonly url = 'http://127.0.0.1/insert/';
   private readonly catalogosUrl = environment.api.catalogos;
   private readonly clienteUrl = environment.api.cliente;
 
