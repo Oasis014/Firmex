@@ -1133,7 +1133,7 @@ export class ModMoralComponent implements OnInit { // 717
 
     let params = {
       userId: this.general.Id,
-      tipoId: doc.tipoDocumento,
+      consecutivoId: doc.Consecutivo,
       nomDoc: doc.nombreDocumento
     };
 
