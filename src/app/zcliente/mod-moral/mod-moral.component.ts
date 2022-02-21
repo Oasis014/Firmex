@@ -9,6 +9,8 @@ import { ResponseSP } from 'src/app/shared/models/responseSP';
 import { Domicilio } from 'src/app/shared/models/domicilio';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { confirmCancelButton, deletedConfirmed } from 'src/app/shared/data/sweet-alerts';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mod-moral',
@@ -28,6 +30,20 @@ export class ModMoralComponent implements OnInit { // 717
     private readonly clienteService: ClienteService,
     private readonly formBuilder: FormBuilder
   ) { }
+
+  swalProps = {
+    title: '¿Seguro desea eliminar el registro?',
+    text: "Esta acción no podrá revertise.",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#0CC27E',
+    cancelButtonColor: '#FF586B',
+    confirmButtonText: 'Eliminar',
+    cancelButtonText: 'Cancelar',
+    confirmButtonClass: 'btn btn-success btn-raised mr-5',
+    cancelButtonClass: 'btn btn-danger btn-raised',
+    buttonsStyling: false
+  };
 
   datosGeneralesForm: FormGroup;
   datosGeneralesFisicaForm: FormGroup;
@@ -60,21 +76,40 @@ export class ModMoralComponent implements OnInit { // 717
   active2: any;
   ban: string = '';
 
-  actividadEconomicaDisBtnInsert = false;
-  referenciasPersonalesDisBtnInsert = false;
-  referenciasComercialesDisBtnInsert = false;
-  referenciasBancariasDisBtnInsert = false;
+  domicilioDisBtnInsert = true; // boton guardar en seccion "domicilio"
 
-  disBtnInsertAcc = false;
-  disBtnInsertCueBan = false;
-  disBtnInsertParRel = false;
-  disBtnInsertGruSoc = false;
-  disBtnInsertGruRies = false;
+  actividadEconomicaDisBtnInsert = true;
+  referenciasPersonalesDisBtnInsert = true;
+  referenciasComercialesDisBtnInsert = true;
+  referenciasBancariasDisBtnInsert = true;
+
+  accionesDisBtnInsert = true;
+  cuentasBancariasDisBtnInsert = true;
+  partesRelacionadasDisBtnInsert = true;
+  grupoSocioeconomicoDisBtnInsert = true;
+  grupoRiesgoComunDisBtnInsert = true;
 
   disBtnDatosGeneralesMoral = false;
   disBtnDatosGeneralesFisica = false;
 
   domicilioBtnText = 'Guardar';
+  actividadEconomicaBtnText = 'Guardar';
+  referenciasPersonalesBtnText = 'Guardar';
+  referenciasComercialesBtnText = 'Guardar';
+  referenciasBancariasBtnText = 'Guardar';
+  accionesBtnText = 'Guardar';
+  cuentasBancariasBtnText = 'Guardar';
+  partesRelacionadasBtnText = 'Guardar';
+  grupoSocioeconomicoBtnText = 'Guardar';
+  grupoRiesgoComunBtnText = 'Guardar';
+
+  referenciasPersonalesSelected: any;
+  referenciasComercialesSelected: any;
+  referenciasBancariasSelected: any;
+
+  referenciasPersonalesUpdate = false;
+  referenciasComercialesUpdate = false;
+  referenciasBancariasUpdate = false;
 
   // Objetos Ocultos Cliente
   isCollapsed = false;
@@ -83,7 +118,6 @@ export class ModMoralComponent implements OnInit { // 717
   isCollapsed5 = true;
   isCollapsed6 = true;
   isCollapsed7 = false;
-  isCollapsed8 = true; // boton guardar en seccion "domicilio"
   showEspecificosMoral = false;
   showEspecificosFisica = false;
   showBtnValidar = true;
@@ -547,14 +581,57 @@ export class ModMoralComponent implements OnInit { // 717
   cancelarActualizacion(seccion: string): void {
     if ( 'domicilio' == seccion ) {
       this.domicilioBtnText = 'Guardar';
-      this.isCollapsed8 = true;
+      this.domicilioDisBtnInsert = true;
       this.domicilioForm.reset();
       this.domicilioForm.disable();
       this.cMpio = [];
       this.cColonia = [];
       this.cCP = [];
-    } else if ('actividadEconomica' == seccion ) {
-      
+    } else {
+      this[seccion+'BtnText'] = 'Guardar';
+      this[seccion+'DisBtnInsert'] = true;
+      this[seccion+'Form'].reset();
+      this[seccion+'Form'].disable();
+
+      if ( 'undefined' !== typeof(this[seccion+'Update'])) {
+        this[seccion+'Update'] = false;
+      }
+    }
+  }
+
+  btnInsert(seccion: string): void {
+    this[seccion+'Form'].enable();
+    this[seccion+'DisBtnInsert'] = false;
+  }
+
+  confirmarBorrarElemento(obj: any, funcName: string): void {
+    swal({
+      title: '¿Seguro desea eliminar el registro?',
+      text: "Esta acción no podrá revertise.",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0CC27E',
+      cancelButtonColor: '#FF586B',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonClass: 'btn btn-success btn-raised mr-5',
+      cancelButtonClass: 'btn btn-danger btn-raised',
+      buttonsStyling: false
+    }).then((result) => {
+      console.log(result);
+      if ( 'undefined' !== typeof(result['value']) && result['value'] == true ) {
+        this[funcName](obj);
+      }
+    })
+
+  }
+
+  prepareEdit(seccion: string): void {
+    this[seccion+'Form'].enable();
+    this[seccion+'BtnText'] = 'Actualizar';
+    this[seccion+'DisBtnInsert'] = false;
+    if ( 'undefined' !== typeof(this[seccion+'Update'])) {
+      this[seccion+'Update'] = true;
     }
   }
 
@@ -574,9 +651,7 @@ export class ModMoralComponent implements OnInit { // 717
     this.clienteService.consultar(params).subscribe(
       (result: any) => {
 
-        this.domicilioForm.enable();
-        this.domicilioBtnText = 'Actualizar';
-        this.isCollapsed8 = false;
+        this.prepareEdit('domicilio');
 
         this.isPatchLocation = true;
         this.locationToUpdate = result[0];
@@ -604,21 +679,12 @@ export class ModMoralComponent implements OnInit { // 717
       (result: any) => {
         console.log(result);
         this.obtenerDomicilio();
+        deletedConfirmed();
       }
     );
 
   }
 
-  insertaDomicilio() {
-    this.domicilioForm.enable();
-    this.isCollapsed8 = false;
-  }
-
-  cancelarDomicilioTest() {
-    console.log(this.domicilioForm.valid);
-    console.log(this.domicilioForm.value);
-    this.updateDomicilio = false;
-  }
 
   guardaDomicilio() {
     this.domicilio.updateFromForm(this.domicilioForm.value);
@@ -634,7 +700,7 @@ export class ModMoralComponent implements OnInit { // 717
 
         this.domicilioForm.reset();
         this.domicilioForm.disable();
-        this.isCollapsed8 = true;
+        this.domicilioDisBtnInsert = true;
         this.domicilioBtnText = 'Guardar';
         this.updateDomicilio = false;
       }
@@ -659,15 +725,6 @@ export class ModMoralComponent implements OnInit { // 717
   /********************
    * METODOS ACTIVIDAD Y REFERENCIA
    * ********************************/
-  btnInsert(seccion): void {
-    this[seccion+'Form'].enable();
-    this[seccion+'disBtnInsert'] = true;
-  }
-
-  /*insertActividadEconomica() {
-    this.actividadEconomicaForm.enable();
-    this.disBtnInsertActivEconom = true;
-  }*/
 
   guardarActividadEconomica() {
     let params = this.actividadEconomicaForm.value;
@@ -677,10 +734,8 @@ export class ModMoralComponent implements OnInit { // 717
         console.log(result);
         this.responseSP = result;
 
-        this.actividadEconomicaForm.reset();
-        this.actividadEconomicaForm.disable();
         this.obtenerListadoActividadEconomica();
-        this.actividadEconomicaDisBtnInsert = false;
+        this.cancelarActualizacion('actividadEconomica');
     });
   }
 
@@ -692,28 +747,62 @@ export class ModMoralComponent implements OnInit { // 717
       });
   }
 
-  // -------------------------------------------------------------------------
+  consultarActividadEconomica(eco): void {
+    console.log(eco);
 
-  /* insertaReferenciaPersonal() {
-    this.referenciasPersonalesForm.enable();
-    this.disBtnInsertRefPer = true;
-  } */
+    this.prepareEdit('actividadEconomica');
+
+    this.actividadEconomicaForm.controls.ActividadEconomica.setValue(eco.ActividadEconomica);
+    this.actividadEconomicaForm.controls.ActividadDetallada.setValue(eco.ActividadDetallada);
+    this.actividadEconomicaForm.controls.IngresoMensual.setValue(eco.IngresoMensual);
+    this.actividadEconomicaForm.controls.OtroIngresoMensual.setValue(eco.OtroIngresoMensual);
+    this.actividadEconomicaForm.controls.GastosMensuales.setValue(eco.GastosMensuales);
+    this.actividadEconomicaForm.controls.FlujoEfectivo.setValue(eco.FlujoEfectivo);
+
+  }
+
+  borrarActividadEconomica(obj: any) {
+    console.log(obj);
+
+    this.clienteService.borrarActividadEconomica(obj).subscribe(
+      (result: any) => {
+        this.responseSP = result;
+        this.obtenerListadoActividadEconomica();
+      }
+    );
+
+  }
+
+  // -------------------------------------------------------------------------
 
   guardaReferenciasPersonales() {
     let form = this.referenciasPersonalesForm.value;
-    form.Id = this.general.Id;
-    form.Consecutivo = this.referenciasPersonalesList.length + 1;
 
-    this.clienteService.guardaReferenciaPersonal(form).subscribe(
-      (result: any) => {
-        console.log(result);
-        this.responseSP = result;
+    if ( !this.referenciasPersonalesUpdate ) {
+      console.log('guardar');
+      form.Id = this.general.Id;
 
-        this.referenciasPersonalesForm.reset();
-        this.referenciasPersonalesForm.disable();
-        this.obtenerReferenciasPersonales();
-        this.referenciasPersonalesDisBtnInsert = false;
-    });
+      this.clienteService.guardaReferenciaPersonal(form).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.responseSP = result;
+          this.obtenerReferenciasPersonales();
+          this.cancelarActualizacion('referenciasPersonales');
+      });
+    } else {
+      console.log('actualizar');
+      form.NumeroCliente = this.referenciasPersonalesSelected.NumeroCliente;
+      form.Consecutivo = this.referenciasPersonalesSelected.Consecutivo;
+
+      this.clienteService.actualizaReferenciaPersonal(form).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.responseSP = result;
+          this.obtenerReferenciasPersonales();
+          this.cancelarActualizacion('referenciasPersonales');
+      });
+    }
+
   }
 
   obtenerReferenciasPersonales() {
@@ -724,28 +813,62 @@ export class ModMoralComponent implements OnInit { // 717
     });
   }
 
-  // -------------------------------------------------------------------------
+  consultarReferenciaPersonal(obj): void {
+    console.log(obj);
+    this.referenciasPersonalesSelected = obj;
+    this.referenciasPersonalesUpdate = true;
+    this.prepareEdit('referenciasPersonales');
 
-  /* insertaReferenciasComerciales() {
-    this.referenciasComercialesForm.enable();
-    this.disBtnInsertRefCom = true;
-  } */
+    this.referenciasPersonalesForm.controls.NombreRefPer.setValue(obj.NombreRefPer);
+    this.referenciasPersonalesForm.controls.TipoRelacionRefPer.setValue(obj.TipoRelacionRefPer);
+    this.referenciasPersonalesForm.controls.TelefonoRefPer.setValue(obj.TelefonoRefPer);
+  }
 
-  guardarReferenciasComerciales() {
-    let form = this.referenciasComercialesForm.value;
-    form.Id = this.general.Id;
-    form.Consecutivo = this.referenciasComercialesList.length + 1;
-
-    this.clienteService.guardaReferenciaComercial(form).subscribe(
+  borrarReferenciaPersonal(obj: any): void {
+    let params = {
+      NumeroCliente: obj.NumeroCliente,
+      Consecutivo: obj.Consecutivo
+    };
+    this.clienteService.borrarReferenciaPersonal(params).subscribe(
       (result: any) => {
         console.log(result);
         this.responseSP = result;
+        this.obtenerReferenciasPersonales();
+      }
+    );
+  }
 
-        this.referenciasComercialesForm.reset();
-        this.referenciasComercialesForm.disable();
-        this.obtenerReferenciasComerciales();
-        this.referenciasComercialesDisBtnInsert = false;
+  // -------------------------------------------------------------------------
+
+  guardarReferenciasComerciales() {
+    let form = this.referenciasComercialesForm.value;
+
+    if ( !this.referenciasComercialesUpdate ) {
+      console.log('guardar');
+
+      form.Id = this.general.Id;
+
+      this.clienteService.guardaReferenciaComercial(form).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.responseSP = result;
+          this.obtenerReferenciasComerciales();
+          this.cancelarActualizacion('referenciasComerciales');
       });
+    } else {
+      console.log('actualizar');
+
+      form.NumeroCliente = this.referenciasComercialesSelected.NumeroCliente;
+      form.Consecutivo = this.referenciasComercialesSelected.Consecutivo;
+
+      this.clienteService.actualizaReferenciaComercial(form).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.responseSP = result;
+          this.obtenerReferenciasComerciales();
+          this.cancelarActualizacion('referenciasComerciales');
+      });
+    }
   }
 
   obtenerReferenciasComerciales() {
@@ -755,28 +878,62 @@ export class ModMoralComponent implements OnInit { // 717
     });
   }
 
-  // -------------------------------------------------------------------------
+  consultarReferenciaComercial(com: any): void {
+    console.log(com);
+    this.referenciasComercialesSelected = com;
+    this.referenciasComercialesUpdate = true;
+    this.prepareEdit('referenciasComerciales');
+    this.referenciasComercialesForm.controls.NombreRefCom.setValue(com.NombreRefcom);
+    this.referenciasComercialesForm.controls.LimiteCreditoRefCom.setValue(com.LimiteCreditoRefCom);
+    this.referenciasComercialesForm.controls.SaldoCuentaRefCom.setValue(com.SaldoCuentaRefCom);
+  }
 
-  /* insertaReferenciasBancarias() {
-    this.referenciasBancariasForm.enable();
-    this.disBtnInsertRefBan = true;
-  } */
-
-  guardarReferenciasBancarias() {
-    let refBan = this.referenciasBancariasForm.value;
-    refBan.Id = this.general.Id;
-    refBan.Consecutivo = this.referenciasBancariasList.length + 1;
-
-    this.clienteService.guardaReferenciaBancaria(refBan).subscribe(
+  borrarReferenciaComercial(com: any): void {
+    let params = {
+      NumeroCliente: com.NumeroCliente,
+      Consecutivo: com.Consecutivo
+    };
+    this.clienteService.borrarReferenciaComercial(params).subscribe(
       (result: any) => {
         console.log(result);
         this.responseSP = result;
+        this.obtenerReferenciasComerciales();
+      }
+    );
+  }
 
-        this.referenciasBancariasForm.reset();
-        this.referenciasBancariasForm.disable();
-        this.obtenerReferenciasBancarias();
-        this.referenciasBancariasDisBtnInsert = false;
-      });
+  // -------------------------------------------------------------------------
+
+  guardarReferenciasBancarias() {
+    let refBan = this.referenciasBancariasForm.value;
+
+    if ( !this.referenciasBancariasUpdate ) {
+      console.log('guardar');
+
+      refBan.Id = this.general.Id;
+
+      this.clienteService.guardaReferenciaBancaria(refBan).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.responseSP = result;
+          this.obtenerReferenciasBancarias();
+          this.cancelarActualizacion('referenciasBancarias');
+        });
+
+    } else {
+      console.log('actualizar');
+
+      refBan.NumeroCliente = this.referenciasBancariasSelected.NumeroCliente;
+      refBan.Consecutivo = this.referenciasBancariasSelected.Consecutivo;
+      this.clienteService.actualizaReferenciaBancaria(refBan).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.responseSP = result;
+          this.obtenerReferenciasBancarias();
+          this.cancelarActualizacion('referenciasBancarias');
+        });
+    }
+
   }
 
   obtenerReferenciasBancarias() {
@@ -786,16 +943,36 @@ export class ModMoralComponent implements OnInit { // 717
       });
   }
 
+  consultarReferenciaBancaria(ban: any): void {
+    console.log(ban);
+    this.referenciasBancariasSelected = ban;
+    this.referenciasBancariasUpdate = true;
+    this.prepareEdit('referenciasBancarias');
+    this.referenciasBancariasForm.controls.InstitucionRefBan.setValue(ban.InstitucionRefBan);
+    this.referenciasBancariasForm.controls.SaldoCuentaRefBan.setValue(ban.SaldoCuentaRefBan);
+    this.referenciasBancariasForm.controls.LimiteCreditoRefBan.setValue(ban.LimiteCreditoRefBan);
+    this.referenciasBancariasForm.controls.AntiguedadRefBan.setValue(ban.AntiguedadRefBan);
+  }
+
+  borrarReferenciaBancaria(ban: any): void {
+    let params = {
+      NumeroCliente: ban.NumeroCliente,
+      Consecutivo: ban.Consecutivo
+    };
+    this.clienteService.borrarReferenciaBancaria(params).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+        this.obtenerReferenciasBancarias();
+      }
+    );
+  }
+
   /* FIN ACTIVIDAD Y REFERENCIA*/
 
   /********************
    * METODOS CUENTAS BANCARIAS
    * ********************************/
-
-   insertAcciones() {
-    this.accionesForm.enable();
-    this.disBtnInsertAcc = true;
-   }
 
    guardarAcciones() {
      let form = this.accionesForm.value;
@@ -806,11 +983,8 @@ export class ModMoralComponent implements OnInit { // 717
       (result: any) => {
         console.log(result)
         this.responseSP = result;
-
-        this.accionesForm.reset();
-        this.accionesForm.disable();
         this.obtenerAcciones();
-        this.disBtnInsertAcc = false;
+        this.cancelarActualizacion('acciones');
       });
   }
 
@@ -823,11 +997,6 @@ export class ModMoralComponent implements OnInit { // 717
 
   // -------------------------------------------------------------------------
 
-  insertCuentasBancarias() {
-    this.cuentasBancariasForm.enable();
-    this.disBtnInsertCueBan = true;
-  }
-
   guardarCuentasBancarias() {
     let form = this.cuentasBancariasForm.value;
     form.NumeroCliente = this.general.Id;
@@ -836,11 +1005,8 @@ export class ModMoralComponent implements OnInit { // 717
     this.clienteService.agregarCuentaBancaria(form).subscribe(
       (result: any) => {
         this.responseSP = result;
-
-        this.cuentasBancariasForm.reset();
-        this.cuentasBancariasForm.disable();
         this.obtenerCuentasBancarias();
-        this.disBtnInsertAcc = false;
+        this.cancelarActualizacion('cuentasBancarias');
     });
   }
 
@@ -854,11 +1020,6 @@ export class ModMoralComponent implements OnInit { // 717
 
   // -------------------------------------------------------------------------
 
-  insertPartesRelacionadas() {
-    this.partesRelacionadasForm.enable();
-    this.disBtnInsertParRel = true;
-  }
-
   guardarPartesRelacionadas() {
     let form = this.partesRelacionadasForm.value;
     form.NumeroCliente = this.general.Id;
@@ -867,11 +1028,8 @@ export class ModMoralComponent implements OnInit { // 717
     this.clienteService.agregarParteRelacionada(form).subscribe(
       (result: any) => {
         this.responseSP = result;
-
-        this.partesRelacionadasForm.reset();
-        this.partesRelacionadasForm.disable();
         this.obtenerPartesRelacionadas();
-        this.disBtnInsertParRel = false;
+        this.cancelarActualizacion('partesRelacionadas');
     });
   }
 
@@ -886,11 +1044,6 @@ export class ModMoralComponent implements OnInit { // 717
 
   // -------------------------------------------------------------------------
 
-  insertGrupoSocioeconomico() {
-    this.grupoSocioeconomicoForm.enable();
-    this.disBtnInsertGruSoc = true;
-  }
-
   SocioEco() {
     let form = this.grupoSocioeconomicoForm.value;
     form.NumeroCliente = this.general.Id;
@@ -899,12 +1052,8 @@ export class ModMoralComponent implements OnInit { // 717
     this.clienteService.agregarGrupoSocioeconomico(form).subscribe(
       (result: ResponseSP[]) => {
         this.responseSP = result;
-
-        this.grupoSocioeconomicoForm.reset();
-        this.grupoSocioeconomicoForm.disable();
         this.obtenerSocioEco();
-        this.disBtnInsertGruSoc = false;
-
+        this.cancelarActualizacion('grupoSocioeconomico');
       }
     );
   }
@@ -919,11 +1068,6 @@ export class ModMoralComponent implements OnInit { // 717
 
   // -------------------------------------------------------------------------
 
-  insertRiesgoComun() {
-    this.grupoRiesgoComunForm.enable();
-    this.disBtnInsertGruRies = true;
-  }
-
   guardarRiesgoComun() {
     let form = this.grupoRiesgoComunForm.value;
     form.Id = this.general.Id;
@@ -932,12 +1076,8 @@ export class ModMoralComponent implements OnInit { // 717
       (result: any) => {
         console.log(result);
         this.responseSP = result;
-
-        this.grupoRiesgoComunForm.reset();
-        this.grupoRiesgoComunForm.disable();
         this.obtenerRiesgoComun();
-        this.disBtnInsertGruRies = false;
-
+        this.cancelarActualizacion('grupoRiesgoComun');
     });
   }
 

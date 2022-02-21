@@ -58,6 +58,22 @@ export class HttpService {
     );
   }
 
+  put(url: string, data: any, params = null): Observable<any> {
+    if ( null === params ) {
+      this.httpOptions.params = null;
+    } else {
+      let httpParams = new HttpParams();
+      for ( const item in params ) {
+        httpParams = httpParams.append(item, params[item]);
+      }
+      this.httpOptions.params = httpParams;
+    }
+
+    return this.httpClient.put<any>(url, data, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   postFile(url: string, data: any): Observable<any> {
     return this.httpClient.post<any>(url, data).pipe(
       catchError(this.handleError)

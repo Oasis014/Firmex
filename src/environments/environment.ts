@@ -8,6 +8,7 @@ export const environment = {
     cliente: {
       documentacion: `${host}documentacion.php`,
       generalValidar: `${host}GeneralValidar.php`,
+      generales: `${host}Generales.php`,
       domicilio:  `${host}Domicilio.php`,
       guardarDomicilio: `${host}Domicilio.php`,
       borrarDomicilio: `${host}DomicilioBorrar.php`,

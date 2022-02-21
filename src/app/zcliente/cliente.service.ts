@@ -26,7 +26,7 @@ export class ClienteService {
   }
 
   agregar(usuario: any) {
-    return this.http.post(`${this.url}Generales.php`, JSON.stringify(usuario));
+    return this.http.post(this.clienteUrl.generales, JSON.stringify(usuario));
   }
 
   /* Servicios Domicilio */
@@ -56,6 +56,10 @@ export class ClienteService {
     return this.http.post(`${this.url}Economica.php`, JSON.stringify(arreglo));
   }
 
+  borrarActividadEconomica(arreglob: any) {
+    return this.httpService.delete(this.clienteUrl.economicas, arreglob);
+  }
+
   getActiEco(userId: number|string) {
     return this.httpService.get(`${this.url}Economica.php`, {'userId': userId});
   }
@@ -65,8 +69,16 @@ export class ClienteService {
     return this.httpService.post(this.clienteUrl.personales, referencia);
   }
 
+  actualizaReferenciaPersonal(referencia: any): Observable<any> {
+    return this.httpService.put(this.clienteUrl.personales, referencia);
+  }
+
   getPersonales(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.personales, {'userId': id});
+  }
+
+  borrarReferenciaPersonal(params: {NumeroCliente: number, Consecutivo: number}): Observable<any> {
+    return this.httpService.delete(this.clienteUrl.personales, params);
   }
 
   /** seccion: ACTIVIDAD Y REFRENCIA ... Referencias Comerciales  */
@@ -74,8 +86,16 @@ export class ClienteService {
     return this.httpService.post(this.clienteUrl.comerciales, usuario);
   }
 
+  actualizaReferenciaComercial(usuario: any): Observable<any> {
+    return this.httpService.put(this.clienteUrl.comerciales, usuario);
+  }
+
   getComerciales(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.comerciales, {'userId': id});
+  }
+
+  borrarReferenciaComercial(params: {NumeroCliente: number, Consecutivo: number}): Observable<any> {
+    return this.httpService.delete(this.clienteUrl.comerciales, params);
   }
 
   /** seccion: ACTIVIDAD Y REFRENCIA ... Referencias BAncarias */
@@ -83,8 +103,16 @@ export class ClienteService {
     return this.httpService.post(this.clienteUrl.bancarias, usuario);
   }
 
+  actualizaReferenciaBancaria(usuario: any): Observable<any> {
+    return this.httpService.put(this.clienteUrl.bancarias, usuario);
+  }
+
   getBancarias(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.bancarias, {'userId': id});
+  }
+
+  borrarReferenciaBancaria(params: {NumeroCliente: number, Consecutivo: number}): Observable<any> {
+    return this.httpService.delete(this.clienteUrl.bancarias, params);
   }
 
 
@@ -253,10 +281,6 @@ export class ClienteService {
 
   retornodomb() {
     return this.http.get(this.clienteUrl.borrarDomicilio);
-  }
-
-  ecoborrar(arreglob: any) {
-    return this.http.post(`${this.url}ActividadEcoBorrar.php`, JSON.stringify(arreglob));
   }
 
   perborrar(arreglo2b: any) {
