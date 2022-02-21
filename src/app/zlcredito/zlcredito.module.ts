@@ -8,13 +8,9 @@ import { InversionRoutingModule } from './zlcredito-routing.module';
 import { GeneralModule } from "../general/general.module";
 // Listados
 import { ListRevolComponent } from './list-revol/list-revol.component';
-import { ListNorevComponent } from './list-norev/list-norev.component';
-// Datos Linea de Crédito
-import { QryCrediComponent } from './qry-credi/qry-credi.component';
+import { ListCrediComponent } from './list-credi/list-credi.component';
 // Alta Revolvente
 import { ModCrediComponent } from './mod-credi/mod-credi.component';
-// Datos Depositos o retiros
-import { QryNocrediComponent } from './qry-nocredi/qry-nocredi.component';
 // Depositos o retiros
 import { PipeClienteComponent } from './list-revol/filter-pipe';
 
@@ -22,11 +18,9 @@ import { PipeClienteComponent } from './list-revol/filter-pipe';
 @NgModule({
   declarations: [
     PipeClienteComponent,
-       ListNorevComponent,
+       ListCrediComponent,
        ListRevolComponent,
-       QryCrediComponent,
-       ModCrediComponent,
-       QryNocrediComponent
+       ModCrediComponent
 
 
   ],

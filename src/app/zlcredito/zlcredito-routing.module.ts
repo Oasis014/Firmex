@@ -3,14 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Listados
 import { ListRevolComponent } from './list-revol/list-revol.component';
-import { ListNorevComponent } from './list-norev/list-norev.component';
-// Datos Linea de Crédito
-import { QryCrediComponent } from './qry-credi/qry-credi.component';
+import { ListCrediComponent } from './list-credi/list-credi.component';
+
 // Alta Revolvente
 import { ModCrediComponent } from './mod-credi/mod-credi.component';
 // Datos Depositos o retiros
-import { QryNocrediComponent } from './qry-nocredi/qry-nocredi.component';
-// Depositos o retiros
+
 
 
 const routes: Routes = [
@@ -18,8 +16,8 @@ const routes: Routes = [
     path: '',
     children: [
 {
-        path: 'list-norev',
-        component: ListNorevComponent,
+        path: 'list-credi',
+        component: ListCrediComponent,
         data: {
           title: 'Cuenta Re-inversion'
         }
@@ -31,14 +29,6 @@ const routes: Routes = [
           title: 'Cuenta Re-inversion'
         }
       },
-
- {
-                 path: 'qry-credi',
-                 component: QryCrediComponent,
-                 data: {
-                   title: 'vista credito'
-                 }
-               },
  {
                   path: 'mod-credi',
                   component: ModCrediComponent,
@@ -46,16 +36,6 @@ const routes: Routes = [
                     title: 'vista credito'
                   }
                 },
-
-    {
-                    path: 'qry-nocredi',
-                    component: QryNocrediComponent,
-                    data: {
-                      title: 'vista no credito'
-                    }
-                  }
-
-
 
     ]
   }
