@@ -121,8 +121,16 @@ export class ClienteService {
     return this.httpService.post(this.clienteUrl.acciones, accion);
   }
 
+  actualizarAccion(accion: any): Observable<any> {
+    return this.httpService.put(this.clienteUrl.acciones, accion);
+  }
+
   getAcciones(id: number|string) {
     return this.httpService.get(this.clienteUrl.acciones, { userId: id });
+  }
+
+  borrarAccion(params: {NumeroCliente: number, Consecutivo: number}): Observable<any> {
+    return this.httpService.delete(this.clienteUrl.acciones, params);
   }
 
   /** seccion: CUENTAS BANCARIAS ... CUENTAS BANCARIAS */
@@ -130,8 +138,16 @@ export class ClienteService {
     return this.httpService.post(this.clienteUrl.cuentasBancarias, cuenta);
   }
 
+  actualizarCuentaBancaria(accion: any): Observable<any> {
+    return this.httpService.put(this.clienteUrl.cuentasBancarias, accion);
+  }
+
   getCuenta(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.cuentasBancarias, { userId: id});
+  }
+
+  borrarCuentaBancaria(params: {NumeroCliente: number, Consecutivo: number}): Observable<any> {
+    return this.httpService.delete(this.clienteUrl.cuentasBancarias, params);
   }
 
   /** seccion: CUENTAS BANCARIAS ... PARTES RELACIONADAS */
@@ -139,8 +155,16 @@ export class ClienteService {
     return this.httpService.post(this.clienteUrl.partesRelacionadas, parte);
   }
 
+  actualizarParteRelacionada(accion: any): Observable<any> {
+    return this.httpService.put(this.clienteUrl.partesRelacionadas, accion);
+  }
+
   getRelacional(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.partesRelacionadas, {userId: id});
+  }
+
+  borrarParteRelacionada(params: {NumeroCliente: number, Consecutivo: number}): Observable<any> {
+    return this.httpService.delete(this.clienteUrl.partesRelacionadas, params);
   }
 
   /** seccion: CUENTAS BANCARIAS ... GRUPO SOCIECONOMICO */
@@ -148,8 +172,16 @@ export class ClienteService {
     return this.httpService.post(this.clienteUrl.grupoSocioeconomico, grupo);
   }
 
+  actualizarGrupoSocioeconomico(accion: any): Observable<any> {
+    return this.httpService.put(this.clienteUrl.grupoSocioeconomico, accion);
+  }
+
   getSocioEco(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.grupoSocioeconomico, {userId: id});
+  }
+
+  borrarGrupoSocioeconomico(params: {NumeroCliente: number, Consecutivo: number}): Observable<any> {
+    return this.httpService.delete(this.clienteUrl.grupoSocioeconomico, params);
   }
 
   /** seccion: CUENTAS BANCARIAS ... GRUPO RIESGO COMUN */
@@ -157,8 +189,16 @@ export class ClienteService {
     return this.httpService.post(this.clienteUrl.grupoRiesgoComun, grupo);
   }
 
+  actualizarGrupoRiesgoComun(accion: any): Observable<any> {
+    return this.httpService.put(this.clienteUrl.grupoRiesgoComun, accion);
+  }
+
   getRiesgoComun(id: number|string): Observable<any> {
     return this.httpService.get(this.clienteUrl.grupoRiesgoComun, {userId: id});
+  }
+
+  borrarGrupoRiesgoComun(params: {NumeroCliente: number, Consecutivo: number}): Observable<any> {
+    return this.httpService.delete(this.clienteUrl.grupoRiesgoComun, params);
   }
 
 

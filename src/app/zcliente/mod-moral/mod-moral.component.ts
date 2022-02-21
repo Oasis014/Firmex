@@ -106,10 +106,20 @@ export class ModMoralComponent implements OnInit { // 717
   referenciasPersonalesSelected: any;
   referenciasComercialesSelected: any;
   referenciasBancariasSelected: any;
+  accionesSelected: any;
+  cuentasBancariasSelected: any;
+  partesRelacionadasSelected: any;
+  grupoSocioeconomicoSelected: any;
+  grupoRiesgoComunSelected: any;
 
   referenciasPersonalesUpdate = false;
   referenciasComercialesUpdate = false;
   referenciasBancariasUpdate = false;
+  accionesUpdate = false;
+  cuentasBancariasUpdate = false;
+  partesRelacionadasUpdate = false;
+  grupoSocioeconomicoUpdate = false;
+  grupoRiesgoComunUpdate = false;
 
   // Objetos Ocultos Cliente
   isCollapsed = false;
@@ -974,18 +984,31 @@ export class ModMoralComponent implements OnInit { // 717
    * METODOS CUENTAS BANCARIAS
    * ********************************/
 
-   guardarAcciones() {
-     let form = this.accionesForm.value;
-     form.NumeroCliente = this.general.Id;
-     form.Consecutivo = this.accionesList.length + 1;
+  guardarAcciones() {
+    let form = this.accionesForm.value;
 
-     this.clienteService.agregarAccion(form).subscribe(
-      (result: any) => {
-        console.log(result)
-        this.responseSP = result;
-        this.obtenerAcciones();
-        this.cancelarActualizacion('acciones');
+    if ( !this.referenciasPersonalesUpdate ) {
+      console.log('guardar');
+      form.NumeroCliente = this.general.Id;
+      this.clienteService.agregarAccion(form).subscribe(
+        (result: any) => {
+          console.log(result)
+          this.responseSP = result;
+          this.obtenerAcciones();
+          this.cancelarActualizacion('acciones');
       });
+    } else {
+      console.log('actualizar');
+      form.NumeroCliente = this.accionesSelected.NumeroCliente;
+      form.Consecutivo = this.accionesSelected.Consecutivo;
+      this.clienteService.actualizarAccion(form).subscribe(
+        (result: any) => {
+          console.log(result)
+          this.responseSP = result;
+          this.obtenerAcciones();
+          this.cancelarActualizacion('acciones');
+      });
+    }
   }
 
   obtenerAcciones() {
@@ -995,19 +1018,64 @@ export class ModMoralComponent implements OnInit { // 717
     });
   }
 
+  consultarAccion(acc: any): void {
+    console.log(acc);
+    this.accionesSelected = acc;
+    this.accionesUpdate = true;
+    this.prepareEdit('acciones');
+
+    this.accionesForm.controls.FechaCompra1aAccion.setValue(acc.FechaCompra1aAccion);
+    this.accionesForm.controls.ParteInicialSocial.setValue(acc.ParteInicialSocial);
+    this.accionesForm.controls.FechaPago.setValue(acc.FechaPago);
+    this.accionesForm.controls.ParteSocialActual.setValue(acc.ParteSocialActual);
+    this.accionesForm.controls.CostoAcciones.setValue(acc.CostoAcciones);
+    this.accionesForm.controls.FormaPagoAcciones.setValue(acc.FormaPagoAcciones);
+    this.accionesForm.controls.RetirablesA.setValue(acc.RetirablesA);
+    this.accionesForm.controls.RetirablesB.setValue(acc.RetirablesB);
+    this.accionesForm.controls.TotalAcciones.setValue(acc.TotalAcciones);
+
+  }
+
+  borrarAccion(acc: any): void {
+    console.log(acc);
+    let params = {
+      NumeroCliente: acc.NumeroCliente,
+      Consecutivo: acc.Consecutivo
+    };
+    this.clienteService.borrarAccion(params).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+        this.obtenerAcciones();
+      }
+    );
+  }
+
   // -------------------------------------------------------------------------
 
   guardarCuentasBancarias() {
     let form = this.cuentasBancariasForm.value;
-    form.NumeroCliente = this.general.Id;
-    form.Consecutivo = this.cuentasBancariasList.length + 1;
 
-    this.clienteService.agregarCuentaBancaria(form).subscribe(
-      (result: any) => {
-        this.responseSP = result;
-        this.obtenerCuentasBancarias();
-        this.cancelarActualizacion('cuentasBancarias');
-    });
+    if ( !this.cuentasBancariasUpdate ) {
+      console.log('guardar');
+      form.NumeroCliente = this.general.Id;
+      this.clienteService.agregarCuentaBancaria(form).subscribe(
+        (result: any) => {
+          this.responseSP = result;
+          this.obtenerCuentasBancarias();
+          this.cancelarActualizacion('cuentasBancarias');
+      });
+    } else {
+      console.log('actualizar');
+      form.NumeroCliente = this.cuentasBancariasSelected.NumeroCliente;
+      form.Consecutivo = this.cuentasBancariasSelected.Consecutivo;
+      this.clienteService.actualizarCuentaBancaria(form).subscribe(
+        (result: any) => {
+          this.responseSP = result;
+          this.obtenerCuentasBancarias();
+          this.cancelarActualizacion('cuentasBancarias');
+      });
+    }
   }
 
   obtenerCuentasBancarias() {
@@ -1017,20 +1085,58 @@ export class ModMoralComponent implements OnInit { // 717
       });
   }
 
+  consultarCuentaBancaria(obj): void {
+    console.log(obj);
+    this.cuentasBancariasSelected = obj;
+    this.cuentasBancariasUpdate = true;
+    this.prepareEdit('cuentasBancarias');
+
+    this.cuentasBancariasForm.controls.NombreCuentaBancariaCtaBan.setValue(obj.NombreCuentaBancariaCtaBan);
+    this.cuentasBancariasForm.controls.BancoCtaBan.setValue(obj.BancoCtaBan);
+    this.cuentasBancariasForm.controls.NumeroCuentaCtaBan.setValue(obj.NumeroCuentaCtaBan);
+    this.cuentasBancariasForm.controls.ClaveInterbancariaCtaBan.setValue(obj.ClaveInterbancariaCtaBan);
+  }
+
+  borrarCuentaBancarias(obj: any): void {
+    let params = {
+      NumeroCliente: obj.NumeroCliente,
+      Consecutivo: obj.Consecutivo
+    };
+    this.clienteService.borrarCuentaBancaria(params).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+        this.obtenerCuentasBancarias();
+      }
+    );
+  }
+
 
   // -------------------------------------------------------------------------
 
   guardarPartesRelacionadas() {
     let form = this.partesRelacionadasForm.value;
-    form.NumeroCliente = this.general.Id;
-    form.Consecutivo = this.partesRelacionadasList.length + 1;
 
-    this.clienteService.agregarParteRelacionada(form).subscribe(
-      (result: any) => {
-        this.responseSP = result;
-        this.obtenerPartesRelacionadas();
-        this.cancelarActualizacion('partesRelacionadas');
-    });
+    if ( !this.partesRelacionadasUpdate ) {
+      console.log('guardar');
+      form.NumeroCliente = this.general.Id;
+      this.clienteService.agregarParteRelacionada(form).subscribe(
+        (result: any) => {
+          this.responseSP = result;
+          this.obtenerPartesRelacionadas();
+          this.cancelarActualizacion('partesRelacionadas');
+      });
+    } else {
+      console.log('actualizar');
+      form.NumeroCliente = this.partesRelacionadasSelected.NumeroCliente;
+      form.Consecutivo = this.partesRelacionadasSelected.Consecutivo;
+      this.clienteService.actualizarParteRelacionada(form).subscribe(
+        (result: any) => {
+          this.responseSP = result;
+          this.obtenerPartesRelacionadas();
+          this.cancelarActualizacion('partesRelacionadas');
+      });
+    }
   }
 
   obtenerPartesRelacionadas() {
@@ -1041,21 +1147,60 @@ export class ModMoralComponent implements OnInit { // 717
     });
   }
 
+  consultarParteRelacionada(obj): void {
+    console.log(obj);
+    this.partesRelacionadasSelected = obj;
+    this.partesRelacionadasUpdate = true;
+    this.prepareEdit('partesRelacionadas');
+
+    this.partesRelacionadasForm.controls.ParteRelacionadaParRel.setValue(obj.ParteRelacionadaParRel);
+    this.partesRelacionadasForm.controls.NombreParRel.setValue(obj.NombreParRel);
+    this.partesRelacionadasForm.controls.RFCParRel.setValue(obj.RFCParRel);
+    this.partesRelacionadasForm.controls.DireccionParRel.setValue(obj.DireccionParRel);
+  }
+
+  borrarParteRelacionada(obj: any): void {
+    let params = {
+      NumeroCliente: obj.NumeroCliente,
+      Consecutivo: obj.Consecutivo
+    };
+    this.clienteService.borrarParteRelacionada(params).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+        this.obtenerPartesRelacionadas();
+      }
+    );
+  }
+
 
   // -------------------------------------------------------------------------
 
   SocioEco() {
     let form = this.grupoSocioeconomicoForm.value;
-    form.NumeroCliente = this.general.Id;
-    form.Consecutivo = this.grupoSocioeconomicoList.length + 1;
 
-    this.clienteService.agregarGrupoSocioeconomico(form).subscribe(
-      (result: ResponseSP[]) => {
-        this.responseSP = result;
-        this.obtenerSocioEco();
-        this.cancelarActualizacion('grupoSocioeconomico');
-      }
-    );
+    if ( !this.grupoSocioeconomicoUpdate ) {
+      console.log('guardar');
+      form.NumeroCliente = this.general.Id;
+      this.clienteService.agregarGrupoSocioeconomico(form).subscribe(
+        (result: ResponseSP[]) => {
+          this.responseSP = result;
+          this.obtenerSocioEco();
+          this.cancelarActualizacion('grupoSocioeconomico');
+        }
+      );
+    } else {
+      console.log('actualizar');
+      form.NumeroCliente = this.grupoSocioeconomicoSelected.NumeroCliente;
+      form.Consecutivo = this.grupoSocioeconomicoSelected.Consecutivo;
+      this.clienteService.actualizarGrupoSocioeconomico(form).subscribe(
+        (result: ResponseSP[]) => {
+          this.responseSP = result;
+          this.obtenerSocioEco();
+          this.cancelarActualizacion('grupoSocioeconomico');
+        }
+      );
+    }
   }
 
   obtenerSocioEco() {
@@ -1065,20 +1210,61 @@ export class ModMoralComponent implements OnInit { // 717
     });
   }
 
+  consultarGrupoSocioeconomico(obj): void {
+    console.log(obj);
+    this.grupoSocioeconomicoSelected = obj;
+    this.grupoSocioeconomicoUpdate = true;
+    this.prepareEdit('grupoSocioeconomico');
+
+    this.grupoSocioeconomicoForm.controls.GrupoSocioeconomicoGpoSoc.setValue(obj.GrupoSocioeconomicoGpoSoc);
+    this.grupoSocioeconomicoForm.controls.NombreGpoSoc.setValue(obj.NombreGpoSoc);
+    this.grupoSocioeconomicoForm.controls.RFCGpoSoc.setValue(obj.RFCGpoSoc);
+    this.grupoSocioeconomicoForm.controls.DireccionGpoSoc.setValue(obj.DireccionGpoSoc);
+  }
+
+  borrarGrupoSocioeconomico(obj: any): void {
+    let params = {
+      NumeroCliente: obj.NumeroCliente,
+      Consecutivo: obj.Consecutivo
+    };
+    this.clienteService.borrarGrupoSocioeconomico(params).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+        this.obtenerSocioEco();
+      }
+    );
+  }
+
 
   // -------------------------------------------------------------------------
 
   guardarRiesgoComun() {
     let form = this.grupoRiesgoComunForm.value;
-    form.Id = this.general.Id;
 
-    this.clienteService.agregarGrupoRiesgoComun(form).subscribe(
-      (result: any) => {
-        console.log(result);
-        this.responseSP = result;
-        this.obtenerRiesgoComun();
-        this.cancelarActualizacion('grupoRiesgoComun');
-    });
+    if ( !this.grupoRiesgoComunUpdate ) {
+      console.log('guardar');
+      form.Id = this.general.Id;
+      this.clienteService.agregarGrupoRiesgoComun(form).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.responseSP = result;
+          this.obtenerRiesgoComun();
+          this.cancelarActualizacion('grupoRiesgoComun');
+      });
+    } else {
+      console.log('actualizar');
+      form.NumeroCliente = this.grupoRiesgoComunSelected.NumeroCliente;
+      form.Consecutivo = this.grupoRiesgoComunSelected.Consecutivo;
+      this.clienteService.actualizarGrupoRiesgoComun(form).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.responseSP = result;
+          this.obtenerRiesgoComun();
+          this.cancelarActualizacion('grupoRiesgoComun');
+      });
+    }
+
   }
 
   obtenerRiesgoComun() {
@@ -1086,6 +1272,32 @@ export class ModMoralComponent implements OnInit { // 717
       (result: any) => {
         this.grupoRiesgoComunList = result;
     });
+  }
+
+  consultarGrupoRiesgoComun(obj): void {
+    console.log(obj);
+    this.grupoRiesgoComunSelected = obj;
+    this.grupoRiesgoComunUpdate = true;
+    this.prepareEdit('grupoRiesgoComun');
+
+    this.grupoRiesgoComunForm.controls.GrupoRiesgoComunRgoCom.setValue(obj.GrupoRiesgoComunRgoCom);
+    this.grupoRiesgoComunForm.controls.NombreRgoCom.setValue(obj.NombreRgoCom);
+    this.grupoRiesgoComunForm.controls.RFCRgoCom.setValue(obj.RFCRgoCom);
+    this.grupoRiesgoComunForm.controls.DireccionRgoCom.setValue(obj.DireccionRgoCom);
+  }
+
+  borrarGrupoRiesgoComun(obj: any): void {
+    let params = {
+      NumeroCliente: obj.NumeroCliente,
+      Consecutivo: obj.Consecutivo
+    };
+    this.clienteService.borrarGrupoRiesgoComun(params).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.responseSP = result;
+        this.obtenerRiesgoComun();
+      }
+    );
   }
 
 
