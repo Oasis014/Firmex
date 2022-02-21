@@ -187,6 +187,14 @@ export function confirmCancelButton() {
     })
 }
 
+export function deletedConfirmed() {
+    swal(
+        'Eliminado',
+        'Registro eliminado exitosamente.',
+        'success'
+    );
+}
+
 // Chaining modals / Steps
 export function steps() {
     swal.setDefaults({

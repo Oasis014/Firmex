@@ -962,17 +962,17 @@
                           <div class="col-1 col-lg-4 col-xl-4"></div>
                           <div  class="col-1 col-lg-4 col-xl-4"></div>
                           <div  class="col-1 col-lg-1 col-xl-2">
-                            <button *ngIf="isCollapsed8"
+                            <button *ngIf="domicilioDisBtnInsert"
                               type="submit"
                               class="btn btn-light  btn-block"
-                              (click)="insertaDomicilio()">Insertar</button>
+                              (click)="btnInsert('domicilio')">Insertar</button>
 
-                            <button *ngIf="!isCollapsed8"
+                            <button *ngIf="!domicilioDisBtnInsert"
                               class="btn btn-light btn-block"
                               (click)="cancelarActualizacion('domicilio')">Cancelar</button>
                           </div>
 
-                          <div *ngIf="!isCollapsed8" class="col-1 col-lg-1 col-xl-2">
+                          <div *ngIf="!domicilioDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                             <button class="btn btn-light btn-block"
                               data-toggle="modal"
                               data-target="#largesizemodal"
@@ -1012,13 +1012,14 @@
                       <td>{{ dom.Estado }}</td>
                       <td>{{ dom.Pais }}</td>
                       <td>
-                        <a data-toggle="modal" data-target="#largesizemodal" class="btn btn-sm btn-info text-white"
-                          (click)= "consultarDomicilio(dom)"
-                        >
-                          <i class="fa fa-pencil"></i>
+                        <a data-toggle="modal" 
+                          data-target="#largesizemodal"
+                          class="btn btn-sm btn-info text-white"
+                          (click)= "consultarDomicilio(dom)">
+                            <i class="fa fa-pencil"></i>
                         </a>
-                        <a data-toggle="modal" data-target="#largesizemodal" class="btn btn-sm btn-danger text-white ml-1"
-                          (click)="DomBorrar(dom)" >
+                        <a class="btn btn-sm btn-danger text-white ml-1"
+                          (click)="confirmarBorrarElemento(dom, 'DomBorrar')">
                           <i class="fa fa-trash"></i>
                         </a>
                       </td>
@@ -1128,21 +1129,24 @@
                         <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="actividadEconomicaDisBtnInsert"
+                            *ngIf="actividadEconomicaDisBtnInsert"
                             (click)="btnInsert('actividadEconomica')"
                             type="submit"
                             class="btn btn-light  btn-block">
                               Insertar
                           </button>
+                          <button *ngIf="!actividadEconomicaDisBtnInsert"
+                            class="btn btn-light btn-block"
+                            (click)="cancelarActualizacion('actividadEconomica')">Cancelar</button>
                         </div>
-                        <div *ngIf="actividadEconomicaDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="!actividadEconomicaDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             class="btn btn-light  btn-block"
                             data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
-                            [disabled]="!actividadEconomicaForm.valid"
-                            (click)="guardarActividadEconomica()">Guardar</button>
+                            [disabled]="actividadEconomicaForm.invalid"
+                            (click)="guardarActividadEconomica()">{{ actividadEconomicaBtnText }}</button>
                           </div>
                         </div>
                      </form>
@@ -1157,7 +1161,6 @@
                   <div class="card" *ngIf="actividadEconomicaList.length">
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
                       <thead>
-                      <th>Numero Cliente</th>
                       <th>Actividad Economica</th>
                       <th>Actividad Detallada</th>
                       <th>Ingreso Mensual</th>
@@ -1167,7 +1170,6 @@
                       </thead>
                       <tbody>
                       <tr *ngFor="let eco of actividadEconomicaList;let i=index;" >
-                        <td scope="row" >{{eco.NumeroCliente}}</td>
                         <td scope="row" >{{eco.ActividadEconomica}}</td>
                         <td>{{eco.ActividadDetallada}}</td>
                         <td>{{eco.IngresoMensual}}</td>
@@ -1175,20 +1177,14 @@
                         <td>{{eco.GastosMensuales}}</td>
                         <td>{{eco.FlujoEfectivo}}</td>
                         <td>
-                          <!--
-                            (click)= "EconomicaConsultar(eco)"
-                          -->
-                          <a
+                          <a (click)="consultarActividadEconomica(eco)"
                             data-toggle="modal"
-                            data-target="#largesizemodal3"
-                            class="btn btn-sm btn-info text-white"
-                            >
+                            data-target="#largesizemodal"
+                            class="btn btn-sm btn-info text-white">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <!--
-                            (click)= "EconomicaBorrar(eco)"
-                          -->
-                          <a
+
+                          <a (click)="confirmarBorrarElemento(eco, 'borrarActividadEconomica')"
                             data-toggle="modal"
                             data-target="#largesizemodal1"
                             class="btn btn-sm btn-danger text-white ml-1">
@@ -1260,18 +1256,21 @@
                         <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="referenciasPersonalesDisBtnInsert"
+                            *ngIf="referenciasPersonalesDisBtnInsert"
                             (click)="btnInsert('referenciasPersonales')"
                             type="submit"
                             class="btn btn-light btn-block">Insertar</button>
+                          <button *ngIf="!referenciasPersonalesDisBtnInsert"
+                            class="btn btn-light btn-block"
+                            (click)="cancelarActualizacion('referenciasPersonales')">Cancelar</button>
                         </div>
-                        <div *ngIf="referenciasPersonalesDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="!referenciasPersonalesDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
-                            [disabled]="!referenciasPersonalesForm.valid"
-                            (click)="guardaReferenciasPersonales()">Guardar</button>
+                            [disabled]="referenciasPersonalesForm.invalid"
+                            (click)="guardaReferenciasPersonales()">{{ referenciasPersonalesBtnText }}</button>
                         </div>
                       </div>
                       </form>
@@ -1292,24 +1291,21 @@
                       <th>Tipo de Relacion</th>
                       </thead>
                       <tbody>
-                      <tr *ngFor="let personales of referenciasPersonalesList ;let i=index;" >
-                        <td scope="row">{{personales.Consecutivo}}</td>
-                        <td>{{personales.NombreRefPer}}</td>
-                        <td>{{personales.TelefonoRefPer}}</td>
-                        <td>{{personales.TipoRelacionRefPer}}</td>
+                      <tr *ngFor="let per of referenciasPersonalesList ;let i=index;" >
+                        <td scope="row">{{per.Consecutivo}}</td>
+                        <td>{{per.NombreRefPer}}</td>
+                        <td>{{per.TelefonoRefPer}}</td>
+                        <td>{{per.TipoRelacionRefPer}}</td>
                         <td>
-                          <!--
                           <a data-toggle="modal"
                             data-target="#largesizemodal"
                             class="btn btn-sm btn-info text-white"
-                            (click)= "isCollapsedPer2 = !isCollapsedPer2"
-                            (click)= "isCollapsedPer3 = !isCollapsedPer3"
-                            (click)= "PersonalesConsultar(personales)"><i class="fa fa-pencil"></i></a>
-                          <a data-toggle="modal"
+                            (click)= "consultarReferenciaPersonal(per)"><i class="fa fa-pencil"></i></a>
+                          <a (click)="confirmarBorrarElemento(per, 'borrarReferenciaPersonal')"
+                            data-toggle="modal"
                             data-target="#largesizemodal"
-                            class="btn btn-sm btn-danger text-white ml-1"
-                            (click)= "PersonalesBorrar(personales)"><i class="fa fa-trash"></i></a></td>
-                          -->
+                            class="btn btn-sm btn-danger text-white ml-1">
+                              <i class="fa fa-trash"></i></a></td>
                       </tr>
                       </tbody>
                     </table>
@@ -1379,18 +1375,21 @@
                         <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="referenciasComercialesDisBtnInsert"
+                            *ngIf="referenciasComercialesDisBtnInsert"
                             (click)="btnInsert('referenciasComerciales')"
                             type="submit"
                             class="btn btn-light btn-block">Insertar</button>
+                          <button *ngIf="!referenciasComercialesDisBtnInsert"
+                            class="btn btn-light btn-block"
+                            (click)="cancelarActualizacion('referenciasComerciales')">Cancelar</button>
                         </div>
-                        <div *ngIf="referenciasComercialesDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="!referenciasComercialesDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
-                            [disabled]="!referenciasComercialesForm.valid"
-                            (click)="guardarReferenciasComerciales()">Guardar</button>
+                            [disabled]="referenciasComercialesForm.invalid"
+                            (click)="guardarReferenciasComerciales()">{{ referenciasComercialesBtnText }}</button>
                         </div>
                       </div>
                       </form>
@@ -1410,25 +1409,21 @@
                       <th>Saldo de Cuenta</th>
                       </thead>
                       <tbody>
-                      <tr *ngFor="let comerciales of referenciasComercialesList;let i=index;" >
-                        <td>{{comerciales.NombreRefCom}}</td>
-                        <td>{{comerciales.LimiteCreditoRefCom}}</td>
-                        <td>{{comerciales.SaldoCuentaRefCom}}</td>
+                      <tr *ngFor="let com of referenciasComercialesList;let i=index;" >
+                        <td>{{com.NombreRefcom}}</td>
+                        <td>{{com.LimiteCreditoRefCom}}</td>
+                        <td>{{com.SaldoCuentaRefCom}}</td>
                         <td>
-                          <!--
                           <a data-toggle="modal"
                             data-target="#largesizemodal3"
                             class="btn btn-sm btn-info text-white"
-                            (click)= "isCollapsedCom2 = !isCollapsedCom2"
-                            (click)= "isCollapsedCom3 = !isCollapsedCom3"
-                            (click)= "ComercialesConsultar(comerciales)">
+                            (click)="consultarReferenciaComercial(com)">
                               <i class="fa fa-pencil"></i></a>
                           <a data-toggle="modal"
                             data-target="#largesizemodal1"
                             class="btn btn-sm btn-danger text-white ml-1"
-                            (click)= "ComercialesBorrar(comerciales)">
+                            (click)="confirmarBorrarElemento(com, 'borrarReferenciaComercial')">
                               <i class="fa fa-trash"></i></a></td>
-                          -->
                       </tr>
                       </tbody>
                     </table>
@@ -1513,19 +1508,22 @@
                         <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="referenciasBancariasDisBtnInsert"
+                            *ngIf="referenciasBancariasDisBtnInsert"
                             (click)="btnInsert('referenciasBancarias')"
                             type="submit"
                             class="btn btn-light btn-block" >Insertar</button>
+                          <button *ngIf="!referenciasBancariasDisBtnInsert"
+                            class="btn btn-light btn-block"
+                            (click)="cancelarActualizacion('referenciasBancarias')">Cancelar</button>
                         </div>
-                        <div *ngIf="referenciasBancariasDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="!referenciasBancariasDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
-                            [disabled]="!referenciasBancariasForm.valid"
-                            (click)="guardarReferenciasBancarias()">Guardar</button>
+                            [disabled]="referenciasBancariasForm.invalid"
+                            (click)="guardarReferenciasBancarias()">{{ referenciasBancariasBtnText }}</button>
                         </div>
                       </div>
                       </form>
@@ -1549,27 +1547,23 @@
                       <th>Saldo de Cuenta</th>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let bancarias of referenciasBancariasList;let i=index;" >
-                      <td scope="row">{{bancarias.Consecutivo}}</td>
-                      <td>{{bancarias.InstitucionRefBan}}</td>
-                      <td>{{bancarias.AntiguedadRefBan}}</td>
-                      <td>{{bancarias.LimiteCreditoRefBan}}</td>
-                      <td>{{bancarias.SaldoCuentaRefBan}}</td>
+                    <tr *ngFor="let ban of referenciasBancariasList;let i=index;" >
+                      <td scope="row">{{ban.Consecutivo}}</td>
+                      <td>{{ban.InstitucionRefBan}}</td>
+                      <td>{{ban.AntiguedadRefBan}}</td>
+                      <td>{{ban.LimiteCreditoRefBan}}</td>
+                      <td>{{ban.SaldoCuentaRefBan}}</td>
                       <td>
-                      <!--
                       <a data-toggle="modal"
                         data-target="#largesizemodal3"
                         class="btn btn-sm btn-info text-white"
-                        (click)= "isCollapsedBan2 = !isCollapsedBan2"
-                        (click)= "isCollapsedBan3 = !isCollapsedBan3"
-                        (click)= "BancariasConsultar(bancarias)">
+                        (click)="consultarReferenciaBancaria(ban)">
                           <i class="fa fa-pencil"></i></a>
                       <a data-toggle="modal"
                         data-target="#largesizemodal1"
                         class="btn btn-sm btn-danger text-white ml-1"
-                        (click)= "BancariasBorrar(bancarias)">
+                        (click)="confirmarBorrarElemento(ban, 'borrarReferenciaBancaria')">
                           <i class="fa fa-trash"></i></a></td>
-                      -->
                     </tr>
                   </tbody>
                 </table>
@@ -1714,19 +1708,22 @@
                         <div  class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="disBtnInsertAcc"
-                            (click)="insertAcciones()"
+                            *ngIf="accionesDisBtnInsert"
+                            (click)="btnInsert('acciones')"
                             type="submit"
                             class="btn btn-light  btn-block" >Insertar</button>
+                          <button *ngIf="!accionesDisBtnInsert"
+                            class="btn btn-light btn-block"
+                            (click)="cancelarActualizacion('acciones')">Cancelar</button>
                         </div>
-                        <div *ngIf="disBtnInsertAcc" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="!accionesDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
-                            [disabled]="!accionesForm.valid"
-                            (click)="guardarAcciones()">Guardar</button>
+                            [disabled]="accionesForm.invalid"
+                            (click)="guardarAcciones()">{{ accionesBtnText }}</button>
                         </div>
                         </div>
                       </form>
@@ -1762,10 +1759,19 @@
                         <td>{{acc.TotalAcciones}}</td>
 
                         <td>
-                          <!--
-                          <a data-toggle="modal" data-target="#largesizemodal3" class="btn btn-sm btn-info text-white" (click)= "isCollapsedAcc2 = !isCollapsedAcc2" (click)= "isCollapsedAcc3 = !isCollapsedAcc3" (click)= "AccionesConsultar(acc)" ><i class="fa fa-pencil"></i></a>
-                          <a data-toggle="modal" data-target="#largesizemodal1" class="btn btn-sm btn-danger text-white ml-1" (click)= "AccionesBorrar(acc)" ><i class="fa fa-trash"></i></a></td>
-                          -->
+                          
+                          <a data-toggle="modal" data-target="#largesizemodal" 
+                            class="btn btn-sm btn-info text-white"
+                            (click)="consultarAccion(acc)">
+                              <i class="fa fa-pencil"></i>
+                          </a>
+                          <a data-toggle="modal" data-target="#largesizemodal" 
+                            class="btn btn-sm btn-danger text-white ml-1" 
+                            (click)="confirmarBorrarElemento(acc, 'borrarAccion')">
+                              <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
+                          
                       </tr>
                       </tbody>
                     </table>
@@ -1841,19 +1847,22 @@
                         <div class="col-1 col-lg-4 col-xl-4"></div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="disBtnInsertCueBan"
-                            (click)="insertCuentasBancarias()"
+                            *ngIf="cuentasBancariasDisBtnInsert"
+                            (click)="btnInsert('cuentasBancarias')"
                             type="submit"
                             class="btn btn-light  btn-block" >Insertar</button>
+                          <button *ngIf="!cuentasBancariasDisBtnInsert"
+                            class="btn btn-light btn-block"
+                            (click)="cancelarActualizacion('cuentasBancarias')">Cancelar</button>
                         </div>
-                        <div *ngIf="disBtnInsertCueBan" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="!cuentasBancariasDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             data-toggle="modal"
                             data-target="#largesizemodal1"
                             type="submit"
                             class="btn btn-light btn-block"
-                            [disabled]="!cuentasBancariasForm.valid"
-                            (click)="guardarCuentasBancarias()">Guardar</button>
+                            [disabled]="cuentasBancariasForm.invalid"
+                            (click)="guardarCuentasBancarias()">{{ cuentasBancariasBtnText }}</button>
                         </div>
                       </div>
                       </form>
@@ -1959,18 +1968,22 @@
                         </div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="disBtnInsertParRel"
-                            (click)="insertPartesRelacionadas()"
+                            *ngIf="partesRelacionadasDisBtnInsert"
+                            (click)="btnInsert('partesRelacionadas')"
                             type="submit"
-                            class="btn btn-light  btn-block" >Insertar</button>
+                            class="btn btn-light btn-block" >Insertar</button>
+                          <button *ngIf="!partesRelacionadasDisBtnInsert"
+                            class="btn btn-light btn-block"
+                            (click)="cancelarActualizacion('partesRelacionadas')">Cancelar</button>
                         </div>
-                        <div *ngIf="disBtnInsertParRel" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="!partesRelacionadasDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
-                            (click)="guardarPartesRelacionadas()">Guardar</button>
+                            [disabled]="partesRelacionadasForm.invalid"
+                            (click)="guardarPartesRelacionadas()">{{ partesRelacionadasBtnText }}</button>
                         </div>
                       </div>
                       </form>
@@ -2077,19 +2090,22 @@
                         </div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="disBtnInsertGruSoc"
-                            (click)="insertGrupoSocioeconomico()"
+                            *ngIf="grupoSocioeconomicoDisBtnInsert"
+                            (click)="btnInsert('grupoSocioeconomico')"
                             type="submit"
                             class="btn btn-light btn-block" >Insertar</button>
+                          <button *ngIf="!grupoSocioeconomicoDisBtnInsert"
+                            class="btn btn-light btn-block"
+                            (click)="cancelarActualizacion('grupoSocioeconomico')">Cancelar</button>
                         </div>
-                        <div *ngIf="disBtnInsertGruSoc" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="!grupoSocioeconomicoDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
-                            [disabled]="!grupoSocioeconomicoForm.valid"
-                            (click)="SocioEco()">Guardar</button>
+                            [disabled]="grupoSocioeconomicoForm.invalid"
+                            (click)="SocioEco()">{{ grupoSocioeconomicoBtnText }}</button>
                         </div>
                       </div>
                       </form>
@@ -2199,18 +2215,22 @@
                         </div>
                         <div  class="col-1 col-lg-1 col-xl-2">
                           <button
-                            [disabled]="disBtnInsertGruRies"
-                            (click)="insertRiesgoComun()"
+                            *ngIf="grupoRiesgoComunDisBtnInsert"
+                            (click)="btnInsert('grupoRiesgoComun')"
                             type="submit"
                             class="btn btn-light btn-block">Insertar</button>
+                          <button *ngIf="!grupoRiesgoComunDisBtnInsert"
+                            class="btn btn-light btn-block"
+                            (click)="cancelarActualizacion('grupoRiesgoComun')">Cancelar</button>
                         </div>
-                        <div *ngIf="disBtnInsertGruRies" class="col-1 col-lg-1 col-xl-2">
+                        <div *ngIf="!grupoRiesgoComunDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             data-toggle="modal"
                             data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
-                            (click)="guardarRiesgoComun()">Guardar</button>
+                            [disabled]="grupoRiesgoComunForm.invalid"
+                            (click)="guardarRiesgoComun()">{{ grupoRiesgoComunBtnText }}</button>
                         </div>
                       </div>
                       </form>
@@ -2331,6 +2351,7 @@
                 <table class="table">
                   <thead>
                   <tr>
+                    <th scope="col">Consecutivo</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Fecha Alta</th>
                     <th> </th>
@@ -2338,6 +2359,7 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let doc of listadoDocumentos">
+                    <th scope="row">{{doc.Consecutivo}}</th>
                     <th scope="row">{{doc.descCorta}}</th>
                     <td>{{doc.fechaAlta}}</td>
                     <!--
@@ -2351,7 +2373,7 @@
                     <td>
                       <a href="{{doc.nombreDocumento}}" target="_blank"
                         class="btn btn-sm btn-info text-white">
-                          <i class="fa fa-pencil"></i>
+                          <i class="fa fa-file-o"></i>
                       </a>
                       <a data-toggle="modal" data-target="#largesizemodal"
                         class="btn btn-sm btn-danger text-white ml-1"
