@@ -138,7 +138,7 @@ export class DatosGenerales {
   }
 
   setMoral(): void {
-    this.PersonalidadJuridica = "01";
+    this.PersonalidadJuridica = "03";
     this.FechaNacimiento = '1970-01-01';
     const date = new Date();
     this.FechaAlta = date.toISOString().substring(0, 10);
