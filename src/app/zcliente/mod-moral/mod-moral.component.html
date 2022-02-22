@@ -347,17 +347,10 @@
                                 <select
                                   class="form-control form-control-sm"
                                   formControlName="grupoRiesgoComun">
-                                  <option value="">Seleccione al promotor ...</option>
-                                  <option value="1">Sin Grupo</option>
-                                  <option value="1">B</option>
-                                  <option value="1">C</option>
-                                  <option value="1">D</option>
-                                  <option value="1">E</option>
-                                  <option value="1">F</option>
-                                  <option value="1">G</option>
-                                  <option value="1">H</option>
-                                  <option value="1">I</option>
-                                  <option value="1">J </option>
+                                  <option value="">Seleccione al grupo ...</option>
+                                  <option *ngFor="let item of ctTiprrc" [value]="item.catalogo_cve">
+                                    {{item.desc_45}}
+                                  </option>                                 
                                 </select>
                               </div>
                             </div>
@@ -788,17 +781,10 @@
                                 <select
                                   class="form-control form-control-sm"
                                   formControlName="grupoRiesgoComun">
-                                  <option value="">Seleccione al promotor ...</option>
-                                  <option value="1">Sin Grupo</option>
-                                  <option value="1">B</option>
-                                  <option value="1">C</option>
-                                  <option value="1">D</option>
-                                  <option value="1">E</option>
-                                  <option value="1">F </option>
-                                  <option value="1">G</option>
-                                  <option value="1">H</option>
-                                  <option value="1">I</option>
-                                  <option value="1">J </option>
+                                  <option value="">Seleccione al grupo ...</option>
+                                  <option *ngFor="let item of ctTiprrc" [value]="item.catalogo_cve">
+                                    {{item.desc_45}}
+                                  </option>
                                 </select>
                               </div>
                             </div>
