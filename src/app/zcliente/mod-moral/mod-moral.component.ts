@@ -31,20 +31,6 @@ export class ModMoralComponent implements OnInit { // 717
     private readonly formBuilder: FormBuilder
   ) { }
 
-  swalProps = {
-    title: '¿Seguro desea eliminar el registro?',
-    text: "Esta acción no podrá revertise.",
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#0CC27E',
-    cancelButtonColor: '#FF586B',
-    confirmButtonText: 'Eliminar',
-    cancelButtonText: 'Cancelar',
-    confirmButtonClass: 'btn btn-success btn-raised mr-5',
-    cancelButtonClass: 'btn btn-danger btn-raised',
-    buttonsStyling: false
-  };
-
   datosGeneralesForm: FormGroup;
   datosGeneralesFisicaForm: FormGroup;
 
@@ -636,13 +622,23 @@ export class ModMoralComponent implements OnInit { // 717
 
   }
 
-  prepareEdit(seccion: string): void {
+  prepareEdit(seccion: string, obj?): void {
     this[seccion+'Form'].enable();
     this[seccion+'BtnText'] = 'Actualizar';
     this[seccion+'DisBtnInsert'] = false;
     if ( 'undefined' !== typeof(this[seccion+'Update'])) {
       this[seccion+'Update'] = true;
     }
+
+    console.log(obj);
+    if ( 'undefined' !== obj ) {
+      for (let item in this[seccion+'Form'].controls ) {
+        console.log(item);
+        console.log(obj[item]);
+        this[seccion+'Form'].controls[item].setValue(obj[item]);
+      }
+    }
+
   }
 
 
@@ -759,16 +755,7 @@ export class ModMoralComponent implements OnInit { // 717
 
   consultarActividadEconomica(eco): void {
     console.log(eco);
-
-    this.prepareEdit('actividadEconomica');
-
-    this.actividadEconomicaForm.controls.ActividadEconomica.setValue(eco.ActividadEconomica);
-    this.actividadEconomicaForm.controls.ActividadDetallada.setValue(eco.ActividadDetallada);
-    this.actividadEconomicaForm.controls.IngresoMensual.setValue(eco.IngresoMensual);
-    this.actividadEconomicaForm.controls.OtroIngresoMensual.setValue(eco.OtroIngresoMensual);
-    this.actividadEconomicaForm.controls.GastosMensuales.setValue(eco.GastosMensuales);
-    this.actividadEconomicaForm.controls.FlujoEfectivo.setValue(eco.FlujoEfectivo);
-
+    this.prepareEdit('actividadEconomica', eco);
   }
 
   borrarActividadEconomica(obj: any) {
@@ -827,11 +814,7 @@ export class ModMoralComponent implements OnInit { // 717
     console.log(obj);
     this.referenciasPersonalesSelected = obj;
     this.referenciasPersonalesUpdate = true;
-    this.prepareEdit('referenciasPersonales');
-
-    this.referenciasPersonalesForm.controls.NombreRefPer.setValue(obj.NombreRefPer);
-    this.referenciasPersonalesForm.controls.TipoRelacionRefPer.setValue(obj.TipoRelacionRefPer);
-    this.referenciasPersonalesForm.controls.TelefonoRefPer.setValue(obj.TelefonoRefPer);
+    this.prepareEdit('referenciasPersonales', obj);
   }
 
   borrarReferenciaPersonal(obj: any): void {
@@ -892,10 +875,6 @@ export class ModMoralComponent implements OnInit { // 717
     console.log(com);
     this.referenciasComercialesSelected = com;
     this.referenciasComercialesUpdate = true;
-    this.prepareEdit('referenciasComerciales');
-    this.referenciasComercialesForm.controls.NombreRefCom.setValue(com.NombreRefcom);
-    this.referenciasComercialesForm.controls.LimiteCreditoRefCom.setValue(com.LimiteCreditoRefCom);
-    this.referenciasComercialesForm.controls.SaldoCuentaRefCom.setValue(com.SaldoCuentaRefCom);
   }
 
   borrarReferenciaComercial(com: any): void {
@@ -957,11 +936,7 @@ export class ModMoralComponent implements OnInit { // 717
     console.log(ban);
     this.referenciasBancariasSelected = ban;
     this.referenciasBancariasUpdate = true;
-    this.prepareEdit('referenciasBancarias');
-    this.referenciasBancariasForm.controls.InstitucionRefBan.setValue(ban.InstitucionRefBan);
-    this.referenciasBancariasForm.controls.SaldoCuentaRefBan.setValue(ban.SaldoCuentaRefBan);
-    this.referenciasBancariasForm.controls.LimiteCreditoRefBan.setValue(ban.LimiteCreditoRefBan);
-    this.referenciasBancariasForm.controls.AntiguedadRefBan.setValue(ban.AntiguedadRefBan);
+    this.prepareEdit('referenciasBancarias', ban);
   }
 
   borrarReferenciaBancaria(ban: any): void {
@@ -1022,18 +997,7 @@ export class ModMoralComponent implements OnInit { // 717
     console.log(acc);
     this.accionesSelected = acc;
     this.accionesUpdate = true;
-    this.prepareEdit('acciones');
-
-    this.accionesForm.controls.FechaCompra1aAccion.setValue(acc.FechaCompra1aAccion);
-    this.accionesForm.controls.ParteInicialSocial.setValue(acc.ParteInicialSocial);
-    this.accionesForm.controls.FechaPago.setValue(acc.FechaPago);
-    this.accionesForm.controls.ParteSocialActual.setValue(acc.ParteSocialActual);
-    this.accionesForm.controls.CostoAcciones.setValue(acc.CostoAcciones);
-    this.accionesForm.controls.FormaPagoAcciones.setValue(acc.FormaPagoAcciones);
-    this.accionesForm.controls.RetirablesA.setValue(acc.RetirablesA);
-    this.accionesForm.controls.RetirablesB.setValue(acc.RetirablesB);
-    this.accionesForm.controls.TotalAcciones.setValue(acc.TotalAcciones);
-
+    this.prepareEdit('acciones', acc);
   }
 
   borrarAccion(acc: any): void {
@@ -1089,12 +1053,7 @@ export class ModMoralComponent implements OnInit { // 717
     console.log(obj);
     this.cuentasBancariasSelected = obj;
     this.cuentasBancariasUpdate = true;
-    this.prepareEdit('cuentasBancarias');
-
-    this.cuentasBancariasForm.controls.NombreCuentaBancariaCtaBan.setValue(obj.NombreCuentaBancariaCtaBan);
-    this.cuentasBancariasForm.controls.BancoCtaBan.setValue(obj.BancoCtaBan);
-    this.cuentasBancariasForm.controls.NumeroCuentaCtaBan.setValue(obj.NumeroCuentaCtaBan);
-    this.cuentasBancariasForm.controls.ClaveInterbancariaCtaBan.setValue(obj.ClaveInterbancariaCtaBan);
+    this.prepareEdit('cuentasBancarias', obj);
   }
 
   borrarCuentaBancarias(obj: any): void {
@@ -1151,12 +1110,7 @@ export class ModMoralComponent implements OnInit { // 717
     console.log(obj);
     this.partesRelacionadasSelected = obj;
     this.partesRelacionadasUpdate = true;
-    this.prepareEdit('partesRelacionadas');
-
-    this.partesRelacionadasForm.controls.ParteRelacionadaParRel.setValue(obj.ParteRelacionadaParRel);
-    this.partesRelacionadasForm.controls.NombreParRel.setValue(obj.NombreParRel);
-    this.partesRelacionadasForm.controls.RFCParRel.setValue(obj.RFCParRel);
-    this.partesRelacionadasForm.controls.DireccionParRel.setValue(obj.DireccionParRel);
+    this.prepareEdit('partesRelacionadas', obj);
   }
 
   borrarParteRelacionada(obj: any): void {
@@ -1214,12 +1168,7 @@ export class ModMoralComponent implements OnInit { // 717
     console.log(obj);
     this.grupoSocioeconomicoSelected = obj;
     this.grupoSocioeconomicoUpdate = true;
-    this.prepareEdit('grupoSocioeconomico');
-
-    this.grupoSocioeconomicoForm.controls.GrupoSocioeconomicoGpoSoc.setValue(obj.GrupoSocioeconomicoGpoSoc);
-    this.grupoSocioeconomicoForm.controls.NombreGpoSoc.setValue(obj.NombreGpoSoc);
-    this.grupoSocioeconomicoForm.controls.RFCGpoSoc.setValue(obj.RFCGpoSoc);
-    this.grupoSocioeconomicoForm.controls.DireccionGpoSoc.setValue(obj.DireccionGpoSoc);
+    this.prepareEdit('grupoSocioeconomico', obj);
   }
 
   borrarGrupoSocioeconomico(obj: any): void {
@@ -1278,12 +1227,7 @@ export class ModMoralComponent implements OnInit { // 717
     console.log(obj);
     this.grupoRiesgoComunSelected = obj;
     this.grupoRiesgoComunUpdate = true;
-    this.prepareEdit('grupoRiesgoComun');
-
-    this.grupoRiesgoComunForm.controls.GrupoRiesgoComunRgoCom.setValue(obj.GrupoRiesgoComunRgoCom);
-    this.grupoRiesgoComunForm.controls.NombreRgoCom.setValue(obj.NombreRgoCom);
-    this.grupoRiesgoComunForm.controls.RFCRgoCom.setValue(obj.RFCRgoCom);
-    this.grupoRiesgoComunForm.controls.DireccionRgoCom.setValue(obj.DireccionRgoCom);
+    this.prepareEdit('grupoRiesgoComun', obj);
   }
 
   borrarGrupoRiesgoComun(obj: any): void {
@@ -1300,11 +1244,7 @@ export class ModMoralComponent implements OnInit { // 717
     );
   }
 
-
-
   /* FIN CUENTAS BANCARIAS*/
-
-
 
 
   /** METODOS DOCUMENTOS */
@@ -1367,25 +1307,6 @@ export class ModMoralComponent implements OnInit { // 717
   // FIN METODOS DOCUMENTOS
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   close(event: MouseEvent, toRemove: number) {
     this.tabs = this.tabs.filter(id => id !== toRemove);
     event.preventDefault();
@@ -1397,12 +1318,6 @@ export class ModMoralComponent implements OnInit { // 717
     event.preventDefault();
   }
 
-  /*DatosMuestra() {
-    this.Contador++;
-    if (this.Contador == 1) {
-      this.isCollapsed5 = !this.isCollapsed5;
-    }
-  }*/
 
   onNavChange(changeEvent: NgbNavChangeEvent) {
     if (changeEvent.nextId === 2, 3, 4, 5, 6) {
