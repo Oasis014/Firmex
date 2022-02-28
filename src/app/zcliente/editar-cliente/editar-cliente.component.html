@@ -97,7 +97,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="col-12 col-lg-12" align="center" *ngIf="!disNextSection_1" >
+      <div class="col-12 col-lg-12" align="center"><!--*ngIf="!disNextSection_1"-->
         <label class="card-header text-uppercase" >Sucursal: {{infoGeneral.sucursal}} </label>
         <label class="card-header text-uppercase" >Promotor: {{infoGeneral.promotor}}</label>
         <label class="card-header text-uppercase" >Estatus de Cliente: {{infoGeneral.estatus}}</label>
@@ -207,6 +207,7 @@
                           <div class="col-1 col-lg-2 col-xl-2">
                           </div>
                           <div class="col-2 col-lg-1 col-xl-1">
+                            <!--
                             <div *ngIf="showBtnValidar" class="form-group row">
                               <button
                                 [disabled]="datosGeneralesForm.controls.sucursal.invalid ||
@@ -220,6 +221,7 @@
                                 type="submit"
                                 class="btn btn-light btn-block">Validar</button>
                             </div>
+                            -->
                           </div>
                         </div>
                       </div>
@@ -228,7 +230,8 @@
                 </div>
                 <div class="row">
                 </div>
-                <div *ngIf="showEspecificosMoral" class="row">
+                <!--<div *ngIf="showEspecificosMoral" class="row">-->
+                <div class="row">
                   <div class="col-12 col-lg-12">
                     <div class="card">
                       <div class="card-body">
@@ -427,14 +430,15 @@
                           <div class="col-1 col-lg-4 col-xl-4"></div>
                           <div class="col-1 col-lg-4 col-xl-4"></div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <button
+                            <!--<button
                               type="button"
                               class="btn btn-light btn-block"
                               [disabled]="disBtnDatosGeneralesMoral"
-                              (click)="cancelar()">Cancelar</button>
+                              (click)="cancelar()">Cancelar</button>-->
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <button
+                            <!--
+                              <button
                               [disabled]="disBtnDatosGeneralesMoral || datosGeneralesForm.invalid"
                               data-toggle="modal"
                               data-target="#largesizemodal1"
@@ -442,6 +446,7 @@
                               class="btn btn-light btn-block"
                               (click)="guardaGeneral()">
                               Guardar</button>
+                            -->
 
                           </div>
                         </div>
@@ -452,7 +457,8 @@
               </form>
 
 
-              <form *ngIf="showFisica" [formGroup]="datosGeneralesFisicaForm">
+              <!--<form *ngIf="showFisica" [formGroup]="datosGeneralesFisicaForm">-->
+              <form *ngIf="!showMoral" [formGroup]="datosGeneralesFisicaForm">
                 <div class="row">
                   <div class="col-12 col-lg-12">
                     <div class="card">
@@ -580,8 +586,9 @@
                           <div class="col-1 col-lg-2 col-xl-2"></div>
                           <div class="col-1 col-lg-2 col-xl-2"></div>
                           <div class="col-2 col-lg-1 col-xl-1">
-                            <div *ngIf="showBtnValidar" class="form-group row">
-                              <button
+                            <!--<div *ngIf="showBtnValidar" class="form-group row">-->
+                            <div class="form-group row">
+                              <!--<button
                                 [disabled]="datosGeneralesFisicaForm.controls.sucursal.invalid ||
                                   datosGeneralesFisicaForm.controls.primerNombre.invalid ||
                                   datosGeneralesFisicaForm.controls.segundoNombre.invalid ||
@@ -592,9 +599,8 @@
                                   datosGeneralesFisicaForm.controls.rfc.invalid"
                                 data-toggle="modal"
                                 data-target="#largesizemodal"
-                                (click)="validarDatosGenerales()"
                                 type="submit"
-                                class="btn btn-light  btn-block">Validar</button>
+                                class="btn btn-light  btn-block">Validar</button>-->
                             </div>
                           </div>
                         </div>
@@ -604,7 +610,8 @@
                 </div>
                 <div class="row">
                 </div>
-                <div *ngIf="showEspecificosFisica" class="row">
+                <!--<div *ngIf="showEspecificosFisica" class="row">-->
+                <div class="row">
                   <div class="col-12 col-lg-12">
                     <div class="card">
                       <div class="card-body">
@@ -792,18 +799,18 @@
                           <div class="col-1 col-lg-2 col-xl-2"></div>
                           <div class="col-1 col-lg-2 col-xl-2"></div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <button type="submit"
+                            <!--<button type="submit"
                               class="btn btn-light btn-block"
                               [disabled]="disBtnDatosGeneralesFisica"
-                              (click)="cancelar()">Cancelar</button>
+                              (click)="cancelar()">Cancelar</button>-->
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <button type="submit"
+                            <!--<button type="submit"
                               [disabled]="disBtnDatosGeneralesFisica || datosGeneralesFisicaForm.invalid"
                               class="btn btn-light  btn-block"
                               data-toggle="modal"
                               data-target="#largesizemodal1"
-                              (click)="guardaGeneral()">Guardar</button>
+                              (click)="guardaGeneral()">Guardar</button>-->
                           </div>
                         </div>
                       </div>
@@ -814,7 +821,6 @@
 
               <button
                 class="btn btn-sm btn-light"
-                [disabled]="disNextSection_1"
                 (click)="nav3.select(2)"
                 type="submit">
               Siguiente Sección</button>
@@ -1006,7 +1012,7 @@
                         </a>
                         <a class="btn btn-sm btn-danger text-white ml-1"
                           (click)="confirmarBorrarElemento(dom, 'DomBorrar')">
-                          <i class="fa fa-trash"></i>
+                            <i class="fa fa-trash"></i>
                         </a>
                       </td>
                     </tr>
@@ -1249,7 +1255,8 @@
                             (click)="cancelarActualizacion('referenciasPersonales')">Cancelar</button>
                         </div>
                         <div *ngIf="!referenciasPersonalesDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
-                          <button
+                          <button data-toggle="modal"
+                            data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
                             [disabled]="referenciasPersonalesForm.invalid"
@@ -1286,7 +1293,9 @@
                             (click)= "consultarReferenciaPersonal(per)"><i class="fa fa-pencil"></i></a>
                           <a (click)="confirmarBorrarElemento(per, 'borrarReferenciaPersonal')"
                             class="btn btn-sm btn-danger text-white ml-1">
-                              <i class="fa fa-trash"></i></a></td>
+                              <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
                       </tr>
                       </tbody>
                     </table>
@@ -1402,7 +1411,9 @@
                               <i class="fa fa-pencil"></i></a>
                           <a class="btn btn-sm btn-danger text-white ml-1"
                             (click)="confirmarBorrarElemento(com, 'borrarReferenciaComercial')">
-                              <i class="fa fa-trash"></i></a></td>
+                              <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
                       </tr>
                       </tbody>
                     </table>
@@ -1519,7 +1530,6 @@
               <div class="card" *ngIf="referenciasBancariasList.length">
                 <table class="table table-striped text-center " style="width:auto; height:5px;" >
                   <thead >
-                      <th>Consecutivo</th>
                       <th>Nombre Completo</th>
                       <th>Antigüedad</th>
                       <th>Limite de Credito</th>
@@ -1527,20 +1537,21 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let ban of referenciasBancariasList;let i=index;" >
-                      <td scope="row">{{ban.Consecutivo}}</td>
                       <td>{{ban.InstitucionRefBan}}</td>
                       <td>{{ban.AntiguedadRefBan}}</td>
                       <td>{{ban.LimiteCreditoRefBan}}</td>
                       <td>{{ban.SaldoCuentaRefBan}}</td>
                       <td>
-                      <a data-toggle="modal"
-                        data-target="#largesizemodal3"
-                        class="btn btn-sm btn-info text-white"
-                        (click)="consultarReferenciaBancaria(ban)">
-                          <i class="fa fa-pencil"></i></a>
-                      <a class="btn btn-sm btn-danger text-white ml-1"
-                        (click)="confirmarBorrarElemento(ban, 'borrarReferenciaBancaria')">
-                          <i class="fa fa-trash"></i></a></td>
+                        <a data-toggle="modal"
+                          data-target="#largesizemodal3"
+                          class="btn btn-sm btn-info text-white"
+                          (click)="consultarReferenciaBancaria(ban)">
+                            <i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-sm btn-danger text-white ml-1"
+                          (click)="confirmarBorrarElemento(ban, 'borrarReferenciaBancaria')">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -1732,14 +1743,14 @@
                         <td>{{acc.CostoAcciones}}</td>
                         <td>{{acc.FormaPagoAcciones}}</td>
                         <td>{{acc.TotalAcciones}}</td>
-
                         <td>
                           <a data-toggle="modal" data-target="#largesizemodal"
                             class="btn btn-sm btn-info text-white"
                             (click)="consultarAccion(acc)">
                               <i class="fa fa-pencil"></i>
                           </a>
-                          <a class="btn btn-sm btn-danger text-white ml-1"
+                          <a data-toggle="modal" data-target="#largesizemodal"
+                            class="btn btn-sm btn-danger text-white ml-1"
                             (click)="confirmarBorrarElemento(acc, 'borrarAccion')">
                               <i class="fa fa-trash"></i>
                           </a>
@@ -2283,6 +2294,12 @@
 
 
 
+
+
+
+
+
+
               <button class="btn btn-sm btn-light btnSeccion" (click)="nav3.select(3)">Anterior</button>
               <button class="btn btn-sm btn-light" (click)="nav3.select(6)">Siguiente Sección</button>
             </ng-template>
@@ -2329,7 +2346,6 @@
                 </div>
               </div>
 
-
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -2351,9 +2367,9 @@
                           <i class="fa fa-file-o"></i>
                       </a>
                       <a class="btn btn-sm btn-danger text-white ml-1"
-                          (click)="confirmarBorrarElemento(doc, 'borrarDocumento')">
-                            <i class="fa fa-trash"></i>
-                        </a>
+                        (click)="confirmarBorrarElemento(doc, 'borrarDocumento')">
+                          <i class="fa fa-trash"></i>
+                      </a>
                     </td>
                   </tr>
                   </tbody>

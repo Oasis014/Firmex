@@ -13,12 +13,12 @@ import { deletedConfirmed } from 'src/app/shared/data/sweet-alerts';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-mod-moral',
-  templateUrl: './mod-moral.component.html',
-  styleUrls: ['./mod-moral.component.scss']
+  selector: 'app-editar-cliente',
+  templateUrl: './editar-cliente.component.html',
+  styleUrls: ['./editar-cliente.component.scss']
 })
 
-export class ModMoralComponent implements OnInit { // 717
+export class EditarClienteComponent implements OnInit { // 717
 
   @ViewChild('inputFile')
   myInputFile: ElementRef;
@@ -28,7 +28,7 @@ export class ModMoralComponent implements OnInit { // 717
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly clienteService: ClienteService,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
   ) { }
 
   datosGeneralesForm: FormGroup;
@@ -46,7 +46,7 @@ export class ModMoralComponent implements OnInit { // 717
   grupoSocioeconomicoForm: FormGroup;
   grupoRiesgoComunForm: FormGroup;
 
-  disNextSection_1 = true;
+  //disNextSection_1 = true;
   updateDomicilio = false;
 
   active = 1;
@@ -114,9 +114,9 @@ export class ModMoralComponent implements OnInit { // 717
   isCollapsed5 = true;
   isCollapsed6 = true;
   isCollapsed7 = false;
-  showEspecificosMoral = false;
+  //showEspecificosMoral = false;
   showEspecificosFisica = false;
-  showBtnValidar = true;
+  //showBtnValidar = true;
 
   showMoral = true;
   showFisica = false;
@@ -148,7 +148,7 @@ export class ModMoralComponent implements OnInit { // 717
   grupoRiesgoComunList = [];
 
   domicilio = new Domicilio();
-  general = new DatosGenerales();
+  general = new DatosGenerales;
 
   catalogo = null as any;
   catalogo1 = null as any;
@@ -199,71 +199,10 @@ export class ModMoralComponent implements OnInit { // 717
   tipoDocumento: number|string;
 
   ngOnInit() {
-    this.ban = localStorage.getItem("bandera");
+    const id = this.route.snapshot.params.id;
+    const userType = this.route.snapshot.params.type;
+    console.log(`el cliente es ${userType} y su ID es ${id}`);
 
-    if (this.ban == "1") {
-      this.general.setMoral();
-      this.showMoral = true;
-      this.showFisica = false;
-
-      this.datosGeneralesForm = this.formBuilder.group({
-        numeroCliente:       ['0'],
-        estatusCliente:      ['Prospecto'],
-        sucursal:            ['', [Validators.required, Validators.maxLength(5)]],
-        promotor:            ['', [Validators.required, Validators.maxLength(5)]],
-        razonSocial:         ['', [Validators.required, Validators.maxLength(120)]],
-        fechaConstitucion:   ['', [Validators.required]],
-        rfc:                 ['', [Validators.required, Validators.maxLength(13)]],
-
-        nombreSociedad:      ['', [Validators.required, Validators.maxLength(120)]],
-        representanteLegal:  ['', [Validators.required, Validators.maxLength(120)]],
-        presidenteConsejo:   ['', [Validators.required, Validators.maxLength(120)]],
-        consejero:           ['', [Validators.required, Validators.maxLength(120)]],
-        emailPersonal:       ['', [Validators.required, Validators.maxLength(80)]],
-        emailEmpresa:        ['', [Validators.required, Validators.maxLength(80)]],
-        parteRelacionada:    ['', [Validators.required, Validators.maxLength(5)]],
-        grupoVinculoConsejo: ['', [Validators.required, Validators.maxLength(10)]],
-        grupoRiesgoComun:    ['', [Validators.required, Validators.maxLength(5)]],
-        telefonoOficina:     ['', [Validators.maxLength(15)]],
-        extensionOficina:    ['', [Validators.maxLength(10)]],
-        celular:             ['', [Validators.maxLength(15)]],
-        redSocial1:          ['', [Validators.maxLength(50)]],
-        redSocial2:          ['', [Validators.maxLength(50)]],
-      });
-    }
-
-    if (this.ban == "2") {
-      this.general.setFisica();
-      this.showMoral = false;
-      this.showFisica = true;
-
-      this.datosGeneralesFisicaForm = this.formBuilder.group({
-        numeroCliente:   ['0'],
-        estatusCliente:  ['Prospecto'],
-        sucursal:        ['', [Validators.required, Validators.maxLength(5)]],
-        primerNombre:    ['', [Validators.required, Validators.maxLength(30)]], // 30
-        segundoNombre:   ['', [Validators.required, Validators.maxLength(30)]], // 30
-        apellidoPaterno: ['', [Validators.required, Validators.maxLength(30)]],
-        apellidoMaterno: ['', [Validators.required, Validators.maxLength(30)]],
-        promotor:        ['', [Validators.required, Validators.maxLength(5)]],
-        fechaNacimiento: ['', [Validators.required, Validators.maxLength(10)]],
-        rfc:             ['', [Validators.required, Validators.maxLength(13)]],
-
-        sexo:                 ['', [Validators.required, Validators.maxLength(1)]],
-        estadoCivil:          ['', [Validators.required, Validators.maxLength(2)]],
-        curp:                 ['', [Validators.required, Validators.maxLength(18)]],
-        tipoIdentificacion:   ['', [Validators.required, Validators.maxLength(2)]],
-        numeroIdentificacion: ['', [Validators.required, Validators.maxLength(20)]],
-        listaNegra:           ['', [Validators.required, Validators.maxLength(30)]],
-        profesion:            ['', [Validators.required, Validators.maxLength(2)]],
-        nacionalidad:         ['', [Validators.required, Validators.maxLength(2)]],
-        emailPersonal:        ['', [Validators.required, Validators.maxLength(80)]],
-        emailEmpresa:         ['', [Validators.required, Validators.maxLength(80)]],
-        parteRelacionada:     ['', [Validators.required, Validators.maxLength(5)]],
-        grupoVinculoConsejo:  ['', [Validators.required, Validators.maxLength(10)]],
-        grupoRiesgoComun:     ['', [Validators.required, Validators.maxLength(5)]],
-      });
-    }
     this.CatDet();
     this.CatEco();
     this.CatBncs();
@@ -290,6 +229,63 @@ export class ModMoralComponent implements OnInit { // 717
     this.cPromotor();
     this.cSucursal();
     this.cEdo();
+
+    if ( 'moral' === userType ) {
+      this.showMoral = true;
+      this.datosGeneralesForm = this.formBuilder.group({
+        numeroCliente:       [''],
+        estatusCliente:      [''],
+        sucursal:            [''],
+        promotor:            [''],
+        razonSocial:         [''],
+        fechaConstitucion:   [''],
+        rfc:                 [''],
+        nombreSociedad:      [''],
+        representanteLegal:  [''],
+        presidenteConsejo:   [''],
+        consejero:           [''],
+        emailPersonal:       [''],
+        emailEmpresa:        [''],
+        parteRelacionada:    [''],
+        grupoVinculoConsejo: [''],
+        grupoRiesgoComun:    [''],
+        telefonoOficina:     [''],
+        extensionOficina:    [''],
+        celular:             [''],
+        redSocial1:          [''],
+        redSocial2:          [''],
+      });
+      this.datosGeneralesForm.disable();
+      this.obtenerDatosGeneralesMoral(id);
+    } else if ( 'fisica' === userType ) {
+      this.showMoral = false;
+      this.datosGeneralesFisicaForm = this.formBuilder.group({
+        numeroCliente:        ['0'],
+        estatusCliente:       [''],
+        sucursal:             [''],
+        primerNombre:         [''], // 30
+        segundoNombre:        [''], // 30
+        apellidoPaterno:      [''],
+        apellidoMaterno:      [''],
+        promotor:             [''],
+        fechaNacimiento:      [''],
+        rfc:                  [''],
+        sexo:                 [''],
+        estadoCivil:          [''],
+        curp:                 [''],
+        tipoIdentificacion:   [''],
+        numeroIdentificacion: [''],
+        listaNegra:           [''],
+        profesion:            [''],
+        nacionalidad:         [''],
+        emailPersonal:        [''],
+        emailEmpresa:         [''],
+        parteRelacionada:     [''],
+        grupoVinculoConsejo:  [''],
+        grupoRiesgoComun:     [''],
+      });
+      this.datosGeneralesFisicaForm.disable();
+    }
 
     this.domicilioForm = this.formBuilder.group({
       TipoDomicilio:  ['', [Validators.required, Validators.maxLength(2)]],
@@ -474,100 +470,87 @@ export class ModMoralComponent implements OnInit { // 717
 
   }
 
+  obtenerDatosGeneralesMoral(id: number): void {
+    this.clienteService.getDatosGeneralesMoral(id).subscribe(
+      (result) => {
+        console.log(result);
+        this.datosGeneralesForm.controls.numeroCliente.setValue(result[0].NumeroCliente);
+        this.datosGeneralesForm.controls.estatusCliente.setValue(result[0].EstatusCliente);
+        this.datosGeneralesForm.controls.sucursal.setValue(result[0].Sucursal);
+        this.datosGeneralesForm.controls.promotor.setValue(result[0].ClavePromotor);
+        this.datosGeneralesForm.controls.razonSocial.setValue(result[0].RazonSocial);
+        this.datosGeneralesForm.controls.fechaConstitucion.setValue(result[0].FechaConstitucion);
+        this.datosGeneralesForm.controls.rfc.setValue(result[0].RFC);
+        this.datosGeneralesForm.controls.nombreSociedad.setValue(result[0].NombreSociedad);
+        this.datosGeneralesForm.controls.representanteLegal.setValue(result[0].RepresentanteLegal);
+        this.datosGeneralesForm.controls.presidenteConsejo.setValue(result[0].PresidenteConsejo);
+        this.datosGeneralesForm.controls.consejero.setValue(result[0].Consejero);
+        this.datosGeneralesForm.controls.emailPersonal.setValue(result[0].EmailPersonal);
+        this.datosGeneralesForm.controls.emailEmpresa.setValue(result[0].EmailEmpresa);
+        this.datosGeneralesForm.controls.parteRelacionada.setValue(result[0].ParteRelacionada);
+        this.datosGeneralesForm.controls.grupoVinculoConsejo.setValue(result[0].GrupoConsejo);
+        this.datosGeneralesForm.controls.grupoRiesgoComun.setValue(result[0].GrupoRiesgoComun);
+        this.datosGeneralesForm.controls.telefonoOficina.setValue(result[0].TelefonoOficina);
+        this.datosGeneralesForm.controls.extensionOficina.setValue(result[0].ExtensionOficina);
+        this.datosGeneralesForm.controls.celular.setValue(result[0].Celular);
+        this.datosGeneralesForm.controls.redSocial1.setValue(result[0].RedSocial1);
+        this.datosGeneralesForm.controls.redSocial2.setValue(result[0].RedSocial2);
 
-  /**
-   * METODOS DATOS GENERALES
-   */
-   validarDatosGenerales() {
-
-    if ( "1" == this.ban ) {
-      console.log("validar moral");
-      this.showEspecificosMoral = true;
-      this.general.setFormMoral(this.datosGeneralesForm.value);
-      console.log(this.general);
-
-      this.datosGeneralesForm.controls.sucursal.disable();
-      this.datosGeneralesForm.controls.promotor.disable();
-      this.datosGeneralesForm.controls.razonSocial.disable();
-      this.datosGeneralesForm.controls.fechaConstitucion.disable();
-      this.datosGeneralesForm.controls.rfc.disable();
-
-    } else if ( "2" == this.ban ) {
-      console.log("validar fisica");
-      this.showEspecificosFisica = true;
-      this.general.setFormFisica(this.datosGeneralesFisicaForm.value);
-      console.log(this.general)
-
-      this.datosGeneralesFisicaForm.controls.sucursal.disable();
-      this.datosGeneralesFisicaForm.controls.primerNombre.disable();
-      this.datosGeneralesFisicaForm.controls.segundoNombre.disable();
-      this.datosGeneralesFisicaForm.controls.apellidoPaterno.disable();
-      this.datosGeneralesFisicaForm.controls.apellidoMaterno.disable();
-      this.datosGeneralesFisicaForm.controls.promotor.disable();
-      this.datosGeneralesFisicaForm.controls.fechaNacimiento.disable();
-      this.datosGeneralesFisicaForm.controls.rfc.disable();
-
-    }
-
-    this.general.EstatusCliente = '0';
-
-    this.clienteService.agregar9(this.general).subscribe(
-      (result: ResponseSP[]) => {
-        this.responseSP = result;
-        this.showBtnValidar = false;
+        this.general = new DatosGenerales(result[0]);
+        this.obtenerTodosListados();
       }
     );
   }
 
-  guardaGeneral() {
+  obtenerDatosGeneralesFisica(id: number): void {
+    this.clienteService.getDatosGeneralesFisica(id).subscribe(
+      (result) => {
+        console.log(result);
+        this.datosGeneralesFisicaForm.controls.numeroCliente.setValue(result[0].NumeroCliente);
+        this.datosGeneralesFisicaForm.controls.estatusCliente.setValue(result[0].EstatusCliente);
+        this.datosGeneralesFisicaForm.controls.sucursal.setValue(result[0].Sucursal);
+        this.datosGeneralesFisicaForm.controls.primerNombre.setValue(result[0].PrimerNombre);
+        this.datosGeneralesFisicaForm.controls.segundoNombre.setValue(result[0].SegundoNombre);
+        this.datosGeneralesFisicaForm.controls.apellidoPaterno.setValue(result[0].ApellidoPaterno);
+        this.datosGeneralesFisicaForm.controls.apellidoMaterno.setValue(result[0].ApellidoMaterno);
+        this.datosGeneralesFisicaForm.controls.promotor.setValue(result[0].ClavePromotor);
+        this.datosGeneralesFisicaForm.controls.fechaNacimiento.setValue(result[0].FechaNacimiento);
+        this.datosGeneralesFisicaForm.controls.rfc.setValue(result[0].RFC);
+        this.datosGeneralesFisicaForm.controls.sexo.setValue(result[0].Sexo);
+        this.datosGeneralesFisicaForm.controls.estadoCivil.setValue(result[0].EstadoCivil);
+        this.datosGeneralesFisicaForm.controls.curp.setValue(result[0].CURP);
+        this.datosGeneralesFisicaForm.controls.tipoIdentificacion.setValue(result[0].TipoIdentificacion);
+        this.datosGeneralesFisicaForm.controls.numeroIdentificacion.setValue(result[0].NumeroIdentificacion);
+        this.datosGeneralesFisicaForm.controls.listaNegra.setValue(result[0].ListaNegra);
+        this.datosGeneralesFisicaForm.controls.profesion.setValue(result[0].Profesion);
+        this.datosGeneralesFisicaForm.controls.nacionalidad.setValue(result[0].Nacionalidad);
+        this.datosGeneralesFisicaForm.controls.emailPersonal.setValue(result[0].EmailPersonal);
+        this.datosGeneralesFisicaForm.controls.emailEmpresa.setValue(result[0].EmailEmpresa);
+        this.datosGeneralesFisicaForm.controls.parteRelacionada.setValue(result[0].ParteRelacionada);
+        this.datosGeneralesFisicaForm.controls.grupoVinculoConsejo.setValue(result[0].GrupoConsejo);
+        this.datosGeneralesFisicaForm.controls.grupoRiesgoComun.setValue(result[0].GrupoRiesgoComun);
 
-    if ( "1" == this.ban ) {
-      this.general.setDatosGenerales(this.datosGeneralesForm.value);
-
-    } else if ( "2" == this.ban ) {
-      this.general.setDatosGeneralesFisica(this.datosGeneralesFisicaForm.value);
-    }
-
-    this.updateInfoGeneral();
-
-    this.clienteService.agregar(this.general).subscribe(
-      (result: ResponseSP[]) => {
-        this.responseSP = result;
-        this.general.setId(+result[0].noCliente)
-
-        this.typeSuccess();
-        this.disNextSection_1 = false;
-
-        if ( "1" == this.ban ) {
-          this.datosGeneralesForm.disable();
-          this.disBtnDatosGeneralesMoral = true;
-          this.datosGeneralesForm.controls.numeroCliente.setValue(+result[0].noCliente);
-        } else if ( "2" == this.ban ) {
-          this.datosGeneralesFisicaForm.disable();
-          this.disBtnDatosGeneralesFisica = true;
-          this.datosGeneralesFisicaForm.controls.numeroCliente.setValue(+result[0].noCliente);
-        }
-
+        this.general = new DatosGenerales(result[0]);
+        this.obtenerTodosListados();
       }
     );
+
   }
 
-  updateInfoGeneral(): void {
-    for ( let item of this.ctSucursal ) {
-      if ( item.catalogo_cve == this.general.Sucursal ) {
-        this.infoGeneral.sucursal = item.desc_45;
-      }
-    }
-
-    for ( let item of this.ctPromotor ) {
-      if ( item.catalogo_cve == this.general.ClavePromotor ) {
-        this.infoGeneral.promotor = item.desc_45;
-      }
-    }
-
-    this.infoGeneral.estatus = 'Prospecto';
-    this.infoGeneral.razonSocial = this.general.RazonSocial;
+  obtenerTodosListados(): void {
+    this.obtenerDomicilio();
+    this.obtenerListadoActividadEconomica();
+    this.obtenerReferenciasPersonales();
+    this.obtenerReferenciasComerciales();
+    this.obtenerReferenciasBancarias();
+    this.obtenerAcciones();
+    this.obtenerCuentasBancarias();
+    this.obtenerPartesRelacionadas();
+    this.obtenerSocioEco();
+    this.obtenerRiesgoComun();
+    this.getDocumentos();
   }
+
 
   cancelar() {
     this.router.navigate(['list-clienteM'], { relativeTo: this.route.parent });
@@ -876,7 +859,6 @@ export class ModMoralComponent implements OnInit { // 717
     console.log(com);
     this.referenciasComercialesSelected = com;
     this.referenciasComercialesUpdate = true;
-    this.prepareEdit('referenciasComerciales', com);
   }
 
   borrarReferenciaComercial(com: any): void {

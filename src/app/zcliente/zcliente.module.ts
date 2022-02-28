@@ -19,6 +19,7 @@ import { QryClienteMComponent } from './qry-clienteM/qry-clienteM.component';
 // Edición o Nuevo Prospecto Cliente Persona Fisica
 import { ModClienteComponent } from './mod-moral/mod-cliente.component';
 import { ModMoralComponent } from './mod-moral/mod-moral.component';
+import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 /*import { ActivEcoComponent } from './mod-moral/activ-eco.component';*/
 /*import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';*/
 //Pruebas
@@ -44,6 +45,7 @@ import { PipeClienteComponent } from './list-cliente/filter-pipe';
     // Mantenimiento o Nuevo Persona Fisica
     ModClienteComponent,
     ModMoralComponent,
+    EditarClienteComponent,
     /*ActivEcoComponent,*/
     /*CuentaBanComponent*/
 

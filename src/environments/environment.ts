@@ -23,6 +23,8 @@ export const environment = {
       grupoSocioeconomico: `${host}GrupoSocioeconomico.php`,
       grupoRiesgoComun: `${host}GrupoRiesgoComun.php`,
       partesRelacionadas: `${host}PartesRelacionadas.php`,
+      personaMoral: `${host}ObtenerPerMoral.php`,
+      personaFisica: `${host}ObtenerPerFisica.php`,
     },
     catalogos: {
       catalogoActdet: `${host}CatalogoActdet.php`,

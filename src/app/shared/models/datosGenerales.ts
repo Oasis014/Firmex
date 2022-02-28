@@ -1,5 +1,5 @@
 export class DatosGenerales {
-  Id: number;
+  NumeroCliente: number;
   Sucursal: string;
   ApellidoPaterno: string;
   ApellidoMaterno: string;
@@ -38,8 +38,8 @@ export class DatosGenerales {
   PresidenteConsejo: string;
   Consejero: string;
 
-  constructor() {
-    this.Id = 0;
+  constructor(obj?: object) {
+    this.NumeroCliente = 0;
     this.Sucursal = '';
     this.ApellidoPaterno = '';
     this.ApellidoMaterno = '';
@@ -77,6 +77,14 @@ export class DatosGenerales {
     this.RepresentanteLegal = '';
     this.PresidenteConsejo = '';
     this.Consejero = '';
+
+    if ( 'undefined' !== typeof(obj) ) {
+      for ( const item in obj) {
+        if ( 'undefined' !== typeof this[item] ) {
+          this[item] = obj[item];
+        }
+      }
+    }
   }
 
   updateFromForm(obj: object): void {
@@ -96,7 +104,7 @@ export class DatosGenerales {
   }
 
   setFormFisica(obj: any): void {
-    this.Id = obj.numeroCliente;
+    this.NumeroCliente = obj.numeroCliente;
     this.EstatusCliente = obj.estatusCliente;
     this.Sucursal = obj.sucursal;
     this.PrimerNombre = obj.primerNombre;
@@ -146,7 +154,7 @@ export class DatosGenerales {
   }
 
   setId(id: number): void {
-    this.Id = id;
+    this.NumeroCliente = id;
   }
 
 }
