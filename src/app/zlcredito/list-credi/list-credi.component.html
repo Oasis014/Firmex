@@ -10,7 +10,7 @@
 				</div>
 			</div>-->
 			<div class="col-12 col-lg-4 col-xl-4">
-			<h3>Listado de Creditos</h3>
+			<h3>Listado de Linea de Creditos</h3>
 			</div>
 			<div class="col-12 col-lg-2 col-xl-2">
 				<label>Filtrar: </label>
@@ -27,6 +27,39 @@
 	</div>
 </div>
 <!-- ***** Encabezado ***** -->
+<div class="row">
+	<div class="card col-sm-12 mb-12">
+		<table class="table table-striped text-center " style="width:auto; height:5px;" >
+		  <thead >
+		  <th>Numero Cliente</th>
+		  <th>Solicitudes Linea</th>
+		  <th>Linea de Credito</th>
+		  <th>Tipo de Solicitud</th>
+		  <th>Estatus de Solicitud</th>
+		  <th>Monto de Linea Credito</th>
+		  <th>Fecha de Alta</th>
+		  <th>Numero de Pagos</th>
+		  <th>Divisa</th>
+		  </thead>
+		  <tbody>
+		  <tr *ngFor="let post of list " >
+			<td >{{post.NumeroCliente}}</td>
+			<td >{{post.SolicitudLinea}}</td>
+			<td>{{post.LineaCredito}}</td>
+			<td>{{post.TipoSolicitud}}</td>
+			<td>{{post.EstatusSolicitud}}</td>
+			<td>{{post.MontoLineaCredito}}</td>
+			<td>{{post.FechaAlta}}</td>
+			<td>{{post.NumeroPagos}}</td>
+			<td>{{post.Divisa}}</td>
+			<td>
+				<a class="btn btn-sm btn-info text-white" ><i class="fa fa-pencil"></i></a>
+			</td>
+		  </tr>
+		  </tbody>
+		</table>
+	</div>
+	</div>
 <!-- Filter Datatable Options Begin -->
 
 <!-- Filter Datatable Options Ends -->

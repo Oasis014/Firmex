@@ -19,6 +19,10 @@ export class ClienteService {
     private readonly httpService: HttpService
   ) { }
 
+  getListLineaCredito() {
+    return this.http.get(`${this.url}ObtenerLineaCredito.php`);
+  }
+
   getListCliente() {
     return this.http.get(`${this.url}ObtenerPerCliente.php`);
   }
