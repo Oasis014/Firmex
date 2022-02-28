@@ -1,33 +1,34 @@
 <div class="card">
-	<div class="card-body">
-		<div class="row">
-			<!--<div class="col-12 col-lg-4 col-xl-4">
-				<div class="input-group">
-					<div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
-					</div>
-					<input type="text" class="form-control" placeholder="Buscar por catalogos" style='width:30%;'>
-					<div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
-				</div>
-			</div>-->
-			<div class="col-12 col-lg-4 col-xl-4">
-			<h3>Listado de Persona Moral</h3>
-			</div>
-			<div class="col-12 col-lg-2 col-xl-2">
-				<label>Filtrar: </label>
-			</div>
-			  <div class="col-12 col-lg-2 col-xl-2">
-				<input type="text"	class="form-control" name="filterPost" placeholder="Buscar por Numero Cliente..." [(ngModel)]="filterPost"  />
-				</div>
-			<div class="col-12 col-lg-4 col-xl-4">
-				<div ngbDropdown class="btn-group m-1 float-sm-right" >
-					<button type="button" class="btn btn-light"  (click) ="open()"><i class="fa fa-file"></i><span> <a > Nuevo</a></span></button>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="card-body">
+    <div class="row">
+      <!--<div class="col-12 col-lg-4 col-xl-4">
+        <div class="input-group">
+          <div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Buscar por catalogos" style='width:30%;'>
+          <div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
+        </div>
+      </div>-->
+      <div class="col-12 col-lg-4 col-xl-4">
+      <h3>Listado de Persona Moral</h3>
+      </div>
+      <div class="col-12 col-lg-2 col-xl-2">
+        <label>Filtrar: </label>
+      </div>
+        <div class="col-12 col-lg-2 col-xl-2">
+        <input type="text"	class="form-control" name="filterPost" placeholder="Buscar por Numero Cliente..." [(ngModel)]="filterPost"  />
+        </div>
+      <div class="col-12 col-lg-4 col-xl-4">
+        <div ngbDropdown class="btn-group m-1 float-sm-right" >
+          <button type="button" class="btn btn-light"  (click) ="open()"><i class="fa fa-file"></i><span> <a > Nuevo</a></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- ***** Encabezado ***** -->
 <div class="row">
+<<<<<<< HEAD
 	<div class="col-sm-3">
 		<div class="input-group">
 			<div ngbDropdown class="input-group-prepend">
@@ -72,6 +73,52 @@
 		  </tbody>
 		</table>
 	</div>
+=======
+  <div class="col-sm-3">
+    <div class="input-group">
+      <div ngbDropdown class="input-group-prepend">
+        <button class="btn btn-light" type="button" id="tipoP" ngbDropdownToggle>Persona Moral</button>
+        <div ngbDropdownMenu aria-labelledby="tipoP">
+          <a ngbDropdownItem  (click)="Total()" > </a>
+          <div role="separator" class="dropdown-divider"></div>
+          <a ngbDropdownItem  (click)="Fisica()" >Persona Fisica</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="card col-sm-12 mb-12">
+    <table class="table table-striped text-center " style="width:auto; height:5px;" >
+      <thead >
+      <th>Numero Cliente</th>
+      <th>Sociedad</th>
+      <th>Fecha de Constitucion</th>
+      <th>Representante Legal</th>
+      <th>Presidente de Consejo</th>
+      <th>Consejero </th>
+      <th>Secretario</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let post of list | filter: filterPost" >
+      <td >{{post.NumeroCLiente}}</td>
+      <td >{{post.NombreSociedad}}</td>
+      <td>{{post.FechaConstitucion}}</td>
+      <td>{{post.RepresentanteLegal}}</td>
+      <td>{{post.PresidenteConsejo}}</td>
+      <td>{{post.Consejero}}</td>
+      <td>{{post.Secretario}}</td>
+      <td>
+        <a class="btn btn-sm btn-info text-white"
+          [routerLink]="['../editar-cliente', post.NumeroCLiente, 'moral']">
+          <i class="fa fa-pencil"></i>
+        </a>
+      </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+>>>>>>> 733062b9fc9cb7fa63ddf356f5dcc884511dd5bd
 
 <!-- Filter Datatable Options Ends -->
 </div>

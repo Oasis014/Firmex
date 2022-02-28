@@ -279,8 +279,22 @@ export class ClienteService {
     return this.http.get(`${this.url}ObtenerPerFisica.php`);
   }
 
+  getDatosGeneralesFisica(id: number): Observable<any> {
+    let params = {
+      'userId': id
+    };
+    return this.httpService.get(this.clienteUrl.personaFisica, params);
+  }
+
   getListMoral() {
     return this.http.get(`${this.url}ObtenerPerMoral.php`);
+  }
+
+  getDatosGeneralesMoral(id: number): Observable<any> {
+    let params = {
+      'userId': id
+    };
+    return this.httpService.get(this.clienteUrl.personaMoral, params);
   }
 
 

@@ -17,6 +17,7 @@ import { CuentaBanComponent } from './mod-moral/cuenta-bancaria.component';*/
 //Pruebas
 import { PhpFuncionaComponent } from './php-funciona/php-funciona.component';
 import { PhpPruebaComponent } from './php-prueba/php-prueba.component';
+import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 
 const routes: Routes = [
   {
@@ -102,6 +103,10 @@ const routes: Routes = [
         data: {
           title: 'Cliente'
         }
+      },
+      {
+        path:'editar-cliente/:id/:type',
+        component: EditarClienteComponent,
       },
       /*{
         path: 'activ-eco',
