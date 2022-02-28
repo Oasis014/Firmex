@@ -285,6 +285,7 @@ export class EditarClienteComponent implements OnInit { // 717
         grupoRiesgoComun:     [''],
       });
       this.datosGeneralesFisicaForm.disable();
+      this.obtenerDatosGeneralesFisica(id);
     }
 
     this.domicilioForm = this.formBuilder.group({
