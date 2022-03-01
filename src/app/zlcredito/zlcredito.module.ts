@@ -9,6 +9,7 @@ import { GeneralModule } from "../general/general.module";
 // Listados
 import { ListRevolComponent } from './list-revol/list-revol.component';
 import { ListCrediComponent } from './list-credi/list-credi.component';
+import { ListCredilComponent } from './list-credil/list-credil.component';
 // Alta Revolvente
 import { ModCrediComponent } from './mod-credi/mod-credi.component';
 // Depositos o retiros
@@ -18,6 +19,7 @@ import { PipeClienteComponent } from './list-revol/filter-pipe';
 @NgModule({
   declarations: [
     PipeClienteComponent,
+    ListCredilComponent,
        ListCrediComponent,
        ListRevolComponent,
        ModCrediComponent
