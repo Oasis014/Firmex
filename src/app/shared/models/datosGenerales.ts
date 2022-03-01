@@ -134,8 +134,25 @@ export class DatosGenerales {
   }
 
   setDatosGeneralesFisica(obj: any): any {
-
+    this.Sexo = obj.sexo;
+    this.EstadoCivil = obj.estadoCivil;
+    this.CURP = obj.curp;
+    this.TipoIdentificacion = obj.tipoIdentificacion;
+    this.NumeroIdentificacion = obj.numeroIdentificacion;
+    this.ListaNegra = obj.listaNegra;
+    this.Profesion = obj.profesion;
+    this.Nacionalidad = obj.nacionalidad;
+    this.EmailPersonal = obj.emailPersonal;
+    this.EmailEmpresa = obj.emailEmpresa;
+    this.ParteRelacionada = obj.parteRelacionada;
+    this.GrupoConsejo = obj.grupoVinculoConsejo;
+    this.GrupoRiesgoComun = obj.grupoRiesgoComun;
   }
+  /*
+  PersonalidadJuridica = 01 = Fisica
+  PersonalidadJuridica = 02 = Fisica
+  PersonalidadJuridica = 03 = Moral
+  */
 
   setFisica(): void {
     this.PersonalidadJuridica = "02";
