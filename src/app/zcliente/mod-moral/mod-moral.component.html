@@ -2022,8 +2022,8 @@
                             <div class="col-sm-6">
                               <select class="form-control form-control-sm"
                                 formControlName="GrupoSocioeconomicoGpoSoc">
-                                <option *ngFor="let CatEco of ctActeco" [value]="CatEco.catalogo_cve">
-                                  {{CatEco.desc_45}}
+                                <option *ngFor="let item of ctTipgse" [value]="item.catalogo_cve">
+                                  {{item.desc_45}}
                                 </option>
                               </select>
                             </div>
