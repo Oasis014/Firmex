@@ -200,6 +200,10 @@ export class ModMoralComponent implements OnInit { // 717
 
   ngOnInit() {
     this.ban = localStorage.getItem("bandera");
+    /*
+      ban = 1 = Moral
+      ban = 2 = Fisica
+    */
 
     if (this.ban == "1") {
       this.general.setMoral();
@@ -520,7 +524,10 @@ export class ModMoralComponent implements OnInit { // 717
   }
 
   guardaGeneral() {
-
+    /*
+      ban = 1 = Moral
+      ban = 2 = Fisica
+    */
     if ( "1" == this.ban ) {
       this.general.setDatosGenerales(this.datosGeneralesForm.value);
 
