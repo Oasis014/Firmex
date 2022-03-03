@@ -6,6 +6,9 @@ import { NgbProgressbarModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { InversionRoutingModule } from './zlcredito-routing.module';
 import { GeneralModule } from "../general/general.module";
+import { TextMaskModule } from 'angular2-text-mask';
+
+
 // Listados
 import { ListRevolComponent } from './list-revol/list-revol.component';
 import { ListCrediComponent } from './list-credi/list-credi.component';
@@ -34,7 +37,8 @@ import { PipeClienteComponent } from './list-revol/filter-pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbProgressbarModule,
-    GeneralModule
+    GeneralModule,
+    TextMaskModule
   ]
 })
 export class CreditoModule { }
