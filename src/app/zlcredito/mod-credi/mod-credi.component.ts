@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+// Importacione de funcion de mascaras 
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { FormControl } from '@angular/forms';
-
+import emailMask from 'text-mask-addons/dist/emailMask';
+// Fin de importaciones
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
@@ -16,8 +18,7 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModCrediComponent implements OnInit {
 
-  @ViewChild('inputFile')
-  myInputFile: ElementRef;
+ 
 
   constructor(
     public toastr: ToastrService,
@@ -138,12 +139,20 @@ export class ModCrediComponent implements OnInit {
     }
   }
 
-
+//Objetos de Mascaras
   mask: Array<string | RegExp>;
-  choices = [ {
+  efectivo = [ {
     mask: createNumberMask({allowDecimal: true}),
-    placeholder: '$1,000.00',
+  },
+  ];
+
+  email = [{
+    mask: emailMask,
+  }];
+
+  number = [{
+    mask: ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
   }];
   
-
+//Fin Objetos de Mascaras
 }

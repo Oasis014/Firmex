@@ -45,15 +45,33 @@
                               </div>
                             </div>
                           </div>
+                          <!--Input de mascaras-->
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Mascara de cantidad </label>
-                              <div class="col-sm-6" *ngFor="let choice of choices" >
-                                <input class="form-control" type="text" placeholder="$1,0000.00" [textMask]="{mask: choice.mask}">
+                              <div class="col-sm-6" *ngFor="let efectivo of efectivo" >
+                                <input class="form-control" type="text" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
 			                        </div>
 	                        	</div>
                         	</div>
-                          <div class="col-2 col-lg-1 col-xl-1">
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Mascara de email </label>
+                              <div class="col-sm-6" *ngFor="let email of email" >
+                                <input class="form-control" type="text" placeholder="Example@gmail.com" [textMask]="{mask: email.mask}">
+			                        </div>
+	                        	</div>
+                        	</div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Mascara de Numero </label>
+                              <div class="col-sm-6" *ngFor="let number of number" >
+                                <input class="form-control" type="text" placeholder="(55)5555-5555" [textMask]="{mask: number.mask}">
+			                        </div>
+	                        	</div>
+                        	</div>
+                          <!--Fin de Input de mascaras-->
+                          <div class="col-2 col-lg-2 col-xl-2">
                             <button
                             (click)="isCollapsed8 = !isCollapsed8"
                               type="submit"
