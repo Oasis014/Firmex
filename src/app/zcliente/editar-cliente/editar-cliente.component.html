@@ -1443,11 +1443,12 @@
                           <div class="form-group row">
                             <label  class="col-sm-5 col-form-label">Institución</label>
                             <div class="col-sm-6 input-group">
-                              <input type="text"
-                                class="form-control"
-                                formControlName="InstitucionRefBan"
-                                maxlength="120">
-                              <div class="input-group-append"></div>
+                              <select class="form-control form-control-sm"
+                                formControlName="InstitucionRefBan">
+                                <option *ngFor="let CatBncs of ctBancos" [value]="CatBncs.catalogo_cve">
+                                  {{CatBncs.desc_45}}
+                                </option>
+                              </select>
                             </div>
                           </div>
                         </div>
@@ -1531,7 +1532,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let ban of referenciasBancariasList;let i=index;" >
-                      <td>{{ban.InstitucionRefBan}}</td>
+                      <td>{{ban.InstitucionDesc}}</td>
                       <td>{{ban.AntiguedadRefBan}}</td>
                       <td>{{ban.LimiteCreditoRefBan}}</td>
                       <td>{{ban.SaldoCuentaRefBan}}</td>
