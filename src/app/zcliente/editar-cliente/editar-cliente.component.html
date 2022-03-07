@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-4 col-lg-4 col-xl-4">
         <div class="form-group row">
-          <h4 type="number">ID: {{general.NumeroCliente}}</h4>
+          <h4 type="number">Número Cliente: {{general.NumeroCliente}}</h4>
 
         </div>
       </div>
@@ -97,12 +97,6 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card">
-      <div class="col-12 col-lg-12" align="center"><!--*ngIf="!disNextSection_1"-->
-        <label class="card-header text-uppercase" >Sucursal: {{infoGeneral.sucursal}} </label>
-        <label class="card-header text-uppercase" >Promotor: {{infoGeneral.promotor}}</label>
-        <label class="card-header text-uppercase" >Estatus de Cliente: {{infoGeneral.estatus}}</label>
-        <label class="card-header text-uppercase" >Razon Social: {{infoGeneral.razonSocial}}</label>
-      </div>
       <div class="card-body">
         <ul ngbNav #nav3="ngbNav" [(activeId)]="active2" (navChange)="onNavChange($event)" class="nav-tabs nav-tabs-primary  nav-justified">
           <li [ngbNavItem]="1" > <a ngbNavLink><i class="fa fa-user-plus"></i>Datos Generales</a>
@@ -1147,7 +1141,7 @@
                   <div class="row" *ngIf="actividadEconomicaList.length">
                     <div  class="col-6 col-lg-6 col-xl-6"></div>
                     <div  class="col-4 col-lg-4 col-xl-4">
-                      <label>Listado de Actividad economica</label>
+                      <label>Listado de Actividad económica</label>
                     </div>
                   </div>
                   <div class="card" *ngIf="actividadEconomicaList.length">
@@ -1162,8 +1156,8 @@
                       </thead>
                       <tbody>
                       <tr *ngFor="let eco of actividadEconomicaList;let i=index;" >
-                        <td scope="row" >{{eco.ActividadEconomica}}</td>
-                        <td>{{eco.ActividadDetallada}}</td>
+                        <td scope="row" >{{eco.ActividadEconomicaDesc}}</td>
+                        <td>{{eco.ActividadDetalladaDesc}}</td>
                         <td>{{eco.IngresoMensual}}</td>
                         <td>{{eco.OtroIngresoMensual}}</td>
                         <td>{{eco.GastosMensuales}}</td>
@@ -1725,7 +1719,8 @@
                   </div>
                   <div class="card" *ngIf="accionesList.length">
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                      <thead >
+                      <thead>
+                        <th>Consecutivo</th>
                         <th>Fecha primera acción</th>
                         <th>Parte Inicial</th>
                         <th>Fecha de Pago</th>
@@ -1736,6 +1731,7 @@
                       </thead>
                       <tbody>
                       <tr *ngFor="let acc of accionesList;let i=index;" >
+                        <td>{{acc.Consecutivo}}</td>
                         <td>{{acc.FechaCompra1aAccion}}</td>
                         <td>{{acc.ParteInicialSocial}}</td>
                         <td>{{acc.FechaPago}}</td>
@@ -1983,7 +1979,8 @@
                   </div>
                   <div class="card" *ngIf="partesRelacionadasList.length">
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                      <thead >
+                      <thead>
+                        <th>Consecutivo</th>
                         <th>Parte Relacionada</th>
                         <th>Nombre completo</th>
                         <th>RFC</th>
@@ -1991,6 +1988,7 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let rel of partesRelacionadasList;let i=index;" >
+                          <td>{{rel.Consecutivo}}</td>
                           <td>{{rel.ParteRelacionadaParRel}}</td>
                           <td>{{rel.NombreParRel}}</td>
                           <td>{{rel.RFCParRel}}</td>
@@ -2110,8 +2108,7 @@
               </div>
               <div class="card" *ngIf="grupoSocioeconomicoList.length">
                 <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                  <thead >
-                  <th>Numero Cliente</th>
+                  <thead>
                   <th>Consecutivo</th>
                   <th>Grupo Socieconomico</th>
                   <th>Nombre Completo</th>
@@ -2120,7 +2117,6 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let soc of grupoSocioeconomicoList;let i=index;" >
-                    <td scope="row" >{{soc.Id}}</td>
                     <td scope="row" >{{soc.Consecutivo}}</td>
                     <td>{{soc.GrupoSocioeconomicoGpoSoc}}</td>
                     <td>{{soc.NombreGpoSoc}}</td>
@@ -2243,7 +2239,8 @@
               </div>
               <div class="card" *ngIf="grupoRiesgoComunList.length">
                 <table class="table table-striped text-center " style="width:auto; height:5px;">
-                  <thead >
+                  <thead>
+                      <th>Consecutivo</th>
                       <th>Grupo de Riesgo Común</th>
                       <th>Nombre Completo</th>
                       <th>RFC</th>
@@ -2251,7 +2248,8 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let com of grupoRiesgoComunList;let i=index;" >
-                      <td>{{com.GrupoRiesgoComunRgoCom}}</td>
+                      <td>{{com.Consecutivo}}</td>
+                      <td>{{com.GrupoRiesgoComunDesc}}</td>
                       <td>{{com.NombreRgoCom}}</td>
                       <td>{{com.RFCRgoCom}}</td>
                       <td>{{com.DireccionRgoCom}}</td>

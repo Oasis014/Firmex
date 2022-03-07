@@ -159,7 +159,7 @@ export class DatosGenerales {
     this.FechaConstitucion = '1970-01-01';
     const date = new Date();
     this.FechaAlta = date.toISOString().substring(0, 10);
-    this.EstatusCliente = "0";
+    this.EstatusCliente = "01";
   }
 
   setMoral(): void {
@@ -167,7 +167,7 @@ export class DatosGenerales {
     this.FechaNacimiento = '1970-01-01';
     const date = new Date();
     this.FechaAlta = date.toISOString().substring(0, 10);
-    this.EstatusCliente = "0";
+    this.EstatusCliente = "01";
   }
 
   setId(id: number): void {

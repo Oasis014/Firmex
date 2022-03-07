@@ -121,13 +121,6 @@ export class EditarClienteComponent implements OnInit { // 717
   showMoral = true;
   showFisica = false;
 
-  infoGeneral = {
-    sucursal: '',
-    promotor: '',
-    estatus: '',
-    razonSocial: ''
-  };
-
   isPatchLocation = false;
   locationToUpdate: Domicilio;
   readyMun = false;
@@ -559,6 +552,12 @@ export class EditarClienteComponent implements OnInit { // 717
   // FIN DATOS GENERALES
 
   cancelarActualizacion(seccion: string): void {
+
+    if ('actividadEconomica' == seccion) {
+      this.actividadEconomicaForm.controls.ActividadEconomica.enable();
+      this.actividadEconomicaForm.controls.ActividadDetallada.enable();
+    }
+
     if ( 'domicilio' == seccion ) {
       this.domicilioBtnText = 'Guardar';
       this.domicilioDisBtnInsert = true;
@@ -718,7 +717,7 @@ export class EditarClienteComponent implements OnInit { // 717
    * ********************************/
 
   guardarActividadEconomica() {
-    let params = this.actividadEconomicaForm.value;
+    let params = this.actividadEconomicaForm.getRawValue();
     params.Id  =this.general.NumeroCliente;
     this.clienteService.agregar4(params).subscribe(
       (result: any) => {
@@ -741,6 +740,8 @@ export class EditarClienteComponent implements OnInit { // 717
   consultarActividadEconomica(eco): void {
     console.log(eco);
     this.prepareEdit('actividadEconomica', eco);
+    this.actividadEconomicaForm.controls.ActividadEconomica.disable();
+    this.actividadEconomicaForm.controls.ActividadDetallada.disable();
   }
 
   borrarActividadEconomica(obj: any) {
