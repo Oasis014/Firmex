@@ -431,17 +431,10 @@
                               (click)="cancelar()">Cancelar</button>-->
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <!--
-                              <button
-                              [disabled]="disBtnDatosGeneralesMoral || datosGeneralesForm.invalid"
-                              data-toggle="modal"
-                              data-target="#largesizemodal1"
-                              type="submit"
-                              class="btn btn-light btn-block"
-                              (click)="guardaGeneral()">
-                              Guardar</button>
-                            -->
-
+                            <button type="submit"
+                              [disabled]="datosGeneralesForm.invalid"
+                              class="btn btn-light  btn-block"
+                              (click)="guardaGeneral()">Guardar</button>
                           </div>
                         </div>
                       </div>
@@ -799,12 +792,10 @@
                               (click)="cancelar()">Cancelar</button>-->
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <!--<button type="submit"
-                              [disabled]="disBtnDatosGeneralesFisica || datosGeneralesFisicaForm.invalid"
+                            <button type="submit"
+                              [disabled]="datosGeneralesFisicaForm.invalid"
                               class="btn btn-light  btn-block"
-                              data-toggle="modal"
-                              data-target="#largesizemodal1"
-                              (click)="guardaGeneral()">Guardar</button>-->
+                              (click)="guardaGeneral()">Guardar</button>
                           </div>
                         </div>
                       </div>

@@ -18,7 +18,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./editar-cliente.component.scss']
 })
 
-export class EditarClienteComponent implements OnInit { // 717
+export class EditarClienteComponent implements OnInit {
 
   @ViewChild('inputFile')
   myInputFile: ElementRef;
@@ -46,7 +46,6 @@ export class EditarClienteComponent implements OnInit { // 717
   grupoSocioeconomicoForm: FormGroup;
   grupoRiesgoComunForm: FormGroup;
 
-  //disNextSection_1 = true;
   updateDomicilio = false;
 
   active = 1;
@@ -227,57 +226,55 @@ export class EditarClienteComponent implements OnInit { // 717
       this.showMoral = true;
       this.datosGeneralesForm = this.formBuilder.group({
         numeroCliente:       [''],
-        estatusCliente:      [''],
-        sucursal:            [''],
-        promotor:            [''],
-        razonSocial:         [''],
-        fechaConstitucion:   [''],
-        rfc:                 [''],
-        nombreSociedad:      [''],
-        representanteLegal:  [''],
-        presidenteConsejo:   [''],
-        consejero:           [''],
-        emailPersonal:       [''],
-        emailEmpresa:        [''],
-        parteRelacionada:    [''],
-        grupoVinculoConsejo: [''],
-        grupoRiesgoComun:    [''],
-        telefonoOficina:     [''],
-        extensionOficina:    [''],
-        celular:             [''],
-        redSocial1:          [''],
-        redSocial2:          [''],
+        estatusCliente:      ['Prospecto'],
+        sucursal:            ['', [Validators.required, Validators.maxLength(5)]],
+        promotor:            ['', [Validators.required, Validators.maxLength(5)]],
+        razonSocial:         ['', [Validators.required, Validators.maxLength(120)]],
+        fechaConstitucion:   ['', [Validators.required]],
+        rfc:                 ['', [Validators.required, Validators.maxLength(13)]],
+        nombreSociedad:      ['', [Validators.required, Validators.maxLength(120)]],
+        representanteLegal:  ['', [Validators.required, Validators.maxLength(120)]],
+        presidenteConsejo:   ['', [Validators.required, Validators.maxLength(120)]],
+        consejero:           ['', [Validators.required, Validators.maxLength(120)]],
+        emailPersonal:       ['', [Validators.required, Validators.maxLength(80)]],
+        emailEmpresa:        ['', [Validators.required, Validators.maxLength(80)]],
+        parteRelacionada:    ['', [Validators.required, Validators.maxLength(5)]],
+        grupoVinculoConsejo: ['', [Validators.required, Validators.maxLength(10)]],
+        grupoRiesgoComun:    ['', [Validators.required, Validators.maxLength(5)]],
+        telefonoOficina:     ['', [Validators.maxLength(15)]],
+        extensionOficina:    ['', [Validators.maxLength(10)]],
+        celular:             ['', [Validators.maxLength(15)]],
+        redSocial1:          ['', [Validators.maxLength(50)]],
+        redSocial2:          ['', [Validators.maxLength(50)]]
       });
-      this.datosGeneralesForm.disable();
       this.obtenerDatosGeneralesMoral(id);
     } else if ( 'fisica' === userType ) {
       this.showMoral = false;
       this.datosGeneralesFisicaForm = this.formBuilder.group({
-        numeroCliente:        ['0'],
-        estatusCliente:       [''],
-        sucursal:             [''],
-        primerNombre:         [''], // 30
-        segundoNombre:        [''], // 30
-        apellidoPaterno:      [''],
-        apellidoMaterno:      [''],
-        promotor:             [''],
-        fechaNacimiento:      [''],
-        rfc:                  [''],
-        sexo:                 [''],
-        estadoCivil:          [''],
-        curp:                 [''],
-        tipoIdentificacion:   [''],
-        numeroIdentificacion: [''],
-        listaNegra:           [''],
-        profesion:            [''],
-        nacionalidad:         [''],
-        emailPersonal:        [''],
-        emailEmpresa:         [''],
-        parteRelacionada:     [''],
-        grupoVinculoConsejo:  [''],
-        grupoRiesgoComun:     [''],
+        numeroCliente:        [''],
+        estatusCliente:       ['Prospecto'],
+        sucursal:             ['', [Validators.required, Validators.maxLength(5)]],
+        primerNombre:         ['', [Validators.required, Validators.maxLength(30)]], // 30
+        segundoNombre:        ['', [Validators.required, Validators.maxLength(30)]], // 30
+        apellidoPaterno:      ['', [Validators.required, Validators.maxLength(30)]],
+        apellidoMaterno:      ['', [Validators.required, Validators.maxLength(30)]],
+        promotor:             ['', [Validators.required, Validators.maxLength(5)]],
+        fechaNacimiento:      ['', [Validators.required, Validators.maxLength(10)]],
+        rfc:                  ['', [Validators.required, Validators.maxLength(13)]],
+        sexo:                 ['', [Validators.required, Validators.maxLength(1)]],
+        estadoCivil:          ['', [Validators.required, Validators.maxLength(2)]],
+        curp:                 ['', [Validators.required, Validators.maxLength(18)]],
+        tipoIdentificacion:   ['', [Validators.required, Validators.maxLength(2)]],
+        numeroIdentificacion: ['', [Validators.required, Validators.maxLength(20)]],
+        listaNegra:           ['', [Validators.required, Validators.maxLength(30)]],
+        profesion:            ['', [Validators.required, Validators.maxLength(2)]],
+        nacionalidad:         ['', [Validators.required, Validators.maxLength(2)]],
+        emailPersonal:        ['', [Validators.required, Validators.maxLength(80)]],
+        emailEmpresa:         ['', [Validators.required, Validators.maxLength(80)]],
+        parteRelacionada:     ['', [Validators.required, Validators.maxLength(5)]],
+        grupoVinculoConsejo:  ['', [Validators.required, Validators.maxLength(10)]],
+        grupoRiesgoComun:     ['', [Validators.required, Validators.maxLength(5)]]
       });
-      this.datosGeneralesFisicaForm.disable();
       this.obtenerDatosGeneralesFisica(id);
     }
 
@@ -464,12 +461,34 @@ export class EditarClienteComponent implements OnInit { // 717
 
   }
 
+
+  guardaGeneral() {
+    if ( this.showMoral ) {
+      console.log(this.datosGeneralesForm.value);
+      this.general.setUpdateMoral(this.datosGeneralesForm.value);
+    } else if ( !this.showMoral ) {
+      console.log(this.datosGeneralesFisicaForm.value);
+      this.general.setDatosGeneralesFisica(this.datosGeneralesFisicaForm.value);
+    }
+
+    console.log(this.general);
+    this.clienteService.agregar(this.general).subscribe(
+      (result: ResponseSP[]) => {
+        this.responseSP = result;
+        this.general.setId(+result[0].noCliente)
+
+        this.typeSuccess();
+      }
+    );
+  }
+
+
   obtenerDatosGeneralesMoral(id: number): void {
     this.clienteService.getDatosGeneralesMoral(id).subscribe(
       (result) => {
         console.log(result);
         this.datosGeneralesForm.controls.numeroCliente.setValue(result[0].NumeroCliente);
-        this.datosGeneralesForm.controls.estatusCliente.setValue(result[0].EstatusCliente);
+        this.datosGeneralesForm.controls.estatusCliente.setValue('Prospecto'); // result[0].EstatusCliente
         this.datosGeneralesForm.controls.sucursal.setValue(result[0].Sucursal);
         this.datosGeneralesForm.controls.promotor.setValue(result[0].ClavePromotor);
         this.datosGeneralesForm.controls.razonSocial.setValue(result[0].RazonSocial);
@@ -501,7 +520,7 @@ export class EditarClienteComponent implements OnInit { // 717
       (result) => {
         console.log(result);
         this.datosGeneralesFisicaForm.controls.numeroCliente.setValue(result[0].NumeroCliente);
-        this.datosGeneralesFisicaForm.controls.estatusCliente.setValue(result[0].EstatusCliente);
+        this.datosGeneralesFisicaForm.controls.estatusCliente.setValue('Prospecto'); // result[0].EstatusCliente
         this.datosGeneralesFisicaForm.controls.sucursal.setValue(result[0].Sucursal);
         this.datosGeneralesFisicaForm.controls.primerNombre.setValue(result[0].PrimerNombre);
         this.datosGeneralesFisicaForm.controls.segundoNombre.setValue(result[0].SegundoNombre);

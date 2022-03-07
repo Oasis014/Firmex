@@ -96,6 +96,7 @@ export class DatosGenerales {
   }
 
   setFormMoral(obj: any): void {
+    this.NumeroCliente = obj.numeroCliente;
     this.Sucursal = obj.sucursal;
     this.RazonSocial = obj.razonSocial;
     this.RFC = obj.rfc;
@@ -105,7 +106,6 @@ export class DatosGenerales {
 
   setFormFisica(obj: any): void {
     this.NumeroCliente = obj.numeroCliente;
-    this.EstatusCliente = obj.estatusCliente;
     this.Sucursal = obj.sucursal;
     this.PrimerNombre = obj.primerNombre;
     this.SegundoNombre = obj.segundoNombre;
@@ -172,6 +172,60 @@ export class DatosGenerales {
 
   setId(id: number): void {
     this.NumeroCliente = id;
+  }
+
+  setUpdateMoral(obj: any): void {
+    this.Sucursal = obj.sucursal;
+    this.RazonSocial = obj.razonSocial;
+    this.RFC = obj.rfc;
+    this.FechaConstitucion = obj.fechaConstitucion;
+    this.ClavePromotor = obj.promotor;
+
+    this.NombreSociedad = obj.nombreSociedad;
+    this.RepresentanteLegal = obj.representanteLegal;
+    this.PresidenteConsejo = obj.presidenteConsejo;
+    this.Consejero = obj.consejero;
+    this.EmailPersonal = obj.emailPersonal;
+    this.EmailEmpresa = obj.emailEmpresa;
+    this.ParteRelacionada = obj.parteRelacionada;
+    this.GrupoConsejo = obj.grupoVinculoConsejo;
+    this.GrupoRiesgoComun = obj.grupoRiesgoComun;
+    this.TelefonoOficina = obj.telefonoOficina;
+    this.ExtensionOficina = obj.extensionOficina;
+    this.Celular = obj.celular;
+    this.RedSocial1 = obj.redSocial1;
+    this.RedSocial2 = obj.redSocial2;
+
+    this.FechaNacimiento = '1970-01-01';
+    this.EstatusCliente = "01";
+  }
+
+  setUpdateFisica(obj: any): void {
+    this.Sucursal = obj.sucursal;
+    this.PrimerNombre = obj.primerNombre;
+    this.SegundoNombre = obj.segundoNombre;
+    this.ApellidoPaterno = obj.apellidoPaterno;
+    this.ApellidoMaterno = obj.apellidoMaterno;
+    this.ClavePromotor = obj.promotor;
+    this.FechaNacimiento = obj.fechaNacimiento;
+    this.RFC = obj.rfc;
+
+    this.Sexo = obj.sexo;
+    this.EstadoCivil = obj.estadoCivil;
+    this.CURP = obj.curp;
+    this.TipoIdentificacion = obj.tipoIdentificacion;
+    this.NumeroIdentificacion = obj.numeroIdentificacion;
+    this.ListaNegra = obj.listaNegra;
+    this.Profesion = obj.profesion;
+    this.Nacionalidad = obj.nacionalidad;
+    this.EmailPersonal = obj.emailPersonal;
+    this.EmailEmpresa = obj.emailEmpresa;
+    this.ParteRelacionada = obj.parteRelacionada;
+    this.GrupoConsejo = obj.grupoVinculoConsejo;
+    this.GrupoRiesgoComun = obj.grupoRiesgoComun;
+
+    this.FechaConstitucion = '1970-01-01';
+    this.EstatusCliente = "01";
   }
 
 }
