@@ -14,9 +14,9 @@ export const ROUTES: RouteInfo[] = [
 
         {
             path: '', title: 'Solicitudes', icon: 'fa fa-money', class: 'sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
-                { path: '/zlcredito/list-credi', title: 'Linea de Credito', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [ ] },
-                { path: '/zlcredito/list-credil', title: 'Credito', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-                { path: '/zlcredito/list-revol', title: 'Activación del Cliente', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/zlcredito/list-credi', title: 'Solicitudes', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [ ] },
+                { path: '/zlcredito/list-credil', title: 'Activación y Cancelación', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/zlcredito/list-revol', title: 'Impresión', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             ]
         },
 
