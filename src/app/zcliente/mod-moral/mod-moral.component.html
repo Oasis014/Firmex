@@ -2334,7 +2334,8 @@
                           <div class="form-group row">
                             <label class="col-sm-5 col-form-success">Archivo</label>
                             <div class="col-sm-6">
-                              <input #inputFile type="file" name="file" (change)="fileEvent($event)">
+                              <input #inputFile type="file" name="file" (change)="fileEvent($event)"
+                                accept=".jpg, .jpeg, .pdf">
                             </div>
                           </div>
                         </div>
