@@ -434,7 +434,7 @@
                             <button type="submit"
                               [disabled]="datosGeneralesForm.invalid"
                               class="btn btn-light  btn-block"
-                              (click)="guardaGeneral()">Guardar</button>
+                              (click)="guardaGeneral()">Actualizar</button>
                           </div>
                         </div>
                       </div>
@@ -795,7 +795,7 @@
                             <button type="submit"
                               [disabled]="datosGeneralesFisicaForm.invalid"
                               class="btn btn-light  btn-block"
-                              (click)="guardaGeneral()">Guardar</button>
+                              (click)="guardaGeneral()">Actualizar</button>
                           </div>
                         </div>
                       </div>
@@ -966,7 +966,7 @@
 
               <div class="card" *ngIf="domicilioList.length">
                 <table class="table table-striped text-center" style="width:auto; height:5px;" >
-                  <thead >
+                  <thead>
                     <th>Tipo de Domicilio</th>
                     <th>Calle</th>
                     <th>Numero Exterior</th>
@@ -976,6 +976,7 @@
                     <th>Municipio</th>
                     <th>Estado</th>
                     <th>Pais</th>
+                    <th></th>
                   </thead>
                   <tbody>
                     <tr *ngFor="let dom of domicilioList;let i=index;" >
@@ -1138,12 +1139,13 @@
                   <div class="card" *ngIf="actividadEconomicaList.length">
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
                       <thead>
-                      <th>Actividad Economica</th>
-                      <th>Actividad Detallada</th>
-                      <th>Ingreso Mensual</th>
-                      <th>Otro Ingreso Mensual</th>
-                      <th>Gastos Mensuales</th>
-                      <th>Flujo de Efectivo</th>
+                        <th>Actividad Economica</th>
+                        <th>Actividad Detallada</th>
+                        <th>Ingreso Mensual</th>
+                        <th>Otro Ingreso Mensual</th>
+                        <th>Gastos Mensuales</th>
+                        <th>Flujo de Efectivo</th>
+                        <th></th>
                       </thead>
                       <tbody>
                       <tr *ngFor="let eco of actividadEconomicaList;let i=index;" >
@@ -1259,18 +1261,19 @@
                   </div>
                   <div class="card" *ngIf="referenciasPersonalesList.length">
                     <table class="table table-striped text-center " style="width:auto; height:5px;">
-                      <thead >
-                      <th>Consecutivo</th>
-                      <th>Nombre Completo</th>
-                      <th>Telefono</th>
-                      <th>Tipo de Relacion</th>
+                      <thead>
+                        <th>Consecutivo</th>
+                        <th>Nombre Completo</th>
+                        <th>Telefono</th>
+                        <th>Tipo de Relacion</th>
+                        <th></th>
                       </thead>
                       <tbody>
                       <tr *ngFor="let per of referenciasPersonalesList ;let i=index;" >
                         <td scope="row">{{per.Consecutivo}}</td>
                         <td>{{per.NombreRefPer}}</td>
                         <td>{{per.TelefonoRefPer}}</td>
-                        <td>{{per.TipoRelacionRefPer}}</td>
+                        <td>{{per.TipoRelacionRefPerDesc}}</td>
                         <td>
                           <a data-toggle="modal"
                             data-target="#largesizemodal"
@@ -1378,28 +1381,31 @@
                   </div>
                   <div class="card" *ngIf="referenciasComercialesList.length">
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                      <thead >
-                      <th>Nombre Completo</th>
-                      <th>Limite de Credito</th>
-                      <th>Saldo de Cuenta</th>
+                      <thead>
+                        <th>Consecutivo</th>
+                        <th>Nombre Completo</th>
+                        <th>Limite de Credito</th>
+                        <th>Saldo de Cuenta</th>
+                        <th></th>
                       </thead>
                       <tbody>
-                      <tr *ngFor="let com of referenciasComercialesList;let i=index;" >
-                        <td>{{com.NombreRefcom}}</td>
-                        <td>{{com.LimiteCreditoRefCom}}</td>
-                        <td>{{com.SaldoCuentaRefCom}}</td>
-                        <td>
-                          <a data-toggle="modal"
-                            data-target="#largesizemodal3"
-                            class="btn btn-sm btn-info text-white"
-                            (click)="consultarReferenciaComercial(com)">
-                              <i class="fa fa-pencil"></i></a>
-                          <a class="btn btn-sm btn-danger text-white ml-1"
-                            (click)="confirmarBorrarElemento(com, 'borrarReferenciaComercial')">
-                              <i class="fa fa-trash"></i>
-                          </a>
-                        </td>
-                      </tr>
+                        <tr *ngFor="let com of referenciasComercialesList;let i=index;" >
+                          <td>{{com.Consecutivo}}</td>
+                          <td>{{com.NombreRefcom}}</td>
+                          <td>{{com.LimiteCreditoRefCom}}</td>
+                          <td>{{com.SaldoCuentaRefCom}}</td>
+                          <td>
+                            <a data-toggle="modal"
+                              data-target="#largesizemodal3"
+                              class="btn btn-sm btn-info text-white"
+                              (click)="consultarReferenciaComercial(com)">
+                                <i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-sm btn-danger text-white ml-1"
+                              (click)="confirmarBorrarElemento(com, 'borrarReferenciaComercial')">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -1515,14 +1521,17 @@
               </div>
               <div class="card" *ngIf="referenciasBancariasList.length">
                 <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                  <thead >
-                      <th>Nombre Completo</th>
+                  <thead>
+                      <th>Consecutivo</th>
+                      <th>Institución</th>
                       <th>Antigüedad</th>
-                      <th>Limite de Credito</th>
+                      <th>Límite de Crédito</th>
                       <th>Saldo de Cuenta</th>
+                      <th></th>
                   </thead>
                   <tbody>
                     <tr *ngFor="let ban of referenciasBancariasList;let i=index;" >
+                      <td scope="row">{{ban.Consecutivo}}</td>
                       <td>{{ban.InstitucionDesc}}</td>
                       <td>{{ban.AntiguedadRefBan}}</td>
                       <td>{{ban.LimiteCreditoRefBan}}</td>
@@ -1685,7 +1694,7 @@
                             *ngIf="accionesDisBtnInsert"
                             (click)="btnInsert('acciones')"
                             type="submit"
-                            class="btn btn-light  btn-block" >Insertar</button>
+                            class="btn btn-light btn-block" >Insertar</button>
                           <button *ngIf="!accionesDisBtnInsert"
                             class="btn btn-light btn-block"
                             (click)="cancelarActualizacion('acciones')">Cancelar</button>
@@ -1720,6 +1729,7 @@
                         <th>Costo Acciones</th>
                         <th>Forma de Pago</th>
                         <th>Total Acciones</th>
+                        <th></th>
                       </thead>
                       <tbody>
                       <tr *ngFor="let acc of accionesList;let i=index;" >
@@ -1829,7 +1839,7 @@
                         <div *ngIf="!cuentasBancariasDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             data-toggle="modal"
-                            data-target="#largesizemodal1"
+                            data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
                             [disabled]="cuentasBancariasForm.invalid"
@@ -1847,16 +1857,19 @@
                   </div>
                   <div class="card" *ngIf="cuentasBancariasList.length" >
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                      <thead >
+                      <thead>
+                        <th>Consecutivo</th>
                         <th>Nombre cuenta bancaria</th>
                         <th>Banco</th>
                         <th>Número de Cuenta</th>
                         <th>Clabe Interbancaria</th>
+                        <th></th>
                       </thead>
                       <tbody>
                         <tr *ngFor="let cuen of cuentasBancariasList;let i=index;" >
+                          <td>{{cuen.Consecutivo}}</td>
                           <td>{{cuen.NombreCuentaBancariaCtaBan}}</td>
-                          <td>{{cuen.BancoCtaBan}}</td>
+                          <td>{{cuen.BancoCtaBanDesc}}</td>
                           <td>{{cuen.NumeroCuentaCtaBan}}</td>
                           <td>{{cuen.ClaveInterbancariaCtaBan}}</td>
                           <td>
@@ -1977,6 +1990,7 @@
                         <th>Nombre completo</th>
                         <th>RFC</th>
                         <th>Dirección</th>
+                        <th></th>
                       </thead>
                       <tbody>
                         <tr *ngFor="let rel of partesRelacionadasList;let i=index;" >
@@ -2101,16 +2115,17 @@
               <div class="card" *ngIf="grupoSocioeconomicoList.length">
                 <table class="table table-striped text-center " style="width:auto; height:5px;" >
                   <thead>
-                  <th>Consecutivo</th>
-                  <th>Grupo Socieconomico</th>
-                  <th>Nombre Completo</th>
-                  <th>RFC</th>
-                  <th>Dirección</th>
+                    <th>Consecutivo</th>
+                    <th>Grupo Socieconomico</th>
+                    <th>Nombre Completo</th>
+                    <th>RFC</th>
+                    <th>Dirección</th>
+                    <th></th>
                   </thead>
                   <tbody>
                   <tr *ngFor="let soc of grupoSocioeconomicoList;let i=index;" >
                     <td scope="row" >{{soc.Consecutivo}}</td>
-                    <td>{{soc.GrupoSocioeconomicoGpoSoc}}</td>
+                    <td>{{soc.GrupoSocioeconomicoGpoSocDesc}}</td>
                     <td>{{soc.NombreGpoSoc}}</td>
                     <td>{{soc.RFCGpoSoc}}</td>
                     <td>{{soc.DireccionGpoSoc}}</td>
@@ -2237,6 +2252,7 @@
                       <th>Nombre Completo</th>
                       <th>RFC</th>
                       <th>Dirección</th>
+                      <th></th>
                   </thead>
                   <tbody>
                     <tr *ngFor="let com of grupoRiesgoComunList;let i=index;" >
@@ -2322,7 +2338,8 @@
                           <div class="form-group row">
                             <label class="col-sm-5 col-form-success">Archivo</label>
                             <div class="col-sm-6">
-                              <input #inputFile type="file" name="file" (change)="fileEvent($event)">
+                              <input #inputFile type="file" name="file" (change)="fileEvent($event)"
+                                accept=".jpg, .jpeg, .pdf">
                             </div>
                           </div>
                         </div>

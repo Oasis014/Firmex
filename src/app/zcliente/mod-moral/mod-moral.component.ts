@@ -513,8 +513,6 @@ export class ModMoralComponent implements OnInit { // 717
 
     }
 
-    this.general.EstatusCliente = '0';
-
     this.clienteService.agregar9(this.general).subscribe(
       (result: ResponseSP[]) => {
         this.responseSP = result;
