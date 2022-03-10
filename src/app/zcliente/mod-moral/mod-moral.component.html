@@ -975,7 +975,7 @@
 
               <div class="card" *ngIf="domicilioList.length">
                 <table class="table table-striped text-center" style="width:auto; height:5px;" >
-                  <thead >
+                  <thead>
                     <th>Tipo de Domicilio</th>
                     <th>Calle</th>
                     <th>Numero Exterior</th>
@@ -1156,8 +1156,8 @@
                       </thead>
                       <tbody>
                       <tr *ngFor="let eco of actividadEconomicaList;let i=index;" >
-                        <td scope="row" >{{eco.ActividadEconomica}}</td>
-                        <td>{{eco.ActividadDetallada}}</td>
+                        <td scope="row" >{{eco.ActividadEconomicaDesc}}</td>
+                        <td>{{eco.ActividadDetalladaDesc}}</td>
                         <td>{{eco.IngresoMensual}}</td>
                         <td>{{eco.OtroIngresoMensual}}</td>
                         <td>{{eco.GastosMensuales}}</td>
@@ -1392,7 +1392,7 @@
                       </thead>
                       <tbody>
                       <tr *ngFor="let com of referenciasComercialesList;let i=index;" >
-                        <td>{{com.Consercutivo}}</td>
+                        <td>{{com.Consecutivo}}</td>
                         <td>{{com.NombreRefcom}}</td>
                         <td>{{com.LimiteCreditoRefCom}}</td>
                         <td>{{com.SaldoCuentaRefCom}}</td>
@@ -1521,9 +1521,9 @@
               </div>
               <div class="card" *ngIf="referenciasBancariasList.length">
                 <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                  <thead >
+                  <thead>
                       <th>Consecutivo</th>
-                      <th>Nombre Completo</th>
+                      <th>Institución</th>
                       <th>Antigüedad</th>
                       <th>Limite de Credito</th>
                       <th>Saldo de Cuenta</th>
@@ -1691,7 +1691,7 @@
                             *ngIf="accionesDisBtnInsert"
                             (click)="btnInsert('acciones')"
                             type="submit"
-                            class="btn btn-light  btn-block" >Insertar</button>
+                            class="btn btn-light btn-block" >Insertar</button>
                           <button *ngIf="!accionesDisBtnInsert"
                             class="btn btn-light btn-block"
                             (click)="cancelarActualizacion('acciones')">Cancelar</button>
@@ -1835,7 +1835,7 @@
                         <div *ngIf="!cuentasBancariasDisBtnInsert" class="col-1 col-lg-1 col-xl-2">
                           <button
                             data-toggle="modal"
-                            data-target="#largesizemodal1"
+                            data-target="#largesizemodal"
                             type="submit"
                             class="btn btn-light btn-block"
                             [disabled]="cuentasBancariasForm.invalid"
@@ -1853,7 +1853,8 @@
                   </div>
                   <div class="card" *ngIf="cuentasBancariasList.length" >
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                      <thead >
+                      <thead>
+                        <th>Consecutivo</th>
                         <th>Nombre cuenta bancaria</th>
                         <th>Banco</th>
                         <th>Número de Cuenta</th>
@@ -1861,6 +1862,7 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let cuen of cuentasBancariasList;let i=index;" >
+                          <td>{{cuen.Consecutivo}}</td>
                           <td>{{cuen.NombreCuentaBancariaCtaBan}}</td>
                           <td>{{cuen.BancoCtaBan}}</td>
                           <td>{{cuen.NumeroCuentaCtaBan}}</td>
