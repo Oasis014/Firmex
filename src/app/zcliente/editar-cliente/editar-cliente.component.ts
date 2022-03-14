@@ -245,7 +245,11 @@ export class EditarClienteComponent implements OnInit {
         extensionOficina:    ['', [Validators.maxLength(10)]],
         celular:             ['', [Validators.maxLength(15)]],
         redSocial1:          ['', [Validators.maxLength(50)]],
-        redSocial2:          ['', [Validators.maxLength(50)]]
+        redSocial2:          ['', [Validators.maxLength(50)]],
+        nacionalidad:        ['', [Validators.maxLength(2)]],
+        telefonoDomicilio:   ['', [Validators.maxLength(15)]],
+        extensionDomicilio:   ['', [Validators.maxLength(10)]],
+        secretario:          ['', [Validators.maxLength(10)]], // TODO validar longitrud en DB
       });
       this.obtenerDatosGeneralesMoral(id);
     } else if ( 'fisica' === userType ) {
@@ -273,7 +277,9 @@ export class EditarClienteComponent implements OnInit {
         emailEmpresa:         ['', [Validators.required, Validators.maxLength(80)]],
         parteRelacionada:     ['', [Validators.required, Validators.maxLength(5)]],
         grupoVinculoConsejo:  ['', [Validators.required, Validators.maxLength(10)]],
-        grupoRiesgoComun:     ['', [Validators.required, Validators.maxLength(5)]]
+        grupoRiesgoComun:     ['', [Validators.required, Validators.maxLength(5)]],
+        telefonoDomicilio:    ['', [Validators.maxLength(15)]],
+        extensionDomicilio:   ['', [Validators.maxLength(10)]],
       });
       this.obtenerDatosGeneralesFisica(id);
     }
@@ -337,7 +343,6 @@ export class EditarClienteComponent implements OnInit {
     this.accionesForm.disable();
 
     this.cuentasBancariasForm = this.formBuilder.group({
-      NombreCuentaBancariaCtaBan: ['', [Validators.required, Validators.maxLength(120)]],
       BancoCtaBan:                ['', [Validators.required, Validators.maxLength(5)]],
       NumeroCuentaCtaBan:         ['', [Validators.required, Validators.maxLength(15)]],
       ClaveInterbancariaCtaBan:   ['', [Validators.required, Validators.maxLength(18)]],
@@ -508,6 +513,10 @@ export class EditarClienteComponent implements OnInit {
         this.datosGeneralesForm.controls.celular.setValue(result[0].Celular);
         this.datosGeneralesForm.controls.redSocial1.setValue(result[0].RedSocial1);
         this.datosGeneralesForm.controls.redSocial2.setValue(result[0].RedSocial2);
+        this.datosGeneralesForm.controls.nacionalidad.setValue(result[0].Nacionalidad);
+        this.datosGeneralesForm.controls.telefonoDomicilio.setValue(result[0].TelefonoDomicilio);
+        this.datosGeneralesForm.controls.extensionDomicilio.setValue(result[0].ExtensionDomicilio);
+        this.datosGeneralesForm.controls.secretario.setValue(result[0].Secretario);
 
         this.general = new DatosGenerales(result[0]);
         this.obtenerTodosListados();
@@ -542,6 +551,8 @@ export class EditarClienteComponent implements OnInit {
         this.datosGeneralesFisicaForm.controls.parteRelacionada.setValue(result[0].ParteRelacionada);
         this.datosGeneralesFisicaForm.controls.grupoVinculoConsejo.setValue(result[0].GrupoConsejo);
         this.datosGeneralesFisicaForm.controls.grupoRiesgoComun.setValue(result[0].GrupoRiesgoComun);
+        this.datosGeneralesFisicaForm.controls.telefonoDomicilio.setValue(result[0].TelefonoDomicilio);
+        this.datosGeneralesFisicaForm.controls.extensionDomicilio.setValue(result[0].ExtensionDomicilio);
 
         this.general = new DatosGenerales(result[0]);
         this.obtenerTodosListados();

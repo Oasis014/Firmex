@@ -233,6 +233,10 @@ export class ModMoralComponent implements OnInit { // 717
         celular:             ['', [Validators.maxLength(15)]],
         redSocial1:          ['', [Validators.maxLength(50)]],
         redSocial2:          ['', [Validators.maxLength(50)]],
+        nacionalidad:        ['', [Validators.maxLength(2)]],
+        telefonoDomicilio:   ['', [Validators.maxLength(15)]],
+        extensionDomicilio:   ['', [Validators.maxLength(10)]],
+        secretario:          ['', [Validators.maxLength(10)]], // TODO validar longitrud en DB
       });
     }
 
@@ -266,6 +270,8 @@ export class ModMoralComponent implements OnInit { // 717
         parteRelacionada:     ['', [Validators.required, Validators.maxLength(5)]],
         grupoVinculoConsejo:  ['', [Validators.required, Validators.maxLength(10)]],
         grupoRiesgoComun:     ['', [Validators.required, Validators.maxLength(5)]],
+        telefonoDomicilio:    ['', [Validators.maxLength(15)]],
+        extensionDomicilio:   ['', [Validators.maxLength(10)]],
       });
     }
     this.CatDet();
@@ -354,7 +360,6 @@ export class ModMoralComponent implements OnInit { // 717
     this.accionesForm.disable();
 
     this.cuentasBancariasForm = this.formBuilder.group({
-      NombreCuentaBancariaCtaBan: ['', [Validators.required, Validators.maxLength(120)]],
       BancoCtaBan:                ['', [Validators.required, Validators.maxLength(5)]],
       NumeroCuentaCtaBan:         ['', [Validators.required, Validators.maxLength(15)]],
       ClaveInterbancariaCtaBan:   ['', [Validators.required, Validators.maxLength(18)]],
