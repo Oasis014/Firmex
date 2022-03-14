@@ -989,15 +989,15 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let dom of domicilioList;let i=index;" >
-                      <td scope="row" >{{dom.TipoDomicilio}}</td>
+                      <td scope="row" >{{dom.TipoDomicilioDesc}}</td>
                       <td>{{ dom.Calle }}</td>
                       <td>{{ dom.NumeroExterior }}</td>
                       <td>{{ dom.NumeroInterior }}</td>
                       <td>{{ dom.CodigoPostal }}</td>
                       <td>{{ dom.Colonia }}</td>
-                      <td>{{ dom.Municipio }}</td>
-                      <td>{{ dom.Estado }}</td>
-                      <td>{{ dom.Pais }}</td>
+                      <td>{{ dom.MunicipioDesc }}</td>
+                      <td>{{ dom.EstadoDesc }}</td>
+                      <td>{{ dom.PaisDesc }}</td>
                       <td>
                         <a data-toggle="modal"
                           data-target="#largesizemodal"
