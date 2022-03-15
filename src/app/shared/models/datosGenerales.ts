@@ -37,6 +37,7 @@ export class DatosGenerales {
   RepresentanteLegal: string;
   PresidenteConsejo: string;
   Consejero: string;
+  Secretario: string;
 
   constructor(obj?: object) {
     this.NumeroCliente = 0;
@@ -77,6 +78,7 @@ export class DatosGenerales {
     this.RepresentanteLegal = '';
     this.PresidenteConsejo = '';
     this.Consejero = '';
+    this.Secretario = '';
 
     if ( 'undefined' !== typeof(obj) ) {
       for ( const item in obj) {
@@ -131,6 +133,10 @@ export class DatosGenerales {
     this.Celular = obj.celular;
     this.RedSocial1 = obj.redSocial1;
     this.RedSocial2 = obj.redSocial2;
+    this.Nacionalidad = obj.nacionalidad;
+    this.TelefonoDomicilio = obj.telefonoDomicilio;
+    this.ExtensionDomicilio = obj.extensionDomicilio;
+    this.Secretario = obj.secretario;
   }
 
   setDatosGeneralesFisica(obj: any): any {
@@ -147,6 +153,8 @@ export class DatosGenerales {
     this.ParteRelacionada = obj.parteRelacionada;
     this.GrupoConsejo = obj.grupoVinculoConsejo;
     this.GrupoRiesgoComun = obj.grupoRiesgoComun;
+    this.TelefonoDomicilio = obj.telefonoDomicilio;
+    this.ExtensionDomicilio = obj.extensionDomicilio;
   }
   /*
   PersonalidadJuridica = 01 = Fisica
@@ -195,6 +203,10 @@ export class DatosGenerales {
     this.Celular = obj.celular;
     this.RedSocial1 = obj.redSocial1;
     this.RedSocial2 = obj.redSocial2;
+    this.Nacionalidad = obj.nacionalidad;
+    this.TelefonoDomicilio = obj.telefonoDomicilio;
+    this.ExtensionDomicilio = obj.extensionDomicilio;
+    this.Secretario = obj.secretario;
 
     this.FechaNacimiento = '1970-01-01';
     this.EstatusCliente = "01";
@@ -223,6 +235,8 @@ export class DatosGenerales {
     this.ParteRelacionada = obj.parteRelacionada;
     this.GrupoConsejo = obj.grupoVinculoConsejo;
     this.GrupoRiesgoComun = obj.grupoRiesgoComun;
+    this.TelefonoDomicilio = obj.telefonoDomicilio;
+    this.ExtensionDomicilio = obj.extensionDomicilio;
 
     this.FechaConstitucion = '1970-01-01';
     this.EstatusCliente = "01";
