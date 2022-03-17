@@ -236,7 +236,7 @@ export class ModMoralComponent implements OnInit { // 717
         nacionalidad:        ['', [Validators.maxLength(2)]],
         telefonoDomicilio:   ['', [Validators.maxLength(15)]],
         extensionDomicilio:   ['', [Validators.maxLength(10)]],
-        secretario:          ['', [Validators.maxLength(10)]], // TODO validar longitrud en DB
+        secretario:          ['', [Validators.maxLength(120)]],
       });
     }
 
@@ -348,14 +348,14 @@ export class ModMoralComponent implements OnInit { // 717
 
     this.accionesForm = this.formBuilder.group({
       FechaCompra1aAccion: ['', [Validators.required, Validators.maxLength(10)]],
-      ParteInicialSocial:  ['', [Validators.required, Validators.maxLength(15)]],
+      ParteInicialSocial:  ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
       FechaPago:           ['', [Validators.required, Validators.maxLength(10)]],
-      ParteSocialActual:   ['', [Validators.required, Validators.maxLength(15)]],
-      CostoAcciones:       ['', [Validators.required, Validators.maxLength(15)]],
+      ParteSocialActual:   ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
+      CostoAcciones:       ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
       FormaPagoAcciones:   ['', [Validators.required, Validators.maxLength(50)]],
-      RetirablesA:         ['', [Validators.required, Validators.maxLength(15)]],
-      RetirablesB:         ['', [Validators.required, Validators.maxLength(15)]],
-      TotalAcciones:       ['', [Validators.required, Validators.maxLength(15)]],
+      RetirablesA:         ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
+      RetirablesB:         ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
+      TotalAcciones:       ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
     });
     this.accionesForm.disable();
 
