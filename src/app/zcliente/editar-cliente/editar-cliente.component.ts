@@ -300,9 +300,9 @@ export class EditarClienteComponent implements OnInit {
     this.actividadEconomicaForm = this.formBuilder.group({
       ActividadEconomica: ['', [Validators.required, Validators.maxLength(4)]],
       ActividadDetallada: ['', [Validators.required, Validators.maxLength(5)]],
-      IngresoMensual:     ['', [Validators.required, Validators.maxLength(15)]],
-      OtroIngresoMensual: ['', [Validators.required, Validators.maxLength(15)]],
-      GastosMensuales:    ['', [Validators.required, Validators.maxLength(15)]],
+      IngresoMensual:     ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
+      OtroIngresoMensual: ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
+      GastosMensuales:    ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
       FlujoEfectivo:      ['', [Validators.required, Validators.maxLength(15)]],
     });
     this.actividadEconomicaForm.disable();
@@ -413,6 +413,24 @@ export class EditarClienteComponent implements OnInit {
           (result: any) => {
             this.cCP = result;
         });
+      }
+    });
+
+    this.actividadEconomicaForm.get('IngresoMensual').valueChanges.subscribe(val => {
+      if ( !isNaN(val) && "" != val && null != val ) {
+        this.calculaFlujoEfectivoActivEco();
+      }
+    });
+
+    this.actividadEconomicaForm.get('OtroIngresoMensual').valueChanges.subscribe(val => {
+      if ( !isNaN(val) && "" != val && null != val ) {
+        this.calculaFlujoEfectivoActivEco();
+      }
+    });
+
+    this.actividadEconomicaForm.get('GastosMensuales').valueChanges.subscribe(val => {
+      if ( !isNaN(val) && "" != val && null != val ) {
+        this.calculaFlujoEfectivoActivEco();
       }
     });
 
@@ -611,6 +629,10 @@ export class EditarClienteComponent implements OnInit {
   btnInsert(seccion: string): void {
     this[seccion+'Form'].enable();
     this[seccion+'DisBtnInsert'] = false;
+
+    if ( 'actividadEconomica' == seccion ) {
+      this[seccion+'Form'].controls.FlujoEfectivo.disable();
+    }
   }
 
   confirmarBorrarElemento(obj: any, funcName: string): void {
@@ -784,6 +806,27 @@ export class EditarClienteComponent implements OnInit {
       }
     );
 
+  }
+
+  calculaFlujoEfectivoActivEco(): void {
+    let ingreso = 0;
+    let valIngreso = this.actividadEconomicaForm.controls.IngresoMensual.value;
+    if ( !isNaN(valIngreso) && "" != valIngreso && null != valIngreso ) {
+      ingreso = parseFloat(valIngreso);
+    }
+    let otroIngreso = 0;
+    let valOtroIngreso = this.actividadEconomicaForm.controls.OtroIngresoMensual.value;
+    if ( !isNaN(valOtroIngreso) && "" != valOtroIngreso && null != valOtroIngreso ) {
+      otroIngreso = parseFloat(valOtroIngreso);
+    }
+    let gasto = 0;
+    let valGasto = this.actividadEconomicaForm.controls.GastosMensuales.value;
+    if ( !isNaN(valGasto) && "" != valGasto && null != valGasto ) {
+      gasto = parseFloat(valGasto);
+    }
+
+    let total = (ingreso + otroIngreso ) - gasto;
+    this.actividadEconomicaForm.controls.FlujoEfectivo.setValue(total);
   }
 
   // -------------------------------------------------------------------------
