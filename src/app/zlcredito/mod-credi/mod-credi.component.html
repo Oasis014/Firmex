@@ -209,7 +209,7 @@
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Origen de Recursos para pagar credito</label>
+                              <label  class="col-sm-5 col-form-label">Origen de Recursos</label>
                               <div class="col-sm-6 input-group">
                                 <input  type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder=" "  >
                               </div>
@@ -233,15 +233,15 @@
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Número de disposiciones con los que se pretende disponer del crédito</label>
-                              <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="EmailPersonal" id="EmailPersonal" placeholder=" " >
+                              <label  class="col-sm-5 col-form-label">Número de disposiciones</label>
+                              <div class="col-sm-6 input-group" *ngFor="let number2 of number2">
+                                <input  type="text" class="form-control" name="EmailPersonal" id="EmailPersonal" placeholder="0000" [textMask]="{mask: number2.mask}" >
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Número de pagos con los que se pretende pagar el crédito </label>
+                              <label  class="col-sm-5 col-form-label">Número de pagos del crédito</label>
                               <div class="col-sm-6 input-group">
                                 <input  type="text" class="form-control" name="EmailEmpresa" id="EmailEmpresa" placeholder=" "  >
                               </div>
@@ -249,17 +249,22 @@
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Moneda en la que solicita el crédito </label>
+                              <label class="col-sm-5 col-form-label">Moneda</label>
                               <div class="col-sm-6">
-                                <input  type="text" class="form-control" name="EmailEmpresa" id="EmailEmpresa" placeholder=" "  >
+                                <select class="form-control form-control-sm" >
+                                  <option selected>Seleccione Moneda ...</option>
+                                  <option >
+                                  
+                                  </option>
+                                </select>
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-success">Monto solicitado para la línea de crédito </label>
-                              <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder=" " >
+                              <label  class="col-sm-5 col-form-success">Monto solicitado</label>
+                              <div class="col-sm-6 input-group" *ngFor="let efectivo of efectivo">
+                                <input  type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
                               </div>
                             </div>
                           </div>

@@ -15,6 +15,7 @@ import { ListCrediComponent } from './list-credi/list-credi.component';
 import { ListCredilComponent } from './list-credil/list-credil.component';
 // Alta Revolvente
 import { ModCrediComponent } from './mod-credi/mod-credi.component';
+import { ModLineCrediComponent } from './mod-linecredi/mod-linecredi.component';
 // Depositos o retiros
 import { PipeClienteComponent } from './list-revol/filter-pipe';
 
@@ -25,8 +26,8 @@ import { PipeClienteComponent } from './list-revol/filter-pipe';
     ListCredilComponent,
        ListCrediComponent,
        ListRevolComponent,
-       ModCrediComponent
-
+       ModCrediComponent,
+       ModLineCrediComponent
 
   ],
   imports: [

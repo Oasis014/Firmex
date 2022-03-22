@@ -12,11 +12,11 @@ import { HttpClient } from '@angular/common/http';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-mod-credi',
-  templateUrl: './mod-credi.component.html',
-  styleUrls: ['./mod-credi.component.scss']
+  selector: 'app-mod-linecredi',
+  templateUrl: './mod-linecredi.component.html',
+  styleUrls: ['./mod-linecredi.component.scss']
 })
-export class ModCrediComponent implements OnInit {
+export class ModLineCrediComponent implements OnInit {
 
  
 
@@ -153,10 +153,10 @@ export class ModCrediComponent implements OnInit {
   number = [{
     mask: ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
   }];
-  
+
   number2 = [{
     mask: [ /\d/, /\d/, /\d/, /\d/ ],
   }];
-
+  
 //Fin Objetos de Mascaras
 }
