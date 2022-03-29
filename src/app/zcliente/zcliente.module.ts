@@ -26,6 +26,7 @@ import { EditarClienteComponent } from './editar-cliente/editar-cliente.componen
 import { PhpFuncionaComponent } from './php-funciona/php-funciona.component';
 import { PhpPruebaComponent } from './php-prueba/php-prueba.component';
 import { PipeClienteComponent } from './list-cliente/filter-pipe';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { PipeClienteComponent } from './list-cliente/filter-pipe';
     ReactiveFormsModule,
     NgbProgressbarModule,
     GeneralModule,
-    HttpClientModule
+    HttpClientModule,
+    TextMaskModule
   ]
 })
 export class ClienteModule { }

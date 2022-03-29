@@ -11,6 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { deletedConfirmed } from 'src/app/shared/data/sweet-alerts';
 import swal from 'sweetalert2';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import emailMask from 'text-mask-addons/dist/emailMask';
 
 @Component({
   selector: 'app-mod-moral',
@@ -198,6 +200,24 @@ export class ModMoralComponent implements OnInit { // 717
   archivo: any;
   tipoDocumento: number|string;
 
+  //Objetos de Mascaras
+  mask: Array<string | RegExp>;
+  efectivo = {
+    mask: createNumberMask({allowDecimal: true})
+  };
+
+  email = {
+    mask: emailMask
+  };
+
+  number = {
+    mask: ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+  };
+
+  number2 = {
+    mask: [ /\d/, /\d/, /\d/, /\d/ ],
+  };
+
   ngOnInit() {
     this.ban = localStorage.getItem("bandera");
     /*
@@ -348,14 +368,14 @@ export class ModMoralComponent implements OnInit { // 717
 
     this.accionesForm = this.formBuilder.group({
       FechaCompra1aAccion: ['', [Validators.required, Validators.maxLength(10)]],
-      ParteInicialSocial:  ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
+      ParteInicialSocial:  ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
       FechaPago:           ['', [Validators.required, Validators.maxLength(10)]],
-      ParteSocialActual:   ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
-      CostoAcciones:       ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
+      ParteSocialActual:   ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      CostoAcciones:       ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
       FormaPagoAcciones:   ['', [Validators.required, Validators.maxLength(50)]],
-      RetirablesA:         ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
-      RetirablesB:         ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
-      TotalAcciones:       ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
+      RetirablesA:         ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      RetirablesB:         ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      TotalAcciones:       ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
     });
     this.accionesForm.disable();
 
@@ -434,19 +454,19 @@ export class ModMoralComponent implements OnInit { // 717
     });
 
     this.actividadEconomicaForm.get('IngresoMensual').valueChanges.subscribe(val => {
-      if ( !isNaN(val) && "" != val && null != val ) {
+      if ( null != val ) {
         this.calculaFlujoEfectivoActivEco();
       }
     });
 
     this.actividadEconomicaForm.get('OtroIngresoMensual').valueChanges.subscribe(val => {
-      if ( !isNaN(val) && "" != val && null != val ) {
+      if ( null != val ) {
         this.calculaFlujoEfectivoActivEco();
       }
     });
 
     this.actividadEconomicaForm.get('GastosMensuales').valueChanges.subscribe(val => {
-      if ( !isNaN(val) && "" != val && null != val ) {
+      if ( null != val ) {
         this.calculaFlujoEfectivoActivEco();
       }
     });
@@ -774,6 +794,14 @@ export class ModMoralComponent implements OnInit { // 717
   guardarActividadEconomica() {
     let params = this.actividadEconomicaForm.getRawValue();
     params.Id  =this.general.NumeroCliente;
+
+    params.GastosMensuales = params.GastosMensuales.replace('$', '');
+    params.GastosMensuales = params.GastosMensuales.replace(',', '');
+    params.IngresoMensual = params.IngresoMensual.replace('$', '');
+    params.IngresoMensual = params.IngresoMensual.replace(',', '');
+    params.OtroIngresoMensual = params.OtroIngresoMensual.replace('$', '');
+    params.OtroIngresoMensual = params.OtroIngresoMensual.replace(',', '');
+
     this.clienteService.agregar4(params).subscribe(
       (result: any) => {
         console.log(result);
@@ -814,16 +842,22 @@ export class ModMoralComponent implements OnInit { // 717
   calculaFlujoEfectivoActivEco(): void {
     let ingreso = 0;
     let valIngreso = this.actividadEconomicaForm.controls.IngresoMensual.value;
+    valIngreso = valIngreso.replace('$', '');
+    valIngreso = valIngreso.replace(',', '');
     if ( !isNaN(valIngreso) && "" != valIngreso && null != valIngreso ) {
       ingreso = parseFloat(valIngreso);
     }
     let otroIngreso = 0;
     let valOtroIngreso = this.actividadEconomicaForm.controls.OtroIngresoMensual.value;
+    valOtroIngreso = valOtroIngreso.replace('$', '');
+    valOtroIngreso = valOtroIngreso.replace(',', '');
     if ( !isNaN(valOtroIngreso) && "" != valOtroIngreso && null != valOtroIngreso ) {
       otroIngreso = parseFloat(valOtroIngreso);
     }
     let gasto = 0;
     let valGasto = this.actividadEconomicaForm.controls.GastosMensuales.value;
+    valGasto = valGasto.replace('$', '');
+    valGasto = valGasto.replace(',', '');
     if ( !isNaN(valGasto) && "" != valGasto && null != valGasto ) {
       gasto = parseFloat(valGasto);
     }
@@ -898,6 +932,11 @@ export class ModMoralComponent implements OnInit { // 717
   guardarReferenciasComerciales() {
     let form = this.referenciasComercialesForm.value;
 
+    form.LimiteCreditoRefCom = form.LimiteCreditoRefCom.replace('$', '');
+    form.LimiteCreditoRefCom = form.LimiteCreditoRefCom.replace(',', '');
+    form.SaldoCuentaRefCom = form.SaldoCuentaRefCom.replace('$', '');
+    form.SaldoCuentaRefCom = form.SaldoCuentaRefCom.replace(',', '');
+
     if ( !this.referenciasComercialesUpdate ) {
       console.log('guardar');
 
@@ -958,6 +997,11 @@ export class ModMoralComponent implements OnInit { // 717
 
   guardarReferenciasBancarias() {
     let refBan = this.referenciasBancariasForm.value;
+
+    refBan.LimiteCreditoRefBan = refBan.LimiteCreditoRefBan.replace('$', '');
+    refBan.LimiteCreditoRefBan = refBan.LimiteCreditoRefBan.replace(',', '');
+    refBan.SaldoCuentaRefBan = refBan.SaldoCuentaRefBan.replace('$', '');
+    refBan.SaldoCuentaRefBan = refBan.SaldoCuentaRefBan.replace(',', '');
 
     if ( !this.referenciasBancariasUpdate ) {
       console.log('guardar');
@@ -1024,6 +1068,15 @@ export class ModMoralComponent implements OnInit { // 717
 
   guardarAcciones() {
     let form = this.accionesForm.value;
+
+    form.CostoAcciones = form.CostoAcciones.replace('$', '');
+    form.CostoAcciones = form.CostoAcciones.replace(',', '');
+    form.RetirablesA = form.RetirablesA.replace('$', '');
+    form.RetirablesA = form.RetirablesA.replace(',', '');
+    form.RetirablesB = form.RetirablesB.replace('$', '');
+    form.RetirablesB = form.RetirablesB.replace(',', '');
+    form.TotalAcciones = form.TotalAcciones.replace('$', '');
+    form.TotalAcciones = form.TotalAcciones.replace(',', '');
 
     if ( !this.accionesUpdate ) {
       console.log('guardar');

@@ -296,6 +296,7 @@
                                   class="form-control"
                                   placeholder=" nombre@micorreo.com"
                                   formControlName="emailPersonal"
+                                  [textMask]="{mask: email.mask}"
                                   maxlength="80">
                               </div>
                             </div>
@@ -308,6 +309,7 @@
                                   type="text"
                                   class="form-control"
                                   placeholder=" nombre@micorreo.com"
+                                  [textMask]="{mask: email.mask}"
                                   formControlName="emailEmpresa"
                                   maxlength="80">
                               </div>
@@ -364,6 +366,7 @@
                                   class="form-control"
                                   placeholder="55-5555-55555"
                                   formControlName="telefonoOficina"
+                                  [textMask]="{mask: number.mask}"
                                   maxlength="15"
                                   >
                               </div>
@@ -392,6 +395,7 @@
                                   class="form-control"
                                   placeholder="55-5555-55555"
                                   formControlName="celular"
+                                  [textMask]="{mask: number.mask}"
                                   maxlength="15"
                                   >
                               </div>
@@ -445,6 +449,7 @@
                                   class="form-control"
                                   placeholder="Teléfono Domicilio"
                                   formControlName="telefonoDomicilio"
+                                  [textMask]="{mask: number.mask}"
                                   maxlength="15"
                                   >
                               </div>
@@ -781,6 +786,7 @@
                                   class="form-control"
                                   placeholder=" nombre@micorreo.com"
                                   formControlName="emailPersonal"
+                                  [textMask]="{mask: email.mask}"
                                   maxlength="80">
                                 <div class="input-group-append"></div>
                               </div>
@@ -795,6 +801,7 @@
                                   class="form-control"
                                   placeholder=" nombre@micorreo.com"
                                   formControlName="emailEmpresa"
+                                  [textMask]="{mask: email.mask}"
                                   maxlength="80">
                                 <div class="input-group-append"></div>
                               </div>
@@ -852,6 +859,7 @@
                                   class="form-control"
                                   placeholder="Teléfono Domicilio"
                                   formControlName="telefonoDomicilio"
+                                  [textMask]="{mask: number.mask}"
                                   maxlength="15"
                                   >
                               </div>
@@ -1151,6 +1159,7 @@
                                 class="form-control"
                                 placeholder=" 0.00"
                                 formControlName="IngresoMensual"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                               <div class="input-group-append"></div>
                             </div>
@@ -1164,6 +1173,7 @@
                                 class="form-control"
                                 placeholder=" 0.00"
                                 formControlName="OtroIngresoMensual"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                               <div class="input-group-append"></div>
                             </div>
@@ -1177,6 +1187,7 @@
                                 class="form-control"
                                 placeholder=" 0.00"
                                 formControlName="GastosMensuales"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                               <div class="input-group-append"></div>
                             </div>
@@ -1190,6 +1201,7 @@
                                 class="form-control"
                                 placeholder=" 0.00"
                                 formControlName="FlujoEfectivo"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                             </div>
                           </div>
@@ -1230,7 +1242,7 @@
                   <div class="card" *ngIf="actividadEconomicaList.length">
                     <table class="table table-striped text-center " style="width:auto; height:5px;" >
                       <thead>
-                        <th>Actividad Economica</th>
+                        <th>Actividad Económica</th>
                         <th>Actividad Detallada</th>
                         <th>Ingreso Mensual</th>
                         <th>Otro Ingreso Mensual</th>
@@ -1315,6 +1327,7 @@
                                 class="form-control"
                                 placeholder="55.5555.5555"
                                 formControlName="TelefonoRefPer"
+                                [textMask]="{mask: number.mask}"
                                 maxlength="15">
                               <div class="input-group-append"></div>
                             </div>
@@ -1413,7 +1426,7 @@
                         </div>
                         <div class="col-5 col-lg-4 col-xl-4">
                           <div class="form-group row">
-                            <label class="col-sm-5 col-form-label">Limite Crédito</label>
+                            <label class="col-sm-5 col-form-label">Límite Crédito</label>
                             <div class="col-sm-6 input-group">
                               <input type="text"
                                 class="form-control"
@@ -1432,6 +1445,7 @@
                                 class="form-control"
                                 placeholder=" 0.00 "
                                 formControlName="SaldoCuentaRefCom"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                               <div class="input-group-append"></div>
                             </div>
@@ -1472,7 +1486,7 @@
                       <thead>
                         <th>Consecutivo</th>
                         <th>Nombre Completo</th>
-                        <th>Limite de Credito</th>
+                        <th>Límite de Credito</th>
                         <th>Saldo de Cuenta</th>
                         <th></th>
                       </thead>
@@ -1543,6 +1557,7 @@
                                 class="form-control"
                                 placeholder="0.00"
                                 formControlName="SaldoCuentaRefBan"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                               <div class="input-group-append"></div>
                             </div>
@@ -1556,6 +1571,7 @@
                                 class="form-control"
                                 placeholder=" 0.00"
                                 formControlName="LimiteCreditoRefBan"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                               <div class="input-group-append"></div>
                             </div>
@@ -1722,6 +1738,7 @@
                               <input type="text"
                                 class="form-control"
                                 formControlName="CostoAcciones"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                               <div class="input-group-append"></div>
                             </div>
@@ -1745,6 +1762,7 @@
                               <input type="text"
                                 class="form-control"
                                 formControlName="RetirablesA"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                             </div>
                           </div>
@@ -1756,6 +1774,7 @@
                               <input type="text"
                                 class="form-control"
                                 formControlName="RetirablesB"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                             </div>
                           </div>
@@ -1767,6 +1786,7 @@
                               <input type="text"
                                 class="form-control"
                                 formControlName="TotalAcciones"
+                                [textMask]="{mask: efectivo.mask}"
                                 maxlength="15">
                             </div>
                           </div>
