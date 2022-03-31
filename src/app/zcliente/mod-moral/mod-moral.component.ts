@@ -258,6 +258,8 @@ export class ModMoralComponent implements OnInit { // 717
         extensionDomicilio:   ['', [Validators.maxLength(10)]],
         secretario:          ['', [Validators.maxLength(120)]],
       });
+
+      this.onChangesMoral();
     }
 
     if (this.ban == "2") {
@@ -293,6 +295,8 @@ export class ModMoralComponent implements OnInit { // 717
         telefonoDomicilio:    ['', [Validators.maxLength(15)]],
         extensionDomicilio:   ['', [Validators.maxLength(10)]],
       });
+
+      this.onChangesFisica();
     }
     this.CatDet();
     this.CatEco();
@@ -473,6 +477,52 @@ export class ModMoralComponent implements OnInit { // 717
 
   }
 
+  onChangesFisica(): void {
+    this.datosGeneralesFisicaForm.get('primerNombre').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.calculateRfcFisica();
+      }
+    });
+
+    this.datosGeneralesFisicaForm.get('segundoNombre').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.calculateRfcFisica();
+      }
+    });
+
+    this.datosGeneralesFisicaForm.get('apellidoPaterno').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.calculateRfcFisica();
+      }
+    });
+
+    this.datosGeneralesFisicaForm.get('apellidoMaterno').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.calculateRfcFisica();
+      }
+    });
+
+    this.datosGeneralesFisicaForm.get('fechaNacimiento').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.calculateRfcFisica();
+      }
+    });
+  }
+
+  onChangesMoral(): void {
+    this.datosGeneralesForm.get('razonSocial').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.calculateRfcMoral();
+      }
+    });
+
+    this.datosGeneralesForm.get('fechaConstitucion').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.calculateRfcMoral();
+      }
+    });
+  }
+
   loadLocationLists() {
     this.clienteService.catMunicipio(this.locationToUpdate.Estado).subscribe(
       (result: any) => {
@@ -562,6 +612,83 @@ export class ModMoralComponent implements OnInit { // 717
         this.showBtnValidar = false;
       }
     );
+  }
+
+  calculateRfcFisica(): void {
+    // Forma del RFC para Personas Físicas
+    // 1º letra + 1º vocal del primer apellido.
+    // 1º letra del segundo apellido.
+    // 1º letra del primer nombre.
+    // Fecha de nacimiento del contribuyente: aa/mm/dd.
+    // Homoclave con número verificador asignado por el SAT, para evitar duplicidad.
+
+    const voc = ['a', 'e', 'i', 'o', 'u'];
+    const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','à':'a','è':'e','ì':'i','ò':'o','ù':'u'};
+    let idx = 1;
+    let tmp = "";
+    let cadena = "";
+    let pn = this.datosGeneralesFisicaForm.controls.primerNombre.value;
+    let sn = this.datosGeneralesFisicaForm.controls.segundoNombre.value;
+    let ap = this.datosGeneralesFisicaForm.controls.apellidoPaterno.value;
+    let am = this.datosGeneralesFisicaForm.controls.apellidoMaterno.value;
+    let fec = this.datosGeneralesFisicaForm.controls.fechaNacimiento.value;
+
+    ap = ap.toLowerCase();
+    ap = ap.split('').map( letra => acentos[letra] || letra).join('').toString();
+    cadena += ap.substr(0, 1);
+
+    while ( idx <= ap.length ) {
+      tmp = ap.substr(idx, 1);
+      if (voc.includes(tmp)) {
+        cadena += tmp;
+        break;
+      }
+      idx++;
+    }
+    cadena += am.substr(0, 1);
+    cadena += (pn != "" && pn != null) ? pn.substr(0, 1) : sn.substr(0, 1);
+
+    //2022-03-16
+    if ( fec != null && fec != "" ) {
+      fec = fec.split('-');
+      cadena += fec[0].substr(2,2) + String(fec[1]) + String(fec[2]);
+    }
+
+    this.datosGeneralesFisicaForm.controls.rfc.setValue(cadena.toUpperCase());
+  }
+
+  calculateRfcMoral(): void {
+    // Forma del RFC para Empresas o Personas Morales
+    // Con nombres de 3 palabras: 1º letra de cada palabra.
+    // Con nombre de 2 palabras: 1º letra de primera palabra + 1º y 2º letras de segunda palabra.
+    // Con nombre de 1 palabra: 1º, 2º y3º letras de la palabra.
+    // Fecha de constitución de la empresa: aa/mm/dd.
+    // Homoclave con número verificador asignado por el SAT, para evitar duplicidad.
+
+    let cadena = "";
+    let rz = this.datosGeneralesForm.controls.razonSocial.value;
+    let fec = this.datosGeneralesForm.controls.fechaConstitucion.value;
+
+    if ( rz != null && rz != "" ) {
+      let split = rz.split(' ');
+      let len = split.length;
+
+      if ( 1 === len ) {
+        cadena += String(split[0].substr(0, 3));
+      } else if ( 2 === len ) {
+        cadena += String(split[0].substr(0, 1)) + String(split[1].substr(0, 2));
+      } else if ( len >= 3 ) {
+        cadena += String(split[0].substr(0, 1)) + String(split[1].substr(0, 1)) + String(split[2].substr(0, 1));
+      }
+    }
+
+    //2022-03-16
+    if ( fec != null && fec != "" ) {
+      fec = fec.split('-');
+      cadena += fec[0].substr(2,2) + String(fec[1]) + String(fec[2]);
+    }
+
+    this.datosGeneralesForm.controls.rfc.setValue(cadena.toUpperCase());
   }
 
   guardaGeneral() {
