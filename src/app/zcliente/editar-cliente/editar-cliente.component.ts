@@ -646,15 +646,13 @@ export class EditarClienteComponent implements OnInit {
       this.general.setUpdateMoral(this.datosGeneralesForm.value);
     } else if ( !this.showMoral ) {
       console.log(this.datosGeneralesFisicaForm.value);
-      this.general.setDatosGeneralesFisica(this.datosGeneralesFisicaForm.value);
+      this.general.setUpdateFisica(this.datosGeneralesFisicaForm.value);
     }
 
     console.log(this.general);
     this.clienteService.agregar(this.general).subscribe(
       (result: ResponseSP[]) => {
         this.responseSP = result;
-        this.general.setId(+result[0].noCliente)
-
         this.typeSuccess();
       }
     );
