@@ -341,9 +341,9 @@ export class ModMoralComponent implements OnInit { // 717
     this.actividadEconomicaForm = this.formBuilder.group({
       ActividadEconomica: ['', [Validators.required, Validators.maxLength(4)]],
       ActividadDetallada: ['', [Validators.required, Validators.maxLength(5)]],
-      IngresoMensual:     ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
-      OtroIngresoMensual: ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
-      GastosMensuales:    ['', [Validators.required, Validators.maxLength(15), Validators.pattern("[0-9]*\.?[0-9]{0,2}")]],
+      IngresoMensual:     ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      OtroIngresoMensual: ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      GastosMensuales:    ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
       FlujoEfectivo:      ['', [Validators.required, Validators.maxLength(15)]],
     });
     this.actividadEconomicaForm.disable();
