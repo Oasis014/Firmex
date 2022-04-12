@@ -26,7 +26,7 @@ export class ListCrediComponent {
 
     ngOnInit() { this.obtenerListado(); }
 
-                  open2() {  this.router.navigate(['mod-linecredi'], { relativeTo: this.route.parent }); }
+                  
                   open() {  this.router.navigate(['mod-credi'], { relativeTo: this.route.parent }); }
     }
     

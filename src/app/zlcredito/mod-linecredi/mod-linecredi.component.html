@@ -11,7 +11,7 @@
       </div>
       <div class="col-4 col-lg-4 col-xl-4">
         <div ngbDropdown class="btn-group m-2 float-sm-right" >
-          <button type="button" class="btn btn-light" ><i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span></button>
+          <button type="button" class="btn btn-light" (click) ="open()" ><i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span></button>
         </div>
       </div>
     </div>
@@ -21,12 +21,19 @@
 
 <div class="row">
   <div class="col-lg-12">
-    
+    <div class="col-12 col-lg-12" align="center" >
+      <label class="card-header text-uppercase" >Numero Cliente:  </label>
+      <label class="card-header text-uppercase" >Sucursal:  </label>
+      <label class="card-header text-uppercase" >Promotor: </label>
+      <label class="card-header text-uppercase" >Estatus de Cliente: </label>
+      <label class="card-header text-uppercase" >Razon Social: </label>
+      <label class="card-header text-uppercase" >Nombre Completo: </label>
+    </div>
 
     <div class="card">
       
       <div class="card-body">
-        <ul ngbNav #nav3="ngbNav" [(activeId)]="active2" (navChange)="onNavChange($event)" class="nav-tabs nav-tabs-primary  nav-justified">
+        <ul ngbNav #nav3="ngbNav" class="nav-tabs nav-tabs-primary  nav-justified">
           <li [ngbNavItem]="1"  > <a ngbNavLink><i class="fa fa-user-plus"></i>Credito</a>
             <ng-template ngbNavContent>
               <form [ngbCollapse]="isCollapsedPrueba1" >
@@ -74,9 +81,14 @@
                         <div class="row">
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Tipo de Credito </label>
+                              <label class="col-sm-5 col-form-label">Tipo de crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="NombreSociedad" id="NombreSociedad" placeholder=" "  >
+                                <select class="form-control form-control-sm" >
+                                  <option selected>Tipo de crédito ...</option>
+                                  <option >
+                                  
+                                  </option>
+                                </select>
                               </div>
                             </div>
                           </div>
@@ -84,19 +96,10 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Destino</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder=" "  >
+                                <input  type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder="No Cuenta"  >
                               </div>
                             </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Monto Solicitado</label>
-                              <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="PresidenteConsejo" id="PresidenteConsejo" placeholder=" " >
-                              </div>
-                            </div>
-                          </div>
-                          
+                          </div> 
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-success">Monto solicitado</label>
@@ -104,6 +107,8 @@
                                 <input  type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
                               </div>
                             </div>
+                          </div>
+                          <div class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div class="col-1 col-lg-4 col-xl-4">
                           </div>

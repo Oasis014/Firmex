@@ -13,6 +13,9 @@
         <div ngbDropdown class="btn-group m-2 float-sm-right" >
           <button type="button" class="btn btn-light" ><i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span></button>
         </div>
+        <div ngbDropdown class="btn-group m-2 float-sm-right" >
+          <button type="button" class="btn btn-light" (click) ="open()" ><span>&nbsp;Credito</span></button>
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +29,7 @@
     <div class="card">
       
       <div class="card-body">
-        <ul ngbNav #nav3="ngbNav" [(activeId)]="active2" (navChange)="onNavChange($event)" class="nav-tabs nav-tabs-primary  nav-justified">
+        <ul ngbNav #nav3="ngbNav"  class="nav-tabs nav-tabs-primary  nav-justified">
           <li [ngbNavItem]="1"  > <a ngbNavLink><i class="fa fa-user-plus"></i>Linea de Credito</a>
             <ng-template ngbNavContent>
               <form [ngbCollapse]="isCollapsedPrueba1" >
@@ -41,11 +44,13 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Numero de Cliente </label>
                               <div class="col-sm-6">
-                                <input type="text" class="form-control" formControlName="numeroCliente" >
+                                <input type="text" class="form-control" formControlName="numeroCliente" placeholder="0" >
                               </div>
                             </div>
                           </div>
-                          <!--Input de mascaras-->
+                          <div class="col-5 col-lg-5 col-xl-5"></div>
+                          
+                          <!--Input de mascaras
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Mascara de cantidad </label>
@@ -69,18 +74,16 @@
                                 <input class="form-control" type="text" placeholder="(55)5555-5555" [textMask]="{mask: number.mask}">
 			                        </div>
 	                        	</div>
-                        	</div>
-                          <!--Fin de Input de mascaras-->
+                        	</div> 
+                          Fin de Input de mascaras-->
                           <div class="col-2 col-lg-2 col-xl-2">
                             <button
                             (click)="isCollapsed8 = !isCollapsed8"
                               type="submit"
                               class="btn btn-light btn-block">Validar</button>
                         </div>
-                        <div class="col-1 col-lg-2 col-xl-2">
-                        </div>
-                        <div class="col-1 col-lg-2 col-xl-2">
-                        </div>
+                        
+                       
                           <div class="col-5 col-lg-4 col-xl-4" [ngbCollapse]="isCollapsed8" >
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Sucursal </label>
@@ -201,9 +204,9 @@
                         <div class="row">
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Datos del Credito </label>
+                              <label  class="col-sm-5 col-form-label">Destino del Credito </label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="NombreSociedad" id="NombreSociedad" placeholder=" "  >
+                                <input  type="text" class="form-control" name="DestCred" id="DestCred" placeholder="Destino del Credito"  >
                               </div>
                             </div>
                           </div>
@@ -211,31 +214,31 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Origen de Recursos</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder=" "  >
+                                <input  type="text" class="form-control" name="OrigenRecu" id="OrigenRecu" placeholder="Origen de Recursos"  >
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Monto y frecuencia con la que se pretende disponer del crédito.</label>
+                              <label  class="col-sm-5 col-form-label">Número de disposiciones del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="PresidenteConsejo" id="PresidenteConsejo" placeholder=" " >
+                                <input  type="number" class="form-control" name="NoDispoCre" id="NoDispoCre" placeholder="00" >
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Monto y frecuencia con la que se pretende pagar el crédito</label>
+                              <label  class="col-sm-5 col-form-label">Frecuencia para disponer del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="Consejero" id="Consejero" placeholder=" "  >
+                                <input  type="number" class="form-control" name="FrecDispo" id="FrecDispo" placeholder="00"  >
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Número de disposiciones</label>
-                              <div class="col-sm-6 input-group" *ngFor="let number2 of number2">
-                                <input  type="text" class="form-control" name="EmailPersonal" id="EmailPersonal" placeholder="0000" [textMask]="{mask: number2.mask}" >
+                              <label  class="col-sm-5 col-form-label">Monto de la frecuencia para disponer del crédito</label>
+                              <div class="col-sm-6 input-group" *ngFor="let efectivo of efectivo">
+                                <input  type="text" class="form-control" name="MonFreDispo" id="MonFreDispo" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}" >
                               </div>
                             </div>
                           </div>
@@ -243,14 +246,30 @@
                             <div class="form-group row">
                               <label  class="col-sm-5 col-form-label">Número de pagos del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="EmailEmpresa" id="EmailEmpresa" placeholder=" "  >
+                                <input  type="number" class="form-control" name="NoPagoCre" id="NoPagoCre" placeholder="00"  >
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Moneda</label>
-                              <div class="col-sm-6">
+                              <label  class="col-sm-5 col-form-label">Frecuencia para pagar el crédito</label>
+                              <div class="col-sm-6 input-group">
+                                <input  type="number" class="form-control" name="FrecCredi" id="FrecCredi" placeholder="00"  >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label  class="col-sm-5 col-form-label" >frecuencia del monto para pagar el crédito</label>
+                              <div class="col-sm-6 input-group" *ngFor="let efectivo of efectivo" >
+                                <input  type="text" class="form-control" name="FrecMonto" id="FrecMonto" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}"  >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label">Moneda en la que solicita el crédito</label>
+                              <div class="col-sm-6 input-group">
                                 <select class="form-control form-control-sm" >
                                   <option selected>Seleccione Moneda ...</option>
                                   <option >
@@ -262,15 +281,11 @@
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-success">Monto solicitado</label>
-                              <div class="col-sm-6 input-group" *ngFor="let efectivo of efectivo">
-                                <input  type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
+                              <label  class="col-sm-5 col-form-label" >Monto solicitado para la línea de crédito</label>
+                              <div class="col-sm-6 input-group" *ngFor="let efectivo of efectivo" >
+                                <input  type="text" class="form-control" name="MontoSol" id="MontoSol" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}"  >
                               </div>
                             </div>
-                          </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div class="col-1 col-lg-4 col-xl-4">
                           </div>
