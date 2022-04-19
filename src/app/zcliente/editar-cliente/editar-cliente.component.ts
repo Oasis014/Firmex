@@ -379,8 +379,8 @@ export class EditarClienteComponent implements OnInit {
 
     this.cuentasBancariasForm = this.formBuilder.group({
       BancoCtaBan:                ['', [Validators.required, Validators.maxLength(5)]],
-      NumeroCuentaCtaBan:         ['', [Validators.required, Validators.maxLength(15)]],
-      ClaveInterbancariaCtaBan:   ['', [Validators.required, Validators.maxLength(18)]],
+      NumeroCuentaCtaBan:         ['', [Validators.required, Validators.maxLength(15), Validators.pattern("^[0-9]*$"),]],
+      ClaveInterbancariaCtaBan:   ['', [Validators.required, Validators.maxLength(18), Validators.pattern("^[0-9]*$"),]],
     });
     this.cuentasBancariasForm.disable();
 
@@ -501,6 +501,22 @@ export class EditarClienteComponent implements OnInit {
         this.calculateRfcFisica();
       }
     });
+
+    this.datosGeneralesFisicaForm.get('curp').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.datosGeneralesFisicaForm.controls.curp.patchValue(
+          val.toUpperCase(), {emitEvent: false}
+        );
+      }
+    });
+
+    this.datosGeneralesFisicaForm.get('rfc').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.datosGeneralesFisicaForm.controls.rfc.patchValue(
+          val.toUpperCase(), {emitEvent: false}
+        );
+      }
+    });
   }
 
   onChangesMoral(): void {
@@ -575,14 +591,16 @@ export class EditarClienteComponent implements OnInit {
 
     const voc = ['a', 'e', 'i', 'o', 'u'];
     const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','à':'a','è':'e','ì':'i','ò':'o','ù':'u'};
+    const formControls = this.datosGeneralesFisicaForm.controls;
+    const homoclave = formControls.rfc.value.substring(10);
     let idx = 1;
     let tmp = "";
     let cadena = "";
-    let pn = this.datosGeneralesFisicaForm.controls.primerNombre.value;
-    let sn = this.datosGeneralesFisicaForm.controls.segundoNombre.value;
-    let ap = this.datosGeneralesFisicaForm.controls.apellidoPaterno.value;
-    let am = this.datosGeneralesFisicaForm.controls.apellidoMaterno.value;
-    let fec = this.datosGeneralesFisicaForm.controls.fechaNacimiento.value;
+    let pn = formControls.primerNombre.value;
+    let sn = formControls.segundoNombre.value;
+    let ap = formControls.apellidoPaterno.value;
+    let am = formControls.apellidoMaterno.value;
+    let fec = formControls.fechaNacimiento.value;
 
     ap = ap.toLowerCase();
     ap = ap.split('').map( letra => acentos[letra] || letra).join('').toString();
@@ -605,7 +623,8 @@ export class EditarClienteComponent implements OnInit {
       cadena += fec[0].substr(2,2) + String(fec[1]) + String(fec[2]);
     }
 
-    this.datosGeneralesFisicaForm.controls.rfc.setValue(cadena.toUpperCase());
+    cadena = cadena + homoclave;
+    formControls.rfc.setValue(cadena.toUpperCase());
   }
 
   calculateRfcMoral(): void {
@@ -1109,6 +1128,7 @@ export class EditarClienteComponent implements OnInit {
     console.log(com);
     this.referenciasComercialesSelected = com;
     this.referenciasComercialesUpdate = true;
+    this.prepareEdit('referenciasComerciales', com);
   }
 
   borrarReferenciaComercial(com: any): void {
@@ -1209,6 +1229,8 @@ export class EditarClienteComponent implements OnInit {
     form.RetirablesB = form.RetirablesB.replace(this.rgxComa, '');
     form.TotalAcciones = form.TotalAcciones.replace('$', '');
     form.TotalAcciones = form.TotalAcciones.replace(this.rgxComa, '');
+    form.ParteSocialActual = form.ParteSocialActual.replace('$', '');
+    form.ParteSocialActual = form.ParteSocialActual.replace(this.rgxComa, '');
 
     if ( !this.accionesUpdate ) {
       console.log('guardar');
