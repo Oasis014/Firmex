@@ -1742,13 +1742,13 @@ export class ModMoralComponent implements OnInit { // 717
 
   cnaCION() {
     this.clienteService.catnaCION().subscribe(
-      (result: ResponseApi) => { this.ctnaCION = result.data }
+      (result: Catalogos[]) => { this.ctnaCION = result; }
     );
   }
 
   catDocumentos() {
     this.clienteService.catDocumentos().subscribe(
-      (result: ResponseApi) => { this.ctDocumentos = result.data; }
+      (result: Catalogos[]) => { this.ctDocumentos = result; }
     );
   }
 

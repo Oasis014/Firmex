@@ -1743,13 +1743,13 @@ export class EditarClienteComponent implements OnInit {
 
   cnaCION() {
     this.clienteService.catnaCION().subscribe(
-      (result: ResponseApi) => { this.ctnaCION = result.data }
+      (result: Catalogos[]) => { this.ctnaCION = result; }
     );
   }
 
   catDocumentos() {
     this.clienteService.catDocumentos().subscribe(
-      (result: ResponseApi) => { this.ctDocumentos = result.data; }
+      (result: Catalogos[]) => { this.ctDocumentos = result; }
     );
   }
 
