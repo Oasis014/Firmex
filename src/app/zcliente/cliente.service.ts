@@ -554,7 +554,7 @@ export class ClienteService {
   }
 
   catnaCION() {
-    return this.http.get(this.catalogosUrl.catalogonaCION);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'naCION'});
   }
 
   catDocumentos(): Observable<any> {

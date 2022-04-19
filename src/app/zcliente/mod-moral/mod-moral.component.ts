@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ClienteService } from '../cliente.service';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Catalogos } from 'src/app/shared/models/catalogos';
+import { ResponseApi } from 'src/app/shared/models/responseApi';
 import { DatosGenerales } from "src/app/shared/models/datosGenerales";
 import { ResponseSP } from 'src/app/shared/models/responseSP';
 import { Domicilio } from 'src/app/shared/models/domicilio';
@@ -217,6 +218,8 @@ export class ModMoralComponent implements OnInit { // 717
   number2 = {
     mask: [ /\d/, /\d/, /\d/, /\d/ ],
   };
+
+  rgxComa = /,/gi;
 
   ngOnInit() {
     this.ban = localStorage.getItem("bandera");
@@ -923,11 +926,11 @@ export class ModMoralComponent implements OnInit { // 717
     params.Id  =this.general.NumeroCliente;
 
     params.GastosMensuales = params.GastosMensuales.replace('$', '');
-    params.GastosMensuales = params.GastosMensuales.replace(',', '');
+    params.GastosMensuales = params.GastosMensuales.replace(this.rgxComa, '');
     params.IngresoMensual = params.IngresoMensual.replace('$', '');
-    params.IngresoMensual = params.IngresoMensual.replace(',', '');
+    params.IngresoMensual = params.IngresoMensual.replace(this.rgxComa, '');
     params.OtroIngresoMensual = params.OtroIngresoMensual.replace('$', '');
-    params.OtroIngresoMensual = params.OtroIngresoMensual.replace(',', '');
+    params.OtroIngresoMensual = params.OtroIngresoMensual.replace(this.rgxComa, '');
 
     this.clienteService.agregar4(params).subscribe(
       (result: any) => {
@@ -970,21 +973,21 @@ export class ModMoralComponent implements OnInit { // 717
     let ingreso = 0;
     let valIngreso = this.actividadEconomicaForm.controls.IngresoMensual.value;
     valIngreso = valIngreso.replace('$', '');
-    valIngreso = valIngreso.replace(',', '');
+    valIngreso = valIngreso.replace(this.rgxComa, '');
     if ( !isNaN(valIngreso) && "" != valIngreso && null != valIngreso ) {
       ingreso = parseFloat(valIngreso);
     }
     let otroIngreso = 0;
     let valOtroIngreso = this.actividadEconomicaForm.controls.OtroIngresoMensual.value;
     valOtroIngreso = valOtroIngreso.replace('$', '');
-    valOtroIngreso = valOtroIngreso.replace(',', '');
+    valOtroIngreso = valOtroIngreso.replace(this.rgxComa, '');
     if ( !isNaN(valOtroIngreso) && "" != valOtroIngreso && null != valOtroIngreso ) {
       otroIngreso = parseFloat(valOtroIngreso);
     }
     let gasto = 0;
     let valGasto = this.actividadEconomicaForm.controls.GastosMensuales.value;
     valGasto = valGasto.replace('$', '');
-    valGasto = valGasto.replace(',', '');
+    valGasto = valGasto.replace(this.rgxComa, '');
     if ( !isNaN(valGasto) && "" != valGasto && null != valGasto ) {
       gasto = parseFloat(valGasto);
     }
@@ -1060,9 +1063,9 @@ export class ModMoralComponent implements OnInit { // 717
     let form = this.referenciasComercialesForm.value;
 
     form.LimiteCreditoRefCom = form.LimiteCreditoRefCom.replace('$', '');
-    form.LimiteCreditoRefCom = form.LimiteCreditoRefCom.replace(',', '');
+    form.LimiteCreditoRefCom = form.LimiteCreditoRefCom.replace(this.rgxComa, '');
     form.SaldoCuentaRefCom = form.SaldoCuentaRefCom.replace('$', '');
-    form.SaldoCuentaRefCom = form.SaldoCuentaRefCom.replace(',', '');
+    form.SaldoCuentaRefCom = form.SaldoCuentaRefCom.replace(this.rgxComa, '');
 
     if ( !this.referenciasComercialesUpdate ) {
       console.log('guardar');
@@ -1126,9 +1129,9 @@ export class ModMoralComponent implements OnInit { // 717
     let refBan = this.referenciasBancariasForm.value;
 
     refBan.LimiteCreditoRefBan = refBan.LimiteCreditoRefBan.replace('$', '');
-    refBan.LimiteCreditoRefBan = refBan.LimiteCreditoRefBan.replace(',', '');
+    refBan.LimiteCreditoRefBan = refBan.LimiteCreditoRefBan.replace(this.rgxComa, '');
     refBan.SaldoCuentaRefBan = refBan.SaldoCuentaRefBan.replace('$', '');
-    refBan.SaldoCuentaRefBan = refBan.SaldoCuentaRefBan.replace(',', '');
+    refBan.SaldoCuentaRefBan = refBan.SaldoCuentaRefBan.replace(this.rgxComa, '');
 
     if ( !this.referenciasBancariasUpdate ) {
       console.log('guardar');
@@ -1197,13 +1200,13 @@ export class ModMoralComponent implements OnInit { // 717
     let form = this.accionesForm.value;
 
     form.CostoAcciones = form.CostoAcciones.replace('$', '');
-    form.CostoAcciones = form.CostoAcciones.replace(',', '');
+    form.CostoAcciones = form.CostoAcciones.replace(this.rgxComa, '');
     form.RetirablesA = form.RetirablesA.replace('$', '');
-    form.RetirablesA = form.RetirablesA.replace(',', '');
+    form.RetirablesA = form.RetirablesA.replace(this.rgxComa, '');
     form.RetirablesB = form.RetirablesB.replace('$', '');
-    form.RetirablesB = form.RetirablesB.replace(',', '');
+    form.RetirablesB = form.RetirablesB.replace(this.rgxComa, '');
     form.TotalAcciones = form.TotalAcciones.replace('$', '');
-    form.TotalAcciones = form.TotalAcciones.replace(',', '');
+    form.TotalAcciones = form.TotalAcciones.replace(this.rgxComa, '');
 
     if ( !this.accionesUpdate ) {
       console.log('guardar');
@@ -1716,15 +1719,13 @@ export class ModMoralComponent implements OnInit { // 717
 
   cnaCION() {
     this.clienteService.catnaCION().subscribe(
-      (result: Catalogos[]) => { this.ctnaCION = result }
+      (result: ResponseApi) => { this.ctnaCION = result.data }
     );
   }
 
   catDocumentos() {
     this.clienteService.catDocumentos().subscribe(
-      (result: {data: Array<any>, status: string, message: string}) => {
-        this.ctDocumentos = result.data;
-      }
+      (result: ResponseApi) => { this.ctDocumentos = result.data; }
     );
   }
 
