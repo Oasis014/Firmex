@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
 import { Domicilio } from '../shared/models/domicilio';
+import { ResponseApi } from '../shared/models/responseApi';
+import { map } from 'rxjs/operators';
+import { Catalogos } from '../shared/models/catalogos';
 
 @Injectable({
   providedIn: 'root'
@@ -473,95 +476,114 @@ export class ClienteService {
 
   //Catalogo
 
-  catActdet() {
-    return this.http.get(this.catalogosUrl.catalogoActdet);
+  catActdet(): Observable<Catalogos[]> {
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'actdet'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
-  catActeco() {
-    return this.http.get(this.catalogosUrl.catalogoActeco);
+  catActeco(): Observable<Catalogos[]> {
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'acteco'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
-  catBancos() {
-    return this.http.get(this.catalogosUrl.catalogoBancos);
+  catBancos(): Observable<Catalogos[]> {
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'bancos'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
-  catCatpue() {
-    return this.http.get(this.catalogosUrl.catalogoCatpue);
+  catCatpue(): Observable<Catalogos[]> {
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'catpue'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catCodId() {
-    return this.http.get(this.catalogosUrl.catalogoCod_id);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'cod_id'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catEdociv() {
-    return this.http.get(this.catalogosUrl.catalogoEdociv);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'edociv'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catIdentif() {
-    return this.http.get(this.catalogosUrl.catalogoIdentif);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'identif'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catPerjur() {
-    return this.http.get(this.catalogosUrl.catalogoPerjur);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'perjur'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catProfes() {
-    return this.http.get(this.catalogosUrl.catalogoProfes);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'profes'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catSexo() {
-    return this.http.get(this.catalogosUrl.catalogoSexo);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'sexo'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catStscte() {
-    return this.http.get(this.catalogosUrl.catalogoStscte);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'stscte'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catTipded() {
-    return this.http.get(this.catalogosUrl.catalogoTipded);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tipded'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catTipdom() {
-    return this.http.get(this.catalogosUrl.catalogoTipdom);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tipdom'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catTipgse() {
-    return this.http.get(this.catalogosUrl.catalogoTipgse);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tipgse'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catTipman() {
-    return this.http.get(this.catalogosUrl.catalogoTipman);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tipman'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catTipred() {
-    return this.http.get(this.catalogosUrl.catalogoTipred);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tipred'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catTiprel() {
-    return this.http.get(this.catalogosUrl.catalogoTiprel);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tiprel'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catTiprpe() {
-    return this.http.get(this.catalogosUrl.catalogoTiprpe);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tiprpe'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catTiprrc() {
-    return this.http.get(this.catalogosUrl.catalogoTiprrc);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tiprrc'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
   catTiptel() {
-    return this.http.get(this.catalogosUrl.catalogoTiptel);
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tiptel'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
-  catnaCION() {
-    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'naCION'});
+  catnaCION(): Observable<any[]> {
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'naCION'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
-  catDocumentos(): Observable<any> {
-    let params = {
-      catid: 'tipdoc'
-    };
-    return this.httpService.get(this.catalogosUrl.catalogos, params);
+  catDocumentos(): Observable<any[]> {
+    return this.httpService.get(this.catalogosUrl.catalogos, {catid: 'tipdoc'})
+      .pipe(map((data: ResponseApi) => { return data.data; }) );
   }
 
 }
