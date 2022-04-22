@@ -653,8 +653,10 @@ export class EditarClienteComponent implements OnInit {
     // Homoclave con número verificador asignado por el SAT, para evitar duplicidad.
 
     let cadena = "";
-    let rz = this.datosGeneralesForm.controls.razonSocial.value;
-    let fec = this.datosGeneralesForm.controls.fechaConstitucion.value;
+    const formControls = this.datosGeneralesForm.controls;
+    let rz = formControls.razonSocial.value;
+    let fec = formControls.fechaConstitucion.value;
+    const homoclave = formControls.rfc.value.substring(9);
 
     if ( rz != null && rz != "" ) {
       let split = rz.split(' ');
@@ -675,7 +677,8 @@ export class EditarClienteComponent implements OnInit {
       cadena += fec[0].substr(2,2) + String(fec[1]) + String(fec[2]);
     }
 
-    this.datosGeneralesForm.controls.rfc.setValue(cadena.toUpperCase());
+    cadena = cadena + homoclave;
+    formControls.rfc.setValue(cadena.toUpperCase());
   }
 
 
