@@ -1494,7 +1494,7 @@
                       <tbody>
                         <tr *ngFor="let com of referenciasComercialesList;let i=index;" >
                           <td>{{com.Consecutivo}}</td>
-                          <td>{{com.NombreRefcom}}</td>
+                          <td>{{com.NombreRefCom}}</td>
                           <td>{{com.LimiteCreditoRefCom}}</td>
                           <td>{{com.SaldoCuentaRefCom}}</td>
                           <td>
@@ -2002,10 +2002,13 @@
                           <div class="form-group row">
                             <label class="col-sm-5 col-form-label">Parte Relacionada</label>
                             <div class="col-sm-6">
-                              <input type="text"
-                                class="form-control"
-                                formControlName="ParteRelacionadaParRel"
-                                maxlength="2">
+                              <select
+                                class="form-control form-control-sm"
+                                formControlName="ParteRelacionadaParRel">
+                                <option *ngFor="let tRel of ctTiprel" [value]="tRel.catalogo_cve">
+                                  {{tRel.desc_45}}
+                                </option>
+                              </select>
                             </div>
                           </div>
                         </div>
@@ -2089,7 +2092,7 @@
                       <tbody>
                         <tr *ngFor="let rel of partesRelacionadasList;let i=index;" >
                           <td>{{rel.Consecutivo}}</td>
-                          <td>{{rel.ParteRelacionadaParRel}}</td>
+                          <td>{{rel.ParteRelacionadaDesc}}</td>
                           <td>{{rel.NombreParRel}}</td>
                           <td>{{rel.RFCParRel}}</td>
                           <td>{{rel.DireccionParRel}}</td>
