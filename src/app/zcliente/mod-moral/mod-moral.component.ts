@@ -545,6 +545,14 @@ export class ModMoralComponent implements OnInit { // 717
         this.calculateRfcMoral();
       }
     });
+
+    this.datosGeneralesForm.get('rfc').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.datosGeneralesForm.controls.rfc.patchValue(
+          val.toUpperCase(), {emitEvent: false}
+        );
+      }
+    });
   }
 
   loadLocationLists() {

@@ -534,6 +534,14 @@ export class EditarClienteComponent implements OnInit {
         this.calculateRfcMoral();
       }
     });
+
+    this.datosGeneralesForm.get('rfc').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.datosGeneralesForm.controls.rfc.patchValue(
+          val.toUpperCase(), {emitEvent: false}
+        );
+      }
+    });
   }
 
   loadLocationLists() {
