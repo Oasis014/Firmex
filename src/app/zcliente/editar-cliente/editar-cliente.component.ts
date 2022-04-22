@@ -994,6 +994,7 @@ export class EditarClienteComponent implements OnInit {
     this.prepareEdit('actividadEconomica', eco);
     this.actividadEconomicaForm.controls.ActividadEconomica.disable();
     this.actividadEconomicaForm.controls.ActividadDetallada.disable();
+    this.actividadEconomicaForm.controls.FlujoEfectivo.disable();
   }
 
   borrarActividadEconomica(obj: any) {
@@ -1011,24 +1012,32 @@ export class EditarClienteComponent implements OnInit {
   calculaFlujoEfectivoActivEco(): void {
     let ingreso = 0;
     let valIngreso = this.actividadEconomicaForm.controls.IngresoMensual.value;
-    valIngreso = valIngreso.replace('$', '');
-    valIngreso = valIngreso.replace(this.rgxComa, '');
-    if ( !isNaN(valIngreso) && "" != valIngreso && null != valIngreso ) {
-      ingreso = parseFloat(valIngreso);
+    if ( valIngreso !== null ) {
+      valIngreso = valIngreso.replace('$', '');
+      valIngreso = valIngreso.replace(this.rgxComa, '');
+      if ( !isNaN(valIngreso) && "" != valIngreso ) {
+        ingreso = parseFloat(valIngreso);
+      }
     }
+
     let otroIngreso = 0;
     let valOtroIngreso = this.actividadEconomicaForm.controls.OtroIngresoMensual.value;
-    valOtroIngreso = valOtroIngreso.replace('$', '');
-    valOtroIngreso = valOtroIngreso.replace(this.rgxComa, '');
-    if ( !isNaN(valOtroIngreso) && "" != valOtroIngreso && null != valOtroIngreso ) {
-      otroIngreso = parseFloat(valOtroIngreso);
+    if ( valOtroIngreso !== null ) {
+      valOtroIngreso = valOtroIngreso.replace('$', '');
+      valOtroIngreso = valOtroIngreso.replace(this.rgxComa, '');
+      if ( !isNaN(valOtroIngreso) && "" != valOtroIngreso ) {
+        otroIngreso = parseFloat(valOtroIngreso);
+      }
     }
+
     let gasto = 0;
     let valGasto = this.actividadEconomicaForm.controls.GastosMensuales.value;
-    valGasto = valGasto.replace('$', '');
-    valGasto = valGasto.replace(this.rgxComa, '');
-    if ( !isNaN(valGasto) && "" != valGasto && null != valGasto ) {
-      gasto = parseFloat(valGasto);
+    if ( valGasto !== null ) {
+      valGasto = valGasto.replace('$', '');
+      valGasto = valGasto.replace(this.rgxComa, '');
+      if ( !isNaN(valGasto) && "" != valGasto ) {
+        gasto = parseFloat(valGasto);
+      }
     }
 
     let total = (ingreso + otroIngreso ) - gasto;
