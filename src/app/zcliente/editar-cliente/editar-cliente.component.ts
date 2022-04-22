@@ -6,7 +6,6 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Catalogos } from 'src/app/shared/models/catalogos';
 import { DatosGenerales } from "src/app/shared/models/datosGenerales";
 import { ResponseSP } from 'src/app/shared/models/responseSP';
-import { ResponseApi } from 'src/app/shared/models/responseApi';
 import { Domicilio } from 'src/app/shared/models/domicilio';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
@@ -443,10 +442,14 @@ export class EditarClienteComponent implements OnInit {
         console.log(val);
         this.clienteService.catCP(
           this.domicilioForm.controls.Estado.value,
-          this.domicilioForm.controls.Municipio.value
+          this.domicilioForm.controls.Municipio.value,
+          this.domicilioForm.controls.Colonia.value
         ).subscribe(
           (result: any) => {
             this.cCP = result;
+            if ( this.cCP.length === 1 ) {
+              this.domicilioForm.controls.CodigoPostal.setValue(this.cCP[0].cpostal);
+            }
         });
       }
     });
@@ -554,9 +557,15 @@ export class EditarClienteComponent implements OnInit {
         }
     });
 
-    this.clienteService.catCP(this.locationToUpdate.Estado, this.locationToUpdate.Municipio).subscribe(
+    this.clienteService.catCP(
+        this.locationToUpdate.Estado,
+        this.locationToUpdate.Municipio,
+        this.locationToUpdate.Colonia).subscribe(
       (result: any) => {
         this.cCP = result;
+        if ( this.cCP.length === 1 ) {
+          this.domicilioForm.controls.CodigoPostal.setValue(this.cCP[0].cpostal);
+        }
 
         if ( this.isPatchLocation == true ) {
           this.readyCp = true;

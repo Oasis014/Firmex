@@ -452,10 +452,14 @@ export class ModMoralComponent implements OnInit { // 717
         console.log(val);
         this.clienteService.catCP(
           this.domicilioForm.controls.Estado.value,
-          this.domicilioForm.controls.Municipio.value
+          this.domicilioForm.controls.Municipio.value,
+          this.domicilioForm.controls.Colonia.value
         ).subscribe(
           (result: any) => {
             this.cCP = result;
+            if ( this.cCP.length === 1 ) {
+              this.domicilioForm.controls.CodigoPostal.setValue(this.cCP[0].cpostal);
+            }
         });
       }
     });
@@ -564,9 +568,16 @@ export class ModMoralComponent implements OnInit { // 717
         }
     });
 
-    this.clienteService.catCP(this.locationToUpdate.Estado, this.locationToUpdate.Municipio).subscribe(
+    this.clienteService.catCP(
+        this.locationToUpdate.Estado,
+        this.locationToUpdate.Municipio,
+        this.locationToUpdate.Colonia).subscribe(
       (result: any) => {
         this.cCP = result;
+
+        if ( this.cCP.length === 1 ) {
+          this.domicilioForm.controls.CodigoPostal.setValue(this.cCP[0].cpostal);
+        }
 
         if ( this.isPatchLocation == true ) {
           this.readyCp = true;
