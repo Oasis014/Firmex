@@ -887,12 +887,12 @@ export class ModMoralComponent implements OnInit { // 717
     this.clienteService.consultar(params).subscribe(
       (result: any) => {
 
-        this.prepareEdit('domicilio', dom);
+        this.domicilioForm.enable();
+        this.domicilioBtnText = 'Actualizar';
+        this.domicilioDisBtnInsert = false;
 
         this.isPatchLocation = true;
         this.locationToUpdate = result[0];
-
-        this.loadLocationLists();
 
         this.domicilioForm.controls.TipoDomicilio.setValue(result[0].TipoDomicilio);
         this.domicilioForm.controls.TipoDomicilio.disable();
@@ -900,6 +900,8 @@ export class ModMoralComponent implements OnInit { // 717
         this.domicilioForm.controls.Calle.setValue(result[0].Calle);
         this.domicilioForm.controls.NumeroExterior.setValue(result[0].NumeroExterior);
         this.domicilioForm.controls.NumeroInterior.setValue(result[0].NumeroInterior);
+
+        this.loadLocationLists();
       }
     );
   }
