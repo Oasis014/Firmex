@@ -1042,45 +1042,51 @@
               </form>
 
               <div class="card" *ngIf="domicilioList.length">
-                <table class="table table-striped text-center" style="width:auto; height:5px;" >
-                  <thead>
-                    <th>Tipo de Domicilio</th>
-                    <th>Calle</th>
-                    <th>Numero Exterior</th>
-                    <th>Numero Interior</th>
-                    <th>Codigo Postal</th>
-                    <th>Colonia</th>
-                    <th>Municipio</th>
-                    <th>Estado</th>
-                    <th>Pais</th>
-                    <th></th>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let dom of domicilioList;let i=index;" >
-                      <td scope="row" >{{dom.TipoDomicilioDesc}}</td>
-                      <td>{{ dom.Calle }}</td>
-                      <td>{{ dom.NumeroExterior }}</td>
-                      <td>{{ dom.NumeroInterior }}</td>
-                      <td>{{ dom.CodigoPostal }}</td>
-                      <td>{{ dom.Colonia }}</td>
-                      <td>{{ dom.MunicipioDesc }}</td>
-                      <td>{{ dom.EstadoDesc }}</td>
-                      <td>{{ dom.PaisDesc }}</td>
-                      <td>
-                        <a data-toggle="modal"
-                          data-target="#largesizemodal"
-                          class="btn btn-sm btn-info text-white"
-                          (click)= "consultarDomicilio(dom)">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <a class="btn btn-sm btn-danger text-white ml-1"
-                          (click)="confirmarBorrarElemento(dom, 'DomBorrar')">
-                            <i class="fa fa-trash"></i>
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-striped text-center">
+                      <thead>
+                        <tr>
+                          <th>Tipo de Domicilio</th>
+                          <th>Calle</th>
+                          <th>No. Ext.</th>
+                          <th>No. Int.</th>
+                          <th>CP</th>
+                          <th>Colonia</th>
+                          <th>Municipio</th>
+                          <th>Estado</th>
+                          <th>Pais</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let dom of domicilioList;let i=index;" >
+                          <td scope="row" >{{dom.TipoDomicilioDesc}}</td>
+                          <td>{{ dom.Calle }}</td>
+                          <td>{{ dom.NumeroExterior }}</td>
+                          <td>{{ dom.NumeroInterior }}</td>
+                          <td>{{ dom.CodigoPostal }}</td>
+                          <td>{{ dom.Colonia }}</td>
+                          <td>{{ dom.MunicipioDesc }}</td>
+                          <td>{{ dom.EstadoDesc }}</td>
+                          <td>{{ dom.PaisDesc }}</td>
+                          <td>
+                            <a data-toggle="modal"
+                              data-target="#largesizemodal"
+                              class="btn btn-sm btn-info text-white"
+                              (click)= "consultarDomicilio(dom)">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a class="btn btn-sm btn-danger text-white ml-1"
+                              (click)="confirmarBorrarElemento(dom, 'DomBorrar')">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
 
               <button class="btn btn-sm btn-light btnSeccion" (click)="nav3.select(1)">Anterior</button>
@@ -1218,40 +1224,44 @@
                     </div>
                   </div>
                   <div class="card" *ngIf="actividadEconomicaList.length">
-                    <table class="table table-striped text-center " style="width:auto; height:5px;" >
-                      <thead>
-                        <th>Actividad Económica</th>
-                        <th>Actividad Detallada</th>
-                        <th>Ingreso Mensual</th>
-                        <th>Otro Ingreso Mensual</th>
-                        <th>Gastos Mensuales</th>
-                        <th>Flujo de Efectivo</th>
-                        <th></th>
-                      </thead>
-                      <tbody>
-                      <tr *ngFor="let eco of actividadEconomicaList;let i=index;" >
-                        <td scope="row" >{{eco.ActividadEconomicaDesc}}</td>
-                        <td>{{eco.ActividadDetalladaDesc}}</td>
-                        <td>{{eco.IngresoMensual}}</td>
-                        <td>{{eco.OtroIngresoMensual}}</td>
-                        <td>{{eco.GastosMensuales}}</td>
-                        <td>{{eco.FlujoEfectivo}}</td>
-                        <td>
-                          <a (click)="consultarActividadEconomica(eco)"
-                            data-toggle="modal"
-                            data-target="#largesizemodal"
-                            class="btn btn-sm btn-info text-white">
-                              <i class="fa fa-pencil"></i>
-                          </a>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-striped text-center " style="width:auto; height:5px;" >
+                          <thead>
+                            <th>Actividad Económica</th>
+                            <th>Actividad Detallada</th>
+                            <th>Ingreso Mensual</th>
+                            <th>Otro Ingreso Mensual</th>
+                            <th>Gastos Mensuales</th>
+                            <th>Flujo de Efectivo</th>
+                            <th></th>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let eco of actividadEconomicaList;let i=index;" >
+                            <td scope="row" >{{eco.ActividadEconomicaDesc}}</td>
+                            <td>{{eco.ActividadDetalladaDesc}}</td>
+                            <td>{{eco.IngresoMensual}}</td>
+                            <td>{{eco.OtroIngresoMensual}}</td>
+                            <td>{{eco.GastosMensuales}}</td>
+                            <td>{{eco.FlujoEfectivo}}</td>
+                            <td>
+                              <a (click)="consultarActividadEconomica(eco)"
+                                data-toggle="modal"
+                                data-target="#largesizemodal"
+                                class="btn btn-sm btn-info text-white">
+                                  <i class="fa fa-pencil"></i>
+                              </a>
 
-                          <a (click)="confirmarBorrarElemento(eco, 'borrarActividadEconomica')"
-                            class="btn btn-sm btn-danger text-white ml-1">
-                              <i class="fa fa-trash"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      </tbody>
-                    </table>
+                              <a (click)="confirmarBorrarElemento(eco, 'borrarActividadEconomica')"
+                                class="btn btn-sm btn-danger text-white ml-1">
+                                  <i class="fa fa-trash"></i>
+                              </a>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
