@@ -643,6 +643,7 @@ export class ModMoralComponent implements OnInit { // 717
       this.datosGeneralesFisicaForm.controls.fechaNacimiento.disable();
       this.datosGeneralesFisicaForm.controls.rfc.disable();
 
+      this.setCurp();
     }
 
     this.clienteService.agregar9(this.general).subscribe(
@@ -651,6 +652,12 @@ export class ModMoralComponent implements OnInit { // 717
         this.showBtnValidar = false;
       }
     );
+  }
+
+  setCurp(): void {
+    const controls = this.datosGeneralesFisicaForm.controls;
+    const rfc = controls.rfc.value.substring(0, 10);
+    this.datosGeneralesFisicaForm.controls.curp.setValue(rfc);
   }
 
   calculateRfcFisica(): void {
