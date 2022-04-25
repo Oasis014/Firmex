@@ -452,10 +452,14 @@ export class ModMoralComponent implements OnInit { // 717
         console.log(val);
         this.clienteService.catCP(
           this.domicilioForm.controls.Estado.value,
-          this.domicilioForm.controls.Municipio.value
+          this.domicilioForm.controls.Municipio.value,
+          this.domicilioForm.controls.Colonia.value
         ).subscribe(
           (result: any) => {
             this.cCP = result;
+            if ( this.cCP.length === 1 ) {
+              this.domicilioForm.controls.CodigoPostal.setValue(this.cCP[0].cpostal);
+            }
         });
       }
     });
@@ -541,6 +545,14 @@ export class ModMoralComponent implements OnInit { // 717
         this.calculateRfcMoral();
       }
     });
+
+    this.datosGeneralesForm.get('rfc').valueChanges.subscribe(val => {
+      if ( null != val ) {
+        this.datosGeneralesForm.controls.rfc.patchValue(
+          val.toUpperCase(), {emitEvent: false}
+        );
+      }
+    });
   }
 
   loadLocationLists() {
@@ -564,9 +576,16 @@ export class ModMoralComponent implements OnInit { // 717
         }
     });
 
-    this.clienteService.catCP(this.locationToUpdate.Estado, this.locationToUpdate.Municipio).subscribe(
+    this.clienteService.catCP(
+        this.locationToUpdate.Estado,
+        this.locationToUpdate.Municipio,
+        this.locationToUpdate.Colonia).subscribe(
       (result: any) => {
         this.cCP = result;
+
+        if ( this.cCP.length === 1 ) {
+          this.domicilioForm.controls.CodigoPostal.setValue(this.cCP[0].cpostal);
+        }
 
         if ( this.isPatchLocation == true ) {
           this.readyCp = true;
@@ -624,6 +643,7 @@ export class ModMoralComponent implements OnInit { // 717
       this.datosGeneralesFisicaForm.controls.fechaNacimiento.disable();
       this.datosGeneralesFisicaForm.controls.rfc.disable();
 
+      this.setCurp();
     }
 
     this.clienteService.agregar9(this.general).subscribe(
@@ -632,6 +652,12 @@ export class ModMoralComponent implements OnInit { // 717
         this.showBtnValidar = false;
       }
     );
+  }
+
+  setCurp(): void {
+    const controls = this.datosGeneralesFisicaForm.controls;
+    const rfc = controls.rfc.value.substring(0, 10);
+    this.datosGeneralesFisicaForm.controls.curp.setValue(rfc);
   }
 
   calculateRfcFisica(): void {
@@ -689,8 +715,10 @@ export class ModMoralComponent implements OnInit { // 717
     // Homoclave con número verificador asignado por el SAT, para evitar duplicidad.
 
     let cadena = "";
-    let rz = this.datosGeneralesForm.controls.razonSocial.value;
-    let fec = this.datosGeneralesForm.controls.fechaConstitucion.value;
+    const formControls = this.datosGeneralesForm.controls;
+    let rz = formControls.razonSocial.value;
+    let fec = formControls.fechaConstitucion.value;
+    const homoclave = formControls.rfc.value.substring(9);
 
     if ( rz != null && rz != "" ) {
       let split = rz.split(' ');
@@ -711,7 +739,8 @@ export class ModMoralComponent implements OnInit { // 717
       cadena += fec[0].substr(2,2) + String(fec[1]) + String(fec[2]);
     }
 
-    this.datosGeneralesForm.controls.rfc.setValue(cadena.toUpperCase());
+    cadena = cadena + homoclave;
+    formControls.rfc.setValue(cadena.toUpperCase());
   }
 
   guardaGeneral() {
@@ -865,12 +894,12 @@ export class ModMoralComponent implements OnInit { // 717
     this.clienteService.consultar(params).subscribe(
       (result: any) => {
 
-        this.prepareEdit('domicilio', dom);
+        this.domicilioForm.enable();
+        this.domicilioBtnText = 'Actualizar';
+        this.domicilioDisBtnInsert = false;
 
         this.isPatchLocation = true;
         this.locationToUpdate = result[0];
-
-        this.loadLocationLists();
 
         this.domicilioForm.controls.TipoDomicilio.setValue(result[0].TipoDomicilio);
         this.domicilioForm.controls.TipoDomicilio.disable();
@@ -878,6 +907,8 @@ export class ModMoralComponent implements OnInit { // 717
         this.domicilioForm.controls.Calle.setValue(result[0].Calle);
         this.domicilioForm.controls.NumeroExterior.setValue(result[0].NumeroExterior);
         this.domicilioForm.controls.NumeroInterior.setValue(result[0].NumeroInterior);
+
+        this.loadLocationLists();
       }
     );
   }
@@ -975,6 +1006,7 @@ export class ModMoralComponent implements OnInit { // 717
     this.prepareEdit('actividadEconomica', eco);
     this.actividadEconomicaForm.controls.ActividadEconomica.disable();
     this.actividadEconomicaForm.controls.ActividadDetallada.disable();
+    this.actividadEconomicaForm.controls.FlujoEfectivo.disable();
   }
 
   borrarActividadEconomica(obj: any) {
@@ -992,24 +1024,32 @@ export class ModMoralComponent implements OnInit { // 717
   calculaFlujoEfectivoActivEco(): void {
     let ingreso = 0;
     let valIngreso = this.actividadEconomicaForm.controls.IngresoMensual.value;
-    valIngreso = valIngreso.replace('$', '');
-    valIngreso = valIngreso.replace(this.rgxComa, '');
-    if ( !isNaN(valIngreso) && "" != valIngreso && null != valIngreso ) {
-      ingreso = parseFloat(valIngreso);
+    if ( valIngreso !== null ) {
+      valIngreso = valIngreso.replace('$', '');
+      valIngreso = valIngreso.replace(this.rgxComa, '');
+      if ( !isNaN(valIngreso) && "" != valIngreso ) {
+        ingreso = parseFloat(valIngreso);
+      }
     }
+
     let otroIngreso = 0;
     let valOtroIngreso = this.actividadEconomicaForm.controls.OtroIngresoMensual.value;
-    valOtroIngreso = valOtroIngreso.replace('$', '');
-    valOtroIngreso = valOtroIngreso.replace(this.rgxComa, '');
-    if ( !isNaN(valOtroIngreso) && "" != valOtroIngreso && null != valOtroIngreso ) {
-      otroIngreso = parseFloat(valOtroIngreso);
+    if ( valOtroIngreso !== null ) {
+      valOtroIngreso = valOtroIngreso.replace('$', '');
+      valOtroIngreso = valOtroIngreso.replace(this.rgxComa, '');
+      if ( !isNaN(valOtroIngreso) && "" != valOtroIngreso ) {
+        otroIngreso = parseFloat(valOtroIngreso);
+      }
     }
+
     let gasto = 0;
     let valGasto = this.actividadEconomicaForm.controls.GastosMensuales.value;
-    valGasto = valGasto.replace('$', '');
-    valGasto = valGasto.replace(this.rgxComa, '');
-    if ( !isNaN(valGasto) && "" != valGasto && null != valGasto ) {
-      gasto = parseFloat(valGasto);
+    if ( valGasto !== null ) {
+      valGasto = valGasto.replace('$', '');
+      valGasto = valGasto.replace(this.rgxComa, '');
+      if ( !isNaN(valGasto) && "" != valGasto ) {
+        gasto = parseFloat(valGasto);
+      }
     }
 
     let total = (ingreso + otroIngreso ) - gasto;

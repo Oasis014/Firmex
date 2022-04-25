@@ -256,10 +256,11 @@ export class ClienteService {
     return this.httpService.get(this.catalogosUrl.catColonia, params);
   }
 
-  catCP(estadoId: number|string, municipioId: number|string): Observable<any> {
+  catCP(estadoId: number|string, municipioId: number|string, coloniaId: number|string): Observable<any> {
     let params = {
       estadoId: estadoId,
-      municipioId: municipioId
+      municipioId: municipioId,
+      asentamientodesc: coloniaId
     };
     return this.httpService.get(this.catalogosUrl.catalogoCodPostal, params);
   }
