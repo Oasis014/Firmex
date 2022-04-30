@@ -6,7 +6,10 @@ export const ROUTES: RouteInfo[] = [
 //*******************************************************23/octubre/2021*********************************************************************************************************************************************
     {
         path: 'javascript:;', title: 'Cliente', icon: 'fa fa-address-book', class: 'sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
-            { path: '/zcliente/list-cliente', title: 'Alta de Cliente', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/zcliente/list-cliente', title: 'Alta de Cliente', icon: 'zmdi zmdi-dot-circle-alt', class: 'sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+                { path: '/zcliente/list-clienteF', title: 'Cliente Persona Fisica', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+                { path: '/zcliente/list-clienteM', title: 'Cliente Persona Moral', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            ] },
             { path: '/zcliente/btnlist', title: 'Reporte del Cliente', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/zcliente/btnlist', title: 'Reporte de Consulta al Buro', icon: 'zmdi zmdi-dot-circle-alt', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]

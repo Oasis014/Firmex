@@ -14,6 +14,14 @@ export class ListClienteMComponent  {
     };
     filterPost = '';
 
+    public isCollapsed1 = true;
+    public ban = 1;
+
+    fila(){  if (this.ban == 1){
+        this.isCollapsed1 =! this.isCollapsed1;
+        this.ban ++;
+    }}
+
     //listado moral
     list = [
         {

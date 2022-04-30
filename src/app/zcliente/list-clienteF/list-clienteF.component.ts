@@ -12,11 +12,20 @@ import { PipeClienteComponent } from '../list-cliente/filter-pipe';
 
 export class ListClienteFComponent {
 
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private clienteService: ClienteService
     ) { }
+
+    public isCollapsed1 = true;
+    public ban = 1;
+
+    fila(){  if (this.ban == 1){
+        this.isCollapsed1 =! this.isCollapsed1;
+        this.ban ++;
+    }}
 
     Bandera = {
         ban: null
