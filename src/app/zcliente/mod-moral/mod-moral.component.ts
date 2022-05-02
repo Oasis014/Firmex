@@ -284,7 +284,7 @@ export class ModMoralComponent implements OnInit { // 717
 
         sexo:                 ['', [Validators.required, Validators.maxLength(1)]],
         estadoCivil:          ['', [Validators.required, Validators.maxLength(2)]],
-        curp:                 ['', [Validators.required, Validators.maxLength(18)]],
+        curp:                 ['', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]],
         tipoIdentificacion:   ['', [Validators.required, Validators.maxLength(2)]],
         numeroIdentificacion: ['', [Validators.required, Validators.maxLength(20)]],
         listaNegra:           ['', [Validators.required, Validators.maxLength(30)]],
@@ -375,21 +375,21 @@ export class ModMoralComponent implements OnInit { // 717
 
     this.accionesForm = this.formBuilder.group({
       FechaCompra1aAccion: ['', [Validators.required, Validators.maxLength(10)]],
-      ParteInicialSocial:  ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      ParteInicialSocial:  ['', [Validators.required, Validators.maxLength(15), Validators.pattern("^[0-9]*$")]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
       FechaPago:           ['', [Validators.required, Validators.maxLength(10)]],
-      ParteSocialActual:   ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      ParteSocialActual:   ['', [Validators.required, Validators.maxLength(15), Validators.pattern("^[0-9]*$")]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
       CostoAcciones:       ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
       FormaPagoAcciones:   ['', [Validators.required, Validators.maxLength(50)]],
-      RetirablesA:         ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
-      RetirablesB:         ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
-      TotalAcciones:       ['', [Validators.required, Validators.maxLength(15)]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      RetirablesA:         ['', [Validators.required, Validators.maxLength(15), Validators.pattern("^[0-9]*$")]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      RetirablesB:         ['', [Validators.required, Validators.maxLength(15), Validators.pattern("^[0-9]*$")]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
+      TotalAcciones:       ['', [Validators.required, Validators.maxLength(15), Validators.pattern("^[0-9]*$")]], /* Validators.pattern("[0-9]*\.?[0-9]{0,2}") */
     });
     this.accionesForm.disable();
 
     this.cuentasBancariasForm = this.formBuilder.group({
       BancoCtaBan:                ['', [Validators.required, Validators.maxLength(5)]],
-      NumeroCuentaCtaBan:         ['', [Validators.required, Validators.maxLength(15), Validators.pattern("^[0-9]*$"),]],
-      ClaveInterbancariaCtaBan:   ['', [Validators.required, Validators.maxLength(18), Validators.pattern("^[0-9]*$"),]],
+      NumeroCuentaCtaBan:         ['', [Validators.required, Validators.maxLength(15), Validators.pattern("^[0-9]*$")]],
+      ClaveInterbancariaCtaBan:   ['', [Validators.required, Validators.maxLength(18), Validators.pattern("^[0-9]*$")]],
     });
     this.cuentasBancariasForm.disable();
 
