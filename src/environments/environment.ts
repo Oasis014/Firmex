@@ -25,6 +25,7 @@ export const environment = {
       partesRelacionadas: `${host}PartesRelacionadas.php`,
       personaMoral: `${host}ObtenerPerMoral.php`,
       personaFisica: `${host}ObtenerPerFisica.php`,
+      cedulaCliente: `${host}CedulaCliente.php`,
     },
     catalogos: {
       catalogoActdet: `${host}CatalogoActdet.php`,

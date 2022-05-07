@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit  } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
+import { environment } from 'src/environments/environment';
 import { ClienteService } from '../cliente.service';
 import { PipeClienteComponent } from '../list-cliente/filter-pipe';
 @Component({
@@ -13,15 +14,8 @@ export class ListClienteMComponent  {
         ban: null
     };
     filterPost = '';
-
     public isCollapsed1 = true;
     public ban = 1;
-
-    fila(){  if (this.ban == 1){
-        this.isCollapsed1 =! this.isCollapsed1;
-        this.ban ++;
-    }}
-
     //listado moral
     list = [
         {
@@ -34,6 +28,7 @@ export class ListClienteMComponent  {
             Secretario: null
         }
     ] as any;
+    urlCedula = `${environment.api.cliente.cedulaCliente}?idCliente=`;
 
     constructor(
         private router: Router,
@@ -48,12 +43,18 @@ export class ListClienteMComponent  {
     obtenerListado() {
         this.clienteService.getListMoral().subscribe(
             (result: any) => {
-                console.log();
+                console.log(result);
                 this.list = result;
             }
         );
     }
 
+    fila() {
+        if ( this.ban == 1 ) {
+            this.isCollapsed1 = !this.isCollapsed1;
+            this.ban ++;
+        }
+    }
 
     onReadOnly() {
 
