@@ -50,30 +50,35 @@
     <table class="table table-striped text-center " style="width:auto; height:5px;" >
       <thead >
       <th>Numero Cliente</th>
-      <th>Fecha de Nacimiento</th>
+      <!--<th>Fecha de Nacimiento</th>-->
       <th>Genero</th>
       <th>Estado Civil</th>
       <th>CURP</th>
       <th>Identificacion </th>
       <th>No. Identificacion</th>
-      <th>Lista negra </th>
-      <th>Profesion</th>
+      <!--<th>Lista negra </th>
+      <th>Profesion</th>-->
       </thead>
       <tbody>
       <tr *ngFor="let post of list | filter: filterPost" [ngbCollapse]="isCollapsed1">
       <td >{{post.NumeroCLiente}}</td>
-      <td >{{post.FechaNacimiento}}</td>
+      <!--<td >{{post.FechaNacimiento}}</td>-->
       <td>{{post.Sexo}}</td>
       <td>{{post.EstadoCivil}}</td>
       <td>{{post.CURP}}</td>
       <td>{{post.TipoIdentificacion}}</td>
       <td>{{post.NumeroIdentificacion}}</td>
-      <td>{{post.ListaNegra}}</td>
-      <td>{{post.Profesion}}</td>
+      <!--<td>{{post.ListaNegra}}</td>
+      <td>{{post.Profesion}}</td>-->
       <td>
         <a class="btn btn-sm btn-info text-white"
           [routerLink]="['../editar-cliente', post.NumeroCLiente, 'fisica']">
           <i class="fa fa-pencil"></i>
+        </a>
+        <a class="btn btn-sm btn-info text-white btn-pdf"
+          target="_blank"
+          href="{{urlCedula}}{{post.NumeroCLiente}}">
+          <i class="fa fa-file-pdf-o"></i>
         </a>
       </td>
       </tr>

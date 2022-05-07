@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
+import { environment } from 'src/environments/environment';
 import { ClienteService } from '../cliente.service';
 import { PipeClienteComponent } from '../list-cliente/filter-pipe';
 
@@ -12,21 +13,8 @@ import { PipeClienteComponent } from '../list-cliente/filter-pipe';
 
 export class ListClienteFComponent {
 
-
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private clienteService: ClienteService
-    ) { }
-
-    public isCollapsed1 = true;
+    public isCollapsed1 = false;
     public ban = 1;
-
-    fila(){  if (this.ban == 1){
-        this.isCollapsed1 =! this.isCollapsed1;
-        this.ban ++;
-    }}
-
     Bandera = {
         ban: null
     };
@@ -43,10 +31,24 @@ export class ListClienteFComponent {
         ListaNegra: null,
         Profesion: null
     }] as any;
+    urlCedula = `${environment.api.cliente.cedulaCliente}?idCliente=`;
+
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private clienteService: ClienteService
+    ) { }
 
 
     ngOnInit() {
         this.obtenerListado();
+    }
+
+    fila() {
+        if (this.ban == 1) {
+            this.isCollapsed1 = !this.isCollapsed1;
+            this.ban ++;
+        }
     }
 
     obtenerListado() {

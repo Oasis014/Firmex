@@ -43,7 +43,6 @@ export class ListClienteMComponent  {
     obtenerListado() {
         this.clienteService.getListMoral().subscribe(
             (result: any) => {
-                console.log(result);
                 this.list = result;
             }
         );
