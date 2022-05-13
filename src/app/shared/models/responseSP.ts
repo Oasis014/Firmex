@@ -3,4 +3,5 @@ export interface ResponseSP {
   errorClave: string;
   errorDescripcion: string;
   errorSp: string;
+  data?: Array<any>;
 }

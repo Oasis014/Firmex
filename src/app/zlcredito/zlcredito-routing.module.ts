@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 // Listados
 import { ListRevolComponent } from './list-revol/list-revol.component';
 import { ListCrediComponent } from './list-credi/list-credi.component';
@@ -9,8 +8,6 @@ import { ListCredilComponent } from './list-credil/list-credil.component';
 import { ModCrediComponent } from './mod-credi/mod-credi.component';
 import { ModLineCrediComponent } from './mod-linecredi/mod-linecredi.component';
 // Datos Depositos o retiros
-
-
 
 const routes: Routes = [
   {
@@ -23,34 +20,34 @@ const routes: Routes = [
           title: 'Listado de Credito'
         }
       },
-{
+      {
         path: 'list-credi',
         component: ListCrediComponent,
         data: {
           title: 'Listado de Linea de Credito'
         }
       },
-{
+      {
         path: 'list-revol',
         component: ListRevolComponent,
         data: {
           title: 'Cuenta Re-inversion'
         }
       },
- {
-                  path: 'mod-credi',
-                  component: ModCrediComponent,
-                  data: {
-                    title: 'vista credito'
-                  }
-                },
-                {
-                  path: 'mod-linecredi',
-                  component: ModLineCrediComponent,
-                  data: {
-                    title: 'modificacion linea credito'
-                  }
-                },
+      {
+        path: 'mod-credi',
+        component: ModCrediComponent,
+        data: {
+          title: 'vista credito'
+        }
+      },
+      {
+        path: 'mod-linecredi',
+        component: ModLineCrediComponent,
+        data: {
+          title: 'modificacion linea credito'
+        }
+      },
 
     ]
   }
@@ -60,4 +57,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class InversionRoutingModule { }
+export class CreditoRoutingModule { }

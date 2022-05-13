@@ -59,6 +59,10 @@ export const environment = {
       catalogos: `${host}catalogos.php`,
     },
     archivos: `${host}documentacion/user_`,
+    solicitudesCredito: {
+      validaCliente: `${host}SolicitudValidar.php`,
+      guardaSolicitud: `${host}SolicitudCredito.php`
+    }
   }
 };
 

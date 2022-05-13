@@ -23,6 +23,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { GeneralModule } from "./general/general.module";
 import { ClienteModule } from './zcliente/zcliente.module';
+import { CreditoModule} from './zlcredito/zlcredito.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -49,7 +50,8 @@ import * as $ from 'jquery';
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4'}),
     PerfectScrollbarModule,
     GeneralModule,
-    ClienteModule
+    ClienteModule,
+    CreditoModule
   ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }

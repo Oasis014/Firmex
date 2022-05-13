@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="row">
       <div class="col-4 col-lg-4 col-xl-4">
-        
+
       </div>
       <div class="col-4 col-lg-4 col-xl-4">
         <div ngbDropdown class="btn-group m-2 float-sm-right" >
@@ -11,10 +11,14 @@
       </div>
       <div class="col-4 col-lg-4 col-xl-4">
         <div ngbDropdown class="btn-group m-2 float-sm-right" >
-          <button type="button" class="btn btn-light" ><i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span></button>
+          <button type="button" class="btn btn-light" >
+            <i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span>
+          </button>
         </div>
         <div ngbDropdown class="btn-group m-2 float-sm-right" >
-          <button type="button" class="btn btn-light" (click) ="open()" ><span>&nbsp;Credito</span></button>
+          <button type="button" class="btn btn-light" (click)="open()">
+            <span>&nbsp;Credito</span>
+          </button>
         </div>
       </div>
     </div>
@@ -22,247 +26,187 @@
 </div>
 <!-- ***** Encabezado ***** -->
 
+
+
+
+
+
+
 <div class="row">
   <div class="col-lg-12">
-    
-
     <div class="card">
-      
       <div class="card-body">
         <ul ngbNav #nav3="ngbNav"  class="nav-tabs nav-tabs-primary  nav-justified">
           <li [ngbNavItem]="1"  > <a ngbNavLink><i class="fa fa-user-plus"></i>Linea de Credito</a>
             <ng-template ngbNavContent>
-              <form [ngbCollapse]="isCollapsedPrueba1" >
-                <div class="row">
-                  <div class="col-12 col-lg-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h6 class="page-title">Datos del Solicitante</h6>
-                        <hr>
-                        <div class="row">
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Numero de Cliente </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" formControlName="numeroCliente" placeholder="0" >
-                              </div>
+
+              <div class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Datos del Solicitante</h6>
+                      <hr>
+                      <div class="row">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Numero de Cliente </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" [formControl]="numeroClienteInput" placeholder="0" >
                             </div>
                           </div>
-                          <div class="col-5 col-lg-5 col-xl-5"></div>
-                          
-                          <!--Input de mascaras
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Mascara de cantidad </label>
-                              <div class="col-sm-6" *ngFor="let efectivo of efectivo" >
-                                <input class="form-control" type="text" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
-			                        </div>
-	                        	</div>
-                        	</div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Mascara de email </label>
-                              <div class="col-sm-6" *ngFor="let email of email" >
-                                <input class="form-control" type="text" placeholder="Example@gmail.com" [textMask]="{mask: email.mask}">
-			                        </div>
-	                        	</div>
-                        	</div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Mascara de Numero </label>
-                              <div class="col-sm-6" *ngFor="let number of number" >
-                                <input class="form-control" type="text" placeholder="(55)5555-5555" [textMask]="{mask: number.mask}">
-			                        </div>
-	                        	</div>
-                        	</div> 
-                          Fin de Input de mascaras-->
-                          <div class="col-2 col-lg-2 col-xl-2">
-                            <button
-                            (click)="isCollapsed8 = !isCollapsed8"
-                              type="submit"
-                              class="btn btn-light btn-block">Validar</button>
                         </div>
-                        
-                       
-                          <div class="col-5 col-lg-4 col-xl-4" [ngbCollapse]="isCollapsed8" >
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Sucursal </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" formControlName="estatusCliente" placeholder="Sucursal" readonly >
-                              </div>
+                        <div class="col-5 col-lg-5 col-xl-5"></div>
+
+                        <div class="col-2 col-lg-2 col-xl-2">
+                          <button type="submit" (click)="validarCliente()" [disabled]="disValidate" class="btn btn-light btn-block"
+                            [disabled]="numeroClienteInput.invalid">
+                            Validar
+                          </button>
+                        </div>
+                      </div>
+                      <div class="row" [hidden]="collapseCreditoForm">
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Sucursal</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" value="{{datosCliente.sucursal}}" readonly >
                             </div>
                           </div>
-                          <div class="col-5 col-lg-4 col-xl-4" [ngbCollapse]="isCollapsed8" >
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Promotor </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" formControlName="estatusCliente" placeholder="Promotor" readonly >
-                              </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4" >
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Promotor</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" value="{{datosCliente.promotor}}" readonly >
                             </div>
                           </div>
-                          <div class="col-5 col-lg-4 col-xl-4" [ngbCollapse]="isCollapsed8">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Estatus de Cliente </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" formControlName="estatusCliente" placeholder="Estatus de Cliente" readonly >
-                              </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Estatus de Cliente</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" value="{{datosCliente.estatusCliente}}" readonly >
                             </div>
                           </div>
-                          <div class="col-5 col-lg-4 col-xl-4" [ngbCollapse]="isCollapsed8">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Nombre Completo </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" formControlName="estatusCliente" placeholder="Nombre Completo" readonly >
-                              </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Nombre Completo</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" value="{{datosCliente.nombreCompleto}}" readonly >
                             </div>
                           </div>
-                          <div class="col-5 col-lg-4 col-xl-4" [ngbCollapse]="isCollapsed8">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label">Razon Social </label>
-                              <div class="col-sm-6">
-                                <input type="text" class="form-control" formControlName="estatusCliente" placeholder="Razon Social" readonly >
-                              </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Razon Social </label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" value="{{datosCliente.razonSocial}}" readonly >
                             </div>
                           </div>
-                          <div class="col-5 col-lg-4 col-xl-4" [ngbCollapse]="isCollapsed8">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">RFC</label>
-                              <div class="col-sm-6 input-group">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  formControlName="rfc"
-                                  placeholder="RFC"
-                                  maxlength="13"
-                                  readonly
-                                >
-                              </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">RFC</label>
+                            <div class="col-sm-6 input-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                value="{{datosCliente.rfc}}"
+                                readonly>
                             </div>
                           </div>
-                            <div class="col-5 col-lg-4 col-xl-4" [ngbCollapse]="isCollapsed8">
-                              <div class="form-group row">
-                                <label  class="col-sm-5 col-form-label">Estatus de la Solicitud</label>
-                                <div class="col-sm-6 input-group">
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    formControlName="rfc"
-                                    placeholder="Estatus de la Solicitud"
-                                    maxlength="13"
-                                    readonly
-                                  >
-                                </div>
-                              </div>
+                        </div>
+                        <div class="col-5 col-lg-4 col-xl-4">
+                          <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Estatus de la Solicitud</label>
+                            <div class="col-sm-6 input-group">
+                              <input
+                                type="text"
+                                class="form-control"
+                                value="{{datosCliente.estatusSolicitud}}"
+                                readonly>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                </div>
-                <div [ngbCollapse]="isCollapsed8" class="row">
-                  <div class="col-12 col-lg-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <h6 class="page-title">Datos Credito</h6>
-                        <hr>
-                        <!--<div class="modal fade" id="largesizemodal1">
-                          <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header border-light-2">
-                                <h5 class="modal-title text-white">Información</h5>
-                              </div>
-                              <div class="modal-body">
-                                <div >
-                                  <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
-                                    <thead >
-                                    <tr>
-                                      <td>Numero de Cliente: </td>
-                                      <td>Clave de Error: </td>
-                                      <td>Error: </td>
-                                      <td>Descripcion de Error: </td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr *ngFor="let retorno of cliente">
-                                      <td>{{retorno.noCliente}}</td>
-                                      <td>{{retorno.errorClave}}</td>
-                                      <td>{{retorno.errorSp}}</td>
-                                      <td>{{retorno.errorDescripcion}}</td>
-                                    </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                              <div class="modal-footer border-light-2">
-                                <button type="button" class="btn btn-link text-white" data-dismiss="modal" ><i class="fa fa-times"></i> Close</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>-->
+              </div>
+
+              <div class="row">
+              </div>
+
+              <div [ngbCollapse]="collapseCreditoForm" class="row">
+                <div class="col-12 col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="page-title">Datos Credito</h6>
+                      <hr>
+                      <form [formGroup]="creditoForm">
                         <div class="row">
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Destino del Credito </label>
+                              <label class="col-sm-5 col-form-label">Destino del Credito </label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="DestCred" id="DestCred" placeholder="Destino del Credito"  >
+                                <input type="text" class="form-control" formControlName="destCred" placeholder="Destino del Credito">
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Origen de Recursos</label>
+                              <label class="col-sm-5 col-form-label">Origen de Recursos</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="OrigenRecu" id="OrigenRecu" placeholder="Origen de Recursos"  >
+                                <input type="text" class="form-control" formControlName="origenRecu" placeholder="Origen de Recursos">
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Número de disposiciones del crédito</label>
+                              <label class="col-sm-5 col-form-label">Número de disposiciones del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="number" class="form-control" name="NoDispoCre" id="NoDispoCre" placeholder="00" >
+                                <input type="text" class="form-control" formControlName="noDispoCre" placeholder="00">
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Frecuencia para disponer del crédito</label>
+                              <label class="col-sm-5 col-form-label">Frecuencia para disponer del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="number" class="form-control" name="FrecDispo" id="FrecDispo" placeholder="00"  >
+                                <input type="text" class="form-control" formControlName="frecDispo" placeholder="00">
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Monto de la frecuencia para disponer del crédito</label>
-                              <div class="col-sm-6 input-group" *ngFor="let efectivo of efectivo">
-                                <input  type="text" class="form-control" name="MonFreDispo" id="MonFreDispo" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}" >
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-5 col-lg-4 col-xl-4">
-                            <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Número de pagos del crédito</label>
+                              <label class="col-sm-5 col-form-label">Monto de la frecuencia para disponer del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="number" class="form-control" name="NoPagoCre" id="NoPagoCre" placeholder="00"  >
+                                <input type="text" class="form-control" formControlName="monFreDispo" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Frecuencia para pagar el crédito</label>
+                              <label class="col-sm-5 col-form-label">Número de pagos del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="number" class="form-control" name="FrecCredi" id="FrecCredi" placeholder="00"  >
+                                <input type="text" class="form-control" formControlName="noPagoCre" placeholder="00">
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label" >frecuencia del monto para pagar el crédito</label>
-                              <div class="col-sm-6 input-group" *ngFor="let efectivo of efectivo" >
-                                <input  type="text" class="form-control" name="FrecMonto" id="FrecMonto" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}"  >
+                              <label class="col-sm-5 col-form-label">Frecuencia para pagar el crédito</label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" formControlName="frecCredi" placeholder="00">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-5 col-lg-4 col-xl-4">
+                            <div class="form-group row">
+                              <label class="col-sm-5 col-form-label" >frecuencia del monto para pagar el crédito</label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" formControlName="frecMonto" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
                               </div>
                             </div>
                           </div>
@@ -270,39 +214,40 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Moneda en la que solicita el crédito</label>
                               <div class="col-sm-6 input-group">
-                                <select class="form-control form-control-sm" >
+                                <select class="form-control form-control-sm" formControlName="moneda">
                                   <option selected>Seleccione Moneda ...</option>
-                                  <option >
-                                  
-                                  </option>
+                                  <option [value]="1">Moneda 1</option>
+                                  <option [value]="2">Moneda 2</option>
                                 </select>
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label" >Monto solicitado para la línea de crédito</label>
-                              <div class="col-sm-6 input-group" *ngFor="let efectivo of efectivo" >
-                                <input  type="text" class="form-control" name="MontoSol" id="MontoSol" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}"  >
+                              <label class="col-sm-5 col-form-label" >Monto solicitado para la línea de crédito</label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text" class="form-control" formControlName="montoSol" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
                               </div>
                             </div>
                           </div>
                           <div class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div  class="col-2 col-lg-2 col-xl-2">
-                            <button type="submit" class="btn btn-light  btn-block"  >Cancelar</button>
+                            <button type="submit" class="btn btn-light  btn-block" (click)="cancelar()">Cancelar</button>
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <button  data-toggle="modal" data-target="#largesizemodal1"   type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                            <button  data-toggle="modal" data-target="#largesizemodal1"
+                              class="btn btn-light btn-block" [disabled]="creditoForm.invalid" (click)="guardar()">Guardar</button>
                           </div>
                         </div>
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
+
             </ng-template>
-          </li>  
+          </li>
         </ul>
         <div [ngbNavOutlet]="nav3" class="mt-2"></div>
       </div>
