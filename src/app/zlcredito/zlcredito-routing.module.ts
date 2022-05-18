@@ -21,7 +21,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'list-credi',
+        path: 'list-credi', /* LISTADO PRINCIPAL */
         component: ListCrediComponent,
         data: {
           title: 'Listado de Linea de Credito'
@@ -35,14 +35,14 @@ const routes: Routes = [
         }
       },
       {
-        path: 'mod-credi',
+        path: 'mod-credi', /* NUEVO CREDITO */
         component: ModCrediComponent,
         data: {
           title: 'vista credito'
         }
       },
       {
-        path: 'mod-linecredi',
+        path: 'mod-linecredi/:id', /* DETALE CREDITO */
         component: ModLineCrediComponent,
         data: {
           title: 'modificacion linea credito'

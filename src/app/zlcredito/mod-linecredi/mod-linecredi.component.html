@@ -1,17 +1,17 @@
 <div class="card">
   <div class="card-body">
     <div class="row">
+      <div class="col-4 col-lg-4 col-xl-4"></div>
       <div class="col-4 col-lg-4 col-xl-4">
-        
-      </div>
-      <div class="col-4 col-lg-4 col-xl-4">
-        <div ngbDropdown class="btn-group m-2 float-sm-right" >
-          <h6 class="page-title"> </h6>
+        <div ngbDropdown class="btn-group m-2 float-sm-right">
+          <h6 class="page-title"></h6>
         </div>
       </div>
       <div class="col-4 col-lg-4 col-xl-4">
-        <div ngbDropdown class="btn-group m-2 float-sm-right" >
-          <button type="button" class="btn btn-light" (click) ="open()" ><i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span></button>
+        <div ngbDropdown class="btn-group m-2 float-sm-right">
+          <button type="button" class="btn btn-light" [routerLink]="['/zlcredito/list-credi']">
+            <i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span>
+          </button>
         </div>
       </div>
     </div>
@@ -21,135 +21,133 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <div class="col-12 col-lg-12" align="center" >
-      <label class="card-header text-uppercase" >Numero Cliente:  </label>
-      <label class="card-header text-uppercase" >Sucursal:  </label>
-      <label class="card-header text-uppercase" >Promotor: </label>
-      <label class="card-header text-uppercase" >Estatus de Cliente: </label>
-      <label class="card-header text-uppercase" >Razon Social: </label>
-      <label class="card-header text-uppercase" >Nombre Completo: </label>
+    <div class="col-12 col-lg-12" align="center">
+      <label class="card-header text-uppercase">Numero Cliente: </label>
+      <label class="card-header text-uppercase">Sucursal: </label>
+      <label class="card-header text-uppercase">Promotor: </label>
+      <label class="card-header text-uppercase">Estatus de Cliente: </label>
+      <label class="card-header text-uppercase">Razon Social: </label>
+      <label class="card-header text-uppercase">Nombre Completo: </label>
     </div>
 
     <div class="card">
-      
       <div class="card-body">
-        <ul ngbNav #nav3="ngbNav" class="nav-tabs nav-tabs-primary  nav-justified">
-          <li [ngbNavItem]="1"  > <a ngbNavLink><i class="fa fa-user-plus"></i>Credito</a>
+        <ul ngbNav #nav3="ngbNav" class="nav-tabs nav-tabs-primary nav-justified">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink><i class="fa fa-user-plus"></i>Credito</a>
             <ng-template ngbNavContent>
-              <form [ngbCollapse]="isCollapsedPrueba1" >
-              
+              <form [formGroup]="datosCreditoForm">
                 <div class="row">
                   <div class="col-12 col-lg-12">
                     <div class="card">
                       <div class="card-body">
                         <h6 class="page-title">Datos Credito</h6>
-                        <hr>
-                        <!--<div class="modal fade" id="largesizemodal1">
-                          <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header border-light-2">
-                                <h5 class="modal-title text-white">Información</h5>
-                              </div>
-                              <div class="modal-body">
-                                <div >
-                                  <table border="0" span="0" class="table table-borderless table-striped"  style=" border:0px; box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);">
-                                    <thead >
-                                    <tr>
-                                      <td>Numero de Cliente: </td>
-                                      <td>Clave de Error: </td>
-                                      <td>Error: </td>
-                                      <td>Descripcion de Error: </td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr *ngFor="let retorno of cliente">
-                                      <td>{{retorno.noCliente}}</td>
-                                      <td>{{retorno.errorClave}}</td>
-                                      <td>{{retorno.errorSp}}</td>
-                                      <td>{{retorno.errorDescripcion}}</td>
-                                    </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-                              </div>
-                              <div class="modal-footer border-light-2">
-                                <button type="button" class="btn btn-link text-white" data-dismiss="modal" ><i class="fa fa-times"></i> Close</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>-->
+                        <hr />
+
                         <div class="row">
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Tipo de crédito</label>
                               <div class="col-sm-6 input-group">
-                                <select class="form-control form-control-sm" >
-                                  <option selected>Tipo de crédito ...</option>
-                                  <option >
-                                  
-                                  </option>
+                                <select class="form-control form-control-sm" formControlName="tipoCredito">
+                                  <option value="">Tipo de crédito ...</option>
+                                  <option value="1">Tipo 1</option>
+                                  <option value="2">Tipo 2</option>
+                                  <option value="3">Tipo 3</option>
                                 </select>
                               </div>
                             </div>
                           </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-label">Destino</label>
+                              <label class="col-sm-5 col-form-label">Destino</label>
                               <div class="col-sm-6 input-group">
-                                <input  type="text" class="form-control" name="RepresentanteLegal" id="RepresentanteLegal" placeholder="No Cuenta"  >
+                                <input type="text"
+                                  class="form-control"
+                                  formControlName="noCuenta"
+                                  placeholder="No. Cuenta"
+                                />
                               </div>
                             </div>
-                          </div> 
+                          </div>
                           <div class="col-5 col-lg-4 col-xl-4">
                             <div class="form-group row">
-                              <label  class="col-sm-5 col-form-success">Monto solicitado</label>
-                              <div class="col-sm-6 input-group" *ngFor="let efectivo of efectivo">
-                                <input  type="text" class="form-control" name="GrupoConsejo" id="GrupoConsejo" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
+                              <label class="col-sm-5 col-form-success">Monto solicitado</label>
+                              <div class="col-sm-6 input-group">
+                                <input type="text"
+                                  class="form-control"
+                                  formControlName="montoSolicitado"
+                                  placeholder="$1,0000.00"
+                                  [textMask]="{ mask: efectivo.mask }"
+                                />
                               </div>
                             </div>
                           </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div class="col-1 col-lg-4 col-xl-4">
-                          </div>
-                          <div  class="col-2 col-lg-2 col-xl-2">
-                            <button type="submit" class="btn btn-light  btn-block"  >Cancelar</button>
+                          <div class="col-1 col-lg-4 col-xl-4"></div>
+                          <div class="col-1 col-lg-4 col-xl-4"></div>
+                          <div class="col-1 col-lg-4 col-xl-4"></div>
+                          <div class="col-1 col-lg-4 col-xl-4"></div>
+                          <div class="col-1 col-lg-4 col-xl-4"></div>
+                          <div class="col-2 col-lg-2 col-xl-2">
+                            <button type="submit" class="btn btn-light btn-block">
+                              Cancelar
+                            </button>
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
-                            <button  data-toggle="modal" data-target="#largesizemodal1"   type="submit" class="btn btn-light  btn-block" >Guardar</button>
+                            <button
+                              data-toggle="modal"
+                              data-target="#largesizemodal1"
+                              type="submit"
+                              class="btn btn-light btn-block"
+                            >
+                              Guardar
+                            </button>
                           </div>
                         </div>
-                        <br/>
-                        <div class="card" >
-                          <table class="table table-striped text-center"  >
-                            <thead>
-                              <th>Consecutivo </th>
-                              <th>Linea de Credito </th>
-                              <th>Solicitud de Linea </th>
-                              <th>Tipo de Credito </th>
-                              <th>Plazo </th>
-                              <th>Destino </th>
-                              <th>Monto Solicitado</th>
-                              <th></th>
-                            </thead>
-                            <tbody>
-                              
-                            </tbody>
-                          </table>
-                        </div>
+                        <br />
                       </div>
                     </div>
+
+                    <div class="card">
+                      <table class="table table-striped text-center">
+                        <thead>
+                          <th>Consecutivo</th>
+                          <th>Linea de Credito</th>
+                          <th>Solicitud de Linea</th>
+                          <th>Tipo de Credito</th>
+                          <th>Plazo</th>
+                          <th>Destino</th>
+                          <th>Monto Solicitado</th>
+                          <th></th>
+                        </thead>
+                        <tbody>
+                          <tr *ngIf="!listCreditos.length">
+                            <td colspan="8">No se encontraron registros.</td>
+                          </tr>
+                          <tr *ngFor="let item of listCreditos">
+                            <td>{{item.consecutivo}}</td>
+                            <td>{{item.lineaCredito}}</td>
+                            <td>{{item.solicitudLinea}}</td>
+                            <td>{{item.tipoCredito}}</td>
+                            <td>{{item.plazo}}</td>
+                            <td>{{item.destino}}</td>
+                            <td>{{item.montoSolicitado}}</td>
+                            <td>
+                              <a class="btn btn-sm btn-danger text-white ml-1"
+                                (click)="deleteCredit(item.consecutivo)">
+                                  <i class="fa fa-trash"></i>
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
                   </div>
                 </div>
               </form>
             </ng-template>
-          </li>  
+          </li>
         </ul>
         <div [ngbNavOutlet]="nav3" class="mt-2"></div>
       </div>

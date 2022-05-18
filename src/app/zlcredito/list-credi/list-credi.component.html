@@ -1,65 +1,68 @@
 <div class="card">
-	<div class="card-body">
-		<div class="row">
-			<!--<div class="col-12 col-lg-4 col-xl-4">
-				<div class="input-group">
-					<div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
-					</div>
-					<input type="text" class="form-control" placeholder="Buscar por catalogos" style='width:30%;'>
-					<div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
-				</div>
-			</div>-->
-			<div class="col-12 col-lg-4 col-xl-4">
-			<h3>Listado de Linea de Creditos</h3>
-			</div>
-			<div class="col-12 col-lg-2 col-xl-2">
-				<label>Filtrar: </label>
-			</div>
-			  <div class="col-12 col-lg-2 col-xl-2">
-				<input type="text"	class="form-control" name="filterPost" placeholder="Buscar por Numero Cliente..."  />
-				</div>
-			<div class="col-12 col-lg-4 col-xl-4">
-				<div ngbDropdown class="btn-group m-1 float-sm-right" >
-					<button type="button" class="btn btn-light"  (click) ="open()" ><i class="fa fa-file"></i><span> <a > Nuevo</a></span></button>
-          		</div>
-			</div>
-		</div>
-	</div>
+  <div class="card-body">
+    <div class="row">
+      <!--<div class="col-12 col-lg-4 col-xl-4">
+        <div class="input-group">
+          <div class="input-group-prepend"> <span class="input-group-text">Buscar</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Buscar por catalogos" style='width:30%;'>
+          <div class="input-group-append"> <span class="input-group-text"><i class="fa fa-search"></i></span></div>
+        </div>
+      </div>-->
+      <div class="col-12 col-lg-4 col-xl-4">
+      <h3>Listado de Linea de Creditos</h3>
+      </div>
+      <div class="col-12 col-lg-2 col-xl-2">
+        <label>Filtrar: </label>
+      </div>
+        <div class="col-12 col-lg-2 col-xl-2">
+        <input type="text"	class="form-control" name="filterPost" placeholder="Buscar por Numero Cliente..."  />
+        </div>
+      <div class="col-12 col-lg-4 col-xl-4">
+        <div ngbDropdown class="btn-group m-1 float-sm-right" >
+          <button type="button" class="btn btn-light"  (click) ="open()" ><i class="fa fa-file"></i><span> <a > Nuevo</a></span></button>
+              </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- ***** Encabezado ***** -->
 <div class="row">
-	<div class="card col-sm-12 mb-12">
-		<table class="table table-striped text-center " style="width:auto; height:5px;" >
-		  <thead >
-		  <th>Numero Cliente</th>
-		  <th>Solicitudes Linea</th>
-		  <th>Linea de Credito</th>
-		  <th>Tipo de Solicitud</th>
-		  <th>Estatus de Solicitud</th>
-		  <th>Monto de Linea Credito</th>
-		  <th>Fecha de Alta</th>
-		  <th>Numero de Pagos</th>
-		  <th>Divisa</th>
-		  </thead>
-		  <tbody>
-		  <tr *ngFor="let post of list " >
-			<td >{{post.NumeroCliente}}</td>
-			<td >{{post.SolicitudLinea}}</td>
-			<td>{{post.LineaCredito}}</td>
-			<td>{{post.TipoSolicitud}}</td>
-			<td>{{post.EstatusSolicitud}}</td>
-			<td>{{post.MontoLineaCredito}}</td>
-			<td>{{post.FechaAlta}}</td>
-			<td>{{post.NumeroPagos}}</td>
-			<td>{{post.Divisa}}</td>
-			<td>
-				<a class="btn btn-sm btn-info text-white" ><i class="fa fa-pencil"></i></a>
-			</td>
-		  </tr>
-		  </tbody>
-		</table>
-	</div>
-	</div>
+  <div class="card col-sm-12 mb-12">
+    <table class="table table-striped text-center " style="width:auto; height:5px;">
+      <thead >
+        <th>Número Cliente</th>
+        <th>Solicitudes Linea</th>
+        <th>Linea de Crédito</th>
+        <th>Tipo de Solicitud</th>
+        <th>Estatus de Solicitud</th>
+        <!--<th>Monto de Linea Crédito</th>
+        <th>Fecha de Alta</th>
+        <th>Número de Pagos</th>
+        <th>Divisa</th>-->
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of list " >
+          <td>{{post.numeroCliente}}</td>
+          <td>{{post.SolicitudLinea}}</td>
+          <td>{{post.lineaCredito}}</td>
+          <td>{{post.tipoSolicitud}}</td>
+          <td>{{post.estatusSolicitud}}</td>
+          <!--<td>{{post.montoLineaCredito}}</td>
+          <td>{{post.fechaAlta}}</td>
+          <td>{{post.numeroPagos}}</td>
+          <td>{{post.divisa}}</td>-->
+          <td>
+            <a class="btn btn-sm btn-info text-white" [routerLink]="['../mod-linecredi/', post.numeroCliente]">
+              <i class="fa fa-pencil"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
 <!-- Filter Datatable Options Begin -->
 
 <!-- Filter Datatable Options Ends -->

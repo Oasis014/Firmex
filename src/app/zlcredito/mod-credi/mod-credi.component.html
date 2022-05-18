@@ -5,18 +5,19 @@
 
       </div>
       <div class="col-4 col-lg-4 col-xl-4">
-        <div ngbDropdown class="btn-group m-2 float-sm-right" >
+        <div ngbDropdown class="btn-group m-2 float-sm-right">
           <h6 class="page-title"> </h6>
         </div>
       </div>
       <div class="col-4 col-lg-4 col-xl-4">
-        <div ngbDropdown class="btn-group m-2 float-sm-right" >
-          <button type="button" class="btn btn-light" >
+        <div ngbDropdown class="btn-group m-2 float-sm-right">
+          <button type="button" class="btn btn-light">
             <i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span>
           </button>
         </div>
-        <div ngbDropdown class="btn-group m-2 float-sm-right" >
-          <button type="button" class="btn btn-light" (click)="open()">
+        <div ngbDropdown class="btn-group m-2 float-sm-right" [hidden]="hideCredito">
+          <button type="button" class="btn btn-light"
+            [routerLink]="['../mod-linecredi', numeroCliente]">
             <span>&nbsp;Credito</span>
           </button>
         </div>
@@ -150,7 +151,9 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Destino del Credito </label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="destCred" placeholder="Destino del Credito">
+                                <input type="text" class="form-control" formControlName="destinoCredito" 
+                                  placeholder="Destino del Credito"
+                                  maxlength="250">
                               </div>
                             </div>
                           </div>
@@ -158,7 +161,9 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Origen de Recursos</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="origenRecu" placeholder="Origen de Recursos">
+                                <input type="text" class="form-control" formControlName="origenRecursos"
+                                  placeholder="Origen de Recursos"
+                                  maxlength="250">
                               </div>
                             </div>
                           </div>
@@ -166,7 +171,9 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Número de disposiciones del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="noDispoCre" placeholder="00">
+                                <input type="text" class="form-control" formControlName="numeroDisposiciones"
+                                  placeholder="00"
+                                  maxlength="5">
                               </div>
                             </div>
                           </div>
@@ -174,7 +181,9 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Frecuencia para disponer del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="frecDispo" placeholder="00">
+                                <input type="text" class="form-control" formControlName="frecuenciaDisposicion" 
+                                  placeholder="00"
+                                  maxlength="100">
                               </div>
                             </div>
                           </div>
@@ -182,7 +191,10 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Monto de la frecuencia para disponer del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="monFreDispo" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
+                                <input type="text" class="form-control" formControlName="montoFrecuenciaDisposicion"
+                                  placeholder="$1,0000.00"
+                                  [textMask]="{mask: efectivo.mask}"
+                                  maxlength="15">
                               </div>
                             </div>
                           </div>
@@ -190,7 +202,9 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Número de pagos del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="noPagoCre" placeholder="00">
+                                <input type="text" class="form-control" formControlName="numeroPagos"
+                                  placeholder="00"
+                                  maxlength="5">
                               </div>
                             </div>
                           </div>
@@ -198,7 +212,9 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Frecuencia para pagar el crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="frecCredi" placeholder="00">
+                                <input type="text" class="form-control" formControlName="frecuenciaPago"
+                                  placeholder="00"
+                                  maxlength="100">
                               </div>
                             </div>
                           </div>
@@ -206,7 +222,10 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label" >frecuencia del monto para pagar el crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="frecMonto" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
+                                <input type="text" class="form-control" formControlName="montoFrecuenciaPago"
+                                  placeholder="$1,0000.00"
+                                  [textMask]="{mask: efectivo.mask}"
+                                  maxlength="15">
                               </div>
                             </div>
                           </div>
@@ -214,7 +233,7 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Moneda en la que solicita el crédito</label>
                               <div class="col-sm-6 input-group">
-                                <select class="form-control form-control-sm" formControlName="moneda">
+                                <select class="form-control form-control-sm" formControlName="divisa">
                                   <option selected>Seleccione Moneda ...</option>
                                   <option [value]="1">Moneda 1</option>
                                   <option [value]="2">Moneda 2</option>
@@ -226,7 +245,10 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label" >Monto solicitado para la línea de crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="montoSol" placeholder="$1,0000.00" [textMask]="{mask: efectivo.mask}">
+                                <input type="text" class="form-control" formControlName="montoLineaCredito"
+                                  placeholder="$1,0000.00"
+                                  [textMask]="{mask: efectivo.mask}"
+                                  maxlength="15">
                               </div>
                             </div>
                           </div>

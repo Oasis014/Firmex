@@ -1,15 +1,10 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
-// Importacione de funcion de mascaras 
+import { Component, OnInit } from '@angular/core';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import emailMask from 'text-mask-addons/dist/emailMask';
-// Fin de importaciones
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
-import { ClienteService } from '../cliente.service';
-import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { CreditoService } from '../services/credito.service';
 
 @Component({
   selector: 'app-mod-linecredi',
@@ -17,44 +12,90 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./mod-linecredi.component.scss']
 })
 export class ModLineCrediComponent implements OnInit {
+
+  mask: Array<string | RegExp>;
+  efectivo = {
+    mask: createNumberMask({ allowDecimal: true }),
+  };
+  email = {
+    mask: emailMask,
+  };
+
+  number = {
+    mask: ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+  };
+
+  number2 = {
+    mask: [/\d/, /\d/, /\d/, /\d/],
+  };
+  listCreditos = [];
+  datosCreditoForm: FormGroup;
+  userInfo = {
+    numeroCliente: '',
+    sucursal: '',
+    promotor: '',
+    estatusCliente: '',
+    razonSocial: '',
+    nombreCompleto: ''
+  };
+
   constructor(
     public toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
-    private clienteService: ClienteService
+    private creditoService: CreditoService,
+    private readonly formBuilder: FormBuilder
   ) { }
 
-  isCollapsedPrueba2 = true;
-  isCollapsedPrueba1 = false;
-  
-  retorno = {
-    noCliente: null,
-    errorClave: null,
-    errorSp: null,
-    errorDescripcion: null
+  ngOnInit() {
+    const id = this.route.snapshot.params.id;
+    console.log(`el cliente es ${id}`);
+    this.getCustomerInfo(id);
+
+    this.datosCreditoForm = this.formBuilder.group({
+      tipoCredito     : ['', [Validators.required, Validators.maxLength(2)]], /* IN `InTipoCredito` CHAR(2), */
+      noCuenta        : ['', [Validators.required, Validators.maxLength(250)]], /* IN `InDestino` CHAR(250), */
+      montoSolicitado : ['', [Validators.required, Validators.maxLength(17)]], /* IN `InMontoSolicitado` DECIMAL(15,2), */
+      /*
+      IN `InLineaCredito` INTEGER,
+      IN `InSolicitudLinea` INTEGER,
+      IN `InConsecutivo` INTEGER,
+      IN `InTipoCredito` CHAR(2),
+      IN `InPlazo` CHAR(4),
+      IN `InDestino` CHAR(250),
+      IN `InMontoSolicitado` DECIMAL(15,2),
+      */
+    });
+
   }
 
-  ngOnInit() { }  
-  open() {  this.router.navigate(['mod-credi'], { relativeTo: this.route.parent }); }
+  getCustomerInfo(id: number): void {
+    this.creditoService.validarCliente(id).subscribe((res: any) => {
+      console.log(res);
+    });
+  }
 
-//Objetos de Mascaras
-  mask: Array<string | RegExp>;
-  efectivo = [ {
-    mask: createNumberMask({allowDecimal: true}),
-  },
-  ];
+  saveData(): void {
+    let rgxComa = /,/gi;
+    let values = this.datosCreditoForm.value;
+    console.log(values);
+    values.montoSolicitado = values.montoSolicitado.replace('$', '');
+    values.montoSolicitado = values.montoSolicitado.replace(rgxComa, '');
 
-  email = [{
-    mask: emailMask,
-  }];
+    this.creditoService.solicitudCredito(values).subscribe((res: any) => {
+      console.log(res);
+    });
+  }
 
-  number = [{
-    mask: ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
-  }];
-
-  number2 = [{
-    mask: [ /\d/, /\d/, /\d/, /\d/ ],
-  }];
-  
-//Fin Objetos de Mascaras
+  deleteCredit(consecutivo: number): void {
+    let params: {
+      'numeroCliente': 0,
+      'consecutivo': 0
+    };
+    this.creditoService.borrarSolicitudCredito(params).subscribe(
+      (res: any) => {
+        console.log(res);
+    });
+  }
+  /*open() { this.router.navigate(['mod-credi'], { relativeTo: this.route.parent }); }*/
 }

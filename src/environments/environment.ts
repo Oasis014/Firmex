@@ -61,7 +61,9 @@ export const environment = {
     archivos: `${host}documentacion/user_`,
     solicitudesCredito: {
       validaCliente: `${host}SolicitudValidar.php`,
-      guardaSolicitud: `${host}SolicitudCredito.php`
+      lineaCredito: `${host}SolicitudLineaCredito.php`,
+      solicitudCredito: `${host}SolicitudCredito.php`,
+      solicitudCreditoBorrar: `${host}SolicitudCreditoBorrar.php`
     }
   }
 };
