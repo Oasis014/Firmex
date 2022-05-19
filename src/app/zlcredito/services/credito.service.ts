@@ -35,7 +35,7 @@ export class CreditoService {
   }
 
   borrarSolicitudCredito(params: {numeroCliente: number, consecutivo: number}): Observable<any> {
-    return this.httpService.delete(this.apiCredito.solicitudCreditoBorrar, params);
+    return this.httpService.delete(this.apiCredito.solicitudCredito, params);
   }
 
 }

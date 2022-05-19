@@ -50,12 +50,22 @@ export class ModLineCrediComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.params.id;
     console.log(`el cliente es ${id}`);
+    this.userInfo.numeroCliente = id;
     this.getCustomerInfo(id);
 
     this.datosCreditoForm = this.formBuilder.group({
-      tipoCredito     : ['', [Validators.required, Validators.maxLength(2)]], /* IN `InTipoCredito` CHAR(2), */
-      noCuenta        : ['', [Validators.required, Validators.maxLength(250)]], /* IN `InDestino` CHAR(250), */
-      montoSolicitado : ['', [Validators.required, Validators.maxLength(17)]], /* IN `InMontoSolicitado` DECIMAL(15,2), */
+      tipoCredito: ['', [
+        Validators.required,
+        Validators.maxLength(2)
+      ]], /* IN `InTipoCredito` CHAR(2), */
+      noCuenta: ['', [
+        Validators.required,
+        Validators.maxLength(250),
+        Validators.pattern("^[0-9]*$")
+      ]], /* IN `InDestino` CHAR(250), */
+      montoSolicitado: ['', [
+        Validators.required, Validators.maxLength(21)
+      ]], /* IN `InMontoSolicitado` DECIMAL(15,2), */
       /*
       IN `InLineaCredito` INTEGER,
       IN `InSolicitudLinea` INTEGER,
@@ -82,20 +92,26 @@ export class ModLineCrediComponent implements OnInit {
     values.montoSolicitado = values.montoSolicitado.replace('$', '');
     values.montoSolicitado = values.montoSolicitado.replace(rgxComa, '');
 
+    values['lineaCredito'] = 999;       // IN `InLineaCredito` INTEGER,
+    values['InSolicitudLinea'] = 999;   // IN `InSolicitudLinea` INTEGER,
+    values['InConsecutivo'] = 999;      // IN `InConsecutivo` INTEGER,
+    values['InPlazo'] = 'abcd';         // IN `InPlazo` CHAR(4),
+
     this.creditoService.solicitudCredito(values).subscribe((res: any) => {
       console.log(res);
     });
   }
 
   deleteCredit(consecutivo: number): void {
-    let params: {
-      'numeroCliente': 0,
-      'consecutivo': 0
+    let params = {
+      'numeroCliente': parseInt(this.userInfo.numeroCliente),
+      'consecutivo': consecutivo,
+      'solicitudLinea': 0
     };
     this.creditoService.borrarSolicitudCredito(params).subscribe(
       (res: any) => {
         console.log(res);
     });
   }
-  /*open() { this.router.navigate(['mod-credi'], { relativeTo: this.route.parent }); }*/
+
 }

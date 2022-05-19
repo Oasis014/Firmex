@@ -63,7 +63,6 @@ export const environment = {
       validaCliente: `${host}SolicitudValidar.php`,
       lineaCredito: `${host}SolicitudLineaCredito.php`,
       solicitudCredito: `${host}SolicitudCredito.php`,
-      solicitudCreditoBorrar: `${host}SolicitudCreditoBorrar.php`
     }
   }
 };

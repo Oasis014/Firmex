@@ -11,13 +11,13 @@
       </div>
       <div class="col-4 col-lg-4 col-xl-4">
         <div ngbDropdown class="btn-group m-2 float-sm-right">
-          <button type="button" class="btn btn-light">
+          <button type="button" class="btn btn-light" [routerLink]="['../list-credi']">
             <i class="fa fa-mail-reply"></i><span>&nbsp;Salir</span>
           </button>
         </div>
         <div ngbDropdown class="btn-group m-2 float-sm-right" [hidden]="hideCredito">
           <button type="button" class="btn btn-light"
-            [routerLink]="['../mod-linecredi', numeroCliente]">
+            [routerLink]="['../mod-linecredi', numeroClienteInput.value]">
             <span>&nbsp;Credito</span>
           </button>
         </div>
@@ -37,10 +37,12 @@
   <div class="col-lg-12">
     <div class="card">
       <div class="card-body">
-        <ul ngbNav #nav3="ngbNav"  class="nav-tabs nav-tabs-primary  nav-justified">
-          <li [ngbNavItem]="1"  > <a ngbNavLink><i class="fa fa-user-plus"></i>Linea de Credito</a>
+        <ul ngbNav #nav3="ngbNav" class="nav-tabs nav-tabs-primary  nav-justified">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <i class="fa fa-user-plus"></i>Linea de Credito
+            </a>
             <ng-template ngbNavContent>
-
               <div class="row">
                 <div class="col-12 col-lg-12">
                   <div class="card">
@@ -171,7 +173,8 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Número de disposiciones del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="numeroDisposiciones"
+                                <input type="text" class="form-control"
+                                  formControlName="numeroDisposiciones"
                                   placeholder="00"
                                   maxlength="5">
                               </div>
@@ -181,8 +184,8 @@
                             <div class="form-group row">
                               <label class="col-sm-5 col-form-label">Frecuencia para disponer del crédito</label>
                               <div class="col-sm-6 input-group">
-                                <input type="text" class="form-control" formControlName="frecuenciaDisposicion" 
-                                  placeholder="00"
+                                <input type="text" class="form-control" formControlName="frecuenciaDisposicion"
+                                  placeholder="Frecuencia disposición"
                                   maxlength="100">
                               </div>
                             </div>
@@ -213,7 +216,7 @@
                               <label class="col-sm-5 col-form-label">Frecuencia para pagar el crédito</label>
                               <div class="col-sm-6 input-group">
                                 <input type="text" class="form-control" formControlName="frecuenciaPago"
-                                  placeholder="00"
+                                  placeholder="Frecuencia pago"
                                   maxlength="100">
                               </div>
                             </div>
@@ -255,11 +258,12 @@
                           <div class="col-1 col-lg-4 col-xl-4">
                           </div>
                           <div  class="col-2 col-lg-2 col-xl-2">
-                            <button type="submit" class="btn btn-light  btn-block" (click)="cancelar()">Cancelar</button>
+                            <button type="submit" class="btn btn-light  btn-block"
+                              [routerLink]="['../list-credi']">Cancelar</button>
                           </div>
                           <div class="col-2 col-lg-2 col-xl-2">
                             <button  data-toggle="modal" data-target="#largesizemodal1"
-                              class="btn btn-light btn-block" [disabled]="creditoForm.invalid" (click)="guardar()">Guardar</button>
+                              class="btn btn-light btn-block" [disabled]="creditoForm.invalid || disSaveBtn" (click)="guardar()">Guardar</button>
                           </div>
                         </div>
                       </form>

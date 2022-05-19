@@ -36,19 +36,20 @@ export class ModCrediComponent implements OnInit {
 
   numeroClienteInput: FormControl;
   datosCliente = {
-    sucursal: 'sdsdd',
-    promotor: 'sdsdsdd',
-    estatusCliente: 'sdsdd',
-    nombreCompleto: 'fdgdfg',
-    razonSocial: 'dfgdfgdf',
-    rfc: 'fdgdfgdfgdf',
-    estatusSolicitud: 'dfgdfgdgrere',
+    sucursal: 'prueba',
+    promotor: 'prueba',
+    estatusCliente: 'prueba',
+    nombreCompleto: 'prueba',
+    razonSocial: 'prueba',
+    rfc: 'prueba',
+    estatusSolicitud: 'prueba',
   };
   creditoForm: FormGroup;
   disValidate = false;
-  hideCredito = false;
+  hideCredito = true;
   rgxComa = /,/gi;
-  numeroCliente = 0;
+  disSaveBtn = false;
+  // numeroCliente = 0;
 
   constructor(
     public toastr: ToastrService,
@@ -63,29 +64,31 @@ export class ModCrediComponent implements OnInit {
     this.creditoForm = this.fb.group({
       destinoCredito:             ['', [
         Validators.required,
-        Validators.maxLength(250)
+        Validators.maxLength(250),
       ]],
       origenRecursos:             ['', [
         Validators.required,
-        Validators.maxLength(250)
+        Validators.maxLength(250),
       ]],
       numeroDisposiciones:        ['', [
         Validators.required,
         Validators.maxLength(5),
-        Validators.max(65535)
+        Validators.max(65535),
+        Validators.pattern("^[0-9]*$")
       ]],
       frecuenciaDisposicion:      ['', [
         Validators.required,
-        Validators.maxLength(100)
+        Validators.maxLength(100),
       ]],
       montoFrecuenciaDisposicion: ['', [
         Validators.required,
-        Validators.maxLength(15)
+        Validators.maxLength(21),
       ]],
       numeroPagos:                ['', [
         Validators.required,
         Validators.maxLength(5),
-        Validators.max(65535)
+        Validators.max(65535),
+        Validators.pattern("^[0-9]*$"),
       ]],
       frecuenciaPago:             ['', [
         Validators.required,
@@ -93,7 +96,7 @@ export class ModCrediComponent implements OnInit {
       ]],
       montoFrecuenciaPago:        ['', [
         Validators.required,
-        Validators.maxLength(15)
+        Validators.maxLength(21),
       ]],
       divisa:                     ['', [
         Validators.required,
@@ -101,9 +104,25 @@ export class ModCrediComponent implements OnInit {
       ]],
       montoLineaCredito:          ['', [
         Validators.required,
-        Validators.maxLength(15)
+        Validators.maxLength(21)
       ]],
     });
+    // IN `SolicitudLinea` INTEGER, 
+    // IN `NumeroCliente` INTEGER, 
+    // IN `TipoSolicitud` CHAR(2), 
+    // IN `EstatusSolicitud` CHAR(2), 
+    // IN `DestinoCredito` CHAR(250),
+    // IN `OrigenRecursos` CHAR(250),
+    // IN `MontoFrecuenciaDisposicion` DECIMAL(15,2),
+    // IN `FrecuenciaDisposicion` CHAR(100),
+    // IN `NumeroDisposiciones` SMALLINT,
+    // IN `MontoFrecuenciaPago` DECIMAL(15,2),
+    // IN `FrecuenciaPago` CHAR(100),
+    // IN `NumeroPagos` SMALLINT,
+    // IN `Divisa` CHAR(2),
+    // IN `MontoLineaCredito` DECIMAL(15,2),
+    // IN `FechaAlta` DATE,
+
 
 /*
 numeroCliente                ` INTEGER,
@@ -135,12 +154,10 @@ estatusSolicitud             ` CHAR(2),
   validarCliente(): void {
     this.creditoService.validarCliente(this.numeroClienteInput.value).subscribe((resp: ResponseSP) => {
         console.log(resp);
-        // if ( resp.data.length > 0 ) {
-
-          this.disValidate = true;
-          this.numeroClienteInput.disable();
-
-          /*this.datosCliente = {
+        this.disValidate = true;
+        this.numeroClienteInput.disable();
+        if ( resp.data.length > 0 && null != resp.data[0] ) {
+          this.datosCliente = {
             sucursal: resp.data[0]['sucursalDesc'],
             promotor: resp.data[0]['clavePromotorDesc'],
             estatusCliente: resp.data[0]['estatusCliente'],
@@ -148,12 +165,12 @@ estatusSolicitud             ` CHAR(2),
             razonSocial: resp.data[0]['razonSocial'],
             rfc: resp.data[0]['rfc'],
             estatusSolicitud: '',
-          };*/
-          this.collapseCreditoForm = false;
-          this.numeroCliente = this.numeroClienteInput.value;
-        // } else {
+          };
+        } else {
           // this.collapseCreditoForm = true;
-        // }
+        }
+        this.collapseCreditoForm = false;
+        // this.numeroCliente = this.numeroClienteInput.value;
     });
   }
 
@@ -181,6 +198,8 @@ estatusSolicitud             ` CHAR(2),
       (resp: ResponseSP) => {
         console.log(resp);
         this.hideCredito = false;
+        this.creditoForm.disable();
+        this.disSaveBtn = true;
         // errorClave: "000"
         // errorDescripcion: "Ejecucin Exitosa"
         // errorSp: "mgsp_SolicitudesLineasCredito"
