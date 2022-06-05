@@ -5,6 +5,7 @@ import emailMask from 'text-mask-addons/dist/emailMask';
 import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { CreditoService } from '../services/credito.service';
+import { Catalogos } from 'src/app/shared/models/catalogos';
 
 @Component({
   selector: 'app-mod-linecredi',
@@ -38,6 +39,9 @@ export class ModLineCrediComponent implements OnInit {
     razonSocial: '',
     nombreCompleto: ''
   };
+  listTipoCredito: Catalogos[];
+  lineaCreditoId: number;
+  lineaCredito: any;
 
   constructor(
     public toastr: ToastrService,
@@ -49,9 +53,11 @@ export class ModLineCrediComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    console.log(`el cliente es ${id}`);
+    this.lineaCreditoId = this.route.snapshot.params.cred;
+    console.log(`el cliente es ${id} y su numero de credito es: ${this.lineaCreditoId}`);
     this.userInfo.numeroCliente = id;
     this.getCustomerInfo(id);
+    this.getLineInfo(id, this.lineaCreditoId);
 
     this.datosCreditoForm = this.formBuilder.group({
       tipoCredito: ['', [
@@ -77,11 +83,44 @@ export class ModLineCrediComponent implements OnInit {
       */
     });
 
+    this.getCatalogoTipoCredito();
+
   }
 
   getCustomerInfo(id: number): void {
     this.creditoService.validarCliente(id).subscribe((res: any) => {
-      console.log(res);
+      console.log(res.data);
+      this.userInfo = {
+        numeroCliente: res.data[0].numeroCliente,
+        sucursal: res.data[0].sucursalDesc,
+        promotor: res.data[0].clavePromotorDesc,
+        estatusCliente: res.data[0].estatusCliente,
+        razonSocial: res.data[0].razonSocial,
+        nombreCompleto: res.data[0].nombreCompleto,
+      };
+    });
+  }
+
+  getLineInfo(customer: number, line: number): void {
+    this.creditoService.getLineaCredito(customer, line).subscribe((res: any) => {
+      console.log(res.data);
+      this.lineaCredito = res.data[0];
+      // destinoCredito: "111"
+      // divisa: "01"
+      // estatusSolicitud: "01"
+      // fechaAlta: "2022-06-05"
+      // frecuenciaDisposicion: "111"
+      // frecuenciaPago: "111"
+      // lineaCredito: "0"
+      // montoFrecuenciaDisposicion: "111.00"
+      // montoFrecuenciaPago: "111.00"
+      // montoLineaCredito: "11111.00"
+      // numeroCliente: "1"
+      // numeroDisposiciones: "111"
+      // numeroPagos: "111"
+      // origenRecursos: "111"
+      // solicitudLinea: "17"
+      // tipoSolicitud: "01"
     });
   }
 
@@ -92,9 +131,9 @@ export class ModLineCrediComponent implements OnInit {
     values.montoSolicitado = values.montoSolicitado.replace('$', '');
     values.montoSolicitado = values.montoSolicitado.replace(rgxComa, '');
 
-    values['lineaCredito'] = 999;       // IN `InLineaCredito` INTEGER,
-    values['InSolicitudLinea'] = 999;   // IN `InSolicitudLinea` INTEGER,
-    values['InConsecutivo'] = 999;      // IN `InConsecutivo` INTEGER,
+    values['lineaCredito'] = this.lineaCredito.lineaCredito;       // IN `InLineaCredito` INTEGER,
+    values['solicitudLinea'] = this.lineaCredito.solicitudLinea;   // IN `InSolicitudLinea` INTEGER,
+    values['consecutivo'] = 0;        // OK IN `InConsecutivo` INTEGER,
     values['InPlazo'] = 'abcd';         // IN `InPlazo` CHAR(4),
 
     this.creditoService.solicitudCredito(values).subscribe((res: any) => {
@@ -111,6 +150,13 @@ export class ModLineCrediComponent implements OnInit {
     this.creditoService.borrarSolicitudCredito(params).subscribe(
       (res: any) => {
         console.log(res);
+    });
+  }
+
+  getCatalogoTipoCredito(): void {
+    this.creditoService.catalogoTipoCredito().subscribe(
+      (res: Catalogos[]) => {
+      this.listTipoCredito = res;
     });
   }
 

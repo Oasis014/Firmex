@@ -17,7 +17,7 @@
         </div>
         <div ngbDropdown class="btn-group m-2 float-sm-right" [hidden]="hideCredito">
           <button type="button" class="btn btn-light"
-            [routerLink]="['../mod-linecredi', numeroClienteInput.value]">
+            [routerLink]="['../mod-linecredi', numeroClienteInput.value, 'linea', idSolicitudLinea]">
             <span>&nbsp;Credito</span>
           </button>
         </div>
@@ -237,9 +237,10 @@
                               <label class="col-sm-5 col-form-label">Moneda en la que solicita el crédito</label>
                               <div class="col-sm-6 input-group">
                                 <select class="form-control form-control-sm" formControlName="divisa">
-                                  <option selected>Seleccione Moneda ...</option>
-                                  <option [value]="1">Moneda 1</option>
-                                  <option [value]="2">Moneda 2</option>
+                                  <option selected>Seleccione divisa...</option>
+                                  <option *ngFor="let item of listDivisas" [value]="item.catalogo_cve">
+                                    {{item.desc_45}}
+                                  </option>
                                 </select>
                               </div>
                             </div>

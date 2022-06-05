@@ -42,7 +42,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'mod-linecredi/:id', /* DETALE CREDITO */
+        path: 'mod-linecredi/:id/linea/:cred', /* DETALE CREDITO */
         component: ModLineCrediComponent,
         data: {
           title: 'modificacion linea credito'

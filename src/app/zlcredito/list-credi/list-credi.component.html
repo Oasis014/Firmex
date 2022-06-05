@@ -45,7 +45,7 @@
       <tbody>
         <tr *ngFor="let post of list " >
           <td>{{post.numeroCliente}}</td>
-          <td>{{post.SolicitudLinea}}</td>
+          <td>{{post.solicitudLinea}}</td>
           <td>{{post.lineaCredito}}</td>
           <td>{{post.tipoSolicitud}}</td>
           <td>{{post.estatusSolicitud}}</td>
@@ -54,7 +54,7 @@
           <td>{{post.numeroPagos}}</td>
           <td>{{post.divisa}}</td>-->
           <td>
-            <a class="btn btn-sm btn-info text-white" [routerLink]="['../mod-linecredi/', post.numeroCliente]">
+            <a class="btn btn-sm btn-info text-white" [routerLink]="['../mod-linecredi/', post.numeroCliente, 'linea', post.solicitudLinea]">
               <i class="fa fa-pencil"></i>
             </a>
           </td>

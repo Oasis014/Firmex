@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { CreditoService } from '../services/credito.service';
 import { ResponseSP } from 'src/app/shared/models/responseSP';
+import { Catalogos } from 'src/app/shared/models/catalogos';
 
 @Component({
   selector: 'app-mod-credi',
@@ -49,10 +50,11 @@ export class ModCrediComponent implements OnInit {
   hideCredito = true;
   rgxComa = /,/gi;
   disSaveBtn = false;
-  // numeroCliente = 0;
+  listDivisas: Catalogos[];
+  idSolicitudLinea: number;
 
   constructor(
-    public toastr: ToastrService,
+    public toastrService: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -100,7 +102,7 @@ export class ModCrediComponent implements OnInit {
       ]],
       divisa:                     ['', [
         Validators.required,
-        Validators.maxLength(2)
+        Validators.maxLength(4)
       ]],
       montoLineaCredito:          ['', [
         Validators.required,
@@ -144,7 +146,7 @@ tipoSolicitud                ` CHAR(2),
 estatusSolicitud             ` CHAR(2),
 */
 
-
+    this.catalogoDivisas();
   }
 
   /*open() {
@@ -154,9 +156,18 @@ estatusSolicitud             ` CHAR(2),
   validarCliente(): void {
     this.creditoService.validarCliente(this.numeroClienteInput.value).subscribe((resp: ResponseSP) => {
         console.log(resp);
-        this.disValidate = true;
-        this.numeroClienteInput.disable();
-        if ( resp.data.length > 0 && null != resp.data[0] ) {
+
+        if ( '999' === resp.errorClave && 'Error!!! Cliente No Existe' === resp.errorDescripcion) {
+          this.toastrService.error(resp.errorDescripcion, 'Validación');
+        } else if ( '999' === resp.errorClave && 'Warning!!! Cliente Tiene Solicitudes Pendientes' === resp.errorDescripcion) {
+          this.toastrService.warning(resp.errorDescripcion, 'Validación');
+          this.disValidate = true;
+          this.numeroClienteInput.disable();
+          this.collapseCreditoForm = false;
+          this.disSaveBtn = false;
+        } else if ( resp.data.length > 0 && null != resp.data[0] ) {
+          this.disValidate = true;
+          this.numeroClienteInput.disable();
           this.datosCliente = {
             sucursal: resp.data[0]['sucursalDesc'],
             promotor: resp.data[0]['clavePromotorDesc'],
@@ -166,11 +177,11 @@ estatusSolicitud             ` CHAR(2),
             rfc: resp.data[0]['rfc'],
             estatusSolicitud: '',
           };
-        } else {
-          // this.collapseCreditoForm = true;
+          this.collapseCreditoForm = false;
+          // this.numeroCliente = this.numeroClienteInput.value;
+          this.collapseCreditoForm = false;
+          this.disSaveBtn = false;
         }
-        this.collapseCreditoForm = false;
-        // this.numeroCliente = this.numeroClienteInput.value;
     });
   }
 
@@ -180,10 +191,10 @@ estatusSolicitud             ` CHAR(2),
 
   guardar(): void {
     const values = this.creditoForm.value;
-    values['numeroCliente'] = 2;
-    values['solicitudLinea'] = 1;
-    values['tipoSolicitud'] = 'xx';
-    values['estatusSolicitud'] = 'xx';
+    values['numeroCliente'] = this.numeroClienteInput.value;
+    values['solicitudLinea'] = 0;
+    values['tipoSolicitud'] = '01';
+    values['estatusSolicitud'] = '01';
 
     values.montoFrecuenciaDisposicion = values.montoFrecuenciaDisposicion.replace('$', '');
     values.montoFrecuenciaDisposicion = values.montoFrecuenciaDisposicion.replace(this.rgxComa, '');
@@ -196,14 +207,23 @@ estatusSolicitud             ` CHAR(2),
 
     this.creditoService.guardarSolicitud(values).subscribe(
       (resp: ResponseSP) => {
+        this.toastrService.success(resp.errorDescripcion, '');
         console.log(resp);
         this.hideCredito = false;
         this.creditoForm.disable();
         this.disSaveBtn = true;
+        this.idSolicitudLinea = parseInt(resp.solicitudLinea);
         // errorClave: "000"
         // errorDescripcion: "Ejecucin Exitosa"
         // errorSp: "mgsp_SolicitudesLineasCredito"
         // solicitudLinea: "1"
+    });
+  }
+
+  catalogoDivisas(): void {
+    this.creditoService.catalogoDivisas().subscribe(
+      (res: Catalogos[]) => {
+        this.listDivisas = res;
     });
   }
 
