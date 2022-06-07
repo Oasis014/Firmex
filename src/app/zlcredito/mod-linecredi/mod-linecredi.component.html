@@ -115,10 +115,9 @@
                       <table class="table table-striped text-center">
                         <thead>
                           <th>Consecutivo</th>
-                          <th>Linea de Credito</th>
+                          <th>Linea de Crédito</th>
                           <th>Solicitud de Linea</th>
-                          <th>Tipo de Credito</th>
-                          <th>Plazo</th>
+                          <th>Tipo de Crédito</th>
                           <th>Destino</th>
                           <th>Monto Solicitado</th>
                           <th></th>
@@ -131,13 +130,12 @@
                             <td>{{item.consecutivo}}</td>
                             <td>{{item.lineaCredito}}</td>
                             <td>{{item.solicitudLinea}}</td>
-                            <td>{{item.tipoCredito}}</td>
-                            <td>{{item.plazo}}</td>
+                            <td>{{item.tipoCreditoDesc}}</td>
                             <td>{{item.destino}}</td>
                             <td>{{item.montoSolicitado}}</td>
                             <td>
                               <a class="btn btn-sm btn-danger text-white ml-1"
-                                (click)="deleteCredit(item.consecutivo)">
+                                (click)="confirmarBorrarElemento(item.consecutivo)">
                                   <i class="fa fa-trash"></i>
                               </a>
                             </td>

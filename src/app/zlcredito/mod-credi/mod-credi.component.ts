@@ -149,38 +149,35 @@ estatusSolicitud             ` CHAR(2),
     this.catalogoDivisas();
   }
 
-  /*open() {
-    this.router.navigate(['mod-linecredi'], { relativeTo: this.route.parent });
-  }*/
-
   validarCliente(): void {
     this.creditoService.validarCliente(this.numeroClienteInput.value).subscribe((resp: ResponseSP) => {
         console.log(resp);
 
-        if ( '999' === resp.errorClave && 'Error!!! Cliente No Existe' === resp.errorDescripcion) {
-          this.toastrService.error(resp.errorDescripcion, 'Validación');
-        } else if ( '999' === resp.errorClave && 'Warning!!! Cliente Tiene Solicitudes Pendientes' === resp.errorDescripcion) {
-          this.toastrService.warning(resp.errorDescripcion, 'Validación');
+        if ( '901' === resp.errorClave ) {
+          this.toastrService.error('El número de cliente, no existe.', 'Error');
+        } else {
+          if ( '0801' === resp.errorClave ) {
+            this.toastrService.warning('El cliente tiene solicitudes pendientes.', 'Alerta');
+          } else {
+            this.toastrService.success('Consulta realizada con éxito.', '');
+          }
           this.disValidate = true;
           this.numeroClienteInput.disable();
           this.collapseCreditoForm = false;
           this.disSaveBtn = false;
-        } else if ( resp.data.length > 0 && null != resp.data[0] ) {
-          this.disValidate = true;
-          this.numeroClienteInput.disable();
-          this.datosCliente = {
-            sucursal: resp.data[0]['sucursalDesc'],
-            promotor: resp.data[0]['clavePromotorDesc'],
-            estatusCliente: resp.data[0]['estatusCliente'],
-            nombreCompleto: resp.data[0]['nombreCompleto'],
-            razonSocial: resp.data[0]['razonSocial'],
-            rfc: resp.data[0]['rfc'],
-            estatusSolicitud: '',
-          };
-          this.collapseCreditoForm = false;
-          // this.numeroCliente = this.numeroClienteInput.value;
-          this.collapseCreditoForm = false;
-          this.disSaveBtn = false;
+
+          if ( resp.data.length > 0 && null != resp.data[0] ) {
+            this.datosCliente = {
+              sucursal: resp.data[0]['sucursalDesc'],
+              promotor: resp.data[0]['clavePromotorDesc'],
+              estatusCliente: resp.data[0]['estatusCliente'],
+              nombreCompleto: resp.data[0]['nombreCompleto'],
+              razonSocial: resp.data[0]['razonSocial'],
+              rfc: resp.data[0]['rfc'],
+              estatusSolicitud: '',
+            };
+          }
+
         }
     });
   }
@@ -207,16 +204,14 @@ estatusSolicitud             ` CHAR(2),
 
     this.creditoService.guardarSolicitud(values).subscribe(
       (resp: ResponseSP) => {
-        this.toastrService.success(resp.errorDescripcion, '');
         console.log(resp);
-        this.hideCredito = false;
-        this.creditoForm.disable();
-        this.disSaveBtn = true;
-        this.idSolicitudLinea = parseInt(resp.solicitudLinea);
-        // errorClave: "000"
-        // errorDescripcion: "Ejecucin Exitosa"
-        // errorSp: "mgsp_SolicitudesLineasCredito"
-        // solicitudLinea: "1"
+        if ( '000' === resp.errorClave ) {
+          this.toastrService.success('Registro guardado con éxito.', '');
+          this.hideCredito = false;
+          this.creditoForm.disable();
+          this.disSaveBtn = true;
+          this.idSolicitudLinea = parseInt(resp.solicitudLinea);
+        }
     });
   }
 

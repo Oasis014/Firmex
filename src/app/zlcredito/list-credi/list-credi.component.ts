@@ -1,8 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { Router, ActivatedRoute } from "@angular/router";
 import { CreditoService } from '../services/credito.service';
-//import { PipeClienteComponent } from '../list-cliente/filter-pipe';
 
 @Component({
   selector: 'app-list-credi',

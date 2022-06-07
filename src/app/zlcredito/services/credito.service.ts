@@ -37,6 +37,13 @@ export class CreditoService {
     return this.httpService.get(this.apiCredito.lineaCredito, params);
   }
 
+  getListCredit(linea: number): Observable<any> {
+    const params = {
+      linea
+    };
+    return this.httpService.get(this.apiCredito.solicitudCredito, params);
+  }
+
   guardarSolicitud(data: any): Observable<any> {
     return this.httpService.post(this.apiCredito.lineaCredito, data);
   }
@@ -45,7 +52,11 @@ export class CreditoService {
     return this.httpService.post(this.apiCredito.solicitudCredito, data);
   }
 
-  borrarSolicitudCredito(params: {numeroCliente: number, consecutivo: number}): Observable<any> {
+  borrarSolicitudCredito(solicitudLinea: number, consecutivo: number): Observable<any> {
+    const params = {
+      solicitudLinea,
+      consecutivo
+    };
     return this.httpService.delete(this.apiCredito.solicitudCredito, params);
   }
 
